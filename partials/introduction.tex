@@ -1,0 +1,102 @@
+
+\section{Introduction} % WHAT (builing on X, what does the reader need to know, what's the hypothesis)
+A chatbot is a conversational agent able to communicate with users in turns 
+using natural language \cite{evaluateChatbotsShawar2007, shawar2007chatbots, huang2007extracting, gregori2017evaluation}.
+Chatbots are becoming popular especially in the customer support section where they are used to replace humans \cite{GO2019304}.
+Conversational interfaces are gaining more and more attention because to implement a chatbot system small 
+to no programming knowledge is needed. \cite{braunEvaluatingNLU}
+There are three main reasons for the growing popularity.
+The rise of chat systems in everyday life, the advancements in machine learning, and the 
+advancements in NLU in recent years. \cite{braunEvaluatingNLU}
+
+% why companies should use them
+Chatbots can help companies to reduce costs like \citet{rahman2017programming} stated
+or reduce the workload like mentioned in \citet{deshpande2017survey}.
+Chatbots can greatly reduce the costs of customer services and increase customer satisfaction \cite{singhbuilding}. 
+They are also available seven days a week 24 hours a day \cite{singhbuilding}.
+All these reasons are key factors why chatbot systems are getting popular.
+They can handle large service demands cost efficient 24/7.
+
+% Hypothesis
+The knowledge-base for the company for further development is built with this thesis.
+It needs to be researched which technologies are state-of-the-art technologies to build chatbots.
+The technologies needs to be compared with domain specific data to determine which frameworks can be 
+recommended for further development.
+The choosen domain for this thesis is a sickness notification.
+The bot needs to collect information from a natural language conversation of short text messages.
+The information is used to identify the sick person and is sent to a server for processing.
+The frameworks will be trained and tested with the same data to prevent bias.
+The expectation is that the end result looks and feels the same way independent from the framework.
+The frameworks should use the same concepts.
+They should be easy to develop and the functionality offered should be similar.
+The NLP performance is expected to be on an equal level like in \citet{braunEvaluatingNLU} where the difference 
+between Rasa and LUIS was quite small.
+Some papers like \citet{braunEvaluatingNLU} compare the NLU and NLP capabilities of services.
+In this thesis the frameworks are compared from the NLU and development perspective.
+Hence, things like setup and development difficulty, and 
+the available featurs of the frameworks are compared.
+This information is used to give a recommendation for future development.
+
+
+\section{Motivation} % WHY
+The company currently has no knowledge about chatbot systems.
+To justify the use of a chatbot sytem knowledge about those systems needs to be collected and evaluated.
+Knowledge needs to be collected about chatbots, the possible use-cases, the state-of-the-art technologies, the concepts, 
+the evaluation of chatbot systems, and psychological aspects.
+It needs to be determined if problems like the sickness notification are suitable for the use of chatbots.
+It's of general interest to find out which use-cases can are suitable for chatbots in general to give
+recommendations and inspiration for further projects.
+With the collected knowledge the sickness notification use-case needs to be implemented using multiple frameworks to determine 
+the best framework for the use-case.
+At the moment, the sickness notification process starts with a call at the company. 
+A person receives the call, enters the information into the computer system and enables an out of office email 
+notification for the sick person. 
+The team and the boss also need to be notified. 
+This repetitive task needs to be solved by a chatbot. 
+The new process also starts with the call but this time the person receiving the call enters 
+the retrieved information into the chatbot system and an out of office email 
+notification is created automatically. 
+This saves a lot of time the employees can spend on important, non-repetitive tasks.
+For this use-case the chatbot needs to collect the information from natural language 
+and submit the data to a server for processing.
+Chatbots can serve requests all the time and can serve a larger amount of people immediately \cite{kane2016role}.
+Chatbots are accessible, efficient, 24/7 available, scalable, cheap, and user behavior can be monitored \cite{buiildChatbotsPython}.
+They are also a great solution when it is impossible to hire a large enough staff to handle the load of user requests \cite{kane2016role}.
+Chatbots can be used to make complicated search operations easier to understand and easier to use for humans \cite{kane2016role}.
+It's also a natural way of communication.
+Anyone who can talk to a person can work with a chatbot interface \cite{buiildChatbotsPython}.
+Hence, it is an easy to understand interface suitable for almost everyone.
+Other major points are the performance of the different frameworks, the ease-of-use, 
+the development effort, and the supported features.
+Based on these and similar cirteria the frameworks are evaluated to find the best suitable 
+framework and the strengths and weaknesses of these systems.
+All this information together builds the knowledge-base for further research and development.
+
+\section{Company}
+The master's thesis is for the 3-Banken-IT Gmbh. The managing directors are Karl St\"obich and Alexander Wiesinger. \cite{3bitorgani}
+The 3-Banken-IT is the general contractor for all IT-services insider the 3-Banken-Gruppe. \cite{3bitservices}
+The core competences of the 3-Banken-IT are software development and maintenance of banking applications, IT-security, IT-support, operation of the data-centers and the operation of central and distributed IT-infrastructure. \cite{3bitservices}
+The 3-Banken-Gruppe consists of three independent regional banks namely the Oberbank, Bank für Tirol und Vorarlberg and the BKS Bank. \cite{3bitcompany}
+The supervisor of the master thesis from the company side is Thomas Reidinger the chief of enterprise architecture.
+
+\section{Research Questions}
+\begin{itemize}
+    \item Where are the differences and similarities between the chatbot frameworks?
+    \item Which prototype is the most promising for the given problem?
+    \item Which problems are suitabel for the use of chatbots?
+\end{itemize}
+
+\section{Prerequisites} \label{sec:prereq}
+Collect information about state-of-the-art technologies and frameworks in the area of chatbots for further development.
+At least one tested framework needs to offer offline capabilities for a local prototype.
+At least one cloud technology needs to be tested.
+IBM Watson Assistant needs to be tested since it's a wish from the 3-Banken-IT.
+The domain for the prototypes is a sickness notification.
+
+
+\section{Expected Results}
+The same functionality has been implemented with different frameworks.
+The frameworks are all trained with the exact same training data to keep the comparison fair.
+A detailed comparison of the different technologies showing the strengths and weaknesses of each technology from a development point of view.
+New use cases were found for the use of chatbot systems for further projects.
+Based on the prototype evaluation the framework suiting best needs to be recommended for further steps.

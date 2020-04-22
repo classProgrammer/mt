@@ -1,0 +1,757 @@
+\documentclass[12pt, backref]{report}
+
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage[square,numbers]{natbib}
+\usepackage{pbox}
+\usepackage[flushleft]{threeparttable}
+\usepackage{booktabs,caption}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{tabularx}
+\usepackage{pdfpages}
+\usepackage{listings}
+\usepackage{geometry} 
+\usepackage{fancyhdr}
+\usepackage{mathptmx}
+\pagestyle{fancy}
+\usepackage[md]{titlesec}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+
+\fancyhf{} % clear the headers
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{%
+	% The chapter number only if it's greater than 0
+	\ifnum\value{chapter}>0 \thechapter. \fi
+	% The chapter title
+	\nouppercase\leftmark}
+\fancyhead[R]{\thepage}
+
+\usepackage[pagebackref]{hyperref}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\graphicspath{{img/}}   
+\bibliographystyle{plainnat}
+
+\rmfamily
+
+\geometry{
+	a4paper, 
+	top=25mm, 
+	left=30mm, 
+	right=30mm, 
+	bottom=25 mm, 
+	headsep=10mm, 
+	footskip=12mm
+}
+
+\renewcommand{\lstlistlistingname}{List of \lstlistingname s}
+\newcommand{\makefigure}[2] {
+\begin{figure}[h]
+	\centering
+	\fbox{\includegraphics[width=\textwidth]{#1.PNG}}
+	\captionof{figure}{#2}\label{fig:#1}
+\end{figure}
+}
+
+
+
+\newcommand{\makerefs}[1] {
+	\bibliography{#1}
+	\addcontentsline{toc}{chapter}{Bibliography}
+	\listoffigures
+	\addcontentsline{toc}{chapter}{List of Figures}
+	\listoftables
+	\addcontentsline{toc}{chapter}{List of Tables}
+	\lstlistoflistings
+	\addcontentsline{toc}{chapter}{List of Listings}
+}
+
+
+
+\renewcommand*{\backref}[1]{}
+\renewcommand*{\backrefalt}[4]
+{%
+	\ifcase #1 (Not cited.)%
+	\or        (Cited on page~#2.)% cite of one page
+	\else      (Cited on pages~#2.)% cite of several pages 
+	\fi
+}
+
+%-----------------------------------------------Colors
+\definecolor{lightgrey}{rgb}{0.93,0.93,0.93}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{myorange}{rgb}{1,0.49,0}
+%-----------------------------------------------Code
+\lstset{
+	language=pascal,
+	showstringspaces=false,
+	showspaces=false, 
+	showtabs=false, 
+	basicstyle=\footnotesize,
+	breaklines=true,
+	breakatwhitespace=false,
+	backgroundcolor=\color{lightgrey},
+	keepspaces=true, 
+	commentstyle=\color{mygreen},
+	keywordstyle=\color{blue},
+	numbers=left,
+	numbersep=5pt, 
+	numberstyle=\tiny\color{black},
+	rulecolor=\color{black},
+	tabsize=2,
+	otherkeywords={}, 
+}
+
+\title{Bibliography management: \texttt{natbib} package}
+\author{Share\LaTeX}
+\date{}
+
+\begin{document}
+	
+\pagenumbering{roman}
+
+\tableofcontents
+	
+
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+
+
+\chapter*{Kurzfassung}
+\addcontentsline{toc}{chapter}{Kurzfassung}
+
+
+	\chapter{Introduction}
+		\pagenumbering{arabic}
+Conversational interfaces are gaining more and more attention because to implement a chatbot system small to no programming knowledge is needed. \cite{braunEvaluatingNLU}
+The three main reasons for the growing popularity are the rise of chat systems in everyday life, the advancements in machine learning and NLU in recent years. \cite{braunEvaluatingNLU}
+
+Chatbots are useful for companies because they can save a lot of money \cite{rahman2017programming}.
+
+A chatbot is a system which chats with a user in natural language \cite{evaluateChatbotsShawar2007}.
+
+Chatbots are capable of automating customers service and reduce the workload of humans \cite{deshpande2017survey}
+
+chatbots can greatly reduce the costs of customer services and increase customer satisfaction \cite{singhbuilding}. 
+A chatbot is available seven days a week, 24 hours a day and can serve the basic needs of customers \cite{singhbuilding}.
+
+Chatbots should be used to help people and reduce the workload and not to imitate humans \cite{shawar2007chatbots}.
+
+\section{Motivation}
+Chatbots can serve requests all the time and can serve a larger amount of people immediately \cite{kane2016role}.
+They are also a great solution when it is impossible to hire a large enough staff to handle the user requests \cite{kane2016role}.
+
+Chatbots can be used to make complicated search operations easier to understand and use for humans \cite{kane2016role}.
+
+Anyone who is able to talk to a person can work with a chatbot interface \cite{buiildChatbotsPython}.
+
+Chatbot systems are a perfect fit for repetitive tasks and can help to automate these task. The major background for this thesis is to automate sickness notifications and vacation applications. At the moment the process for a sickness notification starts with a call at the company. A person receives the call, enters the information into the computer system and enables a out of office email notification for the sick person. The team or team lead also needs to be notified. This classical repetitive task can be solved by a chatbot. The new process also starts with the call but this time the person receiving the call enters the retrieved information into the chatbot system and the out of office email notification is created automatically. This saves a lot of time the employees can spend on important, non repetitive tasks.
+
+
+It is also the case that currently there is no knowledge or previous work in the area of chatbots or chatbot frameworks present at the company. The major point of this thesis is the collection of knowledge in the area of chatbots and the comparison of frameworks to build the foundation for further research and give recommendations for the development of a system.
+
+
+Chatbots are accessible, efficient, 24/7 available, scalable, cheap, and the user behavior can be monitored \cite{buiildChatbotsPython}.
+
+\section{Company}
+The master's thesis is for the 3-Banken-IT Gmbh. The managing directors are Karl St\"obich and Alexander Wiesinger. \cite{3bitorgani}
+The 3-Banken-IT is the general contractor for all IT-services insider the 3-Banken-Gruppe. \cite{3bitservices}
+The core competences of the 3-Banken-IT are software development and maintenance of banking applications, IT-security, IT-support, operation of the data-centers and the operation of central and distributed IT-infrastructure. \cite{3bitservices}
+The 3-Banken-Gruppe consists of three independent regional banks namely the Oberbank, Bank für Tirol und Vorarlberg and the BKS Bank. \cite{3bitcompany}
+The supervisor of the master thesis from the company side is Thomas Reidinger the chief of enterprise architecture.
+
+\section{Research Questions}
+\begin{itemize}
+	\item Where are the differences and similarities between the chatbot frameworks?
+	\item Which prototype is the most promising for the given problem?
+\end{itemize}
+
+\section{Prerequisites} \label{sec:prereq}
+Collect information about state-of-the-art technologies and frameworks in the area of chatbots for further development.
+At least one tested framework needs to offer offline capabilities for a local prototype.
+At least one cloud technology needs to be tested.
+IBM Watson Assistant needs to be tested since the 3-Banken-IT works a lot with IBM technologies.
+The domain language is German.
+The domain for the prototypes is a sickness notification and a vacation request.
+
+
+\section{Expected Results}
+Multiple prototypes developed with different frameworks with the same function, capabilities, and prerequisites.
+A comparison of the different technologies showing the strengths and weaknesses of each technology from a development point of view.
+Based on the prototype evaluation the framework suiting best needs to be recommended for further steps.
+
+
+\chapter{State of the Art} \label{chap:soa}
+
+% Hybrid coding networks
+\citet{williams2017hybrid} and \citet{bordes2016learning} state that the two major chatbot types are goal-oriented and end-to-end systems.
+The goal oriented systems keep track of the internal state to achieve a task like a restaurant reservation \cite{williams2017hybrid}. 
+In current end-to-end models constraints are not supported \cite{williams2017hybrid}. For a banking app the user needs to log in before the account information can be retrieved which is a problem in end-to-end models because constraints are not supported \cite{williams2017hybrid}.
+The recent end-to-end approaches use recurrent neural networks which use real dialogs as training data \cite{williams2017hybrid}. The end-to-end systems infer the state representation but lack mechanisms for constraining and the injection of domain specific knowledge \cite{williams2017hybrid}.
+The hybrid coding networks presented in \citet{williams2017hybrid} are an end-to-end approach where it is possible to inject domain knowledge \cite{williams2017hybrid}. The experiments show that the HNNs are performing on an equal level with existing end-to-end approaches but less training data is needed and the developer has more control but also requires more development effort \cite{williams2017hybrid}.
+
+% braun evaluating NLU
+\citet{braunEvaluatingNLU} states that modern conversational agents can be built without programming knowledge because of natural language understanding services (NLU) \cite{braunEvaluatingNLU}. The recent advancements in machine learning (ML) and NLU and the popularity of messenger platforms has lead to huge progress in the recent years \cite{braunEvaluatingNLU}. Recent publications have discussed the use of NLU service but not why one service has been chosen over another \cite{braunEvaluatingNLU}. The architecture of a chatbot consists of three elements \cite{braunEvaluatingNLU}. The request needs to be interpreted, the response needs to be retrieved and the response message needs to be generated \cite{braunEvaluatingNLU}. The purpose of NLU services is the extraction of information from natural language \cite{braunEvaluatingNLU}. Popular NLU services are LUIS, Watson Conversation, Dialogflow/API.ai, and RASA as an open source alternative \cite{braunEvaluatingNLU}. The cloud based solutions have advantages when it comes to hosting and scalability and Rasa has advantages when it adaptability and data control are needed \cite{braunEvaluatingNLU}. All three NLU services share the same basic functionality of intents, entities and batch import in JSON format \cite{braunEvaluatingNLU}. The cloud based services are secretive when it comes to the ML algorithms and the initial training data \cite{braunEvaluatingNLU}. The exception is Rasa where the ML backend can be chosen by the developer \cite{braunEvaluatingNLU}. For the evaluation of the NLU services training data from a production chatbot and two other training sets from SatchExcahnge platforms were used \cite{braunEvaluatingNLU}. The compared services were LUIS, Rasa, Dialogflow and Watson Conversation \cite{braunEvaluatingNLU}. The exact same training data was used for all services \cite{braunEvaluatingNLU}. The evaluation of the services NLU capability is based on the true and false positives and negatives, the recall, precision and F-score \cite{braunEvaluatingNLU}. The better the F-score is the better the NLU service has performed \cite{braunEvaluatingNLU}. The evaluation of NLU services is only a snapshot since the services are continuously improving \cite{braunEvaluatingNLU}. LUIS performed best on all datasets but in the area of chatbots Rasa and LUIS were equally good but with some adjustments Rasa could perform better than LUIS because it can be customized further than LUIS \cite{braunEvaluatingNLU}. The domain had nearly no influence on the ranking of the NLU systems \cite{braunEvaluatingNLU}.
+If the training data is sparse then there is no significant difference between the services \cite{braunEvaluatingNLU}. Before using a NLU service different services should be tested with domain specific data \cite{braunEvaluatingNLU}.
+
+% evaluate chatbots Shawar
+\citet{evaluateChatbotsShawar2007} is about the application of chat systems in different languages and the evaluation of the system.
+The evaluation of chatbot systems needs to be adapted to the application and the users needs \cite{evaluateChatbotsShawar2007}.
+A chatbot system can be evaluated by the actual users of the systems in a test setting \cite{evaluateChatbotsShawar2007}.
+The feedback of the users is used to improve the system \cite{evaluateChatbotsShawar2007}. 
+Each component of a chatbot system can be tested individually and the whole system can be tested based on user satisfaction and acceptance \cite{evaluateChatbotsShawar2007}.
+in \citet{evaluateChatbotsShawar2007} a FAQ chatbot has been built which competed against the classical Google search.
+The participants had to answer a few questions like how many results the input query found and which system they prefer and why \cite{evaluateChatbotsShawar2007}. 
+The result of the user study was that the FAQ chatbot found an answer more often than Google \cite{evaluateChatbotsShawar2007}.
+Custom built solutions can outperform classical approaches in small areas.
+47\% of the users taking part in the study preferred the custom solution and 11\% preferred Google \cite{evaluateChatbotsShawar2007}.
+The major reasons why the users preferred the FAQ chat was because the chat can often give direct answers and return less links on average which saves browsing time \cite{evaluateChatbotsShawar2007}. 
+The users preferred Google because it's familiar and it can give different answers when the input query is adjusted slightly \cite{evaluateChatbotsShawar2007}.
+The best way to evaluate a chatbot is to check if the specific service of task can be achieved and the evaluation needs to be adjusted to the use-case \cite{evaluateChatbotsShawar2007}.
+
+% Bordes 2016 learning goal oriented dialog
+\citet{bordes2016learning} analyses the strengths and weaknesses of end-to-end dialog systems in goal oriented settings.
+The end-to-end approaches have recently shown promising results with chit-chat conversation with a user \cite{bordes2016learning}.
+The most useful application areas for chatbots are goal-oriented and transactional settings \cite{bordes2016learning}.
+A classical dialog system uses slot-filling to collect information in a from the conversation \cite{bordes2016learning}.
+Slot-filling is reliable but has limited scalability \cite{bordes2016learning}.
+End-to-end systems learn directly from conversations and makes no assumptions regarding the domain or dialof structure and escapes the limited scalability \cite{bordes2016learning}. 
+The goal-oriented example used by \citet{bordes2016learning} is the classic restaurant reservation bot.
+The main question is if the end-to-end system performs well on the classical goal-oriented restaurant reservation task.
+The restaurant reservation is a domain where goal-oriented systems perform well and hence the ideal candidate to determine the strengths and weaknesses of end-to-end systems in comparison to goal-oriented systems \cite{bordes2016learning}.
+The result of \citet{bordes2016learning} is that end-to-end systems still have to improve before they can perform reliably in goal oriented settings. The two values tested for are the pre-response and the per-dialog accuracy \cite{bordes2016learning}.
+The per-response accuracy checks how many requests were identified correctly and the per-dialog accuracy shows the amount of dialogs where every request was identified correctly \cite{bordes2016learning}. The end-to-end system performed well when it comes to pre-response accuracy but the per-request accuracy is still unsatisfactory \cite{bordes2016learning}.
+
+% dutta 2017 developing
+\citet{dutta2017developing} provides a chatbot which assists high school students with learning general knowledge subjects and analyses the impact it had on learning.
+AI based chatbots are used for banking systems, customer services and education \cite{dutta2017developing}.
+The chatbot is a web-based solution using natural language processing (NLP) techniques to answer questions and is also able to participate in small talk \cite{dutta2017developing}.
+Popular chatbot platforms are Dialogflow, LUIS, Wit.ai amd Pandorabots \cite{dutta2017developing}.
+Chatbot systems are evaluated based on their NLP performance and the available features of the platform \cite{dutta2017developing}. All platforms are trained wiht the same knowledge base for comparison \cite{dutta2017developing}. LUIS and Wit.ai performed slightly better in the NLP part than Dialogflow \cite{dutta2017developing}.
+Dialogflow offers the concept of follow-up intents wich is an important feature for the development of sub-tasks and is choosen for development over LUIS and Wit.ai \cite{dutta2017developing}.
+To create the illusion of talking to a human being some small talk is implemented \cite{dutta2017developing}. This can motivate learners and might increase the interest in the topic \cite{dutta2017developing}.
+
+% kane 2016 role of chatbots in teaching and learning
+\citet{kane2016role} states that there are two major categories for chatbots, a local standalone application and a web-based chatbot. Rasa is one example for a local standalone application chatbot whereas LUIS, Dialogflow and Watson Assistant are cloud based chatbot systems accessible through the web.
+% lison 2016 open dial
+\citet{lison2016opendial} introduces a new release of OpenDial. Spoken dialog systems can be created and evaluated with OpenDial \cite{lison2016opendial}. It is used for human-robot interaction, tutoring and car-driver assistants and uses probabilistic rules \cite{lison2016opendial}.
+
+% luis 2015 williams
+\citet{luis2015williams} gives an overview of LUIS the state-of-the-art language understanding service of Microsoft.
+Developers don't need machine learning knowledge to build language understanding models with LUIS \cite{luis2015williams}.
+Historically, language understanding could be implemented via machine learning or handcrafted rules \cite{luis2015williams}.
+Regular software developers can build LU with handcrafted rules but these systems don't scale well \cite{luis2015williams}.
+The ML model approach is robust but requires expensive expertise \cite{luis2015williams}. 
+LUIS allows regular developers without ML expertise to develop cloud-based, domain specific language understanding models \cite{luis2015williams}.
+LUIS has the concepts intent, entity, and utterance \cite{luis2015williams}.
+Developers can create custom entities with LUIS but they can also use "pre-built" like locations, dates, and times.
+The communication with LUIS is done through a HTTP endpoint in JSON format \cite{luis2015williams}. 
+Dialogflow also uses an HTTP endpoint for communication and JSON format for messages. 
+
+% folstad 2017 chatbots and the new world of HCI
+\citet{folstad2017chatbots} investigates how the current users are communicating in the web and which influence the recent technological advances in the area of chatbots could influence the human computer interaction.
+Lots of people are already using natural language as the main input method in the web through mobile messengers and social networks \cite{folstad2017chatbots}. At the moment the natural language conversation online is from human to human through a machine interface \cite{folstad2017chatbots}. At platforms like Twitter machine agents can already be integrated and communicate with human users \cite{folstad2017chatbots}. The focus lies on the conversation when designing a chatbot whereas the current focus lies on the development of a user interface (UI) \cite{folstad2017chatbots}.
+When designing a chatbot system it is important to switch to a goal-oriented view where the main focus lies on understanding what the user wants and how they can be served \cite{folstad2017chatbots}.
+The state-of-the art technology of conversational interfaces is Google Assistant \cite{folstad2017chatbots}.
+Regular UI systems are design by experts and improved by qualitative data which is rather sparse \cite{folstad2017chatbots}.
+A big advantage of conversational interfaces is the massive amount of training data which is present all around the web \cite{folstad2017chatbots}. 
+
+% Brandtzaeg 2018 chatbots: Changing user needs and motivation
+\citet{brandtzaeg2018chatbots} states that chatbots are a natural language interface using text or voice.
+They are used to get content or a service through natural language conversation \cite{brandtzaeg2018chatbots}.
+Because people spend lots of time on messenger platforms chatbot technologies become more popular \cite{brandtzaeg2018chatbots}.
+It is difficult to design chatbots for open ended conversations because usere can start the conversation in many ways \cite{brandtzaeg2018chatbots}.
+It is important to balance the human and robot aspects of a chatbot \cite{brandtzaeg2018chatbots}.
+If the chatbot is too human people might ask questions unrelated to the domain and it it's too robot like people might complain because the conversation fells unnatural \cite{brandtzaeg2018chatbots}.
+Conversational interfaces need to be improved based on the interactions with humans \cite{brandtzaeg2018chatbots}.
+Developers also need to think about how friendly a chatbot should be, how fast the bot should answer, if the bot should have a gender, and how human like the bot should be \cite{brandtzaeg2018chatbots}.
+Micrsoft has Heston Bot for food and cooking opportunities and fashion, H\&M uses a bot for shopping suggestions based on photos, and Ikea used a bot to assist the customer with shopping \cite{brandtzaeg2018chatbots}.
+Successful chatbots inform the users what they have to expect and that they are talking to a bot \cite{brandtzaeg2018chatbots}
+Another important factor is to inform users about what the chatbot is able to do \cite{brandtzaeg2018chatbots}.
+
+% singh building: building an enterprise chatbot
+\citet{singhbuilding} states that the converstation type of a chatbot can be categorized as a general conversation which is about a broad generic subject and a specific conversation about one product or service.
+When a customer walks into a bank and starts taking to an employee is an example for a general conversation \cite{singhbuilding}.
+In this example we have no idea what the person wants from us or who the person is \cite{singhbuilding}.
+Popular examples for chatbots capable of general conversation are Google Home, Siri, and Amazon Alexa \cite{singhbuilding}.
+An example for a specific conversation is the refund desk in a store \cite{singhbuilding}. Specific rules apply to the refund process and specific information is required from the customer \cite{singhbuilding}. The customer can't get any other information than refund related information at the refund desk \cite{singhbuilding}. The outcome of the conversation can be one of the predefined outcomes, the fallback, or a conversation end \cite{singhbuilding}. A specific conversation ends as soon as the underlying task is achieved or a conversation end is reached \cite{singhbuilding}. In general, specific conversations are easier to predict and are handled with higher accuracy and the chatbot systems for such conversations communicate with information \cite{singhbuilding}. 
+Conversational training data for chatbots can be acquired from lots of sources like emails, phone calls, chats, and social media \cite{singhbuilding}.
+Especially in areas with personal data the usage of cloud chatbot solutions like Dialogflow, Alexa, and Watson is problematic because all the conversation data is sent to and stored at their servers \cite{singhbuilding}.
+In an AI driven chabot the core component is the NLP engine which takes care of data extraction from natural language \cite{singhbuilding}. The extracted information is used to determine the next steps \cite{singhbuilding}.
+The first step to create a chatbot system is to define a conversational flow \cite{singhbuilding}.
+The conversational flow is a decision tree which describes all events, decision, and outcomes in a conversation \cite{singhbuilding}.
+There is no difference in functionality between a regular application and a chatbot in terms of functionality \cite{singhbuilding}. The difference between the two is that a chatbot uses conversation and a regular app is a self-service application \cite{singhbuilding}. Companies use chatbots because they can save a lot of money and offer a good customer experience \cite{singhbuilding}.
+Because of high security requirements an inhouse chatbot framework has been built in \citet{singhbuilding}.
+\citet{singhbuilding} also gives an overview of the basics of Microsoft Bot (LUIS), Rasa, and Google Dialogflow.
+
+% rasa bocklisch 2017
+\citet{rasabocklisch2017} describes the architecutre and function of Rasa (\citet{singhbuilding}, \citet{braunEvaluatingNLU}, \citet{buiildChatbotsPython}).
+Rasa is an open source tool for natural language understanding and dialog management for developers \cite{rasabocklisch2017}.
+The state consists of slots and a log of the events that led to the state and are stored in the tracker komponent \cite{rasabocklisch2017}. Rasa uses the concepts intent and entity \cite{rasabocklisch2017}. Rasa consists of a natural language and a dialog component which can be accessed via a HTTP API \cite{rasabocklisch2017}.
+Rasa uses actions to determine the next step to take \cite{rasabocklisch2017}. An action can be something simple like an utterance or function which is executed and has access to the tracker \cite{rasabocklisch2017}.
+The training data for Rasa can be specified in JSON or markdown format \cite{rasabocklisch2017}.
+Rasa supports live training of the system where the developer corrects the machine if necessary while communicating \cite{rasabocklisch2017}.
+This is an effective way to create training data for plausible conversations \cite{rasabocklisch2017}.
+\citet{braunEvaluatingNLU} showed that Rasa performs on an equal level with other tool like LUIS.
+
+% Building chatbots with Python
+\citet{buiildChatbotsPython} explains the core concepts of chatbots, NLU, and NLP necessary for the development of chatbots.
+A food order chatbot is built with Dialogflow and a horoscope bot is built with Rasa in \citet{buiildChatbotsPython}.
+Chatbots are easy to use because it's as natural as talking to a human without the need of complex interfaces \cite{buiildChatbotsPython}.
+Before starting to implement a bot the problem the bot should solve needs to be analyzed.
+Chatbots can't do everything, in fact they are most often designed for one specific task \cite{buiildChatbotsPython}.
+There are some major questions which need to be answered in order to determine if the problem is suited for the use of a chatbot \cite{buiildChatbotsPython}.
+If the conversation is simple and consists of back-and-forth communication, and the task is highly repetitive and can be automated then the problem is suitable for a chatbot \cite{buiildChatbotsPython}.
+It doesn't make much sense to implement a chatbot for a non repetitive task which can't be automated \cite{buiildChatbotsPython}.
+A perfect example for the use of chatbots is an FAQ web page \cite{buiildChatbotsPython}.
+Some of the best chatbot and NLP frameworks are Rasa, LUIS, and Dialogflow \cite{buiildChatbotsPython}.
+
+% In bot we trust:
+Important performance metrics for chatbots are the conversation length and structure, the retention rate, the ability to provide personalized communication, and the number of conversation steps \cite{PRZEGALINSKA2019785}.
+The general trend is to keep the conversations short \cite{PRZEGALINSKA2019785}.
+The retention rate is a good measurement criteria if the chatbot is used to replace communication channels and is an indicator for customer satisfaction \cite{PRZEGALINSKA2019785}.
+Personalized communication is used when recommendations or tips are provided for the user based on the information related to the user \cite{PRZEGALINSKA2019785}.
+Retail chatbots need a larger amount of conversation steps to provide information and recommendations and hold the users attention \cite{PRZEGALINSKA2019785}.
+The measurement cirteria for chatbots vary depending on the domain of the bot.
+
+% geyer 2016 named entity recognition in 140 chars or less
+\citet{geyer2016named} is about named entity recognition (NER) in microposts.
+NER is the core concept used by chatbot tools to extract information from text.
+The classic examples for named entities are people, locations, and organizations \cite{geyer2016named}.
+\citet{geyer2016named} examines how good custom entities are recognized by the system \citet{geyer2016named}.
+The frequency of the entity in the training data can have influence on the performance \cite{geyer2016named}. 
+Since \citet{geyer2016named} checked the performance of entity recognition this can also be done for the chatbot frameworks.
+
+% deshpande 2017 survey
+\citet{deshpande2017survey} shows the evolution of the first chatbots to current state-of-the-art chatbots like Alexa.
+The first chatbots created used pattern matching to responde to user inputs \cite{deshpande2017survey}.
+Siri translates voice input to text through NLP \cite{deshpande2017survey}. 
+The questions and intents are analyzed to detect commands and actions \cite{deshpande2017survey}.
+The workflow of chatbot systems starts with the user input \cite{deshpande2017survey}. 
+Then the NLP engine extracts entities which are used to retrieve the relevant data \cite{deshpande2017survey}.
+Afterwards, the data is returned to the chatbot and a response is generated \cite{deshpande2017survey}.
+
+
+
+% ISO 25010
+ISO/IEC 25010 defines quality characteristics for the evaluation of software systems \cite{iso25010}.
+Functional suitability is split into functional completeness, correctness and appropriateness \cite{iso25010}.
+There are also performance efficiency metrics to check the time behaviour of a system with the throughput time \cite{iso25010}.
+The interoperability of systems can be verified by checking the exchanged information \cite{iso25010}.
+Usability can be checked through learnability wich determines how easy it is to learn to use the product \cite{iso25010}.
+Security can be checked by checking for unauthoriized access problems \cite{iso25010}.
+It can also be controlled how easy it is to install a system wich is part of the protability \cite{iso25010}.
+
+% IEEE: rahman 2017 programming
+\citet{rahman2017programming} gives a small overview of the concepts of Dialogflow and the general architecture of chatbot systems.
+Commonly used cloud chatbot solutions are IBM Watson, and Microsoft Bot \cite{rahman2017programming}.
+The chatbot architecture consists of intent classification, entity recognition, a response generator and a response selector \cite{rahman2017programming}. 
+The entity recognition module extracts the information from the users message \cite{rahman2017programming}.
+The response generator provides response candidate and the best match is choosen by the response selector \cite{rahman2017programming}.
+Goal-oriented chatbots are most common in the business sector and help users to achieve tasks \cite{rahman2017programming}.
+The tech giants provide chatbot frameworks \cite{rahman2017programming}. Google provides API.ai/Dialogflow, Microsoft has LUIS, IBM develops Watson, and Amazon provides Lex \cite{rahman2017programming}.
+The key concepts of Dialogflow are intent and context \cite{rahman2017programming}.
+Intents linke the users input to actions which are executed \cite{rahman2017programming}.
+
+% IEEE: pharmacy bot
+In \citet{pharmacybot} a chatbot is built to aid customers with questions regarding medication for a pharmacy company using IBM Watson.
+The bot is able to provide medications for an illness, give information about a specific medicine, and can give information on the medication intake \cite{pharmacybot}.
+
+
+
+% conclusion
+The ML and NLP capabilities of the frameworks are tested in some papers but there is not much more as some footnotes when it comes to the evaluation and compartions of the existing frameworks like Dialogflow and Rasa.
+Most papers focus soley on the NLP capabilities and not on other aspects like the usability and simplicity or the comparison of the functionality of the different frameworks.
+
+
+\chapter{Basics}    % 119
+
+\section{Chatbot Frameworks}
+The big companies all have conversational or chatbot frameworks.
+Micorsoft offers LUIS and the Microsoft Bot Framework, IBM has Watson Assistant, Amazon provides Alexa Skills and Google offers Dialogflow.
+All these solutions are cloud based whereas the local solution used for this thesis is Rasa. Rasa is an open source solution to build chatbots.
+
+
+\section{Suitable Problems for Chatbots}
+Chatbots can not solve complex problems yet therefore there are a few key questions that need to be answered to determine if the problem is in a scope achievable with chatbots.
+Can the problem be represented with simple questions and answers and Back-and-Forth communication?
+Is the problem a highly repetitive issue that requires data-fetching or analyzing? Bots are made to do highly repetitive tasks to reduce the workload of humans.
+Can The problem be automated and fixed?
+If the answer to all questions is yes the problem is perfect for a chatbot application \cite{buiildChatbotsPython}.
+
+\section{Finding Questions}
+Define all scenarios and tasks the chatbot should handle and gather a collection of questions that represent the scenario. Every defines task needs to have an intent which is the hint to the answer. In questions like "When do you open tomorrow?" the intent is to get the opening hours of the store. Questions expressing the same intent can vary greatly hence collection lots of phrases is important to make the chatbot function reliable. It is important to define a flow the users can follow after the intent has been recognized to keep the conversation natural and specify the missing information \cite{buiildChatbotsPython}.
+
+
+\section{Example Sentences}\label{sec:example_sentences}
+
+\begin{table}
+	\centering
+	\begin{tabular}{ c || l }
+		Number & Sentence \\ \hline \hline
+		1 & Hello \\ \hline
+		2 & I'd like to book a hotel \\ \hline
+		3 & The Twelve Months hotel \\ \hline
+		4 & 27th of April \\ \hline
+		5 & 4th of May \\ \hline
+		6 & Ethan May \\ \hline
+		7 & I'd like to order one green t-shirt size M \\ \hline
+	\end{tabular}
+	\caption{Example Sentences for Concept Explanation} \label{tab:example_sentences}
+\end{table} \noindent
+
+
+\section{Chatbot}
+A conversation with a chatbot is done in turns. The users inputs natural language and in the best case gets an intelligent and reasonable response form the chatbot system \cite{vrajitoru2004evolutionary}. This is repeated until the conversation ends \cite{vrajitoru2004evolutionary}.
+
+
+A chatbot is a conversational agent using natural language to interacting with the user \cite{evaluateChatbotsShawar2007, shawar2007chatbots, extractingHuang2007, gregori2017evaluation}.
+The conversation is done in turns where the user and the bot alternate \cite{evaluateChatbotsShawar2007, shawar2007chatbots}.
+A chatbot system mimics human dialogue and personality \cite{kane2016role, dutta2017developing}.
+Chatbot systems are able to hold simple conversations with users \cite{kane2016role}.
+The system responds with the most likely answer to the question \cite{dutta2017developing}.
+A chatbot system simulates an intelligent conversation \cite{vrajitoru2004evolutionary}.
+
+
+A chatbot system consists of rules and conversational data \cite{singhbuilding}.
+Rules are necessary to build customer specific chatbot systems \cite{singhbuilding}. 
+If the bot asks for the name of a person the rules tells the system that a name consists of a first and a last name \cite{singhbuilding}. The system can then collect the necessary or missing information from the user \cite{singhbuilding}.
+The conversational data is used to train the chatbot system and consists of utterances for the specific intents \cite{singhbuilding}.
+The best source for conversational data are real life conversations of real customers with the expert to get the most realistic training data possible \cite{singhbuilding}.
+
+\section{Information Retrieval}
+The classical information retrieval process treats the input as a bag of words and calculates the TF-IDF weighted cosine similarity between the input and each response and selects the best match \cite{bordes2016learning}.
+
+\section{Domain}
+The Rasa framework uses a domain file which consists of intents, entities, slots, templates, and actions \cite{buiildChatbotsPython}.
+This displays the content of a domain quite well since it is a collection of knowledge of the underlying topics.
+
+\section{Webhook}
+A webhook is a URL where the frameworks send metadata and intent data for analysis, completion, and processing.
+In Listing \ref{lst:webhookExample} an exemplary JSON request from Dialogflow is shown for the default welcome intent.
+In the case of Dialogflow the incoming message can be found under query text, the response message under fulfillment text and the confidence under intent detection confidence. 
+\begin{lstlisting}[caption={Dialogflow Webhook Request Example}, label={lst:webhookExample},captionpos=b,frame=single,language={[Sharp]C},commentstyle=\color{mygreen},keywordstyle=\color{blue},
+morekeywords={}]         	    
+[
+{
+	"originalDetectIntentRequest": {
+		"payload": {}
+	},
+	"queryResult": {
+		"action": "input.welcome",
+		"allRequiredParamsPresent": true,
+		"fulfillmentMessages": [
+		{
+			"text": {
+				"text": [
+				"Good day! What can I do for you today?"
+				]
+			}
+		}
+		],
+		"fulfillmentText": "Good day! What can I do for you today?",
+		"intent": {
+			"displayName": "Default Welcome Intent",
+			"name": "projects/onlineeatsbot-pxcmic/agent/intents/cc103476-1771-4b0e-bf86-c5d63af2e9ab"
+		},
+		"intentDetectionConfidence": 0.72385716,
+		"languageCode": "en",
+		"outputContexts": [
+		{
+			"name": "projects/onlineeatsbot-pxcmic/agent/sessions/c85918b3-c794-6d73-3c86-149ca19ea5a9/contexts/__system_counters__",
+			"parameters": {
+				"no-input": 0.0,
+				"no-match": 0.0
+			}
+		}
+		],
+		"parameters": {},
+		"queryText": "Hi, how are you doing"
+	},
+	"responseId": "0686a282-abb6-4d24-abbd-bef3c38615ef-19db3199",
+	"session": "projects/onlineeatsbot-pxcmic/agent/sessions/c85918b3-c794-6d73-3c86-149ca19ea5a9"
+}
+]\end{lstlisting}  
+
+\section{Intent}
+The intent is the action a user wants to perform \cite{dutta2017developing, rahman2017programming}.
+A user interacts with a chatbot with an intention in mind \cite{buiildChatbotsPython, singhbuilding}.
+The identification of intents is the essential function of any chatbot system \cite{singhbuilding}.
+AI-based chatbots detect intents via NLP \cite{singhbuilding}. 
+The answer to the question "What is the user asking for?" is the intent \cite{buiildChatbotsPython}.
+Example sentence one of Table \ref{tab:example_sentences} the intent can be labeled as "Greeting\_Intent" since the user greets the bot.
+Example sentence two of Table \ref{tab:example_sentences} the user wants to book a hotel room and the intent could be labeled "Book\_Hotel\_Intent" in this case.
+
+
+
+
+The intent is one of the four basic terms present all around NLP.
+An intent is the reason something is said. Intent recognition is the core concept necessary to build chatbots.
+An intent is an intelligent entity that is represented by a confidence score. 
+The score represents how good the input of a user matches an intent of the model.
+A use-case dependent border value can be defined e.g. 50\%. Every value above 50\% confidence is treated as the specified intent.
+Everything below 50\% is treated via the fallback intent with a message like "I'm sorry but I didn't get that".
+Figure \ref{fig:defaultwelcomedialogflow} shows the default welcome intent created by dialogflow. 
+
+\section{Utterance}
+An utterance is the users input \cite{singhbuilding, dutta2017developing}.
+Real user input from e.g. mails can be used to get a large amount of training data \cite{singhbuilding}.	
+
+Utterances are different versions of the same question \cite{buiildChatbotsPython}.
+Each intent has a collection of utterances. These utterances are used to train the intents hence the model of the chatbot.
+
+Example sentence two of Table \ref{tab:example_sentences} could be one utterance for the book hotel intent.
+Utterances need to be chosen with care to prevent overfitting to unimportant features of the sentences.
+If all utterances contain a specific word at a specific position the model likely assumes that it must be like this all the time.
+% dialogflow screenshot of utterances
+The default utterances of the welcome intent of Dialogflow can be seen in the training phrases section in Figure \ref{fig:defaultwelcomedialogflow}.
+
+\section{Chatbot Response}
+A chatbot needs to react to user input. To do so responses are defined. A response is a pool of sentences where one entry is picked at random to respond to a question of a user. The response is picked at random to fake intelligent behavior. If the same response is picked all the time users realize fast that they are talking to a bot system. An exemplary list of responses for the default welcome intent of Dialogflow is shown in Figure \ref{fig:defaultwelcomeresponsedialogflow}.
+
+
+\section{Suitability of a Problem for Chatbots}
+A chatbot system might seem very intelligent but it can't do everything \cite{buiildChatbotsPython}.
+It is a system designed for very specific use cases \cite{buiildChatbotsPython}.
+The following three questions need to be answered with yes or no \cite{buiildChatbotsPython}.
+Is only simple forward and backward communication needed to solve the Problem  \cite{buiildChatbotsPython}?
+Is the underlying task highly repetitive and only requires the bot to analyze or fetch data \cite{buiildChatbotsPython}?
+Can the bot's task be automated or fixed \cite{buiildChatbotsPython}?
+If all three questions can be answered with yes the problem is suitable for a chatbot \cite{buiildChatbotsPython}.
+A simple QnA bot for a FAQ page of a website is an example of a suitable problem \cite{buiildChatbotsPython}.
+The task can be automated, is highly repetitive and the answers are predefined.
+A simple example conversation is shown in Figure \ref{fig:faqexample}.
+
+
+\makefigure{faqexample}{Example FAQ Conversation with Dialogflow}
+
+\makefigure{defaultwelcomedialogflow}{Default Welcome Intent of Dialogflow}
+
+\makefigure{defaultwelcomeresponsedialogflow}{Response List of the Default Welcome Intent of Dialogflow}
+
+\makefigure{entityexampledialog}{Food Entity Example with Dialogflow}
+
+\section{Entity}
+Entities are stored in the session and form the context of a conversation \cite{singhbuilding}.
+
+Entities are metadata belonging to an intent \cite{buiildChatbotsPython}. 
+An entity can be represented in different ways \cite{buiildChatbotsPython}.
+They can be volumes, counts or quantities for instance \cite{buiildChatbotsPython}.
+It is also possible for a single intent to have multiple entities \cite{buiildChatbotsPython}.
+In example sentence seven in Table \ref{tab:example_sentences} the use of multiple entities is shown.
+One entity is the color of the shirt, a second one the shirt as an item and the third one the size for instance.
+
+
+A named entity is a noun phrase relating to individuals like organizations or geopolitical entities \cite{singhbuilding}.
+The classic examples for named entities are people, locations, and organizations \cite{geyer2016named}.
+
+
+Entities are interesting pieces of information that need to be extracted to accomplish the underlying task.
+These entities need to be extracted from the natural language input of the user.
+This is an area of NLU since it is necessary to classify the entities in a context.
+The concept Named Entity Recognition extracts internationally accepted groups of information from text.
+Classic named entities are date-times present in example sentences four and five and person names like in example sentence six of Table \ref{tab:example_sentences}.
+Custom entities are defined for a specific use-case. A custom entity can be a list of hotels like in sentence three of Table \ref{tab:example_sentences} the "Twelve Months" hotel.
+Entity recognition also deals with ambiguity because the word May can mean different things in different contexts.
+In sentence five May is the month whereas in sentence of Table \ref{tab:example_sentences} six it is the last name. 
+An example entity for food items like apples and peas is show in Figure \ref{fig:entityexampledialog}.
+% regex image
+
+\section{Story}
+A story defines the dialog flow. It is a script for a conversation between man and machine.
+Stories need to consider happy and sad paths. A happy path is a successful interaction from start to finish.
+A sad path is everything else. Aborting a transaction is a classic sad path for instance. In Figure \ref{fig:greetstory} a story for a greeting sequence with a user is shown. The users starts the conversation by entering a greeting phrase. The response of the chatbot is also a greeting phrase and then the conversation ends in this case. 
+% story image from rasa-x
+\makefigure{greetstory}{Greeting Story}
+
+\section{NLU}
+The goal of NLU is to extract structured, semantic data from unstructured natural language input like chat messages \cite{braunEvaluatingNLU}.
+To achieve this task the message of parts of the message are labeled \cite{braunEvaluatingNLU}.
+
+\section{Natural Language Processing}	
+The term "natural language" means input is received through voice or writing in the user's language of choice.
+Natural language processing in the area of chatbots is necessary to analyze the text input provided by the user and figure out the intent and entities necessary to process the given information. 
+Natural language processing is seen as the brain of a chatbot since it receives the information from the user, processes the data and retrieves the relevant parts from the input for post-processing.
+"Part-of-speech (POS) tagging is a process where you read some text and assign parts of
+speech to each word or token, such as noun, verb, adjective, etc."\cite{buiildChatbotsPython}
+% Lemmatization and Stemming
+An important part of natural language processing is the search for the root of words which can be done with stemming and lemmatization.
+Stemming reduces a word to the base form e.g. "saying" is reduced to "say" by removing the endings of words.
+Lemmatization tries to return the dictionary form of a word and has better correctness and is more productive than stemming and hence the preferred method. Lemmatization uses a vocabulary and morphological analysis of words to achieve its task.
+% stop words
+Stop words are words that hold little to no meaning and occur in a high frequency like "the" and "a" which are removed.
+
+\section{Decision Trees}
+"In the context of chatbots, a decision tree simply assists us in finding the exact answer to
+a user’s question."\cite{buiildChatbotsPython}
+In general, the decision tree is represented by the path the users of the chatbot takes and needs to be represented with if-then-else statements in the code behind. The more complex the problem the more if-then-else statements are needed to represent the code behind \cite{buiildChatbotsPython}. 
+\section{Machine Learning}
+
+\section{Chatbot}
+\subsection{Components and Terminologies}
+% INTRO
+To understand the basic concepts necessary to build and understand chatbots a few terms are necessary. The intent is the topic the user asks for in the question e.g in a sentence like "I am sick and won't be coming to work" the intent could be labeled "report\_sick". 
+% INTENT
+An intent can have several entities and an entity is also metadata about the intent. As an example in the sentence "book a flight ticket" the intent is "book" and the entity is "flight" which is treated as the metadata since it holds the additional booking information.
+% UTTERANCES
+Utterances are different versions of sentences with the same meaning as "book flight" and "please, book a ticket for a flight".
+% MODEL AND CONFIDENCE
+A chatbot is built on a model that is trained with the intents, entities, and utterances. 
+The model provides a confidence score for each question telling you how confident the algorithm is that the correct intent has been found \cite{buiildChatbotsPython}.
+% Dependency Parsing
+
+% Tokenization
+
+
+\section{UI}
+A typical UI in the area of chatbots looks like a messenger. An example conversation from a person with a chatbot is shown in Figure \ref{fig:faqexample}.
+
+
+
+\chapter{Methodology}
+
+\section{Framework Selection}
+Sickness notifications are a repetitive task, the task can be automated and requires simple Back-and-Forth communication hence the problem fits the description of \citet{buiildChatbotsPython}.
+The same is true for vacation notifications since the idea of both remains the same.
+
+The given problem of sickness notifications is a domain specific (\citet{deshpande2017survey, luis2015williams, braunEvaluatingNLU, williams2017hybrid}) task hence domain specific frameworks are suitable.
+
+The framework selection for this thesis is based on chapter \ref{chap:soa} State-of-the-Art and section \ref{sec:prereq} Prerequisites.
+Section \ref{sec:prereq} describe the requirements of the company and chapter \ref{chap:soa} shows which technologies are used in papers and books.
+To match the prerequisites at least one cloud (\citet{braunEvaluatingNLU, rahman2017programming}) and one local (\citet{braunEvaluatingNLU}) chatbot are needed and IBM Watson Assistant needs to be taken because an IBM technology is on the wish-list.
+A common cloud technology is Dialogflow (\citet{braunEvaluatingNLU, dutta2017developing, singhbuilding, buiildChatbotsPython, rahman2017programming, ieee2018watson}) hence it is selected.
+A common local standalone technology is Rasa (\citet{braunEvaluatingNLU, singhbuilding, rasabocklisch2017, buiildChatbotsPython, gregori2017evaluation}) and is the local tool of choice.
+The chosen technologies are Dialogflow, IBM Watson (\citet{rahman2017programming, pharmacybot, ieee2018watson, gregori2017evaluation}), and Rasa to fulfill all requirements.
+
+\section{Model}
+
+
+
+\section{Approach} % was wird betrachted, was nicht        
+% Domain wird betrachtet
+% andere Sachen nicht
+% gleiche test sätze und entitäten
+% gleiche stories
+
+\section{Course of Action} % Ablauf
+% Domain
+% Knowledge Base bilden
+% Intents
+% entities
+% utterances
+% test set bilden
+% TP
+% TN
+% FP
+% FN
+% Stories bauen
+% Stories umsetzen
+% testen
+% deployen für gleiche Bedingungen
+% testen und vergleichen
+
+
+\chapter{Design}    
+\section{Architecture}
+\makefigure{simplearchitecture}{Example Minimalistic Architecture}
+
+One possible architecture for a minimalistic chatbot system with database communication is shown in Figure \ref{fig:simplearchitecture}.
+The chatbot framework takes care of all conversation related tasks. Conversation related tasks are the intent recognition, entity extraction and the general flow of the dialogue for instance. The user interface of Figure \ref{fig:simplearchitecture} fetches the input from the user, submits it to the chatbot framework and displays the response messages. The UI can additionally communicate with the database via the REST service or webhook if necessary.
+The DB handles data related tasks like the possible items and can be used for the validation of the extracted entities by the chatbot framework in combination with the webhook. The webhook separates the data logic from the application logic and is used for validation, data submission and retrieval and for other chatbot related issues like validation of intent related data and error responses to the chatbot framework.
+
+\section{Intents, Entities and Utterances}
+\section{Story/Flowchart}
+
+\makefigure{sicknessflow}{Example Conversation for a Sickness Notification}
+
+A story is an example dialog between user and chatbot. An example dialogue to report a colleague sick is shown in Figure \ref{fig:sicknessflow} where the user input are highlighted green and the chatbot responses are highlighted blue.
+The intent of each user input needs to be found in order to create the knowledge base for the domain. The intent for the user input "Hello" can be marked as greeting, the second input is the general information what the chatbot can do, the third input is the sickness notification intent then the necessary information is collected followed by some chit-chat and the end of the conversation. The interesting entities in this case are the name of the employee which is required all the time, the confirmation that the found employee is the correct one and the return date which is optional since it's not possible to tell in every case. The resulting intents of the conversation are listed in Table \ref{tab:sick_flow} for the example sentences of the conversation shown in Figure \ref{fig:sicknessflow}.
+
+\begin{table}
+	\centering
+	\begin{tabular}{ l || l }
+		Intent & Sentence \\ \hline \hline
+		Greeting & Hello \\ \hline
+		Function & What can you do? \\ \hline
+		Sickness & My colleague is sick \\ \hline
+		Submit Name & Max Power \\ \hline
+		Confirm Employee Info & Yes \\ \hline
+		Submit Return Date & No \\ \hline
+		Thanks & Thanks \\ \hline
+		Goodbye & Bye \\ \hline
+	\end{tabular}
+	\caption{Intents recognized in Figure \ref{fig:sicknessflow}} \label{tab:sick_flow}
+\end{table} \noindent
+
+\section{Webhook Design (maybe)}
+
+
+\chapter{Prototypical Implementation}    
+\section{Dialogflow}
+To be done \cite{dialogflowconcepts}.
+
+\section{Watson Assistant}
+To be done \cite{watsonapi}.
+ 
+\section{Rasa}
+To be done \cite{rasadocs}.
+
+\section{LUIS}
+To be done \cite{luisdocs}.
+
+
+\section{Azure Deployment}
+\section{Frontend}
+\section{Webhook}
+\section{Local Deployment (maybe)}
+
+
+
+\chapter{Result}
+\section{Framework Comparison}
+% project complexity
+% development complexity
+% price
+% customization possibilities
+% needed knowledge
+% deployment
+% precision of intent recognition
+% TP, FP, TN, FN
+% response times
+% precision entity recognition/extraction
+% predefined types/entities
+% training capabilities
+% live training 
+% dialogflow
+% project setup complexity
+% integration
+% exception/error handling
+% transfer of knowledge between technologies
+% usability framework
+% usability frontend
+% unique capabilities
+
+
+\section{Result Evaluation}
+
+\chapter{Discussion} % what was good, what bad regarding tests, conclusion, test güte, ideal test conditions
+
+
+\chapter{Conclusion and Outlook} % improve because ...
+\section{Conclusion}
+
+
+
+\section{Outlook}
+In \citet{singhbuilding} a chatbot is used for a banking system which is a possible use case for the 3-Banken-IT.
+
+A common use case for chatbots are FAQs(\citet{evaluateChatbotsShawar2007, buiildChatbotsPython, extractingHuang2007}) and is another possible use case for most companies.
+
+
+\chapter{Appendix}
+
+\makerefs{refs}
+	
+\end{document}

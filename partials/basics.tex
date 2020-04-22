@@ -1,0 +1,265 @@
+\section{Chatbot}
+A chatbot is a conversatinal agent able to communicate with a user using natural language \cite{evaluateChatbotsShawar2007, shawar2007chatbots, huang2007extracting, gregori2017evaluation}.
+The communication is done in written form.
+The user inputs natural language and in the best case gets an intelligent and reasonable response 
+from the chatbot system \cite{vrajitoru2004evolutionary}. 
+The conversation is done in turns where the user writes a message and the bot responds \cite{evaluateChatbotsShawar2007, shawar2007chatbots}.
+The system responds with the most likely answer to the question \cite{dutta2017developing}.
+This is repeated in turns until the conversation ends \cite{vrajitoru2004evolutionary}.
+A chatbot system is able to mimic human dialogue and personality \cite{kane2016role, dutta2017developing}.
+The chatbot simulates an intelligent conversation \cite{vrajitoru2004evolutionary}.
+A chatbot system consists of rules and conversational data \cite{singhbuilding}.
+Rules are necessary to build customer-specific chatbot systems \cite{singhbuilding}. 
+If the bot asks for the name of a person the rule tells the system that a name consists of a first and last name \cite{singhbuilding}. The system can then collect the necessary or missing information from the user \cite{singhbuilding}.
+The conversational data is used to train the chatbot system and consists of utterances for the specific intents \cite{singhbuilding}.
+The best source for conversational data is real-life conversations of real customers with the expert to get the most realistic training data possible \cite{singhbuilding}.
+A simple exemplary conversation is shown in Figure \ref{fig:faqexamplecrop}.
+
+There are three major chatbot categories.
+There are menu-driven chatbots (\citet{singhbuilding}), domain-specific/goal-oriented chatbots (\citet{deshpande2017survey, luis2015williams, braunEvaluatingNLU, williams2017hybrid}),
+and chatbots for general/open-ended conversations (\citet{brandtzaeg2018chatbots, singhbuilding}).
+The menu-driven approach like in \citet{singhbuilding} provides a menu with options through text/voice communication.
+Usually options are presented to the user to choose from. 
+A classical situation where such systems are used is when calling the helpdesk.
+The caller has got a problem and is navigated through the options by the bot using voice and then connected to the correct department.
+An example option when calling a bank could be "Press one for account information".
+The domain-specific/goal-oriented bots are used when information needs to be collected to execute actions.
+These bots collect domain-specific information and only support a limited set of operations.
+Open-ended/general conversation bots are used for general conversations.
+The conversation doesn't follow any fixed rules. The conversation can start with any topic and develop in any direction.
+Popular examples are Google Home, Siri (Apple), and Alexa (Amazon) \cite{singhbuilding}.
+
+
+\section{Chatbot Frameworks}
+There are lots of chatbot and NLU frameworks aiming to allow regular programmers to 
+develop chatbot systems without expertise in ML.
+The big companies all offer frameworks which handle the ML for the developer.
+Microsoft has LUIS (\citet{luis2015williams, luisdocs}),
+Google develops Dialogflow (\citet{dialogflow}),
+IBM offers Watson Assistant (\citet{watsonassistant}),
+Amazon provides Lex and Alexa.
+All these solutions are cloud-based whereas the a popular local solution is Rasa (\citet{rasabocklisch2017,rasa}). 
+Rasa is an open-source solution for chatbot development.
+
+\section{Suitable Problems for Chatbots} 
+Chatbots seem like intelligent systems capable of natural language conversation \cite{buiildChatbotsPython}.
+Most often they are design for specific tasks and definitely not intelligent \cite{buiildChatbotsPython}.
+Chatbots are not able to solve complex problems \cite{buiildChatbotsPython}.
+Therefore, not every problem can be solved using chatbots \cite{buiildChatbotsPython}.
+In general, a problem is suitable for chatbots if the following questions need to be answered \cite{buiildChatbotsPython}.
+Can the problem be represented with simple questions and answers and Back-and-Forth communication \cite{buiildChatbotsPython}.?
+Chatbots use natural language which works through back and forth communication.
+Is the problem a highly repetitive issue that requires data-fetching or analyzing? 
+Bots are made to do highly repetitive tasks to reduce the workload of humans \cite{buiildChatbotsPython}.
+It makes no sense to create a chatbot for non-repetitive task since then the chatbot development costs never pay off. 
+Can The problem be automated and fixed \cite{buiildChatbotsPython}?
+It the problem can't be automated the work must be done by an employee again and the chatbot has not reduce the workload and is irrelevant.
+If the answer to all questions is yes the problem is perfect for a chatbot application \cite{buiildChatbotsPython}.
+A simple QnA bot for a FAQ page of a website is an example of a suitable problem \cite{buiildChatbotsPython}.
+The task can be automated, is highly repetitive and the answers are predefined.
+
+
+
+
+
+
+\section{Intent} \label{sec:intent}
+A user interacts with a chatbot with an intention in mind \cite{buiildChatbotsPython, singhbuilding}.
+The intent is the action a user wants to perform \cite{dutta2017developing, rahman2017programming}.
+The intent can be found by answering the question: "What is the user asking for?" \cite{buiildChatbotsPython}.
+The identification of intents is the essential function of any chatbot system \cite{singhbuilding}.
+In AI-based chatbots intents are detected via NLP \cite{singhbuilding}. 
+The NLP systems return a confidence score for a user query.
+The confidence score is an indicatior how good the user inpur matches the training data used to train the intent.
+A high score indicates a good match.
+The model provides a confidence score for each question telling you how 
+confident the algorithm is that the correct intent has been found \cite{buiildChatbotsPython}.
+A use-case dependent border value can be defined for the confidence score e.g. 50\%. 
+Every value above 50\% confidence is treated as the specified intent.
+Everything below 50\% is treated as a failure and the fallback intent comes into play.
+As a fallback a message like "I'm sorry but I didn't get that" can be used.
+The following examples demonstrate what intents are and how they could be named using the
+example sentences of Table \ref{tab:example_sentences}.
+In example sentence one of Table \ref{tab:example_sentences} the intent can be labeled as 
+"Greeting\_Intent" since the user greets the bot.
+Example sentence two of Table \ref{tab:example_sentences} shows that the user wants to book
+a hotel room and the intent could be labeled "Book\_Hotel\_Intent" in this case.
+Figure \ref{fig:defaultwelcomedialogflow} shows the default welcome intent created by Dialogflow. 
+
+\makefigure{defaultwelcomedialogflow}{Default Welcome Intent of Dialogflow}
+
+
+\section{Utterance} \label{sec:utterance}
+An utterance is a sentence or a part of a sentence.
+All sentences of Table \ref{tab:example_sentences} are utterances.
+The input of users are utterances \cite{singhbuilding, dutta2017developing}.
+Chatbot systems also answer users with utterances and they are also used to train the NLP system.
+A collection of utterances belongs to an intent and builds the base for the classification of user input.
+Utterances which belong to an intent are different versions of the same question \cite{buiildChatbotsPython}.
+With the different versions of the same question the model of the chatbot is trained.
+Thanks to the knowledge gained from multiple utterances per intent the chatbot is able to
+classify sentences correctly which never were part of the training data.
+Example sentence two of Table \ref{tab:example_sentences} can be used as utterance for the book hotel intent.
+Utterances need to be chosen with care to prevent overfitting to unimportant features of the sentences.
+If all utterances contain a specific word at a specific position the model likely assumes that it must be like this all the time.
+The default utterances of the welcome intent of Dialogflow can be seen in the training phrases section in Figure \ref{fig:defaultwelcomedialogflow}.
+
+Utterances for training purposes can come from multiple sources.
+They can be handcrafted for development and test purposes.
+The data can come from live systems.
+Real user input from e.g. e-mails and phone conversations can be used to get a large amount of training data \cite{singhbuilding}.    
+
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ c | l | c | l }
+        No. & Sentence & Intent & Entities \\ \hline \hline
+        1 & Hello & Greet & - \\ \hline
+        2 & I'd like to book a hotel & Book Hotel & - \\ \hline
+        3 & The Twelve Months hotel & - & Hotel Item\\ \hline
+        4 & From the 27th of April & - & Date From\\ \hline
+        5 & To the 4th of May & - & Date To\\ \hline
+        6 & Ethan May & - & Person Name\\ \hline
+        7 & Order one green t-shirt size M please & Place Order & T-Shirt Item, Color, Size \\ \hline
+    \end{tabular}
+    \caption{Examples for Concept Explanation} \label{tab:example_sentences}
+\end{table} \noindent
+
+\section{Entity} \label{sec:entity}
+In the area of chatbots an entity is an interesting pice of information which needs to be 
+extracted from the conversation.
+They are metadata belonging to an intent and can be represented in different ways \cite{buiildChatbotsPython}.
+Entities can be volumes, counts or quantities for instance \cite{buiildChatbotsPython}.
+It is also possible for a single intent to have multiple entities \cite{buiildChatbotsPython}.
+Example sentence seven of Table \ref{tab:example_sentences} contains multiple entities.
+In sentence seven of Table \ref{tab:example_sentences} one entity is the color of the shirt, 
+a second one the shirt as an item and the third one the size.
+Sentences three to six of Table \ref{tab:example_sentences} show entities in a book hotel example.
+There are also named entities.
+Named-Entity-Recognition (NER) is used to extract groups of information in a context from natural language.
+NER is a sub-area of NLU.
+Entity recognition also deals with ambiguity because the word May can mean different things in different contexts.
+In sentence five May is the month whereas in sentence six of Table \ref{tab:example_sentences} it's a last name. 
+A named entity is a noun phrase relating to individuals like organizations or geopolitical entities \cite{singhbuilding}.
+The classic examples for named entities are people, locations, and organizations \cite{geyer2016named}.
+Classic examples for named entities are the date-times of example sentences four and five,
+and person names like in example sentence six of Table \ref{tab:example_sentences}.
+These named entites are sometimes provided by the frameworks.
+A developer can define named entities for a specific domain.
+A custom entity can be a list of hotels like the "Twelve Months" 
+hotel in sentence three of Table \ref{tab:example_sentences}.
+An example entity for food items like apples and peas is shown in Figure \ref{fig:entityexampledialog}.
+Entities are stored in the session and form the context of a conversation \cite{singhbuilding}.
+They are only valid for the current conversation.
+\makefigure{entityexampledialog}{Food Entity Example with Dialogflow}
+
+
+\section{Chatbot Response} \label{sec:chatbot_response}
+The response message of a chatbot is picked from a pool of utterances as described in \ref{sec:utterance}.
+The response can be picked at random or in a sequence.
+Dialogflow for example picks the response message at random.
+Alterantives are picked to keep the conversation interesting for the users especially
+if they are using the bot more than once.
+The alternatives prevent a robot like feel in the conversation. 
+If the same response is picked all the time users realize fast that they are 
+talking to a bot system and it also gets boring fast. 
+An exemplary list of responses for the default welcome intent of Dialogflow is shown in Figure \ref{fig:defaultwelcomeresponsedialogflow}.
+
+\makefigure{defaultwelcomeresponsedialogflow}{Response List of the Default Welcome Intent of Dialogflow}
+
+
+
+
+% regex image
+
+\section{Story}
+A story defines the dialog flow. 
+It is a script for a conversation between man and machine.
+The bot and the user interact in turns using natural language \cite{evaluateChatbotsShawar2007, shawar2007chatbots, huang2007extracting, gregori2017evaluation}.
+Stories need to consider happy and sad paths. 
+A happy path is a successful interaction from start to finish.
+A sad path is everything else. Aborting a transaction is a classic sad path for instance. 
+In Figure \ref{fig:greetstory} a story for a greeting sequence with a user is shown. 
+The user starts the conversation by entering a greeting phrase. 
+The response of the chatbot is also a greeting phrase and then the conversation ends in this case. 
+An example conversation from a person with a chatbot is shown in Figure \ref{fig:faqexamplecrop}.
+% story image from rasa-x
+\makefigure{faqexamplecrop}{Example FAQ Conversation with Dialogflow}
+\makefigure{greetstory}{Greeting Story}
+
+% \section{NLU}
+% The goal of NLU is to extract structured, semantic data from unstructured natural language input like
+%  chat messages \cite{braunEvaluatingNLU}.
+% To achieve this task the message or parts of the message are labeled \cite{braunEvaluatingNLU}.
+\section{Webhook} \label{sec:webhook}
+A webhook is a URL where the frameworks send metadata and intent data for analysis, completion, and processing.
+In the case of this thesis, the webhook is a simple Pyhton REST service implemented with Flask.
+Each framework gets a route in the service which is "/watson/webhook" for the Watson Assistant requests for example.
+In Listing \ref{lst:webhookExample} an exemplary JSON request from Dialogflow is shown for the default welcome intent.
+In the case of Dialogflow the incoming message can be found under query text, the response message under fulfillment text and the confidence under intent detection confidence. 
+\begin{lstlisting}[caption={Dialogflow Webhook Request Example}, label={lst:webhookExample},captionpos=b,frame=single,language={[Sharp]C},commentstyle=\color{mygreen},keywordstyle=\color{blue},
+morekeywords={}]                
+[
+{
+    "originalDetectIntentRequest": {
+        "payload": {}
+    },
+    "queryResult": {
+        "action": "input.welcome",
+        "allRequiredParamsPresent": true,
+        "fulfillmentMessages": [
+        {
+            "text": {
+                "text": [
+                "Good day! What can I do for you today?"
+                ]
+            }
+        }
+        ],
+        "fulfillmentText": "Good day! What can I do for you today?",
+        "intent": {
+            "displayName": "Default Welcome Intent",
+            "name": "projects/onlineeatsbot-pxcmic/agent/intents/cc103476-1771-4b0e-bf86-c5d63af2e9ab"
+        },
+        "intentDetectionConfidence": 0.72385716,
+        "languageCode": "en",
+        "outputContexts": [
+        {
+            "name": "projects/onlineeatsbot-pxcmic/agent/sessions/c85918b3-c794-6d73-3c86-149ca19ea5a9/contexts/__system_counters__",
+            "parameters": {
+                "no-input": 0.0,
+                "no-match": 0.0
+            }
+        }
+        ],
+        "parameters": {},
+        "queryText": "Hi, how are you doing"
+    },
+    "responseId": "0686a282-abb6-4d24-abbd-bef3c38615ef-19db3199",
+    "session": "projects/onlineeatsbot-pxcmic/agent/sessions/c85918b3-c794-6d73-3c86-149ca19ea5a9"
+}
+]\end{lstlisting}  
+
+\section{Natural Language Processing/Understanding}   
+The term "natural language" means input is received through voice or writing in the user's language of choice \cite{buiildChatbotsPython}.
+Natural language processing in the area of chatbots is necessary to analyze the text input 
+provided by the user and figure out the intent and entities necessary to process the given information \cite{buiildChatbotsPython}. 
+Natural language processing is seen as the brain of a chatbot since it receives the information 
+from the user, processes the data and retrieves the relevant parts from the input for post-processing \cite{buiildChatbotsPython}.
+Part-of-Speech (POS) tagging is a process where parts of
+speech like noun, verb, and adjective are assigned to each word/token \cite{buiildChatbotsPython}.
+This information is used to understand the context and is part of NLU.
+% Lemmatization and Stemming
+An important part of natural language processing is the search for the root of words which can be done with 
+stemming and lemmatization \cite{buiildChatbotsPython}.
+Stemming reduces a word to the base form e.g. "saying" is reduced to "say" by removing the endings of words \cite{buiildChatbotsPython}.
+Lemmatization tries to return the dictionary form of a word and has better correctness and is more
+ productive than stemming and hence the preferred method \cite{buiildChatbotsPython}. 
+ Lemmatization uses a vocabulary and morphological analysis of words to achieve its task \cite{buiildChatbotsPython}.
+% stop words
+Stop words are words that hold little to no meaning and occur in a high frequency like "the" and "a" which 
+are removed.
+
+
+
+

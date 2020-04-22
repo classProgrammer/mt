@@ -1,0 +1,7 @@
+question answering for localized search (McTear et al., 2016), 
+
+form-driven dialogue systems (Stoyanchev et al., 2016), 
+
+dialogue management (Schnelle-Walka et al., 2016), 
+
+the internet of things (Kar and Haldar, 2016).

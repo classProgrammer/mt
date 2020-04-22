@@ -1,0 +1,64 @@
+
+\section{Approach}
+% was wird betrachted, was nicht        
+% Domain wird betrachtet
+% andere Sachen nicht
+% gleiche test sätze und entitäten
+% gleiche stories
+The problem (sickness and holiday notifications) need to be evaluated to determine it the problem is suitable for chatbots.
+Sickness notifications are a repetitive task, the task can be automated and requires simple Back-and-Forth communication hence the problem fits the description of \citet{buiildChatbotsPython}.
+The same is true for holiday notifications since the idea of both remains the same.
+The problem is suitable for chatbots since all three questions can be answered with yes.
+The next step is to determined the converstaion type.
+The two major chatbot conversation categories mentioned in Chapter \ref{chap:soa}: State-of-the-Art are goal-oriented 
+and end-to-end conversations \cite{williams2017hybrid, bordes2016learning, rahman2017programming}.
+A goal-oriented system helps a user to achieve a task \cite{rahman2017programming}.
+In the case of a sicknes notification the system needs to aid and guide the user through the process to reduce the workload.
+This description fits perfectly for goal oriented dialog.
+The domain is clear and of limited size since the user can only ask about the sickness notification process and nothing else.
+The bot also needs to retrieve specific data from the conversation to identify the sick person.
+The retrieval process is a specific task with specific entities and fits a goal-oriented system.
+In open-ended systems the conversation is not limited to a domain and the conversation can evolve in any direction.
+This is definitely not the case for the sickness and holiday notifications because the problems are domain specific.
+Therefore, goal-oriented technologies fit the the problem description.
+End-to-end systems won't be considered in this thesis because their performance in goal-oriented settings is not good enough yet as 
+\citet{bordes2016learning} mentioned.
+The given problem of sickness notifications is a domain-specific/goal-oriented 
+(\citet{deshpande2017survey, luis2015williams, braunEvaluatingNLU, williams2017hybrid}) 
+task hence domain-specific frameworks are suitable.
+
+The framework selection for this thesis is based on chapter \ref{chap:soa} State-of-the-Art and Section \ref{sec:prereq} Prerequisites.
+Section \ref{sec:prereq} describe the requirements of the company and chapter \ref{chap:soa} shows which technologies are 
+used in papers, articles, and books.
+To match the prerequisites at least one cloud (\citet{braunEvaluatingNLU, rahman2017programming}) and one local (\citet{braunEvaluatingNLU}) chatbot are needed and IBM Watson Assistant needs to be taken because an IBM technology is on the wish-list.
+A common cloud technology is Dialogflow (\citet{braunEvaluatingNLU, dutta2017developing, singhbuilding, buiildChatbotsPython, rahman2017programming, ieee2018watson}) hence it is selected.
+A common local standalone technology is Rasa (\citet{braunEvaluatingNLU, singhbuilding, rasabocklisch2017, buiildChatbotsPython, gregori2017evaluation}) and is the local tool of choice.
+The chosen technologies are Dialogflow, IBM Watson (\citet{rahman2017programming, pharmacybot, ieee2018watson, gregori2017evaluation}), and Rasa to fulfill all requirements.
+
+All three prototypes will be used to implement the same task.
+An example convsersation of the sickness notification task is shown in Figure \ref{fig:sicknessflow}
+They will be trained with the same data.
+They will have the same intents, entities, and utterances.
+These steps are necessary to ensure a fair comparison.
+The analysis of the sickness notification dialog is shown in Table \ref{tab:sick_data}.
+
+
+\section{Model}
+
+
+\section{Course of Action} % Ablauf
+% Domain
+% Knowledge Base bilden
+% Intents
+% entities
+% utterances
+% test set bilden
+% TP
+% TN
+% FP
+% FN
+% Stories bauen
+% Stories umsetzen
+% testen
+% deployen für gleiche Bedingungen
+% testen und vergleichen

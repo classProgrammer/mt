@@ -1,0 +1,124 @@
+\section{Architecture}
+\makefigure{simplearchitecture}{Example Minimalistic Architecture}
+
+One possible architecture for a minimalistic chatbot system with database communication is shown in Figure \ref{fig:simplearchitecture}.
+The chatbot framework takes care of all conversation related tasks. 
+Conversation related tasks are the intent recognition, entity extraction and the general flow of the dialogue for instance. 
+The user interface of Figure \ref{fig:simplearchitecture} fetches the input from the user, submits it to the chatbot framework 
+and displays the response messages. 
+The UI can additionally communicate with the database via the REST service or webhook if necessary.
+The DB handles data-related tasks like the possible items and can be used for the validation of the extracted entities
+ by the chatbot framework in combination with the webhook. 
+ The webhook separates the data logic from the application logic and is used for validation, 
+ data submission and retrieval.
+ It's also used for other chatbot related issues like the validation of intent related data and error responses to the chatbot framework.
+
+ \section{Story/Flowchart}
+ 
+ \makefigure{sicknessflow}{Example Conversation for a Sickness Notification}
+ 
+ A story is an example dialog between user and chatbot. An example dialogue to report a colleague sick is shown in Figure \ref{fig:sicknessflow} 
+ where the user input is highlighted green and the chatbot response is highlighted blue.
+ The intent of each user input needs to be found to create the knowledge base for the domain. 
+ The intent for the user input "Hello" can be marked as greeting, the second input is the general information what the chatbot can do, 
+ the third input is the sickness notification intent. Then the necessary information is collected followed by some chit-chat and the end of the conversation. 
+ The interesting entities, in this case, are the name of the employee which is required all the time, the confirmation that the found employee is the 
+ correct one and the return date which is optional since it's not possible to tell in every case. 
+ The resulting intents, entities, and utterances for the example sentences of the conversation 
+ shown in Figure \ref{fig:sicknessflow} are listed in Table \ref{tab:sick_data}.
+ 
+ 
+ 
+ \section{Intents, Entities and Utterances}
+ The base for this section is Figure \ref{fig:sicknessflow} which shows an example conversation 
+ for a sickness notification from start to end.
+ The identified information from the conversation is displayed in Table \ref{tab:sick_data}.
+ In genral, the greeting and goodbye intents are expected to be in almost any chatbot conversation.
+ A thank you intent is also very likely.
+ The user should have the option to ask for the available options.
+ The core intent of the whole process is the sickness intent.
+ To do the sickness notification the users needs to enter the name of a person.
+ If the person can't be found the user needs to be notified and the operation is aborted.
+ If the person was found the user needs to confirm that the right person was found.
+ In production there could be multiple employees with the same name. 
+ Because of this ambiguity the confirmation is part of the dialog.
+ Then the optional return date needs to be extracted.
+ It's optional because especially in the case of a sickness the return date is unknown.
+ The other case is e.g. a broken arm where the employee might return tomorrow.
+ Then the sickness notification is done.
+ In the case of this thesis the chatbot is the important part hence the backend is mocked for simplicity.
+ The user might thank the bot or end the conversation with a goodbye message, or the user might not respond after the all done message.
+ This are the three possible ends of conversation.
+ The basic concepts extracted from Figure \ref{fig:sicknessflow} are shown in Table \ref{tab:sick_data}.
+ There are the intents discussed above, the entities and their types, and the bot actions.
+ For this use case the needed entities are a person or the name of a person, a confirmation of boolean type, and a data.
+ Alternatively for the confirmation the name of the department the person works in can be used.
+ The department is modeled as a custom entity as described in Chapter \ref{chap:basics}: Basics in Section \ref{sec:entity}.
+ The bot responds to the user with utterances.
+ The conceptual names of the utterances are show in Table \ref{tab:sick_data} under Bot Action.
+ In the simplest casa a bot action is an utterance.
+ For the utterances different version need to be written to respond to the user with alternating sentences.
+ For the vacation notification the process remains the same.
+ The greeting, thanks, goodbye, and list options intents remain the same.
+ The new intent is the vacation intent.
+ To validate a vacation request the name of the person and the department are needed again.
+ The only change in the process is that there needs to be a mandatory start and end date.
+ There are no new datatypes/entities needed for the second use-case.
+
+ \begin{table}[h]
+    \centering
+    \begin{tabular}{ l || l | l | l }
+        Sentence & Intent & Entities & Bot Action \\ \hline \hline
+        Hello & Greet & - & Utter Greeting \\ \hline
+        What can you do? & List Options & - & Utter Options \\ \hline
+        my colleague is sick & Sick & - & Utter Ask Name \\ \hline
+        Max Power & - & Person Name & Utter Confirm \\ \hline
+        Yes & - & Boolean & Utter Return Date or Failed \\ \hline
+        No & - & Date or None & Utter Done or Failed \\ \hline
+        Thanks & Thanks & - & Utter You'r Welcome \\ \hline
+        Bye & Goodbye & - & Utter Goodbye \\ \hline
+    \end{tabular}
+    \caption{Sickness Norification Intents, Enitities, and Actions of Figure \ref{fig:sicknessflow}} \label{tab:sick_data}
+\end{table} \noindent
+\section{Webhook}
+As explained in Chapter \ref{chap:basics}: Basic in Section \ref{sec:webhook} 
+the webhook is an endpoint where services can send requests to.
+In this thesis three frameworks are present and each framework gets and endpoint.
+The service is also used to access general information about the state of the data.
+The Dialogflow endpoint is reachable under "/dialogflow/webhook",
+the Watson endpoint is located at "/watson/webhook",
+and the Rasa service submits post requests to "/sick" and "/vacation" to submit data 
+to the REST service.
+For development purposes the last request of Watson can be viewed at "/watson/request",
+and the last request of Dialogflow at "/dialogflow/request".
+To see all successful sickness notification entries "/sick/all" can be used,
+and under "/vacation/all" all successful vacation entries can be viewed.
+
+The service fakes a database and stores the request.
+After the information has been collected successfully by a framework a 
+request is submitted to the service.
+The service can do everything with the data and is the point where the company can execute actions.
+All frameworks can call the webhook at the end when the data has been collected but also 
+after each user request if necessary.
+This way the information can be validated and modified by the service.
+
+\section{Messenger UI}
+
+\chapter{Prototypical Implementation} % IMPL
+\section{Dialogflow}
+To be done \cite{dialogflow}.
+
+\section{Watson Assistant}
+To be done \cite{watsonassistant}.
+ 
+\section{Rasa}
+To be done \cite{rasa}.
+
+\section{LUIS}
+To be done \cite{luisdocs}.
+
+
+\section{Azure Deployment}
+\section{Frontend}
+\section{Webhook}
+\section{Local Deployment (maybe)}

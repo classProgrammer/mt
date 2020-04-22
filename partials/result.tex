@@ -1,0 +1,101 @@
+
+\section{Framework Comparison}
+% project complexity
+\subsection*{Project Setup Complexity}
+
+% development complexity
+\subsection*{Development Complexity}
+% price
+\subsection*{Pricing} \label{sec:pricing}
+Dialogflow can be used by companies for free.
+The limits for the free tier are 180 text requests per minute.
+With Essential and Plus 600 requests per minute are possible.
+Rasa is a free to use open source tool and costs nothing.
+There is an enterprise edition with some benefits but the price
+is calculated individually.
+Watson Assistant offer a free tier with up to 1.000 users per month, 
+10.000 messages per month.
+A user is a person which interacts with the bot at least once.
+The Plus edition costs \$120 for 1.000 users per month with
+no message or user limit.
+The pricings and editions of the framework are shown in Table \ref{tab:pricing}.
+The price of Dialogflow is based on the number of requests,
+IBM offers a fixed number of requests and users, and with Rasa the developer has
+to take care of the number of users and requests in soft- and hardware.
+In the free tier Dialogflow provides the best value because there is message or user limit.
+In the priced tier Watson costs \$0.12 per user per month (\$120 for 1.000 users per month).
+Dialogflow charges \$0.002 per request.
+Watsons cost of \$0.12 per user per month equals 60 requests per user per month with Dialogflow.
+
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ l | l | l }
+        Framework & Edition & Price \\ \hline \hline
+        \multirow{3}{*}{Dialogflow} & Standard & Free \\
+        & EE Essentials &  \$0.002 per request\\
+        & EE Plus & \$0.004 per request \\ \hline
+
+        \multirow{3}{*}{Watson Assistant} & Lite & Free \\
+        & Plus &  \$120 for 1000 users/month\\
+        & Premium & Individual \\ \hline
+
+        \multirow{3}{*}{Rasa} & Rasa Open Source & Free \\
+        & Rasa X &  Free\\
+        & Rasa Enterprise & Individual \\ \hline
+    \end{tabular}
+    \caption{Pricing of Frameworks \cite{rasa, dialogflow, watsonassistant}} \label{tab:pricing}
+\end{table} \noindent
+
+
+% customization possibilities
+\subsection*{Customization Possibilities}
+% needed knowledge
+\subsection*{Needed Knowledge}
+% deployment
+\subsection*{Deployment Complexity}
+% precision of intent recognition
+\subsection*{Intent Classification Precision}
+% TP, FP, TN, FN
+% response times
+\subsection*{Response Times}
+% precision entity recognition/extraction
+\subsection*{Entity Extraction Capabilities}
+% predefined types/entities
+\subsection*{Predefined Entities}
+% training capabilities
+\subsection*{Training Capabilities}
+% live training 
+% dialogflow
+% integration
+\subsection*{Integration}
+% exception/error handling
+\subsection*{Error Handling}
+% transfer of knowledge between technologies
+\subsection*{Transfer of Knowledge}
+% usability framework
+\subsection*{Usability of the Framework}
+% usability frontend
+\subsection*{Frontend}
+% unique capabilities
+% speech recognition capabilities
+\subsection*{Speech Recognition Capabilities}
+
+\chapter{Discussion} % what was good, what bad regarding tests, conclusion, test güte, ideal test conditions
+The price comparison of Section \ref{sec:pricing} shows that all 
+tested frameworks can be used for free.
+Dialogflow is better when there is a lot of users with little chatbot interaction.
+Watson offers a better value when the users interact a lot with the bot.
+With Rasa the costs depend on the infrastructure provided by the company.
+
+A big disadvantage with cloud-based solutions is the dependency on the company.
+It's not easy to change the provider and take the current chatbot with you if it 
+is a cloud based chatbot. 
+Rasa differs in that point since it can run in any cloud environment inside a docker container.
+Every cloud provider offers the option to host docker containers in their cloud.
+A major factor is security since the users enter sensitive information in the chatbot communication
+and the data is processed in the cloud of the provider.
+The cloud provider hence has access to the sensitive information which can be problematic with
+bank account information for instance.
+Rasa has no such problem since the data is processed inside of the docker container or in a 
+local environment.

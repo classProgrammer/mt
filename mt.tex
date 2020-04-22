@@ -1,43 +1,31 @@
 \input{partials/overhead.tex}
 
 \begin{document}
-\input{partials/titlePage.tex}
+\makeFrontPage
 
-\pagenumbering{roman}
-\tableofcontents
+\makeToc
     
+\makeChapterWithoutNumber{Abstract}{abstract}
 
-\chapter*{Abstract} 
-\addcontentsline{toc}{chapter}{Abstract}
+\makeChapterWithoutNumber{Kurzfassung}{kurzfassung}
 
+\makeFirstChapter{Introduction}{intro}{introduction}
 
-\chapter*{Kurzfassung}
-\addcontentsline{toc}{chapter}{Kurzfassung}
+\makeChapter{Basics}{basics}{basics}
 
-\chapter{Introduction} 
-\pagenumbering{arabic}
-\input{partials/introduction.tex}
+\makeChapter{State of the Art}{soa}{state-of-the-art} % List and Compare what others did
 
-\chapter{Basics}  \label{chap:basics}  % 119
-\input{partials/basics.tex}
+\makeChapter{Methodology}{methodology}{methodology} % HOW
 
-\chapter{State of the Art} \label{chap:soa}
-\input{partials/state-of-the-art.tex}
+\makeChapter{Design}{design}{design} 
 
-\chapter{Methodology} % HOW
-\input{partials/methodology.tex}
+\makeChapter{Prototype Implementation}{proto}{proto} % IMPL
 
+\makeChapter{Result}{result}{result} % ergebnisse
 
-\chapter{Design}    
-\input{partials/design.tex}
+\makeChapter{Discussion}{discussion}{discussion} % what was good, what bad regarding tests, conclusion, test güte, ideal test conditions
 
-
-\chapter{Result} % WHAT
-\input{partials/result.tex}
-
-
-\chapter{Conclusion and Outlook} % improve because ... % SO?
-\input{partials/conclusion-and-outlook.tex}
+\makeChapter{Conclusion and Outlook}{cao}{conclusion-and-outlook}  % improve because ...
 
 \chapter{Appendix}
 

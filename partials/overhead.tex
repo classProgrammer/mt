@@ -70,6 +70,32 @@
     \addcontentsline{toc}{chapter}{List of Listings}
 }
 
+\newcommand{\makeChapter}[3]{
+    \chapter{#1} \label{chap:#2}
+    \input{partials/#3.tex}
+}
+
+\newcommand{\makeFirstChapter}[3]{
+    \chapter{#1} \label{chap:#2}
+    \pagenumbering{arabic}
+    \input{partials/#3.tex}
+}
+
+\newcommand{\makeChapterWithoutNumber}[2]{
+    \chapter*{#1} 
+    \addcontentsline{toc}{chapter}{#1}
+    \input{partials/#2.tex}
+}
+
+\newcommand{\makeFrontPage}{
+    \input{partials/titlePage.tex}
+}
+
+\newcommand{\makeToc}{
+    \pagenumbering{roman}
+    \tableofcontents
+}
+
 \renewcommand*{\backref}[1]{}
 \renewcommand*{\backrefalt}[4]
 {

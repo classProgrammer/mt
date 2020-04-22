@@ -80,22 +80,3 @@ Watsons cost of \$0.12 per user per month equals 60 requests per user per month 
 % unique capabilities
 % speech recognition capabilities
 \subsection*{Speech Recognition Capabilities}
-
-\chapter{Discussion} % what was good, what bad regarding tests, conclusion, test güte, ideal test conditions
-The price comparison of Section \ref{sec:pricing} shows that all 
-tested frameworks can be used for free.
-Dialogflow is better when there is a lot of users with little chatbot interaction.
-Watson offers a better value when the users interact a lot with the bot.
-With Rasa the costs depend on the infrastructure provided by the company.
-
-A big disadvantage with cloud-based solutions is the dependency on the company.
-It's not easy to change the provider and take the current chatbot with you if it 
-is a cloud based chatbot. 
-Rasa differs in that point since it can run in any cloud environment inside a docker container.
-Every cloud provider offers the option to host docker containers in their cloud.
-A major factor is security since the users enter sensitive information in the chatbot communication
-and the data is processed in the cloud of the provider.
-The cloud provider hence has access to the sensitive information which can be problematic with
-bank account information for instance.
-Rasa has no such problem since the data is processed inside of the docker container or in a 
-local environment.

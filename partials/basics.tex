@@ -52,15 +52,24 @@ The rules define the available functionality, types, and possible input statemen
 One simple rule could be that a person name is required as input and needs a first and last name to be formed.
 
 
-\section{Chatbot Frameworks}
-There are lots of chatbot and NLU frameworks aiming to allow regular programmers to 
-develop chatbot systems without expertise in ML.
-The big companies all offer frameworks which handle the ML for the developer.
+\section{Chatbot/NLU Frameworks}
+Many chatbot and NLU frameworks were created to enable non ML experts to 
+develop chatbot systems.
+The frameworks can be devided in cloud-based and local solutions.
+The cloud based solutions are created, edited, and developed a browser window 
+and are used via a REST API endpoint.
+The developer is dependent on the provider and the training and analysis is done 
+in the coud of the provider. This needs to be kept in mind for security critical 
+information.
+The big cloud providers offer chatbot or NLU frameworks in their cloud environment.
 Microsoft has LUIS (\citet{luis2015williams, luisdocs}),
 Google develops Dialogflow (\citet{dialogflow}),
 IBM offers Watson Assistant (\citet{watsonassistant}),
 Amazon provides Lex and Alexa.
-All the solutions above are cloud-based whereas a popular local open-source solution is Rasa (\citet{rasabocklisch2017,rasa}). 
+The local solutions are standalone applications running on the development machine or 
+the company server.
+The data is never passed to another computer or a cloud environment.
+A popular local open-source solution is Rasa (\citet{rasabocklisch2017,rasa}). 
 
 
 \section{Suitable Problems for Chatbots} 

@@ -43,24 +43,24 @@ Open-ended systems are perfect for general communication, are not restricted to 
 or achieve a specific task with such systems.
 A simple exemplary chatbot conversation is shown in Figure \ref{fig:faqexamplecrop}.
 
-In general, a chatbot system consists of rules and training data.
+In general, a ML based chatbot system consists of rules and training data.
 The training data is used to train the natural language capabilities and 
 should be as realistic as possible.
 The training data can be handcrafted for prototyping or generated from large sources like emails, phone calls,
 or the internet.
 The rules define the available functionality, types, and possible input statements.
-One simple rule could be that a person name is required as input and needs a first and last name to be formed.
+One simple rule could be that a person name is required as input and consist of a first and last name.
 
 
 \section{Chatbot/NLU Frameworks}
 Many chatbot and NLU frameworks were created to enable non ML experts to 
 develop chatbot systems.
 The frameworks can be devided in cloud-based and local solutions.
-The cloud based solutions are created, edited, and developed a browser window 
-and are used via a REST API endpoint.
+The cloud based solutions are created, edited, and developed through a web-interface 
+and are used in applications via a REST API endpoint.
 The developer is dependent on the provider and the training and analysis is done 
-in the coud of the provider. This needs to be kept in mind for security critical 
-information.
+in the coud of the provider. This needs to be kept in mind when dealing with
+ sensitive information like bank accounts.
 The big cloud providers offer chatbot or NLU frameworks in their cloud environment.
 Microsoft has LUIS (\citet{luis2015williams, luisdocs}),
 Google develops Dialogflow (\citet{dialogflow}),
@@ -68,7 +68,7 @@ IBM offers Watson Assistant (\citet{watsonassistant}),
 Amazon provides Lex and Alexa.
 The local solutions are standalone applications running on the development machine or 
 the company server.
-The data is never passed to another computer or a cloud environment.
+The data is never passed to another computer or the cloud since it runs local.
 A popular local open-source solution is Rasa (\citet{rasabocklisch2017,rasa}). 
 
 
@@ -88,11 +88,6 @@ It the problem can't be automated the work must be done by an employee again and
 If the answer to all questions is yes the problem is perfect for a chatbot application \cite{buiildChatbotsPython}.
 A simple QnA bot for a FAQ page of a website is an example of a suitable problem \cite{buiildChatbotsPython}.
 The task can be automated, is highly repetitive and the answers are predefined.
-
-
-
-
-
 
 \section{Intent} \label{sec:intent}
 A user interacts with a chatbot with an intention in mind \cite{buiildChatbotsPython, singhbuilding}.
@@ -115,9 +110,30 @@ In example sentence one of Table \ref{tab:example_sentences} the intent can be l
 "Greeting\_Intent" since the user greets the bot.
 Example sentence two of Table \ref{tab:example_sentences} shows that the user wants to book
 a hotel room and the intent could be labeled "Book\_Hotel\_Intent" in this case.
-Figure \ref{fig:defaultwelcomedialogflow} shows the default welcome intent created by Dialogflow. 
+Table \ref{tab:defaultwelcomedialogflow} shows the default welcome intent created by Dialogflow. 
 
-\makefigure{defaultwelcomedialogflow}{Default Welcome Intent of Dialogflow}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ l | c | c | l }
+  No. & Intent & Type & Sentences \\ \hline \hline
+  \multirow{8}{*}{1}
+  & \multirow{8}{*}{Default Welcome} & \multirow{8}{*}{Training Phrases} & hey \\
+      & & & howdy partner\\
+      & & & heya\\ 
+      & & & hello hi\\ 
+      & & & hey there\\ 
+      & & & hi there\\ 
+      & & & greetings\\ 
+      & & & howdy \\ \hline
+  \multirow{4}{*}{2}
+  & \multirow{4}{*}{Default Welcome} & \multirow{4}{*}{Response List} & Hi! How are you doing? \\
+      & & & Hello! How can I help you?\\
+      & & & Good Day! What can I do for you today?\\ 
+      & & & Greetings! How can I assist?\\ \hline
+\end{tabular}
+    \caption{Default Welcome Intent of Dialogflow} \label{tab:defaultwelcomedialogflow}
+\end{table} \noindent
+
 
 
 \section{Utterance} \label{sec:utterance}
@@ -133,7 +149,7 @@ classify sentences correctly which never were part of the training data.
 Example sentence two of Table \ref{tab:example_sentences} can be used as utterance for the book hotel intent.
 Utterances need to be chosen with care to prevent overfitting to unimportant features of the sentences.
 If all utterances contain a specific word at a specific position the model likely assumes that it must be like this all the time.
-The default utterances of the welcome intent of Dialogflow can be seen in the training phrases section in Figure \ref{fig:defaultwelcomedialogflow}.
+The default utterances of the welcome intent of Dialogflow can be seen in the training phrases section in Table \ref{tab:defaultwelcomedialogflow}.
 
 Utterances for training purposes can come from multiple sources.
 They can be handcrafted for development and test purposes.
@@ -179,10 +195,23 @@ These named entites are sometimes provided by the frameworks.
 A developer can define named entities for a specific domain.
 A custom entity can be a list of hotels like the "Twelve Months" 
 hotel in sentence three of Table \ref{tab:example_sentences}.
-An example entity for food items like apples and peas is shown in Figure \ref{fig:entityexampledialog}.
+An example entity for food items like apples and peas is shown in Table \ref{tab:entityexampledialog}.
 Entities are stored in the session and form the context of a conversation \cite{singhbuilding}.
 They are only valid for the current conversation.
-\makefigure{entityexampledialog}{Food Entity Example with Dialogflow}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ c | c | l | l }
+  No. & Entity & Item & Synonyms \\ \hline \hline
+  \multirow{4}{*}{1} & \multirow{4}{*}{Fruit Item} & apple & apples \\
+       & & banana & bananas\\
+       & & pea & peas \\ 
+       & & peach & peaches \\ \hline
+    2 & Sick Item & sick & ill, unwell, poorly, indisposed, sickly, ailing \\
+    \hline
+\end{tabular}
+    \caption{Entity examples} \label{tab:entityexampledialog}
+\end{table} \noindent
 
 
 \section{Chatbot Response} \label{sec:chatbot_response}
@@ -194,11 +223,7 @@ if they are using the bot more than once.
 The alternatives prevent a robot like feel in the conversation. 
 If the same response is picked all the time users realize fast that they are 
 talking to a bot system and it also gets boring fast. 
-An exemplary list of responses for the default welcome intent of Dialogflow is shown in Figure \ref{fig:defaultwelcomeresponsedialogflow}.
-
-\makefigure{defaultwelcomeresponsedialogflow}{Response List of the Default Welcome Intent of Dialogflow}
-
-
+An exemplary list of responses for the default welcome intent of Dialogflow is shown in Table \ref{tab:defaultwelcomedialogflow}.
 
 
 % regex image
@@ -249,25 +274,13 @@ morekeywords={}]
         ],
         "fulfillmentText": "Good day! What can I do for you today?",
         "intent": {
-            "displayName": "Default Welcome Intent",
-            "name": "projects/onlineeatsbot-pxcmic/agent/intents/cc103476-1771-4b0e-bf86-c5d63af2e9ab"
+            "displayName": "Default Welcome Intent"
         },
         "intentDetectionConfidence": 0.72385716,
         "languageCode": "en",
-        "outputContexts": [
-        {
-            "name": "projects/onlineeatsbot-pxcmic/agent/sessions/c85918b3-c794-6d73-3c86-149ca19ea5a9/contexts/__system_counters__",
-            "parameters": {
-                "no-input": 0.0,
-                "no-match": 0.0
-            }
-        }
-        ],
         "parameters": {},
         "queryText": "Hi, how are you doing"
     },
-    "responseId": "0686a282-abb6-4d24-abbd-bef3c38615ef-19db3199",
-    "session": "projects/onlineeatsbot-pxcmic/agent/sessions/c85918b3-c794-6d73-3c86-149ca19ea5a9"
 }
 ]\end{lstlisting}  
 

@@ -115,27 +115,34 @@ data and actions.
 
 
 \section{Intent} \label{sec:intent}
-A user interacts with a chatbot with an intention in mind \cite{buiildChatbotsPython, singhbuilding}.
-The intent is the action a user wants to perform \cite{dutta2017developing, rahman2017programming}.
-The intent can be found by answering the question: "What is the user asking for?" \cite{buiildChatbotsPython}.
-The identification of intents is the essential function of any chatbot system \cite{singhbuilding}.
-In AI-based chatbots intents are detected via NLP \cite{singhbuilding}. 
-The NLP systems return a confidence score for a user query.
-The confidence score is an indicatior how good the user inpur matches the training data used to train the intent.
-A high score indicates a good match.
-The model provides a confidence score for each question telling you how 
-confident the algorithm is that the correct intent has been found \cite{buiildChatbotsPython}.
-A use-case dependent border value can be defined for the confidence score e.g. 50\%. 
-Every value above 50\% confidence is treated as the specified intent.
-Everything below 50\% is treated as a failure and the fallback intent comes into play.
-As a fallback a message like "I'm sorry but I didn't get that" can be used.
+Intents are the core concept of any chatbot system.
+An intent is the action a user wants to perform \cite{dutta2017developing, rahman2017programming}.
+In example sentence two in Table \ref{tab:example_sentences} the user wants to book a hotel.
+The action the user wants to perform is to book a hotel.
+The intent can be named book hotel for instance.
+In general, the user queries the system, the system identifies the intent, collects relevant information,
+and generates a response.
+The identification of these intents is the core function of chatbots.
+To identify the intent the system finds the intent where the training phrases are closest to 
+the users query or uses the fallback if no intent reached a high enough score.
+The score is represented by a percent value between zero and one.
+One means a perfect match and zero is treated as absolutely no match.
+A threshhold defines the minimum score the system has to detect before an action is executed.
+All values below the threshhold are handeled by the fallback action e.g. a generic response like 
+"I'm sorry but I didn't understand that".
 The following examples demonstrate what intents are and how they could be named using the
 example sentences of Table \ref{tab:example_sentences}.
 In example sentence one of Table \ref{tab:example_sentences} the intent can be labeled as 
-"Greeting\_Intent" since the user greets the bot.
-Example sentence two of Table \ref{tab:example_sentences} shows that the user wants to book
-a hotel room and the intent could be labeled "Book\_Hotel\_Intent" in this case.
-Table \ref{tab:defaultwelcomedialogflow} shows the default welcome intent created by Dialogflow. 
+"Greet" since the user greets the bot.
+Table \ref{tab:defaultwelcomedialogflow} shows a small excerpt of the information generated for
+the default welcome intent created by Dialogflow.
+The intent consists of training phrases and a response list.
+The training phrases are used to train the ML model.
+Everything which is similar to the training phrases and reaches the highest score 
+will be classified as the intent.
+The system then response with a random pick from the response list.
+The random pick fakes intelligence since it would be boring for 
+users to get the same response every time.
 
 \begin{table}[H]
     \centering

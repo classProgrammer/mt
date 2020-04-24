@@ -1,4 +1,4 @@
-\section{Chatbot}
+\section{Chatbot} \label{sec:chatbot}
 A chatbot is a conversatinal agent able to communicate with a user using natural language 
 \cite{evaluateChatbotsShawar2007, shawar2007chatbots, huang2007extracting, gregori2017evaluation}.
 The term chatbot is a combination of the words chatting and robot.
@@ -73,21 +73,46 @@ A popular local open-source solution is Rasa (\citet{rasabocklisch2017,rasa}).
 
 
 \section{Suitable Problems for Chatbots} 
-Chatbots seem like intelligent systems capable of natural language conversation \cite{buiildChatbotsPython}.
-Most often they are design for specific tasks and definitely not intelligent \cite{buiildChatbotsPython}.
-Chatbots are not able to solve complex problems \cite{buiildChatbotsPython}.
+Chatbots seem like intelligent systems but most often they are design for specific tasks
+and can't be describe an are unable to solve complex problems \cite{buiildChatbotsPython}.
 Therefore, not every problem can be solved using chatbots \cite{buiildChatbotsPython}.
-In general, a problem is suitable for chatbots if the following questions need to be answered \cite{buiildChatbotsPython}.
-Can the problem be represented with simple questions and answers and Back-and-Forth communication \cite{buiildChatbotsPython}.?
-Chatbots use natural language which works through back and forth communication.
-Is the problem a highly repetitive issue that requires data-fetching or analyzing? 
-Bots are made to do highly repetitive tasks to reduce the workload of humans \cite{buiildChatbotsPython}.
-It makes no sense to create a chatbot for non-repetitive task since then the chatbot development costs never pay off. 
-Can The problem be automated and fixed \cite{buiildChatbotsPython}?
-It the problem can't be automated the work must be done by an employee again and the chatbot has not reduce the workload and is irrelevant.
-If the answer to all questions is yes the problem is perfect for a chatbot application \cite{buiildChatbotsPython}.
+A problem can be solved effectively with chatbots when it is highly repetitive, can be automated, and 
+can be done with simple back-and-forth communication.
+A chatbot systems in meant to reduce the workload for employees or serve a large amount of users.
+Therefore, the problem needs to be repetitive to fulfill these requirements.
+It is possible to solve non repetitive tasks with chatbots too but it is not cost-effective.
+The problem needs to be automated to simplify the process.
+If it can't be automated an employee is needed for the process and it's not possible to 
+serve large number of users.
+Chatbots are based on natural language communication with text messages or voice.
+Hence, the problem must fit in the back-and-forth communication pattern since there are no 
+other means of communication available for chatbots.
+If all the statements above can be answered with yes the problem can be solved with chatbots. 
 A simple QnA bot for a FAQ page of a website is an example of a suitable problem \cite{buiildChatbotsPython}.
-The task can be automated, is highly repetitive and the answers are predefined.
+The task can be automated, is highly repetitive and the answers are predefined by the FAQ page.
+
+As mentioned in Section \ref{sec:chatbot} there are three major types of chatbots.
+The menu-driven and domain-specific approach are suitable for tasks with a goal where data needs to
+be collected to execute an action and a limited set of functions. 
+When the user can select an option from a limited list of actions the menu-driven approach works best
+(support, helpdesk chatbot).
+When users should be able to communicate using natural language to ask questions related to a
+domain then the domain-specific approach works best (FAQ chatbot). In the FAQ example the domain 
+consists of all questions and answers of the FAQ page.
+It would be bothersome to navigate through a FAQ forum using numbers because if e.g. 1000 topics
+are available the user would need to enter a number between one and 1000 and also would need to 
+know the correct number which would be unusable.
+A user just wants to ask a question to get an appropriate answer.
+This works best with natural language hence, the domain-specific approach is suitable.
+The open-ended approach is suitable when no specific data needs to be collected and a general 
+conversation needs to be held with the users. 
+The Google Assistant can answer general questions like "What's the weather in New York" and 
+gives a general response.
+The Google Assistant can't process a request like 
+"Tell my employee I am sick and won't come to work today" since this would require domain specific 
+data and actions.
+
+
 
 \section{Intent} \label{sec:intent}
 A user interacts with a chatbot with an intention in mind \cite{buiildChatbotsPython, singhbuilding}.

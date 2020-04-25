@@ -40,7 +40,7 @@ Popular examples for open-ended systems are Google Home, Siri (Apple), and Alexa
 The most limited approach is the menu-drive approach since the options are given and a user only inputs numbers to select a functionality.
 Domain-specific bots communicate with users in natural language and are good in achieving tasks and collecting information.
 Open-ended systems are perfect for general communication, are not restricted to a domain but it's hard to collect specific information
-or achieve a specific task with such systems.
+or achieve a domain specific task with such systems. General tasks are not a problem for open-ended systems.
 A simple exemplary chatbot conversation is shown in Figure \ref{fig:faqexamplecrop}.
 
 In general, a ML based chatbot system consists of rules and training data.
@@ -118,10 +118,10 @@ data and actions.
 Intents are the core concept of any chatbot system.
 An intent is the action a user wants to perform \cite{dutta2017developing, rahman2017programming}.
 In example sentence two in Table \ref{tab:example_sentences} the user wants to book a hotel.
-The action the user wants to perform is to book a hotel.
-The intent can be named book hotel for instance.
-In general, the user queries the system, the system identifies the intent, collects relevant information,
-and generates a response.
+The action the user wants to perform is "book a hotel".
+The intent can be named "book hotel" for instance.
+In general, the user queries the system, the system identifies the best matching intent, 
+collects relevant information, and generates a response.
 The identification of these intents is the core function of chatbots.
 To identify the intent the system finds the intent where the training phrases are closest to 
 the users query or uses the fallback if no intent reached a high enough score.
@@ -130,8 +130,8 @@ One means a perfect match and zero is treated as absolutely no match.
 A threshhold defines the minimum score the system has to detect before an action is executed.
 All values below the threshhold are handeled by the fallback action e.g. a generic response like 
 "I'm sorry but I didn't understand that".
-The following examples demonstrate what intents are and how they could be named using the
-example sentences of Table \ref{tab:example_sentences}.
+The examples of Table \ref{tab:example_sentences} lists example sentences and the intent which 
+could be used for the sentence.
 In example sentence one of Table \ref{tab:example_sentences} the intent can be labeled as 
 "Greet" since the user greets the bot.
 Table \ref{tab:defaultwelcomedialogflow} shows a small excerpt of the information generated for
@@ -143,6 +143,8 @@ will be classified as the intent.
 The system then response with a random pick from the response list.
 The random pick fakes intelligence since it would be boring for 
 users to get the same response every time.
+If the same response is returned all the time users would rate the communication as robotic 
+but the goal is to make the conversation as natural as possible.
 
 \begin{table}[H]
     \centering
@@ -169,24 +171,30 @@ users to get the same response every time.
 
 
 \section{Utterance} \label{sec:utterance}
-An utterance is a sentence or a part of a sentence.
-All sentences of Table \ref{tab:example_sentences} are utterances.
-The input of users are utterances \cite{singhbuilding, dutta2017developing}.
-Chatbot systems also answer users with utterances and they are also used to train the NLP system.
-A collection of utterances belongs to an intent and builds the base for the classification of user input.
-Utterances which belong to an intent are different versions of the same question \cite{buiildChatbotsPython}.
-With the different versions of the same question the model of the chatbot is trained.
-Thanks to the knowledge gained from multiple utterances per intent the chatbot is able to
-classify sentences correctly which never were part of the training data.
-Example sentence two of Table \ref{tab:example_sentences} can be used as utterance for the book hotel intent.
-Utterances need to be chosen with care to prevent overfitting to unimportant features of the sentences.
-If all utterances contain a specific word at a specific position the model likely assumes that it must be like this all the time.
-The default utterances of the welcome intent of Dialogflow can be seen in the training phrases section in Table \ref{tab:defaultwelcomedialogflow}.
-
+In general, an utterance is a sentence but it can be a part of a sentece too.
+Especially in the area of chatbots an utterance is often a part of a sentence since 
+chat messages are often shortened. 
+All sentences listed in Table \ref{tab:example_sentences} are utterances for instance.
+The messages of users are utterances \cite{singhbuilding, dutta2017developing}.
+The chatbot also responds to users with utterances.
+Table \ref{tab:defaultwelcomedialogflow} shows some training phrases and the response list.
+The sentences listed as training phrases and response list are utterances. 
+Table \ref{tab:defaultwelcomedialogflow} shows that a collection of utterances
+belongs to an intent and builds the base for the classification of user input.
+The training phrases are different versions of the same question or statement.
+The different versions allow the system to correctly classify utterances which
+never were part of the training data as long as the utterance is similar.
+Example sentence two of Table \ref{tab:example_sentences} can be used 
+as utterance for the book hotel intent.
+Utterances need to be chosen with care to prevent overfitting to unimportant 
+features of the sentences.
+If all utterances contain a specific word at a specific position the model 
+might learn that a specific word must be at that position all the time.
 Utterances for training purposes can come from multiple sources.
-They can be handcrafted for development and test purposes.
+They can be handcrafted for development and testing.
 The data can come from live systems.
-Real user input from e.g. e-mails and phone conversations can be used to get a large amount of training data \cite{singhbuilding}.    
+Real user input from e.g. e-mails, phone conversations, or online resource can be used to get a
+ large amount of training data \cite{singhbuilding}.    
 
 
 \begin{table}[H]
@@ -196,9 +204,9 @@ Real user input from e.g. e-mails and phone conversations can be used to get a l
         1 & Hello & Greet & - \\ \hline
         2 & I'd like to book a hotel & Book Hotel & - \\ \hline
         3 & The Twelve Months hotel & - & Hotel Item\\ \hline
-        4 & From the 27th of April & - & Date From\\ \hline
-        5 & To the 4th of May & - & Date To\\ \hline
-        6 & Ethan May & - & Person Name\\ \hline
+        4 & From the 27th of April & - & Date (From)\\ \hline
+        5 & To the 4th of May & - & Date (To)\\ \hline
+        6 & Ethan May & - & Person (Name)\\ \hline
         7 & Order one green t-shirt size M please & Place Order & T-Shirt Item, Color, Size \\ \hline
     \end{tabular}
     \caption{Examples for Concept Explanation} \label{tab:example_sentences}

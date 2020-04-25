@@ -74,11 +74,11 @@ A popular local open-source solution is Rasa (\citet{rasabocklisch2017,rasa}).
 
 \section{Suitable Problems for Chatbots} 
 Chatbots seem like intelligent systems but most often they are design for specific tasks
-and can't be describe an are unable to solve complex problems \cite{buiildChatbotsPython}.
+and are unable to solve complex problems \cite{buiildChatbotsPython}.
 Therefore, not every problem can be solved using chatbots \cite{buiildChatbotsPython}.
 A problem can be solved effectively with chatbots when it is highly repetitive, can be automated, and 
 can be done with simple back-and-forth communication.
-A chatbot systems in meant to reduce the workload for employees or serve a large amount of users.
+A chatbot systems is meant to reduce the workload for employees or serve a large amount of users.
 Therefore, the problem needs to be repetitive to fulfill these requirements.
 It is possible to solve non repetitive tasks with chatbots too but it is not cost-effective.
 The problem needs to be automated to simplify the process.
@@ -171,7 +171,7 @@ but the goal is to make the conversation as natural as possible.
 
 
 \section{Utterance} \label{sec:utterance}
-In general, an utterance is a sentence but it can be a part of a sentece too.
+An utterance is a sentence or a part of a sentece.
 Especially in the area of chatbots an utterance is often a part of a sentence since 
 chat messages are often shortened. 
 All sentences listed in Table \ref{tab:example_sentences} are utterances for instance.
@@ -193,7 +193,7 @@ might learn that a specific word must be at that position all the time.
 Utterances for training purposes can come from multiple sources.
 They can be handcrafted for development and testing.
 The data can come from live systems.
-Real user input from e.g. e-mails, phone conversations, or online resource can be used to get a
+Real user input from e.g. e-mails, phone conversations, or online resources can be used to get a
  large amount of training data \cite{singhbuilding}.    
 
 
@@ -213,28 +213,31 @@ Real user input from e.g. e-mails, phone conversations, or online resource can b
 \end{table} \noindent
 
 \section{Entity} \label{sec:entity}
-In the area of chatbots an entity is an interesting pice of information which needs to be 
-extracted from the conversation.
-They are metadata belonging to an intent and can be represented in different ways \cite{buiildChatbotsPython}.
-Entities can be volumes, counts or quantities for instance \cite{buiildChatbotsPython}.
-It is also possible for a single intent to have multiple entities \cite{buiildChatbotsPython}.
-Example sentence seven of Table \ref{tab:example_sentences} contains multiple entities.
-In sentence seven of Table \ref{tab:example_sentences} one entity is the color of the shirt, 
-a second one the shirt as an item and the third one the size.
+An entity is a piece of information which needs to be extracted from natural language.
+An entity is metadata which belongs to an intent an has a type.
+Entities can be represented as volumes, counts, and quantities for instance \cite{buiildChatbotsPython}.
+An intent can have multiple entities like in example sentence seven of Table 
+\ref{tab:example_sentences}.
+In sentence seven one entity is the color of the shirt, 
+a second one the shirt as an item, and the third one the size.
 Sentences three to six of Table \ref{tab:example_sentences} show entities in a book hotel example.
-There are also named entities.
-Named-Entity-Recognition (NER) is used to extract groups of information in a context from natural language.
+In a simplified example, to book a hotel the name of the hotel (Hotel Item), 
+the check-in and check-out dates (Date), 
+and a name are needed for the reservation (Person).
+To extract entities in a context from natural language Named-Entity-Recognition (NER) is used.
 NER is a sub-area of NLU.
-Entity recognition also deals with ambiguity because the word May can mean different things in different contexts.
-In sentence five May is the month whereas in sentence six of Table \ref{tab:example_sentences} it's a last name. 
-A named entity is a noun phrase relating to individuals like organizations or geopolitical entities \cite{singhbuilding}.
-The classic examples for named entities are people, locations, and organizations \cite{geyer2016named}.
-Classic examples for named entities are the date-times of example sentences four and five,
-and person names like in example sentence six of Table \ref{tab:example_sentences}.
-These named entites are sometimes provided by the frameworks.
-A developer can define named entities for a specific domain.
-A custom entity can be a list of hotels like the "Twelve Months" 
-hotel in sentence three of Table \ref{tab:example_sentences}.
+Entity recognition deals with word ambiguity.
+Sentences five and six show a word ambiguity.
+In sentece five May is the month and needs to be trated as a date whereas in sentence six of Table \ref{tab:example_sentences} 
+it's a last name and needs to be treated as a person entity. 
+A named entity is a noun phrase relating to individuals.
+Classic individuals/named entites are person (Bill Gates), location (New York), and organization (Google) \cite{geyer2016named}.
+Frameworks sometimes provide predefined named-entities like the ones above which are needed
+on a regualar basis.
+A developer can define named entities for a specific domain like in the hotel example where an 
+entity is needed which knows all valid hotel names.
+Example sentences four and five show a date entity,
+and example sentence six of Table \ref{tab:example_sentences} shows a person entity.
 An example entity for food items like apples and peas is shown in Table \ref{tab:entityexampledialog}.
 Entities are stored in the session and form the context of a conversation \cite{singhbuilding}.
 They are only valid for the current conversation.
@@ -257,7 +260,6 @@ They are only valid for the current conversation.
 \section{Chatbot Response} \label{sec:chatbot_response}
 The response message of a chatbot is picked from a pool of utterances as described in \ref{sec:utterance}.
 The response can be picked at random or in a sequence.
-Dialogflow for example picks the response message at random.
 Alterantives are picked to keep the conversation interesting for the users especially
 if they are using the bot more than once.
 The alternatives prevent a robot like feel in the conversation. 

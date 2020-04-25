@@ -272,16 +272,22 @@ An exemplary list of responses for the default welcome intent of Dialogflow is s
 
 \section{Story}
 A story defines the dialog flow. 
-It is a script for a conversation between man and machine.
+It's a step-by-step script for a conversation between man and machine.
 The bot and the user interact in turns using natural language \cite{evaluateChatbotsShawar2007, shawar2007chatbots, huang2007extracting, gregori2017evaluation}.
-Stories need to consider happy and sad paths. 
-A happy path is a successful interaction from start to finish.
-A sad path is everything else. Aborting a transaction is a classic sad path for instance. 
+The user ask a question or makes a statement and the bot processes the request and delivers a response.
+A story can be a "happy" or "sad" path.
+A "happy" path is a successful interaction from start to finish without any problems.
+The "sad" path handles the behaviour when something doesn't work out.
+It could be that the user input is wrong and needs to be reentered when the validation fails.
+The user can also quit the conversation at any time.
+These "sad" paths need to be handeled in separate stories.
 In Figure \ref{fig:greetstory} a story for a greeting sequence with a user is shown. 
 The user starts the conversation by entering a greeting phrase. 
-The response of the chatbot is also a greeting phrase and then the conversation ends in this case. 
+The response of the chatbot is also a greeting phrase and then the conversation. 
 An example conversation from a person with a chatbot is shown in Figure \ref{fig:faqexamplecrop}.
-% story image from rasa-x
+The story for \ref{fig:faqexamplecrop} is that the user asks for open hours, the bot respond open hours, 
+the user asks for an item, validate item and generate response with the item in the text.
+
 \makefigure{faqexamplecrop}{Example FAQ Conversation with Dialogflow}
 \makefigure{greetstory}{Greeting Story}
 

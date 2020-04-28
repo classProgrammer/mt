@@ -299,7 +299,7 @@ the user asks for an item, validate item and generate response with the item in 
 A webhook is a URL where the frameworks send metadata and intent data for analysis, completion, and processing.
 In the case of this thesis, the webhook is a simple Pyhton REST service implemented with Flask.
 Each framework gets a route in the service which is "/watson/webhook" for the Watson Assistant requests for example.
-In Listing \ref{lst:webhookExample} an exemplary JSON request from Dialogflow is shown for the default welcome intent.
+In Listing \ref{lst:webhookExample} a simplified JSON request from Dialogflow is shown for the default welcome intent.
 In the case of Dialogflow the incoming message can be found under query text, the response message under fulfillment text and the confidence under intent detection confidence. 
 \begin{lstlisting}[caption={Dialogflow Webhook Request Example}, label={lst:webhookExample},captionpos=b,frame=single,language={[Sharp]C},commentstyle=\color{mygreen},keywordstyle=\color{blue},
 morekeywords={}]                
@@ -331,6 +331,16 @@ morekeywords={}]
     },
 }
 ]\end{lstlisting}  
+
+
+\section{Domain}
+The domain of a chatbot is equal to the functionality.
+A domain-specific chatbot has a limited set of operations and works with data relevant to the domain.
+If the chatbot is built for a refund-desk scenario then the domain is refund for example.
+The bot can process and answer refund related issues, collects refund specific information,
+and can issue a refund. It doesn't offer functionality which is unrelated to the refund domain like 
+"What's the weather in New York today" and it is not supposed to do so.
+Open-ended systems escape the domain limitation but have problems to execute domain specific tasks. 
 
 \section{Natural Language Processing/Understanding}   
 The term "natural language" means input is received through voice or writing in the user's language of choice \cite{buiildChatbotsPython}.

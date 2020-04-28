@@ -342,6 +342,18 @@ and can issue a refund. It doesn't offer functionality which is unrelated to the
 "What's the weather in New York today" and it is not supposed to do so.
 Open-ended systems escape the domain limitation but have problems to execute domain specific tasks. 
 
+\section{Evaluation of NLP capabilities}
+The scenario for this explanation is a medical test for a disease.
+A true positive (tp) is when the test is positive and the person has the disease.
+A false positive (fp) is when the test is positive but the person is healthy.
+A true negative (tn) is when the test is negative and the person is healthy.
+A false negative (tn) is when the test is negative but the person has the disease.
+In the area of chatbots a true positive is when the input is e.g. "Hello" and the identified 
+intent is "Greet Intent".
+The precision is calculated as $\frac{tp}{tp + fp}$.
+The recall is calculated as $\frac{tp}{tp + fn}$.
+The f-score is calculated as $2 * \frac{precision * recall}{precision + recall}$.
+
 \section{Natural Language Processing/Understanding}   
 The term "natural language" means input is received through voice or writing in the user's language of choice \cite{buiildChatbotsPython}.
 Natural language processing in the area of chatbots is necessary to analyze the text input 

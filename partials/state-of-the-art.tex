@@ -1,31 +1,42 @@
 % Hybrid coding networks
 \citet{williams2017hybrid} and \citet{bordes2016learning} state that the two major chatbot types are goal-oriented and end-to-end systems.
-The goal-oriented systems keep track of the internal state to achieve a task like a restaurant reservation \cite{williams2017hybrid}. 
-For a banking app, the user needs to log in before the account information can be retrieved 
-which is a problem in end-to-end models because such constraints are not supported \cite{williams2017hybrid}.
-The recent end-to-end approaches use real dialogs as training data \cite{williams2017hybrid}. 
-The end-to-end systems are able to infer the state representation but lack mechanisms 
-for constraining and the injection of domain-specific knowledge \cite{williams2017hybrid}.
-The hybrid coding networks presented in \citet{williams2017hybrid} are an end-to-end approach 
-where it is possible to inject domain knowledge \cite{williams2017hybrid}. 
-The experiments show that the HNN approach performs on an equal level with 
-existing end-to-end approaches but needs less training data \cite{williams2017hybrid}. The developer 
-has more control but it also requires more development effort to create a chatbot with this approach \cite{williams2017hybrid}.
+\citet{williams2017hybrid} intorduces an approch which combines end-to-end dialog with domain specific knowledge.
+Task-oriented systems help users to achieve a task using natural language \cite{williams2017hybrid}.
+A restaurant reservation is a task-ooriented operation \cite{williams2017hybrid}.
+Foe the restaurant reservation domain-specific information like the restaurant name and the number of people
+needs to be collected.
+Goal-oriented systems lack a mechanism to inject such domain-specific information \citet{williams2017hybrid}.
+There is also no mechanism for constraints in goal-oriented systems \cite{williams2017hybrid}.
+In a banking app the user needs to be logged in (constraint) bfore information can be retrieved \cite{williams2017hybrid}.
+A programmer can code such constraints with a few lines of code but lots of training data needs to be provided 
+to a system to learn such a mechanism on its own \cite{williams2017hybrid}.
+The hybrid-coding-networks (HCNs) introduced in \citet{williams2017hybrid} extend the open-ended approach 
+with domain-specific knowledge. 
+The domain specific knowledge is provided by the programmer and results in more development effort \cite{williams2017hybrid}.
+Because of this the system needs far less training data since the programmer provides the domain-specific knowledge \cite{williams2017hybrid}.
+A large amount of training data can be retrieved from real dialogs \cite{williams2017hybrid}.
+The experiments show that the HCN approach performs on an equal level with 
+existing end-to-end approaches on end-to-end problems but needs less training data \cite{williams2017hybrid}. 
+The HCN system performed better in a task-specific setting than existing end-to-end approaches \cite{williams2017hybrid}.
+Compared to other approaches HCNs are a mixture of end-to-end and goal-oriented systems.
+The developer has more control than with a classical end-to-end approach but 
+it also requires more development effort to create a chatbot with HCNs \cite{williams2017hybrid}.
+The main benefits are the usage of domain specific information and the reduced amount of training data needed.
 
 % Braun evaluating NLU
 \citet{braunEvaluatingNLU} states that modern conversational agents can be built without programming 
 knowledge because of natural language understanding services (NLU) \cite{braunEvaluatingNLU}. 
 The recent advancements in machine learning (ML) and NLU and the popularity of messenger platforms 
 has led to huge progress in recent years \cite{braunEvaluatingNLU}. Recent publications have discussed 
-the use of NLU service but not why one service has been chosen over another \cite{braunEvaluatingNLU}. 
-The architecture of a chatbot consists of three elements \cite{braunEvaluatingNLU}. 
+the use of NLU service but not why one service has been chosen over another \cite{braunEvaluatingNLU}.
+In general, The architecture of a chatbot consists of three elements \cite{braunEvaluatingNLU}. 
 The request needs to be interpreted, the response needs to be retrieved and the response message
 needs to be generated \cite{braunEvaluatingNLU}. 
 The purpose of NLU services is the extraction of information from natural language \cite{braunEvaluatingNLU}. 
-Popular NLU services are LUIS, Watson Conversation, Dialogflow/API.ai, and RASA as an open-source alternative \cite{braunEvaluatingNLU}. 
+Popular NLU services are the cloud services LUIS, Watson Conversation, Dialogflow/API.ai, and RASA as an open-source alternative \cite{braunEvaluatingNLU}. 
 The cloud-based solutions have advantages when it comes to hosting and scalability and Rasa has advantages
 when adaptability and data control are needed \cite{braunEvaluatingNLU}. 
-All three NLU services share the same basic functionality of intents, entities and batch import in JSON format \cite{braunEvaluatingNLU}.
+All three NLU services share the same basic concpets of intents, entities and batch import in JSON format \cite{braunEvaluatingNLU}.
 The cloud-based services are secretive when it comes to the ML algorithms and the initial training data \cite{braunEvaluatingNLU}. 
 The exception is Rasa where the ML backend can be chosen by the developer \cite{braunEvaluatingNLU}. 
 For the evaluation of the NLU services training data from a production chatbot and two other training sets from SatchExchange
@@ -41,6 +52,9 @@ with some adjustments, Rasa could perform better than LUIS because it can be cus
 The domain had nearly no influence on the ranking of the NLU systems \cite{braunEvaluatingNLU}.
 If the training data is sparse then there is no significant difference between the services \cite{braunEvaluatingNLU}. 
 Before using an NLU service different services should be tested with domain-specific data \cite{braunEvaluatingNLU}.
+\citet{braunEvaluatingNLU} compares some NLU frameworks regarding their natural language capabilities.
+The compared frameworks are suitable for task-specific problems and no end-to-end technology is used.
+
 
 % evaluate chatbots Shawar
 \citet{evaluateChatbotsShawar2007} is about the application of chat systems in different languages and the evaluation of the system.

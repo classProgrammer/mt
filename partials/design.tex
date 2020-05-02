@@ -16,8 +16,9 @@ The DB handles data-related tasks like the possible items and can be used for th
  \section{Story/Flowchart}
  
  \makefigure{sicknessflow}{Example Conversation for a Sickness Notification}
- 
- A story is an example dialog between user and chatbot. An example dialogue to report a colleague sick is shown in Figure \ref{fig:sicknessflow} 
+ Like mentioned in \citet{folstad2017chatbots} the design focus for chatbot systems lies on the conversation itself.
+ A story is an example dialog/conversation between user and chatbot. 
+ An example dialogue to report a colleague sick is shown in Figure \ref{fig:sicknessflow} 
  where the user input is highlighted green and the chatbot response is highlighted blue.
  The intent of each user input needs to be found to create the knowledge base for the domain. 
  The intent for the user input "Hello" can be marked as greeting, the second input is the general information what the chatbot can do, 
@@ -80,6 +81,23 @@ The DB handles data-related tasks like the possible items and can be used for th
     \end{tabular}
     \caption{Sickness Norification Intents, Enitities, and Actions of Figure \ref{fig:sicknessflow}} \label{tab:sick_data}
 \end{table} \noindent
+
+\section{Problem Analysis}
+The problem is task-oriented.
+
+Some psychological aspects of \citet{brandtzaeg2018chatbots} have to be included.
+\citet{brandtzaeg2018chatbots} stated that the user impression depends greatly on the users mindeset.
+If the user thinks he's talking to a bot the user expects less but the conversation is more likely 
+evaluated as unnatural \cite{brandtzaeg2018chatbots}. If the user asumes he's talking to a human 
+and the bot is unable to achieve the taks the user is very disappointed \cite{brandtzaeg2018chatbots}.
+Since the problem is a task-oriented one the general conversation capabilities are not the primary focus.
+This means the bot is unable to fake a human conversation which goes beond the expected functionality.
+Hence, the user needs to be clearly informed that hes talking to a bot.
+For further development steps a gender can be introduced to make the bot feel more human like if necessary.
+Another way to give the bot a more natural feel is to look at the message response times.
+They should not be to fast.
+If the response comes too fast it feels unnatural because a human being can't answer as fast as a machine.
+
 \section{Webhook}
 As explained in Chapter \ref{chap:basics}: Basic in Section \ref{sec:webhook} 
 the webhook is an endpoint where services can send requests to.
@@ -101,6 +119,8 @@ The service can do everything with the data and is the point where the company c
 All frameworks can call the webhook at the end when the data has been collected but also 
 after each user request if necessary.
 This way the information can be validated and modified by the service.
+
+
 
 \section{Messenger UI}
 

@@ -1,5 +1,26 @@
 
 \section{Framework Comparison}
+
+\subsection*{Portability}
+An important factor for software systems is the portability.
+Portability is defined in ISO 25010 \cite{iso25010}.
+As measurment criteria the number of providers which support the technology is defined.
+A subfactor is how tied to a provider a technology is.
+When it comes to the chatbot cloud services (LUIS, Dialogflow, IBM Watson Assistant)
+the provider can't be changed.
+All three services run in the cloud of the provider an nowhere else.
+The data processing is done in the cloud and can't be done local or on a company server.
+This means that the three cloud services are not portable at all and 
+the provider can't be changed.
+With Rasa things are different.
+It is a local solution which means it can run on a local machine and a company server.
+The data processing is also done locally and never goes into the cloud of a provider.
+Docker images for Rasa are provided too.
+It's possible to run Docker containers in the clouds of all big providers.
+This means Rasa can run everywhere where Docker or a Pyhton environment are possible 
+and the provider can be changed easily.
+
+
 % project complexity
 \subsection*{Project Setup Complexity}
 

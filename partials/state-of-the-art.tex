@@ -12,6 +12,7 @@ Rasa is one example for a local standalone application chatbot whereas LUIS,
 Dialogflow, and Watson Assistant are cloud-based/web-based chatbot frameworks.
 Rasa, Dialogflow, LUIS, and Watson Assistant are all capable of goal-oriented dialog.
 
+The first major type are end-to-end systems.
 % ---------- END-TO-END SYSTEMS ---------- %
 % evaluate chatbots Shawar
 \citet{evaluateChatbotsShawar2007} is about the application of chat systems in different languages and the evaluation of the system.
@@ -54,7 +55,7 @@ and the number of dialogs where every request was identified correctly.
 The end-to-end system identified requests quite good but was unable to identify all requests 
 correctly in all test cases \cite{bordes2016learning}.
 The most important statement of \citet{bordes2016learning} is that the current end-to-end systems are
-not yet suitable for goal-oriented tasks.
+unable to perform reliably in goal-oriented settings.
 
 \citet{williams2017hybrid} intorduces an approch which combines end-to-end dialog with domain specific knowledge.
 Task-oriented systems help users to achieve a task using natural language \cite{williams2017hybrid}.
@@ -127,6 +128,7 @@ The difference is that a chatbot uses conversation whereas a regular app is a se
 Companies use chatbots because they can save a lot of money and because they offer a good customer experience \cite{singhbuilding}.
 % ---------- BOTH SYSTEMS---------- %
 
+The second major type are goal-oriented systems.
 % ---------- GOAL-ORIENTED SYSTEMS ---------- %
 % Braun evaluating NLU
 \citet{braunEvaluatingNLU} states that modern conversational agents can be built without programming 
@@ -197,7 +199,7 @@ like motivationg users by supporting some smalltalk.
 Historically, language understanding could be implemented via machine learning or handcrafted rules \cite{luis2015williams}.
 The ML model approach is robust but requires expensive expertise \cite{luis2015williams}. 
 With LUIS developers don't need machine learning knowledge to build language understanding models \cite{luis2015williams}.
-In general, software developers can build language understanding without assistnace of a framework
+In general, software developers can build language understanding without assistance of a framework
 with handcrafted rules \citet{luis2015williams}. 
 But these systems don't scale well \cite{luis2015williams}.
 LUIS allows regular developers without ML expertise to develop cloud-based, domain-specific language 
@@ -240,7 +242,7 @@ LUIS, Wit.ai, and API.ai/Dialogflow performed on an equal level in terms of inte
 focus on end-to-end systems, \citet{braunEvaluatingNLU, dutta2017developing,luis2015williams,rasabocklisch2017,pharmacybot,gregori2017evaluation}
 focus on task-oriented systems, and \citet{singhbuilding} is about both.
 
-
+\citet{braunEvaluatingNLU} evaluates the NLU capabilites of the frameworks like \citet{}.
 
 
 % ---------- END GOAL-ORIENTED SYSTEMS ---------- %
@@ -319,8 +321,24 @@ the chatbot and the according feedback.
 % ---------- EVAL ---------- %
 Unlike the other references \citet{folstad2017chatbots, brandtzaeg2018chatbots, GO2019304}
 focus on the psychological aspects of chatbots and the communication with machines in general.
-
-
+\citet{GO2019304} is about the humanness in bots.
+It's important to keep in mund how human a bot should be and how the user asumption influences 
+the feedback.
+If the bot appears to be human the expectations rise.
+If the bot is presented as bot right from the start the expectations are in general lower.
+\citet{brandtzaeg2018chatbots} also focuses on the psychological aspects and the humanness of bots.
+The disadvantages of too human bots are listed with real life examples. 
+Real chatbot conversations have shown that users ask unrealated and inappropropriate questions 
+if a chatbot is too human. 
+Hence, it's important to balance the robot and human aspects when designing a bot.
+\citet{dutta2017developing} is about chatbot design aspects.
+The important message is that chatbot systems are completely different than regual systems from 
+the design perspective.
+Right now, developers focus on the design of user interfaces (UIs).
+But chatbots all have the same UI requirements and use messengers as template.
+This means that the the design focus of a chatbot isn't the UI.
+It is the conversation.
+Hence, the main design focus needs to shift from UI design to conversation design.
 % ---------- END DESIGN PSYCHO ASPECTS ---------- %
 
 

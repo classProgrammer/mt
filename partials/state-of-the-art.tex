@@ -209,6 +209,15 @@ The bot can provide medications for an illness, give information about a specifi
 give information on the medication intake \cite{pharmacybot}.
 The bot is a domain specific bot since it answers questions to medication only.
 
+% In bot we trust:
+Important performance metrics for chatbots are the conversation length and structure, the ability to 
+provide personalized communication, and the number of conversation steps \cite{PRZEGALINSKA2019785}.
+The general trend is to keep the conversations short \cite{PRZEGALINSKA2019785}.
+Personalized communication is used when recommendations or tips are provided for the user based on the 
+information related to the user \cite{PRZEGALINSKA2019785}.
+Retail chatbots need a larger amount of conversation steps to provide information and recommendations 
+and hold the user's attention \cite{PRZEGALINSKA2019785}.
+The measurement criteria for chatbots vary depending on the domain of the bot.
 
 % Luis 2015 Williams
 \citet{luis2015williams} gives an overview of LUIS the state-of-the-art language understanding service of Microsoft.
@@ -247,15 +256,14 @@ popular chatbot technologies and their basics.
 \citet{braunEvaluatingNLU} gives an overview of the architecture of chatbot systems and 
 evaluates the NLU capabilites of chatbot frameworks.
 \citet{gregori2017evaluation} and \citet{dutta2017developing} also evaluate the NLU capabilities.
-When frameworks are compared for their NLU capabilities the same training data needs to be used for all tested frameworks 
-like \citet{braunEvaluatingNLU,gregori2017evaluation} did.
+When frameworks are compared for their NLU capabilities the same training data needs to be used 
+for all tested frameworks like \citet{braunEvaluatingNLU,gregori2017evaluation} did.
 \citet{dutta2017developing} also introduces the framework comparison based on the available features
 and it also introduces some psychological aspects of the chatbot communication.
 Unlike the other references \citet{luis2015williams} introduces LUIS and \citet{rasabocklisch2017} 
 introduces Rasa. 
 They focus on the technology itself and don't build a chatbot with it nor do they compare frameworks.
-
-In \citet{dutta2017developing, pharmacybot} actual chatbots for specific use cases have been implemented.
+In \citet{dutta2017developing, pharmacybot, PRZEGALINSKA2019785} actual chatbots for specific use cases have been implemented.
 
 
 % ---------- END GOAL-ORIENTED SYSTEMS ---------- %
@@ -403,18 +411,17 @@ The tech giants provide chatbot frameworks for regular developers \cite{rahman20
 Google provides API.ai/Dialogflow, Microsoft has LUIS, IBM develops Watson, and Amazon provides Lex \cite{rahman2017programming}.
 The key concepts of Dialogflow are intent, entity, and utterance.
 Intents link the user's input to actions which are executed \cite{rahman2017programming}.
+% ---------- EVAL ---------- %
+\citet{deshpande2017survey,buiildChatbotsPython,geyer2016named,rahman2017programming} focus on the 
+basics of chatbot frameworks and chatbot related concepts.
+In \citet{deshpande2017survey, rahman2017programming} the general workflow of chatbot systems is show.
+\citet{geyer2016named} is about NER and explains the core concept of entities.
+Additionally, \citet{buiildChatbotsPython} also explains how problems need to look to be 
+suitable for a chatbot.
 % ---------- END BASICS/CONCEPTS ---------- %
 
 % ---------- EXAMPLES ---------- %
-% In bot we trust:
-Important performance metrics for chatbots are the conversation length and structure, the ability to 
-provide personalized communication, and the number of conversation steps \cite{PRZEGALINSKA2019785}.
-The general trend is to keep the conversations short \cite{PRZEGALINSKA2019785}.
-Personalized communication is used when recommendations or tips are provided for the user based on the 
-information related to the user \cite{PRZEGALINSKA2019785}.
-Retail chatbots need a larger amount of conversation steps to provide information and recommendations 
-and hold the user's attention \cite{PRZEGALINSKA2019785}.
-The measurement criteria for chatbots vary depending on the domain of the bot.
+
 % ---------- END EXAMPLES ---------- %
 
 % ---------------------------- HERE ---------------------------- %
@@ -435,6 +442,10 @@ The ML and NLP capabilities of the frameworks are tested in some papers but ther
 comes to the evaluation and comparison of the existing frameworks like Dialogflow and Rasa.
 Most papers focus on the NLP capabilities and not on other aspects like usability and simplicity or the comparison of the 
 functionality of the different frameworks.
+Papers like \citet{braunEvaluatingNLU} show that the chatbot frameworks are close when it comes to NLU performance.
+Hence, it doesn't make a huge difference which framework is chosen when the focus lies on NLU.
+The NLU capabilities of the framework are important in general but to give a development recommendation other aspects
+like the available features and the simplicity are more important.
 
 
 

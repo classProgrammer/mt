@@ -5,9 +5,11 @@
 They can either be classified as a local standalone application or a web-based chatbot \cite{kane2016role}.
 The types/classes of chatbots from \citet{williams2017hybrid, bordes2016learning} and \citet{kane2016role} 
 don't contradict they just look at chatbots from a different perspective.
-The developer will use a framework which is web-based or local.
+From the design perspective the conversation type of a chatbot is either goal-oriented or end-to-end.
+From the development perspective the used framework is either web-based or local.
 Goal-oriented or end-to-end is a general statement about the kind of base problem 
-which the chatbot is built for.
+which the chatbot needs to solve.
+Web-based or local has an influence on where the chatbot is developed.
 Rasa is one example for a local standalone application chatbot whereas LUIS, 
 Dialogflow, and Watson Assistant are cloud-based/web-based chatbot frameworks.
 Rasa, Dialogflow, LUIS, and Watson Assistant are all capable of goal-oriented dialog.
@@ -15,29 +17,30 @@ Rasa, Dialogflow, LUIS, and Watson Assistant are all capable of goal-oriented di
 The first major type are end-to-end systems.
 % ---------- END-TO-END SYSTEMS ---------- %
 % evaluate chatbots Shawar
-\citet{evaluateChatbotsShawar2007} is about the application of chat systems in different languages and the evaluation of the system.
+\citet{evaluateChatbotsShawar2007} focus on the application of chat systems in different languages and the evaluation of the system.
 The evaluation of chatbot systems needs to be adapted to the application and the user needs \cite{evaluateChatbotsShawar2007}.
-A chatbot system can be evaluated by the actual users of the systems in a test setting \cite{evaluateChatbotsShawar2007}.
-The feedback of the users is used to improve the system \cite{evaluateChatbotsShawar2007}. 
+The best way to evaluate a chatbot is to check if the specific service or task can be achieved and the evaluation 
+needs to be adjusted to the use-case \cite{evaluateChatbotsShawar2007}.
 Each component of a chatbot system can be tested individually and the whole system can be tested based on user 
 satisfaction and acceptance \cite{evaluateChatbotsShawar2007}.
-In \citet{evaluateChatbotsShawar2007} a FAQ chatbot has been built which competed against the classical Google search.
-The participants had to answer a few questions like how many results the input query found and which system they prefer 
+The whole system is evaluated through feedback by users in a test setting \cite{evaluateChatbotsShawar2007}.
+This feedback is then used to improve the system \cite{evaluateChatbotsShawar2007}. 
+In \citet{evaluateChatbotsShawar2007} a chatbot for frequently asked questions (FAQ) has been built 
+which competed against the classical Google search.
+The participants had to answer a few questions like how many results the system found and which system they prefer 
 and why \cite{evaluateChatbotsShawar2007}. 
 The result of the user study was that the FAQ chatbot found an answer more often than Google \cite{evaluateChatbotsShawar2007}.
-This hows that custom-built solutions can outperform classical approaches in small areas.
 47\% of the users taking part in the study preferred the custom solution and 11\% preferred Google \cite{evaluateChatbotsShawar2007}.
 The major reason why the users preferred the FAQ chat was because the chat can often give direct answers and return 
 fewer links on average which saves browsing time \cite{evaluateChatbotsShawar2007}. 
 The users preferred Google because it's familiar and it can give different answers when the input query is adjusted 
 slightly \cite{evaluateChatbotsShawar2007}.
-The best way to evaluate a chatbot is to check if the specific service or task can be achieved and the evaluation 
-needs to be adjusted to the use-case \cite{evaluateChatbotsShawar2007}.
+This shows that custom-built solutions can outperform classical approaches in small areas.
 
 % Bordes 2016 learning goal-oriented dialog
 \citet{bordes2016learning} analyses the strengths and weaknesses of end-to-end dialog systems in goal-oriented settings.
-The end-to-end approaches have recently shown promising results with chit-chat conversation with a user \cite{bordes2016learning}.
-however, The most useful application areas for chatbots are goal-oriented and transactional settings \cite{bordes2016learning}.
+The end-to-end approaches have recently shown promising results with chit-chat/general conversation with a user \cite{bordes2016learning}.
+However, The most useful application areas for chatbots are either goal-oriented or transactional settings \cite{bordes2016learning}.
 A classical dialog system uses slot-filling to collect information from the conversation \cite{bordes2016learning}.
 Slot-filling is reliable but has limited scalability \cite{bordes2016learning}.
 The slots are predefined and hence don't scale well becasue they can be very different for each problem. 
@@ -48,37 +51,50 @@ The main question is if the end-to-end system performs well on the classical goa
 reservation task.
 The restaurant reservation is a domain where goal-oriented systems perform well and is the ideal candidate
 to determine the strengths and weaknesses of end-to-end systems in comparison to goal-oriented systems \cite{bordes2016learning}.
-The result of \citet{bordes2016learning} is that end-to-end systems still have to improve before they 
-can perform reliably in goal-oriented settings. 
-\citet{bordes2016learning} compared the results based on the number of correctly identified requests (true positives)
+The result of \citet{bordes2016learning} show that end-to-end systems are not yet ready to replace goal-oriented 
+systems and have to improve before they can perform reliably in goal-oriented settings. 
+\citet{bordes2016learning} compared the chatbot types based on the number of correctly identified requests (true positives)
 and the number of dialogs where every request was identified correctly.
-The end-to-end system identified requests quite good but was unable to identify all requests 
-correctly in all test cases \cite{bordes2016learning}.
-The most important statement of \citet{bordes2016learning} is that the current end-to-end systems are
-unable to perform reliably in goal-oriented settings.
+Multiple conversations were used to test the system and the end-to-end system never identified 
+all requests of the conversation correctly \cite{bordes2016learning}.
+The request identification as such worked well \cite{bordes2016learning}.
+No conversation went smooth since at least one request was identified incorrectly.
+In other words, each user had at least one problem in the conversation.
+This would lead to a bad user experience. 
+In summary, the most important statement of \citet{bordes2016learning} is that the current end-to-end systems are
+not performing reliably enough in goal-oriented settings.
 
 \citet{williams2017hybrid} intorduces an approch which combines end-to-end dialog with domain specific knowledge.
-Task-oriented systems help users to achieve a task using natural language \cite{williams2017hybrid}.
-A restaurant reservation is a task-ooriented operation \cite{williams2017hybrid}.
-Foe the restaurant reservation domain-specific information like the restaurant name and the number of people
-needs to be collected.
-Goal-oriented systems lack a mechanism to inject such domain-specific information \citet{williams2017hybrid}.
+A task-oriented system helps the user to achieve a task using natural language \cite{williams2017hybrid}.
+A restaurant reservation is a task-oriented operation which requires domain-specific knowledge \cite{williams2017hybrid}.
+The domain-specific knowledge in a restaurant setting can be the restaurant name and the number of people for 
+the table reservation for instance. 
+This information needs to be collected from the conversation.
+End-to-end systems lack a mechanism to inject such domain-specific information \cite{williams2017hybrid}.
 There is also no mechanism for constraints in goal-oriented systems \cite{williams2017hybrid}.
-In a banking app the user needs to be logged in (constraint) bfore information can be retrieved \cite{williams2017hybrid}.
+In a banking app the user needs to be logged in (constraint) before the account information can be retrieved \cite{williams2017hybrid}.
 A programmer can code such constraints with a few lines of code but lots of training data needs to be provided 
 to a system to learn such a mechanism on its own \cite{williams2017hybrid}.
 The hybrid-coding-networks (HCNs) introduced in \citet{williams2017hybrid} extend the open-ended approach 
 with domain-specific knowledge. 
-The domain specific knowledge is provided by the programmer and results in more development effort \cite{williams2017hybrid}.
-Because of this the system needs far less training data since the programmer provides the domain-specific knowledge \cite{williams2017hybrid}.
+The domain specific knowledge is provided by the programmer and requires more development effort \cite{williams2017hybrid}.
+Since the domain-specific knowledge is provided by the programmer the system doesn't need to learn 
+these parts and less training data is required in comparison to existing end-to-end apporaches \cite{williams2017hybrid}.
 A large amount of training data can be retrieved from real dialogs \cite{williams2017hybrid}.
 The experiments show that the HCN approach performs on an equal level with 
-existing end-to-end approaches on end-to-end problems but needs less training data \cite{williams2017hybrid}. 
-The HCN system performed better in a task-specific setting than existing end-to-end approaches \cite{williams2017hybrid}.
-Compared to other approaches HCNs are a mixture of end-to-end and goal-oriented systems.
-The developer has more control than with a classical end-to-end approach but 
+existing end-to-end approaches in end-to-end settings and needs less training data for 
+the same performance \cite{williams2017hybrid}. 
+The HCN system also performed better in the task-specific setting than the existing end-to-end approaches \cite{williams2017hybrid}.
+HCNs are a mixture of end-to-end and goal-oriented systems.
+The developer has more control than with the classical end-to-end approach but 
 it also requires more development effort to create a chatbot with HCNs \cite{williams2017hybrid}.
-The main benefits are the usage of domain specific information and the reduced amount of training data needed.
+The main benefits are the usage of domain specific information in end-to-end dialog 
+and the reduced amount of training data required.
+Other references focus on end-to-end and/or goal-oriented chatbots whereas \citet{williams2017hybrid} combined them 
+to get the best of both worlds.
+\citet{williams2017hybrid} does not compare the HCN approach to a goal-oriented approach like \citet{bordes2016learning} did
+for regual end-to-end systems.
+Hence, no statement can be made if HCNs could replace goal-oriented systems or not.
 
 % ---------- EVAL ---------- %
 In \citet{evaluateChatbotsShawar2007} testing focus lies on the user side whereas the tesing focus of 
@@ -86,46 +102,49 @@ In \citet{evaluateChatbotsShawar2007} testing focus lies on the user side wherea
 The NLU capabilities are important for the developers of the systems before a chatbot
 is developed and help to choose the best framework for development.
 The users feedback is a valuable source of information for the actual product and
-is important after the framework has been choosen.
-These are two very different views on the performance of a chatbot.
+is important long after the framework has been choosen.
+These are two very different views on the performance of a chatbot in two different phases of a project.
 \citet{bordes2016learning} focues on end-to-end systems like \citet{evaluateChatbotsShawar2007, williams2017hybrid}
 but uses a goal-oriented setting for the comparison.
 The important information gained by \citet{bordes2016learning} is that currently end-to-end systems 
-are not yet good enough for goal-oriented tasks.
-This means that for a goal-oriented setting a goal-oriented technology should be choosen.
+are not reliable enough for goal-oriented tasks.
+This leads to the conclusion that a goal-oriented technology should be choosen for goal-oriented 
+projects.
 \citet{williams2017hybrid} is trying to combine the end-to-end and goal-oriented approaches to 
-create a system and tries to create a system which can do what \citet{bordes2016learning} says is not yet 
-possible with end-to-end systems. 
-The result of \citet{williams2017hybrid} shows that the developed system is better in goal-oriented 
+create a new type of system which can do goal-oriented dialog better than current end-to-end
+approaches. 
+The result of \citet{williams2017hybrid} shows that the HCN system is better in goal-oriented 
 settings than current end-to-end systems but doesn't compare the system to goal-oriented technologies.
 % ---------- END END-TO-END SYSTEMS---------- %
 
 % ---------- BOTH SYSTEMS---------- %
 % singh building: building an enterprise chatbot
 \citet{singhbuilding} states that the conversation type of a chatbot can be categorized as a general conversation 
-which is about a broad generic subject and a specific conversation about one product or service.
-When a customer walks into a bank and starts talking to an employee is an example of a general conversation \cite{singhbuilding}.
-In this example, we have no idea what the person wants from us or who the person is \cite{singhbuilding}.
+which is about a broad generic subject or a specific conversation about one product or service.
+An example of a general conversation is e.g. when a customer walks into a bank and starts talking to an employee \cite{singhbuilding}.
+In this example, we have no idea what the person wants or who the person is \cite{singhbuilding}.
 Popular examples for chatbots capable of general conversation are Google Home, Siri, and Amazon Alexa \cite{singhbuilding}.
 An example of a specific conversation is the refund desk in a store \cite{singhbuilding}. 
-Specific rules apply to the refund process and specific information is required from the customer \cite{singhbuilding}. 
+Specific rules apply to the refund process and specific information is required from the customer \cite{singhbuilding}.
+The domain could be named refund and the specific rules and information are part of the domain. 
 The customer can't get any other information than refund related information at the refund desk \cite{singhbuilding}. 
 The outcome of the conversation can be one of the predefined outcomes, the fallback, or a conversation end \cite{singhbuilding}. 
 A specific conversation ends as soon as the underlying task is achieved or a conversation end is reached \cite{singhbuilding}. 
-In general, specific conversations are easier to predict and are handled with higher accuracy and the chatbot systems 
-for such conversations communicate with information \cite{singhbuilding}. 
+In general, specific conversations are easier to predict and are handled with higher accuracy \cite{singhbuilding}.
+Chatbot systems for specific conversations communicate with information \cite{singhbuilding}. 
+Nowadays, chatbots are AI-driven.
+The core component of AI-driven chatbots is the NLP engine which takes care of data extraction from natural language \cite{singhbuilding}.
+The extracted information is used to determine the next steps \cite{singhbuilding}.
+There is no difference in functionality between a regular application and a chatbot in terms of functionality \cite{singhbuilding}. 
+The difference is that a chatbot uses conversation whereas a regular app is a self-service application \cite{singhbuilding}. 
 Conversational training data for chatbots can be acquired from lots of sources like emails, phone calls, chats, and social media \cite{singhbuilding}.
+Companies use chatbots because they can save a lot of money and because they offer a good customer experience \cite{singhbuilding}.
 Especially in areas with personal data the usage of cloud chatbot solutions like Dialogflow, Alexa, and Watson 
 is problematic because all the conversation data is sent to and stored at the providers servers \cite{singhbuilding}.
 Because of high-security requirements, an in-house/local chatbot has been built in \citet{singhbuilding}.
-In an AI-driven chatbot, the core component is the NLP engine which takes care of data extraction from natural language \cite{singhbuilding}.
-The extracted information is used to determine the next steps \cite{singhbuilding}.
 The first step to create a chatbot system is to define a conversational flow \cite{singhbuilding}.
 The conversational flow is a decision tree which describes all events, decision, and outcomes in a conversation \cite{singhbuilding}.
-There is no difference in functionality between a regular application and a chatbot in terms of functionality \cite{singhbuilding}. 
-The difference is that a chatbot uses conversation whereas a regular app is a self-service application \cite{singhbuilding}. 
 \citet{singhbuilding} also gives an overview of the basics of Microsoft Bot (LUIS), Rasa, and Google Dialogflow.
-Companies use chatbots because they can save a lot of money and because they offer a good customer experience \cite{singhbuilding}.
 % ---------- BOTH SYSTEMS---------- %
 
 The second major type are goal-oriented systems.
@@ -135,8 +154,8 @@ The second major type are goal-oriented systems.
 knowledge because of natural language understanding services (NLU) \cite{braunEvaluatingNLU}. 
 The recent advancements in machine learning (ML) and NLU and the popularity of messenger platforms 
 has led to huge progress in recent years \cite{braunEvaluatingNLU}. 
-People are familiar with messengers and are used on a daily basis by many people.
-Chat communication has become very natural.
+People are familiar with messengers because many use them on a daily basis.
+Hence, chatting has become a natural way of communication.
 A big question is how chatbots can be evaluated.
 Recent publications have discussed the use of NLU service but not why 
 one service has been chosen over another \cite{braunEvaluatingNLU}.
@@ -152,7 +171,7 @@ The cloud-based services are secretive when it comes to the ML algorithms and th
 The exception is Rasa where the ML backend can be chosen by the developer \cite{braunEvaluatingNLU}. 
 For the evaluation of the NLU services training data from a production chatbot and two other training sets 
 from SatckExchange were used \cite{braunEvaluatingNLU}. 
-The NLU capabilities of the frameworks was compared.
+The NLU capabilities of the frameworks were compared.
 The comaprison included the services LUIS, Rasa, Dialogflow and Watson Conversation \cite{braunEvaluatingNLU}. 
 The same training data was used for all services \cite{braunEvaluatingNLU}. 
 This is important to get a comparable result.
@@ -161,35 +180,33 @@ the recall, precision, and F-score \cite{braunEvaluatingNLU}.
 The better the F-score is the better the NLU service has performed \cite{braunEvaluatingNLU}. 
 The evaluation of NLU services is only a snapshot since the services are continuously improving \cite{braunEvaluatingNLU}. 
 LUIS performed best on all datasets but in the area of chatbots Rasa and LUIS performed on an equal level \cite{braunEvaluatingNLU}.
-Rasa can be customized further than LUIS and could perform better than LUIS thanks to that \cite{braunEvaluatingNLU}. 
-The domain had nearly no influence on the ranking of the NLU performance \cite{braunEvaluatingNLU}.
-In other words, a good NLU system performs good domain independent.
+Rasa can be customized further than LUIS and could perform better than LUIS through customization \cite{braunEvaluatingNLU}. 
+The domain had little to no influence on the ranking of the NLU performance \cite{braunEvaluatingNLU}.
+In other words, a good NLU system performs good independent of the domain.
 If the training data is sparse then there is no significant difference between the services \cite{braunEvaluatingNLU}. 
 Before using an NLU service different services should be tested with domain-specific data \cite{braunEvaluatingNLU}.
-\citet{braunEvaluatingNLU} compares some NLU frameworks regarding their natural language capabilities.
-The compared frameworks are suitable for task-specific problems.
 
 % Dutta 2017 developing
-\citet{dutta2017developing} provides a chatbot that assists high school students with learning general 
-knowledge subjects and analyses the impact it had on learning.
+In \citet{dutta2017developing} a chatbot is developed that assists high school students with learning general 
+knowledge subjects and analyses the impact the chatbot had on learning.
 AI-based chatbots are used for banking systems, customer services, and education \cite{dutta2017developing}.
-The developed chatbot is a web-based education solution using natural language processing (NLP) techniques
-to answer questions and is also able to participate in small talk \cite{dutta2017developing}.
 Popular chatbot platforms are Dialogflow, LUIS, Wit.ai amd Pandorabots \cite{dutta2017developing}.
+The developed chatbot is a web-based education solution using natural language processing (NLP) techniques
+to answer questions \cite{dutta2017developing}.
+It is also able to participate in small talk \cite{dutta2017developing}.
 The chatbot systems are evaluated based on their NLP performance and the available features of the platform 
 \cite{dutta2017developing}. 
 All platforms are trained with the same knowledge base for comparison \cite{dutta2017developing}. 
 LUIS and Wit.ai performed slightly better in the NLP part than Dialogflow \cite{dutta2017developing}.
 Dialogflow offers the concept of follow-up intents which is an important feature for the development 
-of sub-tasks and is chosen for development over LUIS and Wit.hai \cite{dutta2017developing}.
+of sub-tasks and was chosen for development over LUIS and Wit.hai \cite{dutta2017developing}.
 To create the illusion of talking to a human being some small talk is implemented \cite{dutta2017developing}. 
 This can motivate learners and might increase the interest in the topic \cite{dutta2017developing}.
 \citet{dutta2017developing} uses goal-oriented technologies like \citet{braunEvaluatingNLU} and 
 both compare the technologies based on their NLU capabilities.
 Additionally, \citet{dutta2017developing} also focuses on the available features of the 
-platforms and selects Dialogflow over the other better performing technologies because 
+platforms and selects Dialogflow over the other technologies because 
 of these features.
-These features play an important role for the development of a system.
 \citet{dutta2017developing} also touches psychological aspects of chatbot systems 
 like motivation of users through smalltalk. 
 \citet{GO2019304, brandtzaeg2018chatbots,folstad2017chatbots} go deeper into the psychological aspects of chatbot systems.
@@ -197,8 +214,8 @@ like motivation of users through smalltalk.
 % Gregori 2017 evaluation
 \citet{gregori2017evaluation} evaluated the NLU capabilities of Wit.ai, Luis, Api.ai/Dialogflow, and Amazon Lex
 by the confidence score. 
-The higher the confidence the better the user request matched the training data \citet{gregori2017evaluation}.
-Each tool was trained with the same data and was tested with the same questions to ensure fair conditions \citet{gregori2017evaluation}.
+The higher the confidence the better the user request matched the training data \cite{gregori2017evaluation}.
+Each tool was trained with the same data and was tested with the same questions to ensure fair conditions \cite{gregori2017evaluation}.
 LUIS, Wit.ai, and API.ai/Dialogflow performed on an equal level in terms of intent classification in \citet{gregori2017evaluation}.
 \citet{gregori2017evaluation} chose Api.ai/Dialogflow for the development of a prototype.
 
@@ -223,31 +240,37 @@ The measurement criteria for chatbots vary depending on the domain of the bot.
 \citet{luis2015williams} gives an overview of LUIS the state-of-the-art language understanding service of Microsoft.
 Historically, language understanding could be implemented via machine learning or handcrafted rules \cite{luis2015williams}.
 The ML model approach is robust but requires expensive expertise \cite{luis2015williams}. 
-With LUIS developers don't need machine learning knowledge to build language understanding models \cite{luis2015williams}.
 In general, software developers can build language understanding without assistance of a framework
-with handcrafted rules \citet{luis2015williams}. 
-But these systems don't scale well \cite{luis2015williams}.
+with handcrafted rules \cite{luis2015williams}. 
+But systems with handcrafted rules don't scale well \cite{luis2015williams}.
+With LUIS developers don't need machine learning knowledge to build language understanding models 
+nor do they need to write handcrafted rules \cite{luis2015williams}.
 LUIS allows regular developers without ML expertise to develop cloud-based, domain-specific language 
 understanding models \cite{luis2015williams}.
 Developers need to understand the concepts intent, entity, and utterance to work with LUIS \cite{luis2015williams}.
 Developers can create custom entities and use "pre-built" entities like locations, dates, and times.
 The communication with LUIS is done through an HTTP endpoint in JSON format \cite{luis2015williams}. 
-Dialogflow also uses an HTTP endpoint for communication and JSON format for messages. 
+Dialogflow, Rasa, and Watson Assistant also uses an HTTP endpoint for communication and JSON format for the messages. 
+
+% ---------- HERE ---------- %
 
 % rasa bocklisch 2017
-\citet{rasabocklisch2017} describes the architecutre and function of Rasa (\citet{singhbuilding, braunEvaluatingNLU, buiildChatbotsPython}).
+\citet{rasabocklisch2017} describes the architecutre and function of Rasa.
 Rasa is an open-source tool for natural language understanding and dialog management for developers \cite{rasabocklisch2017}.
-The state is represented by slots and the events which led to the current state and is stored in the tracker \cite{rasabocklisch2017}. 
+The state is represented by slots and the events which led to the current state \cite{rasabocklisch2017}. 
+This information is stored in the tracker \citet{rasabocklisch2017}.
 Rasa uses the concepts of intent and entity \cite{rasabocklisch2017}. 
 Rasa consists of a natural language and a dialog component that can be accessed via an HTTP API \cite{rasabocklisch2017}.
 Rasa uses actions to determine the next step to take \cite{rasabocklisch2017}. 
 An action can be something simple like an utterance or function which is executed and has access to the tracker \cite{rasabocklisch2017}.
 The training data for Rasa can be specified in JSON or markdown format \cite{rasabocklisch2017}.
-Rasa supports live training of the system where the developer corrects the machine if necessary while communicating \cite{rasabocklisch2017}.
+Rasa supports live training of the system where the developer corrects the machine while communicating with it if necessary \cite{rasabocklisch2017}.
 Live training is an effective way to create training data for plausible conversations \cite{rasabocklisch2017}.
 \citet{braunEvaluatingNLU} showed that Rasa performs on an equal level with tools like LUIS.
 
 % ---------- EVAL ---------- %
+\citet{braunEvaluatingNLU} compares some NLU frameworks regarding their natural language capabilities.
+The compared frameworks are suitable for task-specific problems.
 \citet{evaluateChatbotsShawar2007,bordes2016learning,williams2017hybrid} 
 focus on end-to-end systems, \citet{braunEvaluatingNLU, dutta2017developing,luis2015williams,rasabocklisch2017,pharmacybot,gregori2017evaluation}
 focus on task-oriented systems, and \citet{singhbuilding} is about both.

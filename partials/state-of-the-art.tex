@@ -248,24 +248,26 @@ nor do they need to write handcrafted rules \cite{luis2015williams}.
 LUIS allows regular developers without ML expertise to develop cloud-based, domain-specific language 
 understanding models \cite{luis2015williams}.
 Developers need to understand the concepts intent, entity, and utterance to work with LUIS \cite{luis2015williams}.
-Developers can create custom entities and use "pre-built" entities like locations, dates, and times.
+Developers can create custom entities and use existing entities like location, date, and time.
 The communication with LUIS is done through an HTTP endpoint in JSON format \cite{luis2015williams}. 
 Dialogflow, Rasa, and Watson Assistant also uses an HTTP endpoint for communication and JSON format for the messages. 
 
-% ---------- HERE ---------- %
 
 % rasa bocklisch 2017
 \citet{rasabocklisch2017} describes the architecutre and function of Rasa.
 Rasa is an open-source tool for natural language understanding and dialog management for developers \cite{rasabocklisch2017}.
-The state is represented by slots and the events which led to the current state \cite{rasabocklisch2017}. 
-This information is stored in the tracker \citet{rasabocklisch2017}.
 Rasa uses the concepts of intent and entity \cite{rasabocklisch2017}. 
+The cloud chatbot technologies have these two concepts in common with Rasa.
+The state is represented by slots and the events which led to the current state \cite{rasabocklisch2017}. 
+This information is stored in the tracker \cite{rasabocklisch2017}.
+An action has access to the tracker and determines the next step to take \cite{rasabocklisch2017}. 
+An action can be something simple like an utterance or something complex like a function which is executed \cite{rasabocklisch2017}.
 Rasa consists of a natural language and a dialog component that can be accessed via an HTTP API \cite{rasabocklisch2017}.
-Rasa uses actions to determine the next step to take \cite{rasabocklisch2017}. 
-An action can be something simple like an utterance or function which is executed and has access to the tracker \cite{rasabocklisch2017}.
 The training data for Rasa can be specified in JSON or markdown format \cite{rasabocklisch2017}.
-Rasa supports live training of the system where the developer corrects the machine while communicating with it if necessary \cite{rasabocklisch2017}.
+Rasa supports live training of the system where the developer can correct the bot while communicating with it \cite{rasabocklisch2017}.
 Live training is an effective way to create training data for plausible conversations \cite{rasabocklisch2017}.
+With live training there is a higher possibility to create a complete and natural conversation because the 
+developer is forced to go through the conversation step by step.
 \citet{braunEvaluatingNLU} showed that Rasa performs on an equal level with tools like LUIS.
 
 % ---------- EVAL ---------- %
@@ -281,86 +283,92 @@ evaluates the NLU capabilites of chatbot frameworks.
 \citet{gregori2017evaluation} and \citet{dutta2017developing} also evaluate the NLU capabilities.
 When frameworks are compared for their NLU capabilities the same training data needs to be used 
 for all tested frameworks like \citet{braunEvaluatingNLU,gregori2017evaluation} did.
-\citet{dutta2017developing} also introduces the framework comparison based on the available features
-and it also introduces some psychological aspects of the chatbot communication.
-Unlike the other references \citet{luis2015williams} introduces LUIS and \citet{rasabocklisch2017} 
-introduces Rasa. 
+\citet{dutta2017developing} also introduces a framework comparison based on the available features
+and some psychological aspects of chatbot communication.
+Unlike other references which either use or evaluate frameworks \citet{luis2015williams} and \citet{rasabocklisch2017} 
+introduce the frameworks LUIS\cite{luis2015williams} and Rasa\cite{rasabocklisch2017}. 
 They focus on the technology itself and don't build a chatbot with it nor do they compare frameworks.
 In \citet{dutta2017developing, pharmacybot, PRZEGALINSKA2019785} actual chatbots for specific use cases have been implemented.
+
 
 
 % ---------- END GOAL-ORIENTED SYSTEMS ---------- %
 
 % ---------- DESIGN PSYCHO ASPECTS ---------- %
 % folstad 2017 chatbots and the new world of HCI
-\citet{folstad2017chatbots} investigates how the current users are communicating on the web and shows how 
-the recent technological advances in the area of chatbots could influence the human-computer interaction.
+\citet{folstad2017chatbots} investigates how users are communicating on the web and shows how 
+the recent technological advances in the area of chatbots could influence the human-computer interaction in the future.
 Lots of people are already using natural language as the main input method on the web through mobile messengers 
 and social networks \cite{folstad2017chatbots}. 
 At the moment the natural language conversation online is from human to human through a machine interface \cite{folstad2017chatbots}.
 The people are using messenger platforms (machine-interface) to communicate with other people (human to human).
 Some platforms already offer chatbot integration. 
 At platforms like Twitter machine agents can already be integrated and communicate with human users \cite{folstad2017chatbots}. 
-Chatbots are different from the classical software interfaces because they used natural language 
-for communication.
+Chatbots are different from the classical software interfaces because they use natural language 
+for communication instead of a classical GUI.
 Currently, developers are focused on designing user interfaces but for chatbots the design focus 
 lies on the conversation itself \cite{folstad2017chatbots}. 
 Regular UI systems are designed by experts and improved by qualitative data which is rather sparse \cite{folstad2017chatbots}.
+A big advantage of conversational interfaces is the massive amount of training data that is present all around the web \cite{folstad2017chatbots}. 
 Chatbots all use messenger like interfaces independent from the problem.
 Developers don't have to think about designing user interfaces for chatbots.
 The developers need to switch to a goal-oriented view where the main focus 
 lies on understanding what the user wants and how they can be served \cite{folstad2017chatbots}.
-A big advantage of such conversational interfaces is the massive amount of training data that is present all around the web \cite{folstad2017chatbots}. 
 The state-of-the-art technology of conversational interfaces is Google Assistant \cite{folstad2017chatbots}.
 
 % Brandtzaeg 2018 chatbots: Changing user needs and motivation
 \citet{brandtzaeg2018chatbots} describes chatbots as a natural language interface using text or voice.
 They are used to retrieve content or access a service through natural language conversation \cite{brandtzaeg2018chatbots}.
-People are used to communication through natural language because they spend lots of time on messenger platforms \cite{brandtzaeg2018chatbots}.
-Because of this chatbot technologies become more popular \cite{brandtzaeg2018chatbots}.
+People are used to natural language communication because they spend lots of time on messenger platforms \cite{brandtzaeg2018chatbots}.
+Because of this chatbot technologies become more and more popular \cite{brandtzaeg2018chatbots}.
 Person ot person communication is like the open-ended chatbot approach.
-But it is difficult to design chatbots for open-ended conversations because users can start the conversation
+It is difficult to design chatbots for open-ended conversations because users can start the conversation
 in many ways \cite{brandtzaeg2018chatbots}.
+The conversation can also develop in any direction.
 The communication with a chatbot should feel natural.
 Hence, it is important to balance the human and robot aspects of a chatbot \cite{brandtzaeg2018chatbots}.
-If the chatbot is too human people might ask questions unrelated to the domain and if it's too robot-like people might
-complain because the conversation feels unnatural \cite{brandtzaeg2018chatbots}.
-Developers also need to think about how friendly a chatbot should be, how fast the bot should answer if the bot should
+If the chatbot is too human people might ask questions unrelated to the domain \cite{brandtzaeg2018chatbots}.
+If it's too robot-like people might complain because the conversation feels unnatural \cite{brandtzaeg2018chatbots}.
+Developers also need to think about how friendly a chatbot should be, how fast the bot should answer, if the bot should
 have a gender, and how human-like the bot should be \cite{brandtzaeg2018chatbots}.
-Successful chatbots inform the users what they have to expect and that they are talking to a bot \cite{brandtzaeg2018chatbots}
-Another important factor is to inform users about what the chatbot can do and it can help to inform them what 
-it can't do \cite{brandtzaeg2018chatbots}.
+Successful chatbots inform the users what they have to expect and clarify that they are talking to a bot 
+right from the start \cite{brandtzaeg2018chatbots}
+Chatbots should inform users about what they can do and it can help to inform them what 
+they can't do \cite{brandtzaeg2018chatbots}.
 Conversational interfaces need to be improved based on the interactions with humans \cite{brandtzaeg2018chatbots}.
-Microsoft has Heston Bot for food and cooking opportunities and fashion, H\&M uses a bot for shopping 
-suggestions based on photos, and Ikea used a bot to assist the customer with shopping \cite{brandtzaeg2018chatbots}.
-\citet{brandtzaeg2018chatbots} focuses on psychological aspects of chatbot design and gives recommendations
+Three examples for chatbots are Microsofts Heston Bot for food, cooking opportunities and fashion, H\&Ms bot for shopping 
+suggestions based on photos, and Ikeas shopping assistant bot \cite{brandtzaeg2018chatbots}.
+\citet{brandtzaeg2018chatbots} focuse on psychological aspects of chatbot design and give recommendations
 independent from the type of chatbot.
 
 % humanize bots 2019
 \citet{GO2019304} is about human-like bots and the 
-effects they have on users and compates them to current chatbot systems.
-The main functions of  current online chatbots are to interact with users, to address concerns, and answer questions \cite{GO2019304}.
-These chatbots often lack humanness when communicating with users \citet{GO2019304}.
+effects they have on users and compares these bots with current chatbot systems.
+The main functions of current online chatbots are interaction with users, address of concerns, and question answering \cite{GO2019304}.
+These chatbots often lack humanness when communicating with users \cite{GO2019304}.
 The impersonal nature of the conversation can be countered with a high level of message interactivity \cite{GO2019304}.
 To increase the humanness of a chatbot three approaches can be used \cite{GO2019304}.
-A chatbot can be given visual cues like human figures, identity cues like a human-associated name, and the third way is to 
-give conversational cues by mimicking the human language \cite{GO2019304}.
+A chatbot can be given visual cues like human figures, identity cues like a human-associated name, or 
+conversational cues by mimicking the human language \cite{GO2019304}.
 Intorducing visual cues and a name to a chatbot is an easy task.
 Conversational cues are hard to create since they require deep
 understanding of human conversation and the context.
 These three approaches can be used to make people believe that they are talking to a human or a bot.
 The way a user interacts with a bot and the things a user expects change through this assumption \cite{sundar2016theoretical, GO2019304}.
-If a user expects a human agent then the chatbot is more likely to be evaluated as human-like and natural 
-than when the user expects a bot \cite{sundar2016theoretical}.
+If a user expects a human agent then the chatbot is more likely evaluated as human-like and the conversation 
+feels more natural for users compared to when they expect a bot \cite{sundar2016theoretical}.
 If the bot is identified as a human than the users automatically expect more from the conversation and the 
-bot needs to be capable of more otherwise the users will be disappointed \citet{GO2019304}.
+bot needs to be capable of more otherwise the users will be disappointed \cite{GO2019304}.
 If the bot is identified as bot the users expect less from the conversation but the conversation 
 is more likely evaluated as robotic or unnatural \cite{GO2019304}.
 If on the other hand, the bot is falsely identified as a human being by a user the expectation of the user regarding 
 interactivity rises \cite{GO2019304}.
-This needs to be kept in mind for when designing chatbots.
-\citet{GO2019304} shows that the users assumption (bot or human) has a great impact on the evaluation of 
-the chatbot and the according feedback.
+This needs to be kept in mind when designing chatbots since the false identification as a human 
+can lead to a huge decrease in user satisfaction and acceptance.
+\citet{GO2019304} shows that the user assumption (bot or human) has a great impact 
+on the chatbot evaluation and the feedback.
+
+% ---------- HERE ---------- %
 
 % ---------- EVAL ---------- %
 Unlike the other references \citet{folstad2017chatbots, brandtzaeg2018chatbots, GO2019304}

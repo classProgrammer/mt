@@ -368,13 +368,11 @@ can lead to a huge decrease in user satisfaction and acceptance.
 \citet{GO2019304} shows that the user assumption (bot or human) has a great impact 
 on the chatbot evaluation and the feedback.
 
-% ---------- HERE ---------- %
-
 % ---------- EVAL ---------- %
 Unlike the other references \citet{folstad2017chatbots, brandtzaeg2018chatbots, GO2019304}
 focus on the psychological aspects of chatbots and the communication with machines in general.
-\citet{GO2019304} is about the humanness in bots.
-It's important to keep in mund how human a bot should be and how the user asumption influences 
+\citet{GO2019304} is about the humanness of bots.
+It's important to keep in mind how human a bot should be and how the user asumption influences 
 the feedback.
 If the bot appears to be human the expectations rise.
 If the bot is presented as bot right from the start the expectations are in general lower.
@@ -382,18 +380,20 @@ If the bot is presented as bot right from the start the expectations are in gene
 The disadvantages of too human bots are listed with real life examples. 
 Real chatbot conversations have shown that users ask unrealated and inappropropriate questions 
 if a chatbot is too human. 
-Hence, it's important to balance the robot and human aspects when designing a bot.
+Hence, it's important to balance the robot and human aspects when designing a bot \cite{brandtzaeg2018chatbots}.
 \citet{dutta2017developing} is about chatbot design aspects.
-The important message is that chatbot systems are completely different than regual systems from 
+The important message of \citet{dutta2017developing} is that chatbot systems are completely different from regual systems from 
 the design perspective.
 Right now, developers focus on the design of user interfaces (UIs).
-But chatbots all have the same UI requirements and use messengers as template.
+But chatbots all have the same UI requirements independent from the use case.
+They either use messengers like UIs for text communication or no UI at all through speech.
 This means that the the design focus of a chatbot isn't the UI.
 It is the conversation.
 Hence, the main design focus needs to shift from UI design to conversation design.
 % ---------- END DESIGN PSYCHO ASPECTS ---------- %
 
 
+% ---------- HERE ---------- %
 % ---------- BASICS/CONCEPTS ---------- %
 % deshpande 2017 survey
 \citet{deshpande2017survey} shows the evolution of chatbots from the first chatbots to 
@@ -416,18 +416,19 @@ Some major questions need to be answered to determine if the problem is suited f
 If the conversation is simple and consists of simple back-and-forth communication, and the task is 
 highly repetitive and can be automated then the problem is suitable for a chatbot \cite{buiildChatbotsPython}.
 It doesn't make much sense to implement a chatbot for a non-repetitive task which can't be automated \cite{buiildChatbotsPython}.
-If the task is non repetitive then the development of the system takes more 
-time than a real conversation with the user.
-A perfect example of the use of chatbots is a FAQ web page \cite{buiildChatbotsPython}.
+If the task is non repetitive then the development of the chatbot would take more 
+time than the communication between the user and an employee.
+A perfect example use-case for a chatbot is a FAQ web page \cite{buiildChatbotsPython}.
+The answers are predefined, it's repetitive, it consists soly of questions and answers, and can be automated.
 Some of the best chatbot and NLP frameworks are Rasa, LUIS, and Dialogflow \cite{buiildChatbotsPython}.
 
 % geyer 2016 named entity recognition in 140 chars or less
 \citet{geyer2016named} is about named entity recognition (NER) in microposts.
 NER is the core concept used by chatbot tools to extract information from text.
 The classic examples for named entities are people, locations, and organizations \cite{geyer2016named}.
-\citet{geyer2016named} examines how good custom entities are recognized by the system \citet{geyer2016named}.
-The frequency of entities in the training data can influence performance \cite{geyer2016named}. 
-\citet{geyer2016named} checked the performance of entity recognition which can also be done for the chatbot frameworks.
+\citet{geyer2016named} examines how good custom entities are recognized by the system.
+The frequency of entities in the training data can influence the NER performance \cite{geyer2016named}. 
+\citet{geyer2016named} checked the performance of entity recognition which can be done for chatbot frameworks in similar fashion.
 
 % IEEE: rahman 2017 programming
 \citet{rahman2017programming} gives a small overview of the concepts of Dialogflow and the general architecture of chatbot systems.
@@ -436,19 +437,20 @@ In general, the chatbot architecture consists of intent classification, entity r
 and a response selector \cite{rahman2017programming}. 
 The intent classification identifies the best matching intent for the users input.
 The entity recognition module extracts the information/data from the user's message \cite{rahman2017programming}.
-The response generator provides response candidates and the response selector chooses the best matchin response \cite{rahman2017programming}.
+The response generator provides response candidates and the response selector chooses the best matching response \cite{rahman2017programming}.
 Goal-oriented chatbots are most common in the business sector and help users to achieve tasks \cite{rahman2017programming}.
 The tech giants provide chatbot frameworks for regular developers \cite{rahman2017programming}.
 Google provides API.ai/Dialogflow, Microsoft has LUIS, IBM develops Watson, and Amazon provides Lex \cite{rahman2017programming}.
 The key concepts of Dialogflow are intent, entity, and utterance.
 Intents link the user's input to actions which are executed \cite{rahman2017programming}.
+
 % ---------- EVAL ---------- %
 \citet{deshpande2017survey,buiildChatbotsPython,geyer2016named,rahman2017programming} focus on the 
 basics of chatbot frameworks and chatbot related concepts.
-In \citet{deshpande2017survey, rahman2017programming} the general workflow of chatbot systems is show.
+In \citet{deshpande2017survey, rahman2017programming} describe the general workflow of chatbot systems.
 \citet{geyer2016named} is about NER and explains the core concept of entities.
-Additionally, \citet{buiildChatbotsPython} also explains how problems need to look to be 
-suitable for a chatbot.
+Additionally, \citet{buiildChatbotsPython} also explains which problems are 
+suitable for a chatbot in general.
 % ---------- END BASICS/CONCEPTS ---------- %
 
 % ---------- EXAMPLES ---------- %
@@ -464,19 +466,19 @@ There are also performance efficiency metrics to check the time behavior of a sy
 The interoperability of systems can be verified by checking the exchanged information \cite{iso25010}.
 Usability can be checked through learnability which determines how easy it is to learn to use the product \cite{iso25010}.
 Security can be checked by checking for unauthorized access problems \cite{iso25010}.
-It can also be controlled how easy it is to install a system that is part of the portability \cite{iso25010}.
+A part of portability is how easy it is to install a system \cite{iso25010}.
 ISO/IEC 25010 provides evaluation criteria for software systems which can be used to evaluate chatbot systems.
 
 
 % my conclusion
-The ML and NLP capabilities of the frameworks are tested in some papers but there is not much more as some footnotes when it 
-comes to the evaluation and comparison of the existing frameworks like Dialogflow and Rasa.
-Most papers focus on the NLP capabilities and not on other aspects like usability and simplicity or the comparison of the 
+The ML and NLP capabilities of the frameworks are tested in some papers but the actual frameworks are 
+not really compared. 
+Most papers focus on the NLP capabilities and not on other aspects like usability, simplicity or the comparison of the 
 functionality of the different frameworks.
-Papers like \citet{braunEvaluatingNLU} show that the chatbot frameworks are close when it comes to NLU performance.
+Papers like \citet{braunEvaluatingNLU} show that the differences of chatbot frameworks is small when it comes to NLU performance.
 Hence, it doesn't make a huge difference which framework is chosen when the focus lies on NLU.
 The NLU capabilities of the framework are important in general but to give a development recommendation other aspects
-like the available features and the simplicity are more important.
+like the available features and the simplicity of a framework are more important.
 
 
 

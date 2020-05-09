@@ -75,7 +75,7 @@ The DB handles data-related tasks like the possible items and can be used for th
         my colleague is sick & Sick & - & Utter Ask Name \\ \hline
         Max Power & - & Person Name & Utter Confirm \\ \hline
         Yes & - & Boolean & Utter Return Date or Failed \\ \hline
-        No & - & Date or None & Utter Done or Failed \\ \hline
+        No & - & Optional Date & Utter Done or Failed \\ \hline
         Thanks & Thanks & - & Utter You'r Welcome \\ \hline
         Bye & Goodbye & - & Utter Goodbye \\ \hline
     \end{tabular}
@@ -123,4 +123,18 @@ This way the information can be validated and modified by the service.
 
 
 \section{Messenger UI}
+The design of a chatbot focuses on the conversation and not on the UI.
+The UI requirements are always the same for chatbots.
+The basic features required are writing of a new message, sending of a message, and displaying of a message.
+The messenger UI shown in Figure \ref{fig:messengerui} has a possibility to enter and send 
+a message, and displays message cards.
 
+A user can enter a new message at the bottom and click the send button to send a message.
+
+
+\citet{brandtzaeg2018chatbots} states that successful chatbot should inform users that they are talking to a bot.
+Therefore, the heading has been adjusted to remove ambiguities and includes the term chatbot.
+The messenger UI is shown in Figure \ref{fig:messengerui}. 
+
+
+\makefigure{messengerui}{Chatbot UI}

@@ -27,8 +27,55 @@ The DB handles data-related tasks like the possible items and can be used for th
  correct one and the return date which is optional since it's not possible to tell in every case. 
  The resulting intents, entities, and utterances for the example sentences of the conversation 
  shown in Figure \ref{fig:sicknessflow} are listed in Table \ref{tab:sick_data}.
+ The detailed conversation structure for the use cases of this thesis is shown in 
+ Figure \ref{fig:conversationflow}. 
+ The figure shows the flowcharts for the sickness and holoday norifications.
+ User inputs are higlighted red, bot responses are green and general actions are marked purple.
+ Both use cases start the same way because the person needs to be identified.
+ If the entered name can't be validated the user can correct the name or enter a different name.
+ Then the user needs to confirm that the correct person was found.
+ If the user responds with no the name of the person can be corrected.
+ Afterwards, a date needs to be entered in both cases. 
+ The sickness intent asks for an optional return date since the yes and no path lead to the same action 
+ and the conversation ends afterwards.
+ The vacation intent requires a start and return date.
+ The user is asked for the date until a valid date has been entered.
+ After both dates have been enterd the vacation request can be processed and the conversation end is reached.
+ Figure \ref{fig:conversationflow} describes every step of the conversation from start to end.
+ Hence, it defines the functionality of the chatbot and the flow of the conversation.
+ Table \ref{tab:conversation_data} defines the intents, name of the intents, entities, the data types of the entities,
+ and the names of the utterances based on the information present in Figure \ref{fig:conversationflow}.
+ The combination of Figure \ref{fig:conversationflow} and Table \ref{tab:conversation_data} is the 
+ blueprint for the implementation of the chatbot.
+ It is valid for tools using the concepts intent, entity, and utterance.
  
  
+
+ \makefigure{conversationflow}{Flowchart of the Chatbot Conversations}
+ \begin{table}[h]
+    \centering
+    \begin{tabular}{ l | l | l | l }
+        Intent & Reference from Figure \ref{fig:conversationflow} & Type & Name \\ \hline \hline
+        \multirow{1}{*}{-} & Welcome Message & Utterance & Utter\_Welcome \\ \hline
+        \multirow{6}{*}{Sickness Intent} & provide sick persons name & Utterance & Utter\_Enter\_Sick\_Name \\
+        & person name & Entity & Person \\
+        & Confirm person name & Utterance & Utter\_Confirm \\
+        & enter return date & Utterance & Utter\_Enter\_Return \\
+        & return date & Entity & Date \\
+        & all done & Utterance & Utter\_All\_Done \\
+        \hline
+        \multirow{8}{*}{Vacation Intent} & proivde persons name & Utterance & Utter\_Enter\_Name \\
+        & person name & Entity & Person \\
+        & Confirm person name & Utterance & Utter\_Confirm \\
+        & enter start date & Utterance & Utter\_Enter\_Start\_Date \\
+        & start date & Entity & Date \\
+        & enter return date & Utterance & Utter\_Enter\_Return\_Date \\
+        & return date & Entity & Date \\
+        & all done & Utterance & Utter\_All\_Done \\
+    \end{tabular}
+    \caption{Analysis of Figure \ref{fig:conversationflow}} \label{tab:conversation_data}
+\end{table} \noindent
+
  
  \section{Intents, Entities and Utterances}
  The base for this section is Figure \ref{fig:sicknessflow} which shows an example conversation 

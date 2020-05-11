@@ -14,6 +14,65 @@ Rasa is one example for a local standalone application chatbot whereas LUIS,
 Dialogflow, and Watson Assistant are cloud-based/web-based chatbot frameworks.
 Rasa, Dialogflow, LUIS, and Watson Assistant are all capable of goal-oriented dialog.
 
+% ---------- BASICS/CONCEPTS ---------- %
+% deshpande 2017 survey
+\citet{deshpande2017survey} shows the evolution of chatbots from the first chatbots to 
+current state-of-the-art chatbots like Alexa and Siri.
+The first chatbots created used pattern matching to respond to user inputs \cite{deshpande2017survey}.
+Current technologies like Siri use NLP to respond to user inputs \cite{deshpande2017survey}.
+With NLP the intent is identified and the question is analyzed to detect commands and actions \cite{deshpande2017survey}.
+The basic workflow of a chatbot system starts with the user input \cite{deshpande2017survey}. 
+Then the NLP engine extracts entities and detects the intent \cite{deshpande2017survey}.
+Entities are used to retrieve the relevant data \cite{deshpande2017survey}.
+After the relevant data has been retrieved a response is generated \cite{deshpande2017survey}.
+
+% Building chatbots with Python
+\citet{buiildChatbotsPython} explains the core concepts of chatbots, NLU, and NLP necessary for the development of chatbots.
+A food order chatbot is built with Dialogflow and a horoscope bot is built with Rasa in \citet{buiildChatbotsPython}.
+Chatbots are easy to use because it's as natural as talking to a human without the need for complex interfaces \cite{buiildChatbotsPython}.
+Before starting to implement a bot the problem the bot should solve needs to be analyzed.
+Chatbots can't do everything, in fact, they are most often designed for one specific task (task-oriented) \cite{buiildChatbotsPython}.
+Some major questions need to be answered to determine if the problem is suited for the use of a chatbot \cite{buiildChatbotsPython}.
+If the conversation is simple and consists of simple back-and-forth communication, and the task is 
+highly repetitive and can be automated then the problem is suitable for a chatbot \cite{buiildChatbotsPython}.
+It doesn't make much sense to implement a chatbot for a non-repetitive task which can't be automated \cite{buiildChatbotsPython}.
+If the task is non repetitive then the development of the chatbot would take more 
+time than the communication between the user and an employee.
+A perfect example use-case for a chatbot is a FAQ web page \cite{buiildChatbotsPython}.
+The answers are predefined, it's repetitive, it consists soly of questions and answers, and can be automated.
+Some of the best chatbot and NLP frameworks are Rasa, LUIS, and Dialogflow \cite{buiildChatbotsPython}.
+
+% geyer 2016 named entity recognition in 140 chars or less
+\citet{geyer2016named} is about named entity recognition (NER) in microposts.
+NER is the core concept used by chatbot tools to extract information from text.
+The classic examples for named entities are people, locations, and organizations \cite{geyer2016named}.
+\citet{geyer2016named} examines how good custom entities are recognized by the system.
+The frequency of entities in the training data can influence the NER performance \cite{geyer2016named}. 
+\citet{geyer2016named} checked the performance of entity recognition which can be done for chatbot frameworks in similar fashion.
+
+% IEEE: rahman 2017 programming
+\citet{rahman2017programming} gives a small overview of the concepts of Dialogflow and the general architecture of chatbot systems.
+Commonly used cloud chatbot solutions are IBM Watson, Dialogflow, and Microsoft Bot \cite{rahman2017programming}.
+In general, the chatbot architecture consists of intent classification, entity recognition, a response generator, 
+and a response selector \cite{rahman2017programming}. 
+The intent classification identifies the best matching intent for the users input.
+The entity recognition module extracts the information/data from the user's message \cite{rahman2017programming}.
+The response generator provides response candidates and the response selector chooses the best matching response \cite{rahman2017programming}.
+Goal-oriented chatbots are most common in the business sector and help users to achieve tasks \cite{rahman2017programming}.
+The tech giants provide chatbot frameworks for regular developers \cite{rahman2017programming}.
+Google provides API.ai/Dialogflow, Microsoft has LUIS, IBM develops Watson, and Amazon provides Lex \cite{rahman2017programming}.
+The key concepts of Dialogflow are intent, entity, and utterance.
+Intents link the user's input to actions which are executed \cite{rahman2017programming}.
+
+% ---------- EVAL ---------- %
+\citet{deshpande2017survey,buiildChatbotsPython,geyer2016named,rahman2017programming} focus on the 
+basics of chatbot frameworks and chatbot related concepts.
+In \citet{deshpande2017survey, rahman2017programming} describe the general workflow of chatbot systems.
+\citet{geyer2016named} is about NER and explains the core concept of entities.
+Additionally, \citet{buiildChatbotsPython} also explains which problems are 
+suitable for a chatbot in general.
+% ---------- END BASICS/CONCEPTS ---------- %
+
 The first major type are end-to-end systems.
 % ---------- END-TO-END SYSTEMS ---------- %
 % evaluate chatbots Shawar
@@ -296,6 +355,7 @@ In \citet{dutta2017developing, pharmacybot, PRZEGALINSKA2019785} actual chatbots
 
 % ---------- DESIGN PSYCHO ASPECTS ---------- %
 % folstad 2017 chatbots and the new world of HCI
+Chatbots can also be viewed from a psychological perspective that focuses on user interaction.
 \citet{folstad2017chatbots} investigates how users are communicating on the web and shows how 
 the recent technological advances in the area of chatbots could influence the human-computer interaction in the future.
 Lots of people are already using natural language as the main input method on the web through mobile messengers 
@@ -393,66 +453,6 @@ Hence, the main design focus needs to shift from UI design to conversation desig
 % ---------- END DESIGN PSYCHO ASPECTS ---------- %
 
 
-% ---------- HERE ---------- %
-% ---------- BASICS/CONCEPTS ---------- %
-% deshpande 2017 survey
-\citet{deshpande2017survey} shows the evolution of chatbots from the first chatbots to 
-current state-of-the-art chatbots like Alexa and Siri.
-The first chatbots created used pattern matching to respond to user inputs \cite{deshpande2017survey}.
-Current technologies like Siri use NLP to respond to user inputs \cite{deshpande2017survey}.
-With NLP the intent is identified and the question is analyzed to detect commands and actions \cite{deshpande2017survey}.
-The basic workflow of a chatbot system starts with the user input \cite{deshpande2017survey}. 
-Then the NLP engine extracts entities and detects the intent \cite{deshpande2017survey}.
-Entities are used to retrieve the relevant data \cite{deshpande2017survey}.
-After the relevant data has been retrieved a response is generated \cite{deshpande2017survey}.
-
-% Building chatbots with Python
-\citet{buiildChatbotsPython} explains the core concepts of chatbots, NLU, and NLP necessary for the development of chatbots.
-A food order chatbot is built with Dialogflow and a horoscope bot is built with Rasa in \citet{buiildChatbotsPython}.
-Chatbots are easy to use because it's as natural as talking to a human without the need for complex interfaces \cite{buiildChatbotsPython}.
-Before starting to implement a bot the problem the bot should solve needs to be analyzed.
-Chatbots can't do everything, in fact, they are most often designed for one specific task (task-oriented) \cite{buiildChatbotsPython}.
-Some major questions need to be answered to determine if the problem is suited for the use of a chatbot \cite{buiildChatbotsPython}.
-If the conversation is simple and consists of simple back-and-forth communication, and the task is 
-highly repetitive and can be automated then the problem is suitable for a chatbot \cite{buiildChatbotsPython}.
-It doesn't make much sense to implement a chatbot for a non-repetitive task which can't be automated \cite{buiildChatbotsPython}.
-If the task is non repetitive then the development of the chatbot would take more 
-time than the communication between the user and an employee.
-A perfect example use-case for a chatbot is a FAQ web page \cite{buiildChatbotsPython}.
-The answers are predefined, it's repetitive, it consists soly of questions and answers, and can be automated.
-Some of the best chatbot and NLP frameworks are Rasa, LUIS, and Dialogflow \cite{buiildChatbotsPython}.
-
-% geyer 2016 named entity recognition in 140 chars or less
-\citet{geyer2016named} is about named entity recognition (NER) in microposts.
-NER is the core concept used by chatbot tools to extract information from text.
-The classic examples for named entities are people, locations, and organizations \cite{geyer2016named}.
-\citet{geyer2016named} examines how good custom entities are recognized by the system.
-The frequency of entities in the training data can influence the NER performance \cite{geyer2016named}. 
-\citet{geyer2016named} checked the performance of entity recognition which can be done for chatbot frameworks in similar fashion.
-
-% IEEE: rahman 2017 programming
-\citet{rahman2017programming} gives a small overview of the concepts of Dialogflow and the general architecture of chatbot systems.
-Commonly used cloud chatbot solutions are IBM Watson, Dialogflow, and Microsoft Bot \cite{rahman2017programming}.
-In general, the chatbot architecture consists of intent classification, entity recognition, a response generator, 
-and a response selector \cite{rahman2017programming}. 
-The intent classification identifies the best matching intent for the users input.
-The entity recognition module extracts the information/data from the user's message \cite{rahman2017programming}.
-The response generator provides response candidates and the response selector chooses the best matching response \cite{rahman2017programming}.
-Goal-oriented chatbots are most common in the business sector and help users to achieve tasks \cite{rahman2017programming}.
-The tech giants provide chatbot frameworks for regular developers \cite{rahman2017programming}.
-Google provides API.ai/Dialogflow, Microsoft has LUIS, IBM develops Watson, and Amazon provides Lex \cite{rahman2017programming}.
-The key concepts of Dialogflow are intent, entity, and utterance.
-Intents link the user's input to actions which are executed \cite{rahman2017programming}.
-
-% ---------- EVAL ---------- %
-\citet{deshpande2017survey,buiildChatbotsPython,geyer2016named,rahman2017programming} focus on the 
-basics of chatbot frameworks and chatbot related concepts.
-In \citet{deshpande2017survey, rahman2017programming} describe the general workflow of chatbot systems.
-\citet{geyer2016named} is about NER and explains the core concept of entities.
-Additionally, \citet{buiildChatbotsPython} also explains which problems are 
-suitable for a chatbot in general.
-% ---------- END BASICS/CONCEPTS ---------- %
-
 % ---------- EXAMPLES ---------- %
 
 % ---------- END EXAMPLES ---------- %
@@ -471,11 +471,11 @@ ISO/IEC 25010 provides evaluation criteria for software systems which can be use
 
 % my conclusion
 The ML and NLP capabilities of the frameworks are tested in some papers but the actual frameworks are 
-not really compared. 
+not compared in most cases. 
 Most papers focus on the NLP capabilities and not on other aspects like usability, simplicity or the comparison of the 
 functionality of the different frameworks.
 Papers like \citet{braunEvaluatingNLU} show that the differences of chatbot frameworks is small when it comes to NLU performance.
-Hence, it doesn't make a huge difference which framework is chosen when the focus lies on NLU.
+Hence, it doesn't make a huge difference which framework is chosen when the focus lies soley on NLU.
 The NLU capabilities of the framework are important in general but to give a development recommendation other aspects
 like the available features and the simplicity of a framework are more important.
 

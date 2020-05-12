@@ -8,7 +8,59 @@ To be done \cite{watsonassistant}.
 To be done \cite{rasa}.
 
 \section{LUIS}
-To be done \cite{luisdocs}.
+With LUIS\cite{luisdocs}, the language understanding service of Microsoft,
+NLU services can be created.
+NLU is only a part of a chatbot and it's not possible 
+to create a chatbot with LUIS alone.
+The other frameworks are capable to create a chatbot application.
+The chatbot features are availiable through the Microsoft bot services 
+in combination with LUIS.
+A LUIS account is necessary to create NLU services.
+When a new project is create a name and a language need to be defined for 
+the NLU application.
+The choosen language is the language the users will us for the communication with the 
+LUIS application.
+The modification is done in the build tab.
+The interface shown in Figure \ref{fig:luis_interface} offers intents and entities
+like described in Chapter \ref{chap:basics}.
+To create the NLU part with LUIS Table \ref{tab:conversation_data} will be used.
+\ref{tab:conversation_data} defines the intents entities and response utterances
+which need to be created in LUIS.
+Figure \ref{fig:conversationflow} has no influence on LUIS because the 
+conversation handling is not part of the NLU service.
+To create an intent only a name and a list of traing phrases (utterances) are necessary.
+Multiple options are available to create different kinds of entities.
+There are simple entities like e.g. a city.
+They describe exactly one concept.
+There are composite entities which are built from multiple entities (parts).
+E.g. a ticket order entity could consist of a order number, the number of 
+tickets, and the event.
+An entity list is used when the valid items are limited like in the book hotel example.
+There is only a limited number of valid hotel names and the list holds all valid 
+hotels.
+The invalid hotels are uninteresting in such a case.
+Regular expressions\cite{regex} can also be used to define an entity.
+It is also possible to add prebuilt entities and prebuilt domain entites.
+The entities required for the sickness intent are person name and date. 
+LUIS offers the prebuilt entities date-time and person-name.
+This means no new entities need to be created for the sickness use-case
+since the are prebuilt.
+To test the NLU functionality two additional intents need to be created to 
+simulate the conversation.
+A submit name and a submit return date intent are required.
+The submit name intent extracts the person name entity.
+The submit return date entity extracts a date-time entity.
+The advantage of predefined entities is the saved time and the 
+advanced features.
+The date-time entity is able to match inputs like Monday, or tomorrow to 
+a valid an correct date by default.
+The year is also automatically added when the date e.g. first Januarry lies in the past.
+This is important for the vacation use case when the vacation is requested for 
+the next year. 
+
+
+\makefigure{luis_interface}{LUIS Web Interface}
+
 
 
 \section{Azure Deployment}

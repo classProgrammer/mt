@@ -89,6 +89,7 @@ The DB handles data-related tasks like the possible items and can be used for th
  If the person can't be found the user needs to be notified and the operation is aborted.
  If the person was found the user needs to confirm that the right person was found.
  In production there could be multiple employees with the same name. 
+
  Because of this ambiguity the confirmation is part of the dialog.
  Then the optional return date needs to be extracted.
  It's optional because especially in the case of a sickness the return date is unknown.
@@ -115,8 +116,8 @@ The DB handles data-related tasks like the possible items and can be used for th
 
  \begin{table}[h]
     \centering
-    \begin{tabular}{ l || l | l | l }
-        Sentence & Intent & Entities & Bot Action \\ \hline \hline
+    \begin{tabular}{ l | l | l | l }
+        Sentence & Intent & Entity & Bot Action \\ \hline \hline
         Hello & Greet & - & Utter Greeting \\ \hline
         What can you do? & List Options & - & Utter Options \\ \hline
         my colleague is sick & Sick & - & Utter Ask Name \\ \hline
@@ -124,9 +125,9 @@ The DB handles data-related tasks like the possible items and can be used for th
         Yes & - & Boolean & Utter Return Date or Failed \\ \hline
         No & - & Optional Date & Utter Done or Failed \\ \hline
         Thanks & Thanks & - & Utter You'r Welcome \\ \hline
-        Bye & Goodbye & - & Utter Goodbye \\ \hline
+        Bye & Goodbye & - & Utter Goodbye 
     \end{tabular}
-    \caption{Sickness Norification Intents, Enitities, and Actions of Figure \ref{fig:sicknessflow}} \label{tab:sick_data}
+    \caption{Sickness Notification Intents, Enitities, and Actions of Figure \ref{fig:sicknessflow}} \label{tab:sick_data}
 \end{table} \noindent
 
 \section{Problem Analysis}

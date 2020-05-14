@@ -1,6 +1,68 @@
 \section{Dialogflow}
-To be done \cite{dialogflow}.
+Dialogflow\cite{dialogflow} formerly known as API.ai is the chatbot framework of Google and 
+is hosted in the Google cloud.
+To create a new agent the main language needs to be selected and the name of the 
+agent needs to be defined.
+The selected language is the interaction language of the users.
+Dialogflow offers the option to create a mega agent by combining other agents.
+The web interface of Dialogflow is shown in Figure \ref{fig:dialogflow_interface} where 
+the menu shows the intents and entities tabs.
+Dialogflow supports the basic concepts of intents, entities, and utterances.
+Hence, Table \ref{tab:conversation_data} is used for the implementation 
+of the intents, entities, and utterances.
+\subsection{Intents and Entities}
+When a new intent is created some options are present.
+A Dialogflow intent has training phrases, actions and parameters,
+a response list, a context, and the fulfillment.
+The training phrases are a list of utterances a users would enter.
+Paramters are the slots which need to be filled in the conversation.
+The parameters for the sickness intent are the rows of Table \ref{tab:example_sentences} where the entity cell is 
+filled with text.
+The response list is a list of utterances which is used to respond to the users question.
+The context is used to pass parameter values to other intents.
+In the fulfillment section the webhook can be enabled.
+By default an intent is handled by dialogflow without communication to another service.
+In the fulfillment section a webhook call can be enabled.
+For the sickness intent two parameters are required.
+The name of the person is a non-optional parameter,
+the return date is an optional paramter.
+Dialogflow provides many predefined entities and intents.
+The date and person entities are predefined by Dialogflow and it's 
+not necessary to create them.
+Additionaly, yes and no intents are also available and can be used and 
+adjusted for the current sickness notification use case.
+The final structure is a sickness intent which is followed by either 
+the yes or the no intent.
+For this the follow up intent concept is used where follow ups can 
+be entered.
+At the end of the no intent the chatbot responds with a retry response.
+At the end of the yes intent the bot responds with an all done response.
+This ends the conversation of the sickness use case and the yes and no 
+intent are marked as conversation ends.
+The process looks the same for the vacation use case.
+The vacation intent needs to be created and has a follow-up intent 
+yes and no to confirm the user input.
+The entities required are a person and a date-span.
+Dialogflow offers a predefined entity called date-period wich offers this 
+functionality and it's not required to create one.
+The date and date-period entities offer advanced features.
+A valid date period is for instance Monday to Friday.
+This is transalted to the correct values if e.g. Monday is in the past
+the resulting date period will be from the next Monday to the Friday 
+which follows next Monday.
+For the example sentences the entities can be used to create alternative ways to fill the slots.
+The user can be prompted slot after slot or enter them in the first request to speed up the 
+process for more experienced users.
+In a sentence like "Max Power is sick and will return on Monday" all the required information is 
+already in the sentence. 
+The entities need to be defined in the training sentences.
+Then the system learns that there alre multiple ways to acquire the information.
+With suitable training sentences the chatbot can extract the information 
+directly and jumps directly to the confirmation.  
+In general, custom entities are defined as a list of entries or a list of entries with 
+synonyms.
 
+\makefigure{dialogflow_interface}{Dialogflow Web Interface}
 \section{Watson Assistant}
 To be done \cite{watsonassistant}.
  
@@ -12,7 +74,6 @@ With LUIS\cite{luisdocs}, the language understanding service of Microsoft,
 NLU services can be created.
 NLU is only a part of a chatbot and it's not possible 
 to create a chatbot with LUIS alone.
-The other frameworks are capable to create a chatbot application.
 The chatbot features are availiable through the Microsoft bot services 
 in combination with LUIS.
 A LUIS account is necessary to create NLU services.

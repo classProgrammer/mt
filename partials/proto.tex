@@ -67,6 +67,52 @@ When small talk is enabled the bot is able to respnd to things like "What are yo
 This is another usefull feature which is predefined and requires no development effort
 and can be enabled with one click. 
 
+\subsection{Webhook}
+The Dialogflow webhook requires a HTTP POST URL as entry point.
+The communication relies on JSON as format.
+The entry point of the webhook is shown in Listing \ref{lst:dialogflow_entry_point}.
+A request like in Listing \ref{lst:webhookExample} can be accessed like a dictionary or 
+an array shown in Listing \ref{lst:dialogflow_request_params} where the name of the 
+intent gets extracted. 
+After the intent has been extracted the paramters are extracted to process the request.
+In the error case a new fulfillment message is returned.
+A fulfillment message as return value prevents follow up intents.
+In the success case an empty response is returned and the bot continues normally.
+In Listing \ref{lst:dialogflow_intent_handling} a skeleton for intent handling
+is shown for a success and error szenario for an intent called "Sickness Confirmed".
+
+\begin{lstlisting}[caption={Dialogflow Webhook Entry Point}, label={lst:dialogflow_entry_point},captionpos=b,frame=single,language={Python},commentstyle=\color{mygreen},keywordstyle=\color{blue},
+    morekeywords={}]                
+@restService.route('/dialogflow/webhook', methods=['POST'])
+def dialogflowRequestEntryPoint():
+    return asJsonResponse(dialogflowRequestHandler()), 200
+\end{lstlisting}  
+
+\begin{lstlisting}[caption={Dialogflow Request Parameters}, label={lst:dialogflow_request_params},captionpos=b,frame=single,language={Python},commentstyle=\color{mygreen},keywordstyle=\color{blue},
+    morekeywords={}]                
+req = request.get_json(force=True)
+intent = req.get('queryResult').get('intent').get('displayName')
+\end{lstlisting}  
+
+\begin{lstlisting}[caption={Dialogflow Intent Handling}, label={lst:dialogflow_intent_handling},captionpos=b,frame=single,language={Python},commentstyle=\color{mygreen},keywordstyle=\color{blue},
+    morekeywords={}]                
+if intent == 'Sickness Confirmed':
+ params = req.get('queryResult').get('outputContexts')[0].get('parameters')
+ employee_name = params.get('employee').get('name').lower()
+ return_date = params.get('return_date')
+ if !employeeExists(employee_name):
+  return {
+    "fulfillmentMessages": [
+      {"text": {"text": ["Employee not found. Enter sick to retry."]}}
+    ]
+  } # RETURN ERROR MESSAGE
+  else:
+   db.store_sickness(employee_name, return_date) # PROCESS DATA
+   return {} # CONTINUE NORMALLY
+elif intent == 'Vacation':
+    ...
+\end{lstlisting}  
+
 \makefigure{dialogflow_interface}{Dialogflow Web Interface}
 \section{Watson Assistant}
 To be done \cite{watsonassistant}.

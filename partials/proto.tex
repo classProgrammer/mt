@@ -118,7 +118,64 @@ elif intent == 'Vacation':
 To be done \cite{watsonassistant}.
  
 \section{Rasa}
-To be done \cite{rasa}.
+Rasa\cite{rasa} can either be used as a Docker container or 
+it can be installed locally.
+Rasa uses Python as development language and can be installed using pip.
+A Docker compose file for Rasa and the action server is shown in listing 
+\ref{lst:rasa_docker}.
+
+\begin{lstlisting}[caption={Rasa Docker Compose File}, label={lst:rasa_docker},captionpos=b,frame=single,language={Python},commentstyle=\color{mygreen},keywordstyle=\color{blue},
+    morekeywords={}]                
+version: '3.0'
+services:
+    rasa:
+    image: rasa/rasa:1.4.6
+    ports:
+        - 80:5005
+    networks: 
+        - app_net
+    volumes:
+        - ./:/app
+    command:
+        run 
+        --enable-api
+        --cors *
+    
+    action_server:
+    image: rasa/rasa-sdk:1.4.0    
+    volumes:
+        - ./actions:/app/actions
+    expose: 
+        - 5055
+    networks: 
+        - app_net
+networks: 
+    app_net:
+\end{lstlisting}  
+The information for a Rasa chatbot is split in multiple files.
+The nlu.md file stores the intents with the utterances used for training.
+The intent format is shown in Listing \ref{lst:rasa_intent_format}
+\begin{lstlisting}[caption={Rasa Intent Format}, label={lst:rasa_intent_format},captionpos=b,frame=single,language={Python},commentstyle=\color{mygreen},keywordstyle=\color{blue},
+    morekeywords={}]                
+## intent:greet
+- hello
+- hi 
+- howdy
+\end{lstlisting} 
+The stories.md file stores the stories. 
+A story defines the flow of the dialog.
+An example story is shown in Listing \ref{lst:rasa_story_format}.
+The user asks the bot if he is a bot and the bot executes the action 
+which is an utterance.
+\begin{lstlisting}[caption={Rasa Story Format}, label={lst:rasa_story_format},captionpos=b,frame=single,language={Python},commentstyle=\color{mygreen},keywordstyle=\color{blue},
+    morekeywords={}]                
+## general bot question
+* are_you_a_bot
+    - utter_i_am_a_bot
+\end{lstlisting} 
+All the actions are defined in actions.py.
+The sickness form slot filling is an action for instance.
+
 
 \section{LUIS}
 With LUIS\cite{luisdocs}, the language understanding service of Microsoft,
@@ -177,5 +234,37 @@ the next year.
 
 \section{Azure Deployment}
 \section{Frontend}
+The main purpose of the frontend is the message handling.
+It tracks the user input, submits the input to the chatbot service 
+when the submit button is pressed, 
+and displays the response.
+A classic message in messangers has the properties sender, timestamp, and message.
+The message format of the frontend is shown in Listing \ref{lst:message_format}
+\begin{lstlisting}[caption={Message Format}, label={lst:message_format},captionpos=b,frame=single,language={Python},commentstyle=\color{mygreen},keywordstyle=\color{blue},
+    morekeywords={}]                
+messages.push({
+    sender: "<Sender>",
+    message: "<Message>",
+    timestamp: this.getTimestamp()
+})
+\end{lstlisting}  
+A toolbar with title, message area, and submit area are necessary for a messenger UI.
+The structure is shown in Listing \ref{lst:messenger_structure}
+\begin{lstlisting}[caption={Messenger Structure}, label={lst:messenger_structure},captionpos=b,frame=single,language={Python},commentstyle=\color{mygreen},keywordstyle=\color{blue},
+    morekeywords={MessengerToolbar, MessageArea, Divider, MessengerSubmitArea, Box}]                
+<Box width={"25em"}>
+    <MessengerToolbar title="3 Banken IT Dev Chatbot" />
+    <MessageArea entries={this.state.messages} />
+    <Divider light />
+    <MessengerSubmitArea 
+        message={this.state.message} 
+        textHandler={this.handleMessage.bind(this)} 
+        submitMessage={this.handleSubmit.bind(this)} 
+    />
+</Box>
+\end{lstlisting}  
+
+
+The UI of the React messenger frontend is shown in action in Figure \ref{fig:messengerui}.
 \section{Webhook}
 \section{Local Deployment (maybe)}

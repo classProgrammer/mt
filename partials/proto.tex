@@ -79,7 +79,7 @@ In the error case a new fulfillment message is returned.
 A fulfillment message as return value prevents follow up intents.
 In the success case an empty response is returned and the bot continues normally.
 In Listing \ref{lst:dialogflow_intent_handling} a skeleton for intent handling
-is shown for a success and error szenario for an intent called "Sickness Confirmed".
+is shown for a success and error scenario for an intent called "Sickness Confirmed".
 
 \begin{lstlisting}[caption={Dialogflow Webhook Entry Point}, label={lst:dialogflow_entry_point},captionpos=b,frame=single,language={Python},commentstyle=\color{mygreen},keywordstyle=\color{blue},
     morekeywords={}]                
@@ -112,19 +112,164 @@ if intent == 'Sickness Confirmed':
 elif intent == 'Vacation':
     ...
 \end{lstlisting}  
-
 \makefigure{dialogflow_interface}{Dialogflow Web Interface}
+
+% ----------------------------------------------------
+% ---------------------- WATSON ----------------------
+% ----------------------------------------------------
 \section{Watson Assistant}
-To be done \cite{watsonassistant}.
- 
+Watson Assistant\citet{watsonassistant} is the cloud chatbot technology of IBM
+hosted in the IBM cloud.
+An IBM cloud account is required to use the services.
+First, a new assistant needs to be created which requires a name.
+Then dialog skills can be created.
+For the sickness notification process a sick dialog is created.
+The web interface of Watson Assistant is shown in Figure \ref{fig:watson_interface}.
+The interface offers the concepts intent, entity, and dialog.
+
+\subsection{Intents and Entities}
+The required entities are person and date.
+Watson Assistant offers system entities for persons and dates.
+In the settings under options a webhook URL can be entered.
+The person entity is marked depricated and is available in English but not in German.
+This means a person entity needs be defined as replacement for the person 
+entity using entity annotations like 
+recommended by IBM.
+To do this every occurance of person names in the test sentences need to be highlighted 
+and marked as person.
+For the sickness use case a new intent needs to be created.
+Then the training phrases need to be added.
+It is possible create new entities by using examples or a regex.
+After the intent had been defined a new dialog needs to be created.
+An intent needs to be selected for a dialog.
+The dialog is triggered when the intent condition is met.
+In this case the intent is the sick intent.
+In the settings menu the dialog can be customized.
+A customization is necessary to enable slot filling and 
+the webhook call which are both necessary for the sickness 
+use case.
+The required slots are person of type person and the return date of type date.
+The person is mandatory and the date is optional.
+After the information has been collected the webhook is called.
+
+\subsection{Dialog and Webhook}
+The format of the webhook call is JSON.
+The parameters need to be specified by hand.
+The required parameters are the name of the intent, the person name, and the 
+return date.
+The name of the intent is necessary to execute the correct action at the webhook.
+The name and return date are the information which needs to be stored.
+It can be seen that no meta-information is sent in the request of Listiing \ref{lst:watson_request}.
+The information and format submitted to the webhook is defined by the developer.
+The returned information from the webhook is stored as a context variable in Watson Assistant and 
+can be accessed like a struct in C++. 
+The format for the webhooks response is also up to the developer.
+Based on the webhook response the dialog can go different ways.
+If the person was found and a date was entered the date needs to be dispalyed in the chatbot response.
+If the person was found but no date was entered the chatbot response needs to ignore the date.
+Whenever a person was found by the webhook the user needs to confirm that the entered information is correct.
+Whenever the person wasn't found the user needs to be prompted to retry.
+These cases need to be implemented with the conditional statements of Watson Assistant.
+Table \ref{tab:watson_cond_response} shows the conditions, responses, and actions which need 
+to be implemented for the use case.
+Chatbot responses can be picked sequentially, at random, or as multiline response.
+The multiline response displays all response lines at once.
+The sequential version picks them in order and the random variant picks the reponse at random from 
+the available responses.
+The confirmation logic needs to be implemented next.
+No system entity or dialog for the confiramtion logic is present.
+This can be implemented with two intents or an entity.
+An entity with two possible values is a logical approach.
+One value is true the other is false.
+The entity is called confirmation.
+For these two cases synonyms are defined like confirm, yes, and OK for true.
+When the entity is detected the correct path can be selected with a condition.
+Similar conditional logic was used for the webhook response shown 
+in Table \ref{tab:watson_cond_response}.
+A new dialog node needs to be created for the confirmation or abort 
+logic.
+There is a jump option in the settings of the dialog node.
+In the success cases of the sickness dialog a jump to the 
+newly created confirm or abort dialog needs to be entered.
+A slot needs to be filled and a webhook call is necessary to store the 
+collected information.
+These two settings also need to be enabled for the confirm or abort dialog.
+The slot is of type confirmation entity and is required.
+After the information has been gathered a request is sent to the webhook.
+The two possible scenarios are that the information is stored or 
+something goes wrong.
+If the information has been stored successfully an all done message is dispalyed.
+Else a generic message is dispalyed indicating that something went wrong.
+This ends the sickness dialog.
+For the vacation use-case a date span is needed.
+No predefined entity exists for date-spans but date is present.
+It's not possible to create entities containing entities with Watson.
+The options are to create an intent with two dates in it or a dialog node 
+which fetches the required data.
+The dialog node approach is choosen because it comes close to the 
+behaviour implemented with Dialogflow.
+A new dialog node named vacation is created.
+For the dialog node an intent called vacation needs to be created with 
+the example sentences.
+The dialog needs a mandatory person slot and two mandatory date slots.
+The start and return dates of the vacation.
+After the information has been collected the information can optionally 
+be validated through the webhook.
+Then the user needs to confirm the information like in the sickness use-case.
+Then the final request is sent to the webhook which stores the 
+collected information.
+The final all done message is displayed and the vacation use-case is finished.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ l | l | l  }
+  Condition & Chatbot Response & Jump To Action \\ \hline \hline
+  \$response.OK \&\& & Please confirm \$person is sick & \multirow{2}{*}{Confirm or abort} \\
+  \$date!=null       & until \$date. & \\ \hline
+  \$response.OK & Please confirm \$person is sick. & Confirm or abort \\ \hline
+  \multirow{2}{*}{\$response.ERROR} & \$person not found. & \multirow{2}{*}{Wait for input} \\ 
+  & Enter sick to retry. & \\ \hline
+
+\end{tabular}
+    \caption{Conditional Responses of Watson Assistant} \label{tab:watson_cond_response}
+\end{table} \noindent
+
+
+\begin{lstlisting}[caption={Watson Assistant Request Format}, label={lst:watson_request},captionpos=b,frame=single,language={Python},commentstyle=\color{mygreen},keywordstyle=\color{blue},
+    morekeywords={}]                
+[
+    {
+        "intent": "Sick",
+        "person_name": "Anna Nass",
+        "return_date": "2020-05-27"
+    }
+]
+\end{lstlisting}  
+
+\makefigure{watson_interface}{Watson Assistant Web Interface}
+
+% ----------------------------------------------------
+% ----------------------  RASA  ----------------------
+% ----------------------------------------------------
 \section{Rasa}
+Rasa is an open-source framework for NLU and chatbots.
 Rasa\cite{rasa} can either be used as a Docker container or 
 it can be installed locally.
 Rasa uses Python as development language and can be installed using pip.
 A Docker compose file for Rasa and the action server is shown in listing 
-\ref{lst:rasa_docker}.
-
-\begin{lstlisting}[caption={Rasa Docker Compose File}, label={lst:rasa_docker},captionpos=b,frame=single,language={Python},commentstyle=\color{mygreen},keywordstyle=\color{blue},
+\ref{lst:rasa_compose}.
+Rasa is split into a natural language and logic part.
+The natural language part takes care of everything which is related to 
+the conversation like intents, entities, the story, and the conversation flow.
+The second part handles the slot filling and the actions.
+For each part a Docker image can be created.
+The Docker compose file of \ref{lst:rasa_compose} can be used in similar fashion 
+for the Azure deployment in combination with the imges.
+Azure also offers a Docker registry to upload and pull custom images.
+It's important to choose compatible version of rasa and rasa-sdk.
+The Rasa image is responsible for the NLU part and the Rasa sdk is the 
+actions server.
+\begin{lstlisting}[caption={Rasa Docker Compose File}, label={lst:rasa_compose},captionpos=b,frame=single,language={Python},commentstyle=\color{mygreen},keywordstyle=\color{blue},
     morekeywords={}]                
 version: '3.0'
 services:
@@ -154,13 +299,13 @@ networks:
 \end{lstlisting}  
 The information for a Rasa chatbot is split in multiple files.
 The nlu.md file stores the intents with the utterances used for training.
-The intent format is shown in Listing \ref{lst:rasa_intent_format}
+The intent format is shown in Listing \ref{lst:rasa_intent_format}.
 \begin{lstlisting}[caption={Rasa Intent Format}, label={lst:rasa_intent_format},captionpos=b,frame=single,language={Python},commentstyle=\color{mygreen},keywordstyle=\color{blue},
     morekeywords={}]                
-## intent:greet
-- hello
-- hi 
-- howdy
+## intent:sick
+    - My colleague [Max Power](PERSON) is sick until [Friday](date)
+    - somebody is sick 
+    - a colleague is ill today
 \end{lstlisting} 
 The stories.md file stores the stories. 
 A story defines the flow of the dialog.
@@ -175,8 +320,109 @@ which is an utterance.
 \end{lstlisting} 
 All the actions are defined in actions.py.
 The sickness form slot filling is an action for instance.
+The intents, entities, and actions need to be listed in the domain.yml file.
+Otherwise they can't be used. 
+The defined actions can be simple utterances or something complex like the slot 
+filling of a form.
+In utterance actions the response is choosen at random.
+In the endpoints.yml file the action server needs to be entered to use the 
+actions server for slot filling.
+The actions server runs seperate from the NLU service at a the standard port 5055.
+The NLU service is accessible at default port 5005.
+Rasa offers great freedom when it comes to configuration.
+This is important because Rasa does not offer predefined entities as such.
+But spacy does offer the required date and person entities for the use cases.
+In the config file shown in Listing \ref{lst:rasa_config} the pipeline includes 
+the spacy entity extractor to enable the use of predefined entities.
+\citet{spacyapi} lists the supported entites under named entity recognition.
+The entity recognition of spacy does work but the dates are stored as they are.
+The best case is when the date is converted in a standard format like 
+Dialogflow and Watson Assistant do.
+To use more powerful date parsing the Duckling\cite{duckling} Rasa Docker image is used.
+Duckling converts entered dates and times to a standard format like the cloud services do.
+To add duckling to the project it needs to be added under pipeline in the 
+config file.
+It recognizes strings like "next monday" as dates and converts them correctly.
+The person entity of Spacy works as expected.
+The used entities need to be added under entities in the domain.yml file.
+People with machine learning experience can also define their own pipelines or adjust parameters.
+The detailed pipeline is listed in the appendix in Listing \ref{lst:spacy_pipeline_detail}.
+The config file defines policies.
+The form policy enable the use of forms and the fallback policy enables 
+a fallback action which is triggered when the confidence score is below 
+the defined threshold. 
+In the sickness use case a generic utterance is the fallback response. 
 
 
+\begin{lstlisting}[caption={Rasa Configuration}, label={lst:rasa_config},captionpos=b,frame=single,language={Python},commentstyle=\color{mygreen},keywordstyle=\color{blue},
+    morekeywords={language, pipeline, policies, name}]                
+language: en
+pipeline: pretrained_embeddings_spacy
+policies:
+- name: MemoizationPolicy
+- name: KerasPolicy
+- name: MappingPolicy
+- name: FormPolicy
+- name: FallbackPolicy
+    nlu_threshold: 0.4
+    core_threshold: 0.3
+    fallback_action_name: utter_did_not_understand
+\end{lstlisting} 
+The general command required to work with Rasa are train, shell, run actions, and x.
+To train Rasa the command "rasa train" is used. 
+The shell command starts an interactive shell where the bot can be tested.
+The action server needs to be run seperatly.
+If Rasa-X is installed the command "rasa x" starts a web UI shown in Figure \ref{fig:rasa_x_interface}.
+The web interface offers the discussed files in the training section with additional
+features like the conversation graph (right) called flow for a story (middle) shown in Figure \ref{fig:rasa_x_interface}.
+Rasa X offers interactive training where the chatbot is built through live interaction 
+with the bot. 
+Rasa stores a model everytime it's trained.
+These models can be exchanged in the models section.
+The whole history is stored which can be used for features.
+If the feature does not work out the model can be set back to 
+the original version.
+\makefigure{rasa_x_interface}{Rasa X Interface}
+For the sickness use case a new itent called sickness needs to be defined in the 
+domain file.
+The sickness intent needs slot filling and the required entities are the 
+person and the return date. 
+The slots need to be defined in the slots section.
+Every slot needs an utterance which is named utter\_ask\_<SLOTNAME>.
+The utterance is displayed when the bot fills a slot.
+For the slot filling an action needs to be defined.
+An example slot fill action is shown in Listing \ref{lst:slot_fill_action}.
+The action needs the name function which returns a unique name.
+The required slots need to be defined.
+If a slot is required it needs to be filled.
+The slot mappings function defines the type of the slots.
+The submit function is called as soon as the slots have been filled.
+In the submit function the collected information can be sent to the 
+external endpoint for instance.
+Custom validation rules can be defined for each slot.
+This can be used to validate that the entered person name exists.
+Now the intent needs to be defined in the nlu file.
+The sickness intent and the training phrases need to be defined in the 
+nlu file in the format of \ref{lst:rasa_intent_format}.
+The entities are marked with square brackets and the types with parantheses.
+Now the sickness story needs to be defined.
+When a phrase is recognized which is classified as sickness intent then 
+the slot filling needs to be triggered.
+The story in \ref{lst:rasa_sickness_story} implements the description from above.
+The next step is the confirmation that the entered data is correct.
+For this a confirmation action is needed.
+There are two possible values yes and no.
+For this rasa offers the boolean slot type which is either true or false.
+
+
+
+
+
+
+
+% ----------------------------------------------------
+% ----------------------  LUIS  ----------------------
+% ----------------------------------------------------
 \section{LUIS}
 With LUIS\cite{luisdocs}, the language understanding service of Microsoft,
 NLU services can be created.
@@ -223,7 +469,7 @@ The advantage of predefined entities is the saved time and the
 advanced features.
 The date-time entity is able to match inputs like Monday, or tomorrow to 
 a valid an correct date by default.
-The year is also automatically added when the date e.g. first Januarry lies in the past.
+The year is also automatically added when the date e.g. first January lies in the past.
 This is important for the vacation use case when the vacation is requested for 
 the next year. 
 
@@ -232,7 +478,7 @@ the next year.
 
 
 
-\section{Azure Deployment}
+
 \section{Frontend}
 The main purpose of the frontend is the message handling.
 It tracks the user input, submits the input to the chatbot service 
@@ -267,4 +513,3 @@ The structure is shown in Listing \ref{lst:messenger_structure}
 
 The UI of the React messenger frontend is shown in action in Figure \ref{fig:messengerui}.
 \section{Webhook}
-\section{Local Deployment (maybe)}

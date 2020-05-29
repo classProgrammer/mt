@@ -30,6 +30,60 @@
 \makeChapter{Conclusion and Outlook}{cao}{conclusion-and-outlook}  % improve because ...
 
 \chapter{Appendix}
+\begin{lstlisting}[caption={Detail Pipeline of Pretrained Embeddings Spacy}, label={lst:spacy_pipeline_detail},captionpos=b,frame=single,language={Python},commentstyle=\color{mygreen},keywordstyle=\color{blue},
+    morekeywords={language, pipeline, name}]                
+language: "en"
+pipeline:
+    - name: "SpacyNLP"
+    - name: "SpacyTokenizer"
+    - name: "SpacyFeaturizer"
+    - name: "RegexFeaturizer"
+    - name: "DucklingHTTPExtractor"
+        url: "http://localhost:8000"
+    - name: "SpacyEntityExtractor"
+    - name: "EntitySynonymMapper"
+    - name: "SklearnIntentClassifier"
+\end{lstlisting} 
+
+\begin{lstlisting}[caption={Slot Filling Action}, label={lst:slot_fill_action},captionpos=b,frame=single,language={Python},commentstyle=\color{mygreen},keywordstyle=\color{blue},
+    morekeywords={}]                
+class SicknessForm(FormAction):
+
+def name(self) -> Text:
+    return "sickness_form"
+
+@staticmethod
+def required_slots(tracker: Tracker) -> List[Text]:
+    return ["PERSON", "return_date"]
+
+def slot_mappings(self) -> Dict[Text, Union[Dict, List[Dict]]]:
+    return {
+            "PERSON": [self.from_entity(entity="PERSON"), self.from_text()],
+            "return_date": [self.from_entity(entity="DATE"), self.from_text()]
+    }
+
+
+def submit(
+    self,
+    dispatcher: CollectingDispatcher,
+    tracker: Tracker,
+    domain: Dict[Text, Any],
+) -> List[Dict]:
+
+    return []    
+\end{lstlisting} 
+
+\begin{lstlisting}[caption={Rasa Sickness Story}, label={lst:rasa_sickness_story},captionpos=b,frame=single,language={Python},commentstyle=\color{mygreen},keywordstyle=\color{blue},
+    morekeywords={}]                
+## Sickness Happy Story
+* sickness
+    - sickness_form
+    - form{"name":"sickness_form"}
+\end{lstlisting} 
+
+
+
+
 
 \makerefs{mt}
     

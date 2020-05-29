@@ -125,3 +125,31 @@ Rasa requires the most time to develop a chatbot and to get everything ready.
 % unique capabilities
 % speech recognition capabilities
 \subsection*{Speech Recognition Capabilities}
+
+\subsection*{Framework Concepts}
+The user interfaces of the cloud frameworks are similar.
+The interfaces are shown in Figure \ref{fig:dialogflow_interface},
+\ref{fig:watson_interface}, and \ref{fig:luis_interface}.
+All three offer intents and entities.
+They are all structured similar with the menu to the left.
+The information for the bots is always entered as text.
+Intents are always built with training phrases.
+All offer prebuilt system entities.
+LUIS has the most prebuilt entities, Dialogflow is in the middle,
+and Watson Assistant offers the fewest entities.
+For the sickness and vacation use-case the entities of 
+Dialogflow suit best because no entity has to be defined by 
+the developer. 
+Watson offers a person system entity in English but the entity
+is marked as deprecated.
+It offers a date entity but no date span entity.
+This means with Watson Assistant two entities have to be 
+modeled for the use-cases.
+LUIS offers a datetime entity which can be used for dates and 
+date spans but it's not working as reliable as the one from 
+Dialogflow.
+It did not identify "22-06 to 30-06" correctly
+which is no problem for Dialogflow.
+
+
+

@@ -309,14 +309,23 @@ The intent format is shown in Listing \ref{lst:rasa_intent_format}.
 \end{lstlisting} 
 The stories.md file stores the stories. 
 A story defines the flow of the dialog.
-An example story is shown in Listing \ref{lst:rasa_story_format}.
-The user asks the bot if he is a bot and the bot executes the action 
-which is an utterance.
+The sickness story is shown in Listing \ref{lst:rasa_story_format}.
 \begin{lstlisting}[caption={Rasa Story Format}, label={lst:rasa_story_format},captionpos=b,frame=single,language={Python},commentstyle=\color{mygreen},keywordstyle=\color{blue},
-    morekeywords={}]                
-## general bot question
-* are_you_a_bot
-    - utter_i_am_a_bot
+    morekeywords={sickness, submit, affirm}]                
+## Sickness Affirm
+* sickness
+    - sickness_form
+    - form{"name":"sickness_form"}
+* submit{"PERSON":"Anna Maria Mayer"}
+    - sickness_form
+    - slot{"PERSON":"Anna Maria Mayer"}
+* submit{"time":"2020-05-30T00:00:00.000-07:00","DATE":"today"}
+    - sickness_form
+    - form{"name":null}
+    - slot{"time":"2020-05-30T00:00:00.000-07:00"}
+* affirm
+    - action_submit_sickness_data
+    - action_restart
 \end{lstlisting} 
 All the actions are defined in actions.py.
 The sickness form slot filling is an action for instance.
@@ -357,16 +366,25 @@ In the sickness use case a generic utterance is the fallback response.
 \begin{lstlisting}[caption={Rasa Configuration}, label={lst:rasa_config},captionpos=b,frame=single,language={Python},commentstyle=\color{mygreen},keywordstyle=\color{blue},
     morekeywords={language, pipeline, policies, name}]                
 language: en
-pipeline: pretrained_embeddings_spacy
+pipeline: 
+    - name: "SpacyNLP"
+    - name: "SpacyTokenizer"
+    - name: "SpacyFeaturizer"
+    - name: "RegexFeaturizer"
+    - name: "DucklingHTTPExtractor"
+        url: "http://localhost:8000"
+    - name: "SpacyEntityExtractor"
+    - name: "EntitySynonymMapper"
+    - name: "SklearnIntentClassifier"
 policies:
-- name: MemoizationPolicy
-- name: KerasPolicy
-- name: MappingPolicy
-- name: FormPolicy
-- name: FallbackPolicy
+    - name: MemoizationPolicy
+    - name: TEDPolicy
+    - name: MappingPolicy
+    - name: FormPolicy
+    - name: FallbackPolicy
     nlu_threshold: 0.4
     core_threshold: 0.3
-    fallback_action_name: utter_did_not_understand
+    fallback_action_name: action_default_ask_rephrase
 \end{lstlisting} 
 The general command required to work with Rasa are train, shell, run actions, and x.
 To train Rasa the command "rasa train" is used. 
@@ -408,11 +426,30 @@ The entities are marked with square brackets and the types with parantheses.
 Now the sickness story needs to be defined.
 When a phrase is recognized which is classified as sickness intent then 
 the slot filling needs to be triggered.
-The story in \ref{lst:rasa_sickness_story} implements the description from above.
-The next step is the confirmation that the entered data is correct.
-For this a confirmation action is needed.
-There are two possible values yes and no.
-For this rasa offers the boolean slot type which is either true or false.
+The next step is the confirmation dialog where the user confirms the entered information.
+A submit sickness data action is required.
+To classify the response the intent affirm and deny are created with some example phrases.
+After affirm is recognized the confirmation action needs to be triggered.
+In the run method of the submit action the data can be validated and processed.
+If deny is recognized the slots need to be cleared and a retry message needs to be displayed.
+The sickness story for the successful caes is shown in Listing\ref{lst:rasa_story_format}.
+The vacation use case is not different from the sickness use-case in Rasa.
+The Duckling time entity can process times, time-spans, dates, and date-spans.
+For Duckling there is no difference between a single date and a date-span.
+Both are stored in the time slot and are of type time.
+Hence, the same person and time slot of the sickness use-case can be used for the 
+vacation use-case.
+The response messages need to be adjusted.
+For the vacation use-case a new intent needs to be created in the domain file.
+The vacation trainig phrases need to be listed in the nlu file.
+A form and a submit action need to be created for the vaction intent.
+The structure be copied from the sickness use-case.
+Then the response messages and conditions are adjusted as needed.
+The actions need to be listed in the domain file to be usable in the stories.
+Then the new stories need to be created.
+With Rasa-X the stories are created with live interaction with the bot.
+The stories are structured like in the sickness use-case.
+
 
 
 

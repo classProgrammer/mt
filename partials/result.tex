@@ -105,7 +105,227 @@ Rasa requires the most time to develop a chatbot and to get everything ready.
 % response times
 \subsection*{Response Times}
 % precision entity recognition/extraction
-\subsection*{Entity Extraction Capabilities}
+\subsection*{Entity Recognition and Extraction}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ l | l | c | c | c | c }
+        Framework & Subtype & Person & Date & Date Span & Standardized Output Date \\ \hline \hline
+        \multirow{3}{*}{Rasa} & Default & \xmark & \xmark & \xmark & \xmark \\
+        & Spacy & \cmark & \cmark & \cmark & \xmark \\ 
+        & Duckling & \xmark & \cmark & \cmark & \cmark \\ \hline
+        Dialogflow & System & \cmark & \cmark & \cmark & \cmark \\ \hline
+        Watson & System & \xmark & \cmark & \cmark & \cmark \\ 
+    \end{tabular}
+    \caption{Framework Entity Recognition and Extraction} \label{tab:entity_extraction_recognition}
+\end{table} \noindent
+
+Entity recognition and extraction is a key feature of chatbots.
+For the use-cases of this thesis a date, date-span, and person entity are required.
+The entity recognition and extraction tests focus soley on the required entities.
+In Table \ref{tab:entity_extraction_recognition} the supported entities are listed alongside the technologies.
+Rasa does not offer any entites but the pipline can be adjusted.
+One part of the pipeline is Spacy which offers person and date entities.
+Spacy does not convert the date into a standard format.
+For this reason Duckling was added to the pipeline.
+Duckling focuses on numeric values, dates, and times and converts dates into a standardized format.
+Dialogflow offers the system entities date, date-period, and person.
+Hence, no entities need to be created and nothing needs to be adjusted.
+Watson Assistant offers the system entity sys-date.
+
+The person entity has been added to Watson Assistant with custom training data.
+The expectation is that the person entity of Watson Assistant performs worst because 
+it's no system entity and is built with a low amount of training data.
+The results of the date recognition and extraction are listed in Table \ref{tab:date_entity_extraction_recognition}.
+The expectation of the results is listed as true positive(TP) when the date should be recognized and extracted or as true negative(TN)
+when the entity shouldn't be recognized and extracted.
+The test result shows that the date entity of Dialogflow worked best with just one error
+followed closely by Duckling with two errors.
+Spacy performed worst with five errors in ten tests followed by Watson Assistant with four errors out of ten.
+No technology worked correctly on test case eight of Table \ref{tab:date_entity_extraction_recognition}.
+It also shows that weekdays and tomorrow work with all technologies.
+The extracted value column shows that Spacy recognizes many date inputs correctly but doesn't convert them.
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ c | l | c | l | c | c  }
+        No & Input & Expected & Technology & Recognized & Extracted \\ 
+                 &&          &            & Correctly  & Value     \\ \hline \hline
+        \multirow{4}{*}{1} & \multirow{4}{*}{Tomorrow} & \multirow{4}{*}{TP} 
+                                  & Watson & \cmark & 2020-06-01 \\
+                                  && & Dialogflow & \cmark & 2020-06-01 \\
+                                  && & Spacy & \cmark & Tomorrow \\
+                                  && & Duckling & \cmark & 2020-06-01 \\ 
+                                  \hline
+        \multirow{4}{*}{2} &\multirow{4}{*}{Friday} & \multirow{4}{*}{TP} 
+                                  & Watson & \cmark & 2020-06-05 \\
+                                  & && Dialogflow & \cmark & 2020-06-05 \\
+                                  & && Spacy & \cmark & Friday \\
+                                  & & &Duckling & \cmark & 2020-06-05 \\ 
+                                  \hline
+        \multirow{4}{*}{3} &\multirow{4}{*}{6.June} & \multirow{4}{*}{TP} 
+                                  & Watson & \xmark & 2020-06-01 \\
+                                  && & Dialogflow & \cmark & 2020-06-06 \\
+                                  && & Spacy & \xmark & - \\
+                                  & && Duckling & \xmark & - \\ 
+                                  \hline
+        \multirow{4}{*}{4} &\multirow{4}{*}{June 6} & \multirow{4}{*}{TP} 
+                                  & Watson & \cmark & 2020-06-06 \\
+                                  && & Dialogflow & \cmark & 2020-06-06 \\
+                                  && & Spacy & \cmark & June 6 \\
+                                  & && Duckling & \cmark & 2020-06-06 \\ 
+                                  \hline
+        \multirow{4}{*}{5} &\multirow{4}{*}{6th of June} & \multirow{4}{*}{TP} 
+                                  & Watson & \cmark & 2020-06-06 \\
+                                  && & Dialogflow & \cmark & 2020-06-06 \\
+                                  && & Spacy & \cmark & 6th of June \\
+                                  & && Duckling & \cmark & 2020-06-06 \\ 
+                                  \hline
+        \multirow{4}{*}{6} &\multirow{4}{*}{06/06} & \multirow{4}{*}{TP} 
+                                  & Watson & \cmark & 2020-06-06 \\
+                                  && & Dialogflow & \cmark & 2020-06-06 \\
+                                  && & Spacy & \xmark & - \\
+                                  & && Duckling & \cmark & 2020-06-06 \\ 
+                                  \hline
+        \multirow{4}{*}{7} &\multirow{4}{*}{06-06} & \multirow{4}{*}{TP} 
+                                  & Watson & \xmark & - \\
+                                  && & Dialogflow & \cmark & 2020-06-06 \\
+                                  && & Spacy & \xmark & - \\
+                                  & && Duckling & \cmark & 2020-06-06 \\ 
+                                  \hline
+        \multirow{4}{*}{8} &  \multirow{4}{*}{06.06} & \multirow{4}{*}{TP} 
+                                  & Watson & \xmark & - \\
+                                  && & Dialogflow & \xmark & - \\
+                                  & && Spacy & \xmark & - \\
+                                  & && Duckling & \xmark & 2020-05-31 \\ 
+                                  \hline
+        \multirow{4}{*}{9} & \multirow{4}{*}{06.06.2020} & \multirow{4}{*}{TP} 
+                                  & Watson & \cmark & 2020-06-06 \\
+                                  && & Dialogflow & \cmark & 2020-06-06 \\
+                                  & && Spacy & \xmark & - \\
+                                  & && Duckling & \cmark & 2020-06-06 \\ 
+                                  \hline
+
+        \multirow{4}{*}{10} & \multirow{4}{*}{06/34/2020} & \multirow{4}{*}{TN} 
+                                  & Watson & \xmark & 2020-06-01 \\
+                                  && & Dialogflow & \cmark & - \\
+                                  && & Spacy & \cmark & - \\
+                                  & && Duckling & \cmark & - \\ 
+                                  \hline
+    \end{tabular}
+    \caption{Date Entity Recogniton and Extraction} \label{tab:date_entity_extraction_recognition}
+\end{table} \noindent
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ c | c | c | c | c | c  }
+        No & Input & Expected & Technology & Recognized & Extracted \\ 
+                 &&          &            & Correctly  & Value     \\ \hline \hline
+        \multirow{3}{*}{1} &\multirow{3}{*}{Franz Bauer} & \multirow{3}{*}{TP} 
+                                  & Watson & \cmark & Franz Bauer \\
+                                  && & Dialogflow & \cmark & Franz Bauer \\
+                                  && & Spacy & \cmark & Franz Bauer \\
+                                  \hline
+        \multirow{3}{*}{2} &\multirow{3}{*}{franz bauer} & \multirow{3}{*}{TP} 
+                                  & Watson & \cmark & franz bauer \\
+                                  & && Dialogflow & \cmark & franz bauer \\
+                                  & && Spacy & \cmark & franz bauer \\
+                                  \hline
+        \multirow{3}{*}{3} &\multirow{3}{*}{Anna Maria Mayer} & \multirow{3}{*}{TP} 
+                                  & Watson & \xmark & Maria Mayer \\
+                                  & && Dialogflow & \xmark & Maria Mayer \\
+                                  & && Spacy & \cmark & Anna Maria Mayer\\
+                                  \hline
+        \multirow{3}{*}{4} &\multirow{3}{*}{Anna Mayer-Bauer} & \multirow{3}{*}{TP} 
+                                  & Watson & \xmark & Anna Mayer \\
+                                  & && Dialogflow & \cmark & Anna Mayer-Bauer \\
+                                  & && Spacy & \cmark & Anna Mayer-Bauer\\
+                                  \hline
+        \multirow{3}{*}{5} &\multirow{3}{*}{Asdfgh} & \multirow{3}{*}{TN} 
+                                  & Watson & \cmark & - \\
+                                  & && Dialogflow & \cmark & - \\
+                                  & && Spacy & \xmark & Asdfgh\\
+                                  \hline
+        \multirow{3}{*}{6} &\multirow{3}{*}{Asdfgh Qwert} & \multirow{3}{*}{TN} 
+                                  & Watson & \xmark & Asdfgh Qwert \\
+                                  & && Dialogflow & \cmark & - \\
+                                  & && Spacy & \xmark & Asdfgh Qwert\\
+                                  \hline
+
+    \end{tabular}
+    \caption{Person Entity Recogniton and Extraction} \label{tab:person_entity_extraction_recognition}
+\end{table} \noindent
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ c | c | c | c | c | c  }
+        No & Input & Expected & Technology & Recognized & Extracted \\ 
+                 &&          &            & Correctly  & Value     \\ \hline \hline
+        \multirow{8}{*}{1} &\multirow{8}{*}{Monday to Friday} & \multirow{8}{*}{TP} 
+                 & \multirow{2}{*}{Watson} & \multirow{2}{*}{\cmark} & 2020-06-01 \\
+                 &&&                          &                        & 2020-06-05 \\\cline{4-6}
+                 &&& \multirow{2}{*}{Dialogflow} & \multirow{2}{*}{\xmark} & 2020-05-25 \\
+                 &&&                          &                        & 2020-06-05 \\\cline{4-6}
+                 &&& \multirow{2}{*}{Spacy} & \multirow{2}{*}{\cmark} & Monday to \\
+                 &&&                          &                        & Friday \\\cline{4-6}
+                 &&& \multirow{2}{*}{Duckling} & \multirow{2}{*}{\cmark} & 2020-06-01 \\
+                 &&&                          &                        & 2020-06-06 \\
+                 \hline
+        \multirow{8}{*}{2} &\multirow{8}{*}{\shortstack[l]{from next tuesday to\\ wednesday}} & \multirow{8}{*}{TP} 
+                 & \multirow{2}{*}{Watson} & \multirow{2}{*}{\cmark} & 2020-06-02 \\
+                 &&&                          &                        & 2020-06-03 \\\cline{4-6}
+                 &&& \multirow{2}{*}{Dialogflow} & \multirow{2}{*}{\xmark} & 2020-05-26 \\
+                 &&&                          &                        & 2020-06-03 \\\cline{4-6}
+                 &&& \multirow{2}{*}{Spacy} & \multirow{2}{*}{\xmark} & next tuesday \\
+                 &&&                          &                        & wednesday \\\cline{4-6}
+                 &&& \multirow{2}{*}{Duckling} & \multirow{2}{*}{\cmark} & 2020-06-02 \\
+                 &&&                          &                        & 2020-06-04 \\
+                 \hline
+        \multirow{8}{*}{3} &\multirow{8}{*}{\shortstack[l]{June 6 to June 7}} & \multirow{8}{*}{TP} 
+                 & \multirow{2}{*}{Watson} & \multirow{2}{*}{\cmark} & 2020-06-06 \\
+                 &&&                          &                        & 2020-06-07 \\\cline{4-6}
+                 &&& \multirow{2}{*}{Dialogflow} & \multirow{2}{*}{\cmark} & 2020-06-06 \\
+                 &&&                          &                        & 2020-06-07 \\\cline{4-6}
+                 &&& \multirow{2}{*}{Spacy} & \multirow{2}{*}{\cmark} & June 6 to \\
+                 &&&                          &                        & June 7 \\\cline{4-6}
+                 &&& \multirow{2}{*}{Duckling} & \multirow{2}{*}{\cmark} & 2020-06-06 \\
+                 &&&                          &                        & 2020-06-08 \\
+                 \hline
+        \multirow{8}{*}{4} &\multirow{8}{*}{\shortstack[l]{06/06 to 06/07}} & \multirow{8}{*}{TP} 
+                 & \multirow{2}{*}{Watson} & \multirow{2}{*}{\cmark} & 2020-06-06 \\
+                 &&&                          &                        & 2020-06-07 \\\cline{4-6}
+                 &&& \multirow{2}{*}{Dialogflow} & \multirow{2}{*}{\cmark} & 2020-06-06 \\
+                 &&&                          &                        & 2020-06-07 \\\cline{4-6}
+                 &&& \multirow{2}{*}{Spacy} & \multirow{2}{*}{\xmark} & - \\
+                 &&&                          &                        & - \\\cline{4-6}
+                 &&& \multirow{2}{*}{Duckling} & \multirow{2}{*}{\cmark} & 2020-06-06 \\
+                 &&&                          &                        & 2020-06-08 \\
+                 \hline
+
+
+
+    \end{tabular}
+    \caption{Date Span Entity Recogniton and Extraction} \label{tab:date_span_entity_extraction_recognition}
+\end{table} \noindent
+
+% \begin{table}[H]
+%     \centering
+%     \begin{tabular}{ l | l | l }
+%         No & Text & Entity Recognized & Extracted \\ \hline \hline
+%         \multirow{3}{*}{Dialogflow} & Standard & Free \\
+%         & EE Essentials &  \$0.002 per request\\
+%         & EE Plus & \$0.004 per request \\ \hline
+
+%         \multirow{3}{*}{Watson Assistant} & Lite & Free \\
+%         & Plus &  \$120 for 1000 users/month\\
+%         & Premium & Individual \\ \hline
+
+%         \multirow{3}{*}{Rasa} & Rasa Open Source & Free \\
+%         & Rasa X &  Free\\
+%         & Rasa Enterprise & Individual \\ \hline
+%     \end{tabular}
+%     \caption{Pricing of Frameworks \cite{rasa, dialogflow, watsonassistant}} \label{tab:pricing}
+% \end{table} \noindent
+
+
 % predefined types/entities
 \subsection*{Predefined Entities}
 % training capabilities

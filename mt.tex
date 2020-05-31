@@ -74,11 +74,21 @@ def submit(
 \end{lstlisting} 
 
 \begin{lstlisting}[caption={Rasa Sickness Story}, label={lst:rasa_sickness_story},captionpos=b,frame=single,language={Python},commentstyle=\color{mygreen},keywordstyle=\color{blue},
-    morekeywords={}]                
-## Sickness Happy Story
+    morekeywords={sickness, submit, affirm}]                
+## Sickness Affirm
 * sickness
     - sickness_form
     - form{"name":"sickness_form"}
+* submit{"PERSON":"Anna Maria Mayer"}
+    - sickness_form
+    - slot{"PERSON":"Anna Maria Mayer"}
+* submit{"time":"2020-05-30T00:00:00.000-07:00","DATE":"today"}
+    - sickness_form
+    - form{"name":null}
+    - slot{"time":"2020-05-30T00:00:00.000-07:00"}
+* affirm
+    - action_submit_sickness_data
+    - action_restart
 \end{lstlisting} 
 
 

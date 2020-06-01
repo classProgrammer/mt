@@ -106,19 +106,6 @@ Rasa requires the most time to develop a chatbot and to get everything ready.
 \subsection*{Response Times}
 % precision entity recognition/extraction
 \subsection*{Entity Recognition and Extraction}
-\begin{table}[h]
-    \centering
-    \begin{tabular}{ l | l | c | c | c | c }
-        Framework & Subtype & Person & Date & Date Span & Standardized Output Date \\ \hline \hline
-        \multirow{3}{*}{Rasa} & Default & \xmark & \xmark & \xmark & \xmark \\
-        & Spacy & \cmark & \cmark & \cmark & \xmark \\ 
-        & Duckling & \xmark & \cmark & \cmark & \cmark \\ \hline
-        Dialogflow & System & \cmark & \cmark & \cmark & \cmark \\ \hline
-        Watson & System & \xmark & \cmark & \xmark & \cmark \\ \hline
-        Luis & System & \cmark & \cmark & \xmark & \cmark \\
-    \end{tabular}
-    \caption{Framework Entity Recognition and Extraction} \label{tab:entity_extraction_recognition}
-\end{table} \noindent
 
 Entity recognition and extraction is a key feature of chatbots.
 For the use-cases of this thesis a date, date-span, and person entity are required.
@@ -131,8 +118,22 @@ For this reason Duckling was added to the pipeline.
 Duckling focuses on numeric values, dates, and times and converts dates into a standardized format.
 Dialogflow offers the system entities date, date-period, and person.
 LUIS offers a person and date-time entity.
+The date-time entity can also be a date-span.
 Hence, no entities need to be created in LUIS or Dialogflow for the use-cases of this 
 thesis.
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ c | l | c | c | c | c }
+        Framework & Subtype & Person & Date & Date Span & Standardized Output Date \\ \hline \hline
+        \multirow{3}{*}{Rasa} & Default & \xmark & \xmark & \xmark & \xmark \\
+        & Spacy & \cmark & \cmark & \cmark & \xmark \\ 
+        & Duckling & \xmark & \cmark & \cmark & \cmark \\ \hline
+        Dialogflow & System & \cmark & \cmark & \cmark & \cmark \\ \hline
+        Watson & System & \xmark & \cmark & \xmark & \cmark \\ \hline
+        LUIS & System & \cmark & \cmark & \cmark & \cmark \\
+    \end{tabular}
+    \caption{Framework Entity Recognition and Extraction} \label{tab:entity_extraction_recognition}
+\end{table} \noindent
 Watson Assistant offers the system entity sys-date but no date-span entity.
 When Watson recognizes two sys-dates the slots are filled correctly as start and return date
 and the result is comparable to a date-span entity.
@@ -166,8 +167,17 @@ It also shows that weekdays and tomorrow work with all technologies.
 The extracted value column shows that Spacy recognizes many date inputs correctly but doesn't convert them.
 
 The detailed result of the entity recognition comparison is shown in Table \ref{tab:entity_extraction_eval}.
-Rasa wins the technology category with an f-score of 0.865 when Duckling is used for dates and 
-Spacy is used for persons.
+The column name p stands for precision and r for recall.
+Date sum shows the framework result based on the date and date-span recognition
+without the person entity for the comparison with Duckling which has no person entity.
+The last row of Table \ref{tab:entity_extraction_eval} shows the result for the combination 
+of Duckling for dates and date-spans and Spacy for persons.
+This makes the comparison of Rasa with the other technologies possible.
+The true negatives (TN) are not part of the f-score calculation.
+Table \ref{tab:entity_extraction_eval} shows that the technology with the 
+best f-score (0.888) is the combination of Duckling for dates and date-sapns and Spacy  
+for persons.
+Rasa can use both technologies and has the highest f-score of all technologies.
 The best f-score (0.888) for the combination of dates and date-spans was achieved  
 by Duckling.
 Dialogflow has the best date entity (f-score of 0.94) but had problems 
@@ -184,7 +194,7 @@ entity can be increased.
 
 \begin{table}[h]
     \centering
-    \begin{tabular}{ l | l | c | c | c | c | c | c | c | c }
+    \begin{tabular}{ c | l | c | c | c | c | c | c | c | c }
         Framework & Type & TP & TN & FP & FN & p & r & F-Score & Tests \\ \hline \hline
         \multirow{4}{*}{Dialogflow} 
         & Date & 8 & 1 & 0 & 1 & 1.0 & 0.888 & 0.94 & 10 \\ 
@@ -214,15 +224,16 @@ entity can be increased.
         Watson & Date Sum & 11 & 0 & 1 & 4 & 0.916 & 0.733 & 0.815 & 16 \\ \hline
         LUIS & Date Sum & 9 & 0 & 1 & 6 & 0.9 & 0.6 & 0.72 & 16 \\ \hline
         Spacy & Date Sum & 6 & 1 & 0 & 9 & 1 & 0.4 & 0.5714 & 16 \\ \hline
-        Spacy+Duckling & Summary & 16 & 1 & 2 & 3 & 0.888 & 0.842 & 0.865 & 22 \\ \hline
+        Spacy + & \multirow{2}{*}{Summary} & \multirow{2}{*}{16} & \multirow{2}{*}{1} & \multirow{2}{*}{2} & \multirow{2}{*}{3} & \multirow{2}{*}{0.888} & \multirow{2}{*}{0.842} & \multirow{2}{*}{0.865} & \multirow{2}{*}{22} \\
+        Duckling & & & & & & & & & \\\hline
     \end{tabular}
     \caption{Entity Recognition Result Evaluation} \label{tab:entity_extraction_eval}
 \end{table} \noindent
 
 \begin{table}[H]
     \centering
-    \begin{tabular}{ c | l | c | l | c | c  }
-        No & Input & Expected & Technology & Recognized & Extracted \\ 
+    \begin{tabular}{ c | c | c | l | c | c  }
+        \multirow{2}{*}{No} & \multirow{2}{*}{Input} & \multirow{2}{*}{Expected} & \multirow{2}{*}{Technology} & Recognized & Extracted \\ 
                  &&          &            & Correctly  & Value     \\ \hline \hline
         \multirow{5}{*}{1} & \multirow{5}{*}{Tomorrow} & \multirow{5}{*}{TP} 
                                   & Watson & \cmark & 2020-06-01 \\
@@ -287,8 +298,8 @@ entity can be increased.
 
 \begin{table}[H]
     \centering
-    \begin{tabular}{ c | l | c | l | c | c  }
-        No & Input & Expected & Technology & Recognized & Extracted \\ 
+    \begin{tabular}{ c | c | c | l | c | c  }
+        \multirow{2}{*}{No} & \multirow{2}{*}{Input} & \multirow{2}{*}{Expected} & \multirow{2}{*}{Technology} & Recognized & Extracted \\ 
                  &&          &            & Correctly  & Value     \\ \hline \hline
         \multirow{5}{*}{9} & \multirow{5}{*}{06.06.2020} & \multirow{5}{*}{TP} 
                                   & Watson & \cmark & 2020-06-06 \\
@@ -312,7 +323,7 @@ entity can be increased.
 \begin{table}[h]
     \centering
     \begin{tabular}{ c | c | c | c | c | c  }
-        No & Input & Expected & Technology & Recognized & Extracted \\ 
+        \multirow{2}{*}{No} & \multirow{2}{*}{Input} & \multirow{2}{*}{Expected} & \multirow{2}{*}{Technology} & Recognized & Extracted \\ 
                  &&          &            & Correctly  & Value     \\ \hline \hline
         \multirow{4}{*}{1} &\multirow{4}{*}{Franz Bauer} & \multirow{4}{*}{TP} 
                                   & Watson & \cmark & Franz Bauer \\
@@ -358,9 +369,9 @@ entity can be increased.
 \begin{table}[H]
     \centering
     \begin{tabular}{ c | c | c | c | c | c  }
-        No & Input & Expected & Technology & Recognized & Extracted \\ 
+        \multirow{2}{*}{No} & \multirow{2}{*}{Input} & \multirow{2}{*}{Expected} & \multirow{2}{*}{Technology} & Recognized & Extracted \\ 
                  &&          &            & Correctly  & Value     \\ \hline \hline
-        \multirow{8}{*}{1} &\multirow{8}{*}{Monday to Friday} & \multirow{8}{*}{TP} 
+        \multirow{10}{*}{1} &\multirow{10}{*}{Monday to Friday} & \multirow{10}{*}{TP} 
                  & \multirow{2}{*}{Watson} & \multirow{2}{*}{\cmark} & 2020-06-01 \\
                  &&&                          &                        & 2020-06-05 \\\cline{4-6}
                  &&& \multirow{2}{*}{Dialogflow} & \multirow{2}{*}{\xmark} & 2020-05-25 \\
@@ -372,7 +383,7 @@ entity can be increased.
                  &&& \multirow{2}{*}{LUIS} & \multirow{2}{*}{\xmark} & 2020-05-25 \\
                  &&&                          &                        & 2020-05-29 \\
                  \hline
-        \multirow{8}{*}{2} &\multirow{8}{*}{\shortstack[l]{from next tuesday to\\ wednesday}} & \multirow{8}{*}{TP} 
+        \multirow{10}{*}{2} &\multirow{10}{*}{\shortstack[l]{from next tuesday to\\ wednesday}} & \multirow{10}{*}{TP} 
                  & \multirow{2}{*}{Watson} & \multirow{2}{*}{\cmark} & 2020-06-02 \\
                  &&&                          &                        & 2020-06-03 \\\cline{4-6}
                  &&& \multirow{2}{*}{Dialogflow} & \multirow{2}{*}{\xmark} & 2020-05-26 \\
@@ -384,7 +395,7 @@ entity can be increased.
                  &&& \multirow{2}{*}{LUIS} & \multirow{2}{*}{\xmark} & 2020-06-09 \\
                  &&&                          &                        & 2020-06-10 \\
                  \hline
-        \multirow{8}{*}{3} &\multirow{8}{*}{\shortstack[l]{June 6 to June 7}} & \multirow{8}{*}{TP} 
+        \multirow{10}{*}{3} &\multirow{10}{*}{\shortstack[l]{June 6 to June 7}} & \multirow{10}{*}{TP} 
                  & \multirow{2}{*}{Watson} & \multirow{2}{*}{\cmark} & 2020-06-06 \\
                  &&&                          &                        & 2020-06-07 \\\cline{4-6}
                  &&& \multirow{2}{*}{Dialogflow} & \multirow{2}{*}{\cmark} & 2020-06-06 \\
@@ -396,7 +407,7 @@ entity can be increased.
                  &&& \multirow{2}{*}{LUIS} & \multirow{2}{*}{\cmark} & 2020-06-06 \\
                  &&&                          &                        & 2020-06-07 \\
                  \hline
-        \multirow{8}{*}{4} &\multirow{8}{*}{\shortstack[l]{06/06 to 06/07}} & \multirow{8}{*}{TP} 
+        \multirow{10}{*}{4} &\multirow{10}{*}{\shortstack[l]{06/06 to 06/07}} & \multirow{10}{*}{TP} 
                  & \multirow{2}{*}{Watson} & \multirow{2}{*}{\cmark} & 2020-06-06 \\
                  &&&                          &                        & 2020-06-07 \\\cline{4-6}
                  &&& \multirow{2}{*}{Dialogflow} & \multirow{2}{*}{\cmark} & 2020-06-06 \\
@@ -414,9 +425,9 @@ entity can be increased.
 \begin{table}[h]
     \centering
     \begin{tabular}{ c | c | c | c | c | c  }
-        No & Input & Expected & Technology & Recognized & Extracted \\ 
+        \multirow{2}{*}{No} & \multirow{2}{*}{Input} & \multirow{2}{*}{Expected} & \multirow{2}{*}{Technology} & Recognized & Extracted \\ 
                  &&          &            & Correctly  & Value     \\ \hline \hline
-        \multirow{8}{*}{5} &\multirow{8}{*}{\shortstack[l]{06/07 to 06/06}} & \multirow{8}{*}{TP} 
+        \multirow{10}{*}{5} &\multirow{10}{*}{\shortstack[l]{06/07 to 06/06}} & \multirow{10}{*}{TP} 
                  & \multirow{2}{*}{Watson} & \multirow{2}{*}{\xmark} & 2020-06-07 \\
                  &&&                          &                        & 2020-06-06 \\\cline{4-6}
                  &&& \multirow{2}{*}{Dialogflow} & \multirow{2}{*}{\xmark} & 2020-06-07 \\
@@ -428,7 +439,7 @@ entity can be increased.
                  &&& \multirow{2}{*}{LUIS} & \multirow{2}{*}{\xmark} & 2020-06-07 \\
                  &&&                          &                        & 2020-06-06 \\
                  \hline
-        \multirow{8}{*}{6} &\multirow{8}{*}{\shortstack[l]{from tomorrow to\\06.06.2020}} & \multirow{8}{*}{TP} 
+        \multirow{10}{*}{6} &\multirow{10}{*}{\shortstack[l]{from tomorrow to\\06.06.2020}} & \multirow{10}{*}{TP} 
                  & \multirow{2}{*}{Watson} & \multirow{2}{*}{\cmark} & 2020-06-02 \\
                  &&&                          &                        & 2020-06-06 \\\cline{4-6}
                  &&& \multirow{2}{*}{Dialogflow} & \multirow{2}{*}{\xmark} & - \\

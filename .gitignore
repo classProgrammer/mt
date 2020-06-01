@@ -1,6 +1,7 @@
 .vs/
 *.zip
 *.pdf
+excel/
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof

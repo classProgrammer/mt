@@ -224,11 +224,11 @@ The final all done message is displayed and the vacation use-case is finished.
     \centering
     \begin{tabular}{ l | l | l  }
   Condition & Chatbot Response & Jump To Action \\ \hline \hline
-  \$response.OK \&\& & Please confirm \$person is sick & \multirow{2}{*}{Confirm or abort} \\
-  \$date!=null       & until \$date. & \\ \hline
+  \$response.OK \&\& \$date!=null & Please confirm \$person is sick & \multirow{2}{*}{Confirm or abort} \\
+        & until \$date. & \\ \hline
   \$response.OK & Please confirm \$person is sick. & Confirm or abort \\ \hline
-  \multirow{2}{*}{\$response.ERROR} & \$person not found. & \multirow{2}{*}{Wait for input} \\ 
-  & Enter sick to retry. & \\ \hline
+  \multirow{2}{*}{\$response.ERROR} & \$person not found. Enter sick to & \multirow{2}{*}{Wait for input} \\ 
+  &  retry. & \\ \hline
 
 \end{tabular}
     \caption{Conditional Responses of Watson Assistant} \label{tab:watson_cond_response}

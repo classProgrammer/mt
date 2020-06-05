@@ -509,7 +509,7 @@ Spacy has no relevance for the application in terms of date and date-span
 extraction and is not considered for dates in the intent recognition tests.
 \begin{table}[h]
     \centering
-    \begin{tabular}{ c | c | c | c | c | c   }
+    \begin{tabular}{ c | l | c | c | c | c   }
         \multirow{2}{*}{No} & \multirow{2}{*}{Input} & \multirow{2}{*}{Technology} & Intent & Entity & Confid. \\ 
                  &&          & Match & Match & [\%]     \\ \hline \hline
 
@@ -551,6 +551,48 @@ extraction and is not considered for dates in the intent recognition tests.
 
     \end{tabular}
     \caption{Sickness Intent Classification} \label{tab:sickness_intent_classification}
+\end{table} \noindent
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ c | l | c | c | c | c   }
+        \multirow{2}{*}{No} & \multirow{2}{*}{Input} & \multirow{2}{*}{Technology} & Intent & Entity & Confid. \\ 
+                 &&          & Match & Match & [\%]     \\ \hline \hline
+
+        \multirow{4}{*}{1} & \multirow{4}{*}{vacation}  
+        &  Watson & \multirow{4}{*}{\cmark} & \multirow{4}{*}{-} & 100.0 \\\cline{3-3} \cline{6-6}
+        && Dialogflow &  &  & 100.0 \\ \cline{3-3}\cline{6-6}
+        && Rasa &  &  & 91.7 \\ \cline{3-3}\cline{6-6}
+        && LUIS &  &  & 98.3 \\ \hline
+
+        \multirow{4}{*}{2} & \multirow{4}{*}{\shortstack[l]{my colleague Franz Bauer wants to\\ go on vacation}}  
+        &  Watson & \multirow{3}{*}{\cmark} & \multirow{3}{*}{\cmark} & 91.0 \\\cline{3-3} \cline{6-6}
+        && Dialogflow &  &  & 64.9 \\ \cline{3-3}\cline{6-6}
+        && Rasa &  &  & 33.7 \\ \cline{3-6}
+        && LUIS & \xmark & \cmark & - \\ \hline
+
+        \multirow{4}{*}{3} & \multirow{4}{*}{\shortstack[l]{vacation Martin Huber 07/12 to\\ July 15th}}  
+        &  Watson & \multirow{3}{*}{\cmark} & \multirow{3}{*}{\cmark} & 44.0 \\\cline{3-3} \cline{6-6}
+        && Dialogflow &  &  & 100.0 \\ \cline{3-3}\cline{6-6}
+        && Rasa &  &  & 57.4 \\ \cline{3-6}
+        && LUIS & \xmark & \cmark & - \\ \hline
+
+        \multirow{4}{*}{4} & \multirow{4}{*}{\shortstack[l]{holiday from 07/12 to July 15th}}  
+        &  Watson & \multirow{3}{*}{\cmark} & \multirow{3}{*}{\cmark} & 94.0 \\\cline{3-3} \cline{6-6}
+        && Dialogflow &  &  & 64.7 \\ \cline{3-3}\cline{6-6}
+        && Rasa &  &  & 67.4 \\ \cline{3-6}
+        && LUIS & \xmark & \cmark & - \\ \hline
+
+        \multirow{4}{*}{5} & \multirow{4}{*}{\shortstack[l]{vacation from 28th September to\\ October 4}}  
+        &  Watson & \multirow{3}{*}{\cmark} & \multirow{3}{*}{\cmark} & 95.0 \\\cline{3-3} \cline{6-6}
+        && Dialogflow &  &  & 100.0 \\ \cline{3-3}\cline{6-6}
+        && Rasa &  &  & 55.5 \\ \cline{3-6}
+        && LUIS & \xmark & \cmark & - \\ \hline
+
+
+
+    \end{tabular}
+    \caption{Vacation Intent Classification} \label{tab:sickness_intent_classification}
 \end{table} \noindent
 
 % training capabilities

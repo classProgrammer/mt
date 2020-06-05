@@ -148,6 +148,10 @@ The column "Extracted Value" of Tables \ref{tab:date_entity_extraction_recogniti
 and \ref{tab:date_span_entity_extraction_recognition},
 \ref{tab:date_span_entity_extraction_recognition2} show that Spacy doesn't 
 convert the dates into standard format.
+The date and date-span tests focus on different date inputs.
+It is to be expected that a recognized date format works for 
+all instances of the fromat.
+If monday is recognized correctly the other weekdays will work too. 
 
 The person entity has been added to Watson Assistant with custom training data.
 The expectation is that the person entity of Watson Assistant performs worst because 
@@ -165,32 +169,6 @@ When German is selected as language the performace on dates separated by
 "." increases.
 It also shows that weekdays and tomorrow work with all technologies.
 The extracted value column shows that Spacy recognizes many date inputs correctly but doesn't convert them.
-
-The detailed result of the entity recognition comparison is shown in Table \ref{tab:entity_extraction_eval}.
-The column name p stands for precision and r for recall.
-Date sum shows the framework result based on the date and date-span recognition
-without the person entity for the comparison with Duckling which has no person entity.
-The last row of Table \ref{tab:entity_extraction_eval} shows the result for the combination 
-of Duckling for dates and date-spans and Spacy for persons.
-This makes the comparison of Rasa with the other technologies possible.
-The true negatives (TN) are not part of the f-score calculation.
-Table \ref{tab:entity_extraction_eval} shows that the technology with the 
-best f-score (0.888) is the combination of Duckling for dates and date-sapns and Spacy  
-for persons.
-Rasa can use both technologies and has the highest f-score of all technologies.
-The best f-score (0.888) for the combination of dates and date-spans was achieved  
-by Duckling.
-Dialogflow has the best date entity (f-score of 0.94) but had problems 
-with date-spans.
-Duckling and Watson were on an equal level when it comes to date-spans 
-with an f-score of 0.909 each.
-Dialogflow also has the best f-score for the person entity.
-Watsons person entity performed worst as expected.
-With more training data the performace of Watsons custom person 
-entity can be increased.
-
-
-
 
 \begin{table}[h]
     \centering
@@ -229,6 +207,91 @@ entity can be increased.
     \end{tabular}
     \caption{Entity Recognition Result Evaluation} \label{tab:entity_extraction_eval}
 \end{table} \noindent
+The detailed result of the entity recognition comparison is shown in Table \ref{tab:entity_extraction_eval}.
+The column name p stands for precision and r for recall.
+Date sum shows the framework result based on the date and date-span recognition
+without the person entity for the comparison with Duckling which has no person entity.
+The last row of Table \ref{tab:entity_extraction_eval} shows the result for the combination 
+of Duckling for dates and date-spans and Spacy for persons.
+This makes the comparison of Rasa with the other technologies possible.
+The true negatives (TN) are not part of the f-score calculation.
+Table \ref{tab:entity_extraction_eval} shows that the technology with the 
+best f-score (0.888) is the combination of Duckling for dates and date-sapns and Spacy  
+for persons.
+Rasa can use both technologies and has the highest f-score of all technologies.
+The best f-score (0.888) for the combination of dates and date-spans was achieved  
+by Duckling.
+Dialogflow has the best date entity (f-score of 0.94) but had problems 
+with date-spans.
+Duckling and Watson were on an equal level when it comes to date-spans 
+with an f-score of 0.909 each.
+Dialogflow also has the best f-score for the person entity.
+Watsons person entity performed worst as expected.
+With more training data the performace of Watsons custom person 
+entity can be increased.
+In test case two of Table \ref{tab:date_span_entity_extraction_recognition} Spacy 
+recognized two separate dates instead of a date-span.
+This is counted as a failure because in the application there is only one date slot
+and the information can't be processed correctly.
+In test case one Dialogflow and Luis convert Monday to a date in the past.
+This is now what is needed for the use-cases since it should be the next matching 
+weekday and not the last.
+Test case two gives a hint that the next occuring weekday is the correct one.
+The result is not influenced and Dialogflow and LUIS still take the wrong day.
+The functionality was retested on another day.
+LUIS still failed to extract the correct date but Dialogflow 
+managed to do so.
+In the test result it will be counted as a failure of Dialogflow 
+since it doesn't deliver reliable results.
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ c | c | c | c | c | c  }
+        \multirow{2}{*}{No} & \multirow{2}{*}{Input} & \multirow{2}{*}{Expected} & \multirow{2}{*}{Technology} & Recognized & Extracted \\ 
+                 &&          &            & Correctly  & Value     \\ \hline \hline
+        \multirow{4}{*}{1} &\multirow{4}{*}{Franz Bauer} & \multirow{4}{*}{TP} 
+                                  & Watson & \cmark & Franz Bauer \\
+                                  && & Dialogflow & \cmark & Franz Bauer \\
+                                  && & Spacy & \cmark & Franz Bauer \\
+                                  && & LUIS & \cmark & Franz Bauer \\
+                                  \hline
+        \multirow{4}{*}{2} &\multirow{4}{*}{franz bauer} & \multirow{4}{*}{TP} 
+                                  & Watson & \cmark & franz bauer \\
+                                  & && Dialogflow & \cmark & franz bauer \\
+                                  & && Spacy & \cmark & franz bauer \\
+                                  & && LUIS & \cmark & franz bauer \\
+                                  \hline
+        \multirow{4}{*}{3} &\multirow{4}{*}{Anna Maria Mayer} & \multirow{4}{*}{TP} 
+                                  & Watson & \xmark & Maria Mayer \\
+                                  & && Dialogflow & \xmark & Maria Mayer \\
+                                  & && Spacy & \cmark & Anna Maria Mayer\\
+                                  & && LUIS & \cmark & Anna Maria Mayer\\
+                                  \hline
+        \multirow{4}{*}{4} &\multirow{4}{*}{Anna Mayer-Bauer} & \multirow{4}{*}{TP} 
+                                  & Watson & \xmark & Anna Mayer \\
+                                  & && Dialogflow & \cmark & Anna Mayer-Bauer \\
+                                  & && Spacy & \cmark & Anna Mayer-Bauer\\
+                                  & && LUIS & \cmark & Anna Mayer-Bauer\\
+                                  \hline
+        \multirow{4}{*}{5} &\multirow{4}{*}{Asdfgh} & \multirow{4}{*}{TN} 
+                                  & Watson & \cmark & - \\
+                                  & && Dialogflow & \cmark & - \\
+                                  & && Spacy & \xmark & Asdfgh\\
+                                  & && LUIS & \xmark & Asdfgh\\
+                                  \hline
+        \multirow{4}{*}{6} &\multirow{4}{*}{Asdfgh Qwert} & \multirow{4}{*}{TN} 
+                                  & Watson & \xmark & Asdfgh Qwert \\
+                                  & && Dialogflow & \cmark & - \\
+                                  & && Spacy & \xmark & Asdfgh Qwert\\
+                                  & && LUIS & \xmark & Asdfgh Qwert\\
+                                  \hline
+
+    \end{tabular}
+    \caption{Person Entity Recogniton and Extraction} \label{tab:person_entity_extraction_recognition}
+\end{table} \noindent
+
+
+
+
 
 \begin{table}[H]
     \centering
@@ -320,51 +383,6 @@ entity can be increased.
     \caption{Date Entity Recogniton and Extraction 2} \label{tab:date_entity_extraction_recognition2}
 \end{table} \noindent
 
-\begin{table}[h]
-    \centering
-    \begin{tabular}{ c | c | c | c | c | c  }
-        \multirow{2}{*}{No} & \multirow{2}{*}{Input} & \multirow{2}{*}{Expected} & \multirow{2}{*}{Technology} & Recognized & Extracted \\ 
-                 &&          &            & Correctly  & Value     \\ \hline \hline
-        \multirow{4}{*}{1} &\multirow{4}{*}{Franz Bauer} & \multirow{4}{*}{TP} 
-                                  & Watson & \cmark & Franz Bauer \\
-                                  && & Dialogflow & \cmark & Franz Bauer \\
-                                  && & Spacy & \cmark & Franz Bauer \\
-                                  && & LUIS & \cmark & Franz Bauer \\
-                                  \hline
-        \multirow{4}{*}{2} &\multirow{4}{*}{franz bauer} & \multirow{4}{*}{TP} 
-                                  & Watson & \cmark & franz bauer \\
-                                  & && Dialogflow & \cmark & franz bauer \\
-                                  & && Spacy & \cmark & franz bauer \\
-                                  & && LUIS & \cmark & franz bauer \\
-                                  \hline
-        \multirow{4}{*}{3} &\multirow{4}{*}{Anna Maria Mayer} & \multirow{4}{*}{TP} 
-                                  & Watson & \xmark & Maria Mayer \\
-                                  & && Dialogflow & \xmark & Maria Mayer \\
-                                  & && Spacy & \cmark & Anna Maria Mayer\\
-                                  & && LUIS & \cmark & Anna Maria Mayer\\
-                                  \hline
-        \multirow{4}{*}{4} &\multirow{4}{*}{Anna Mayer-Bauer} & \multirow{4}{*}{TP} 
-                                  & Watson & \xmark & Anna Mayer \\
-                                  & && Dialogflow & \cmark & Anna Mayer-Bauer \\
-                                  & && Spacy & \cmark & Anna Mayer-Bauer\\
-                                  & && LUIS & \cmark & Anna Mayer-Bauer\\
-                                  \hline
-        \multirow{4}{*}{5} &\multirow{4}{*}{Asdfgh} & \multirow{4}{*}{TN} 
-                                  & Watson & \cmark & - \\
-                                  & && Dialogflow & \cmark & - \\
-                                  & && Spacy & \xmark & Asdfgh\\
-                                  & && LUIS & \xmark & Asdfgh\\
-                                  \hline
-        \multirow{4}{*}{6} &\multirow{4}{*}{Asdfgh Qwert} & \multirow{4}{*}{TN} 
-                                  & Watson & \xmark & Asdfgh Qwert \\
-                                  & && Dialogflow & \cmark & - \\
-                                  & && Spacy & \xmark & Asdfgh Qwert\\
-                                  & && LUIS & \xmark & Asdfgh Qwert\\
-                                  \hline
-
-    \end{tabular}
-    \caption{Person Entity Recogniton and Extraction} \label{tab:person_entity_extraction_recognition}
-\end{table} \noindent
 
 \begin{table}[H]
     \centering
@@ -472,6 +490,68 @@ entity can be increased.
     \caption{Predefined Entities} \label{tab:predefined_entities}
 \end{table} \noindent
 
+\subsection*{Intent Recognition}
+The main task of a chatbot is to find the intent best matching the user input.
+The training utterances for the sickness intent are listed Tabel \ref{tab:sickness_utterances}
+in the Appendix.
+The phrases for the vacation intent can be found in Table \ref{tab:vacation_utterances}.
+As evaluation criteria multiple parameters are used.
+The confidence score represnets how well the input can be classified.
+Building uppon the entity extraction the correct extraction of the entities in 
+combined inputs is tested. 
+A combined example is training phrase five of Table \ref{tab:sickness_utterances} 
+where the entities person and date are built into the training sentence.
+Furthermore, the correctly identified intents are used to calculate the f-score 
+like it was done for the entities.
+For the intent recognition task only date and date-spans are used which
+were recognized by all relevant frameworks to ensure unbiased tests.
+Spacy has no relevance for the application in terms of date and date-span
+extraction and is not considered for dates in the intent recognition tests.
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ c | c | c | c | c | c   }
+        \multirow{2}{*}{No} & \multirow{2}{*}{Input} & \multirow{2}{*}{Technology} & Intent & Entity & Confid. \\ 
+                 &&          & Match & Match & [\%]     \\ \hline \hline
+
+        \multirow{4}{*}{1} & \multirow{4}{*}{sick}  
+        &  Watson & \multirow{4}{*}{\cmark} & \multirow{4}{*}{-} & 41.0 \\\cline{3-3} \cline{6-6}
+        && Dialogflow &  &  & 84.2 \\ \cline{3-3}\cline{6-6}
+        && Rasa &  &  & 78.5 \\ \cline{3-3}\cline{6-6}
+        && LUIS &  &  & 99.8 \\ \hline
+
+        \multirow{4}{*}{2} & \multirow{4}{*}{Emilia Schwarz is ill}  
+        &  Watson & \multirow{4}{*}{\cmark} & \multirow{4}{*}{\cmark} & 94.0 \\ \cline{3-3}\cline{6-6}
+        && Dialogflow & &  & 78.2 \\ \cline{3-3}\cline{6-6}
+        && Rasa &  & & 63.1 \\ \cline{3-3}\cline{6-6}
+        && LUIS &  & & 44.4 \\ \hline
+
+        \multirow{4}{*}{3} & \multirow{4}{*}{Lea Schmitt is sick until wednesday}  
+        &  Watson & \multirow{4}{*}{\cmark} & \multirow{4}{*}{\cmark} & 92.0 \\ \cline{3-3}\cline{6-6}
+        && Dialogflow & & & 73.9 \\ \cline{3-3}\cline{6-6}
+        && Rasa & & & 66.2 \\ \cline{3-3}\cline{6-6} 
+        && LUIS & & & 62.5 \\ \hline
+
+        \multirow{4}{*}{4} & \multirow{4}{*}{I need to report myself as sick}  
+        &  Watson & \xmark & - & - \\ \cline{3-6}
+        && Dialogflow & \cmark & \xmark & 63.3 \\ \cline{3-6} % extracted myself as person
+        && Rasa & \multirow{2}{*}{\xmark} & \multirow{2}{*}{-} & \multirow{2}{*}{-} \\\cline{3-3} 
+        && LUIS & & & \\ \hline
+
+        \multirow{4}{*}{5} & \multirow{4}{*}{\shortstack[l]{Paul Armstrong is sick and will be \\ back on Monday}}  
+        &  Watson & \multirow{2}{*}{\cmark} & \multirow{2}{*}{\cmark} & 89.0 \\ \cline{3-3}\cline{6-6}
+        && Dialogflow & &  & 69.6 \\ \cline{3-6}
+        && Rasa & \multirow{2}{*}{\xmark} & \multirow{2}{*}{\cmark} & \multirow{2}{*}{-} \\\cline{3-3} 
+        && LUIS & & & \\ \hline
+
+        \multirow{4}{*}{6} & \multirow{4}{*}{\shortstack[l]{sick Anna Maier 06/10}}  
+        &  Watson & \multirow{3}{*}{\cmark} & \multirow{3}{*}{\cmark} & 90.0 \\ \cline{3-3}\cline{6-6}
+        && Dialogflow & &  & 100.0 \\ \cline{3-3}\cline{6-6}
+        && Rasa & &  & 80.5 \\\cline{3-6} 
+        && LUIS & \cmark & \xmark & 13.7 \\ \hline % person not extracted
+
+    \end{tabular}
+    \caption{Sickness Intent Classification} \label{tab:sickness_intent_classification}
+\end{table} \noindent
 
 % training capabilities
 \subsection*{Training Capabilities}

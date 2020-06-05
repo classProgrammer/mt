@@ -92,7 +92,44 @@ def submit(
 \end{lstlisting} 
 
 
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ c | l | c | c   }
+        \multirow{2}{*}{No} & \multirow{2}{*}{Utterance} & Person & Date \\ 
+                 &&         Entity & Entity                 \\ \hline \hline
+        1 & I am sick & \xmark & \xmark\\ \hline 
+        2 & sickness notification & \xmark & \xmark\\ \hline 
+        3 & I am ill & \xmark & \xmark\\ \hline 
+        4 & [Alfred Mayer] is sick & \cmark & \xmark\\ \hline 
+        5 & my colleagure [Maria M\"uller] is sick until [wednesday] & \cmark & \cmark\\ \hline 
+        6 & colleague [Simone Bauer] is ill & \cmark & \xmark\\ \hline 
+        7 & report [Franz Dorfer] sick & \cmark & \xmark\\ \hline 
+        8 & [Stefan Weber] is ill till [Friday] & \cmark & \cmark\\ \hline 
+        9 & sick [Emma Wagner] [6th of June] & \cmark & \cmark\\ \hline 
+        10 & [Sophia Richter] feels sick today & \xmark & \xmark\\ \hline 
+    \end{tabular}
+    \caption{Sickness Utterances} \label{tab:sickness_utterances}
+\end{table} \noindent
 
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ c | l | c | c   }
+        \multirow{2}{*}{No} & \multirow{2}{*}{Utterance} & Person & Date-Span \\ 
+                 &&         Entity & Entity                 \\ \hline \hline
+        1 & vacation & \xmark & \xmark\\ \hline 
+        2 & holiday & \xmark & \xmark\\ \hline 
+        3 & I need a vacation & \xmark & \xmark\\ \hline 
+        4 & colleague [Johan Schmidt] requested a vacation & \cmark & \xmark\\ \hline 
+        5 & I'm on holiday from Monday to Friday & \xmark & \cmark\\ \hline 
+        6 & vacation [Mia Koch] [06/20 to 06/30] & \cmark & \cmark\\ \hline 
+        7 & [Adam Schneider] is on holiday [from June 6 to June 14] & \cmark & \cmark\\ \hline 
+        8 & holiday request & \xmark & \xmark\\ \hline 
+        9 & vacation [from 12th of August to 30th of August] & \xmark & \cmark\\ \hline 
+        10 & [Lea Klein] requested a vacation & \cmark & \xmark \\
+    \end{tabular}
+    \caption{Vacation Utterances} \label{tab:vacation_utterances}
+\end{table} \noindent
 
 
 \makerefs{mt}

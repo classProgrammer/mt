@@ -5,7 +5,7 @@
 % andere Sachen nicht
 % gleiche test sätze und entitäten
 % gleiche stories
-The problem (sickness notification) needs to be evaluated to determine if the problem is suitable for chatbots.
+The problem (sickness notification and vacation notification) needs to be evaluated to determine if the problem is suitable for chatbots.
 Sickness notifications are a repetitive task, the task can be automated and requires simple Back-and-Forth communication hence the problem fits the description of \citet{buiildChatbotsPython}.
 The same is true for holiday notifications since the idea of both remains the same.
 The problem is suitable for chatbots since all three questions can be answered with yes.
@@ -15,8 +15,8 @@ and end-to-end conversations \cite{williams2017hybrid, bordes2016learning, rahma
 A goal-oriented system helps a user to achieve a task \cite{rahman2017programming}.
 In the case of a sicknes notification the system needs to aid and guide the user through the process to reduce the workload.
 This description fits perfectly for goal oriented dialog.
-The domain is clear and of limited size since the user can only ask about the sickness notification process and nothing else.
-The bot also needs to retrieve specific data from the conversation to identify the sick person.
+The domain is clear and of limited size since the user can only ask about the sickness/vacation notification process and nothing else.
+The bot also needs to retrieve specific data from the conversation to identify the person.
 The retrieval process is a specific task with specific entities and fits a goal-oriented system.
 In open-ended systems the conversation is not limited to a domain and the conversation can evolve in any direction.
 This is definitely not the case for the sickness and holiday notifications because the problems are domain specific.
@@ -37,10 +37,73 @@ The chosen technologies are Dialogflow, IBM Watson (\citet{rahman2017programming
 
 All three prototypes will be used to implement the same task.
 An example convsersation of the sickness notification task is shown in Figure \ref{fig:sicknessflow}
-They will be trained with the same data.
+They will be trained with the same data listed in the appendix 
+in Table \ref{tab:sickness_utterances} and Table \ref{tab:vacation_utterances}.
 They will have the same intents, entities, and utterances.
 These steps are necessary to ensure a fair comparison.
 The analysis of the sickness notification dialog is shown in Table \ref{tab:sick_data}.
+
+\section{Comparison and Evaluation}
+A main part of this thesis is the comparison and evaluation of the 
+frameworks and the prototypes.
+The frameworks and prototypes will be compared in the sickness/vacation domain.
+The two major tasks of chatbot systems are the entity extraction and the intent 
+classification.
+\citet{geyer2016named} compared frameworks based on their entity extraction
+capabilities.
+Based on the work of \citet{geyer2016named} the frameworks will be tested 
+for their entity extraction capabilities.
+This is measured by counting the true/false positives and true/false negatives.
+These four values are used to calculate the precision and the recall which 
+are used to calculate the f-score.
+The f-score is the measurment criteria for the performance.
+An f-score of 1.0 is the maximum which can be achieved.
+The frameworks will be ranked based on their f-score.
+The f-score will be calculate for each use-case relevant entity 
+individually (date, date-span, person) and for all relevant entities
+together.
+This will show how good the individual entities of the frameworks are 
+and how good the entity extraction works in general.
+Rasa doesn't provide entities but the pipeline can be 
+adjusted to include technologies which provide entities.
+A popular technologies for date, time, and all sorts of 
+numeric values is Duckling (Wit.ai).
+Spacy is a technologie which provides the required person entity and 
+it's available for Rasa.
+The cloud frameworks all have built in system entities. 
+
+The same process will be used for the intent classification task.
+The intent classification provides a confidence score value.
+The confidence score will be used to rank the intent classification 
+capabilites in a second ranking.
+The range is from zero to one where values close to zero are 
+bad and values close to one are good.
+The confidence score alone is not enough to do the second ranking 
+since the technologies always pick the best fitting intent.
+The best fitting intent doesn't have to be the correct/expected intent.
+The technologie could say it's 60\% sure the intent none is correct 
+and the expected sick intent only reaches 40\%.
+In this case the none intent would be picked.
+The confidence scores alone are biased since no matter 
+which intent is recognized there will always be a value for 
+each intent no matter the input.
+The average confidence score will be calculated for the 
+two use-cases individually and combined for both.
+This is an indicator if a technology has problems with or excells
+on a specific use-case.
+
+
+\citet{singhbuilding} says the best evaluation criteria is if the 
+task can be achieved.
+This will be used as evaluation criteria and will be based on the 
+design and prototype chapters.
+The design chapter provides the blueprint which needs to be 
+implemented with the different technologies.
+The prototype section shows if the blueprint can be 
+implemented successfully with a specific technology.
+The technologies will be classified as it's possible and 
+it's not possible.
+
 
 
 \section{Model}

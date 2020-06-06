@@ -523,31 +523,43 @@ extraction and is not considered for dates in the intent recognition tests.
         &  Watson & \multirow{4}{*}{\cmark} & \multirow{4}{*}{\cmark} & 94.0 \\ \cline{3-3}\cline{6-6}
         && Dialogflow & &  & 78.2 \\ \cline{3-3}\cline{6-6}
         && Rasa &  & & 63.1 \\ \cline{3-3}\cline{6-6}
-        && LUIS &  & & 44.4 \\ \hline
+        && LUIS &  & & 45.4 \\ \hline
 
         \multirow{4}{*}{3} & \multirow{4}{*}{Lea Schmitt is sick until wednesday}  
-        &  Watson & \multirow{4}{*}{\cmark} & \multirow{4}{*}{\cmark} & 92.0 \\ \cline{3-3}\cline{6-6}
+        &  Watson & \multirow{3}{*}{\cmark} & \multirow{3}{*}{\cmark} & 92.0 \\ \cline{3-3}\cline{6-6}
         && Dialogflow & & & 73.9 \\ \cline{3-3}\cline{6-6}
-        && Rasa & & & 66.2 \\ \cline{3-3}\cline{6-6} 
-        && LUIS & & & 62.5 \\ \hline
+        && Rasa & & & 66.2 \\ \cline{3-3}\cline{3-6} 
+        && LUIS & \xmark & \cmark & 28.9 \\ \hline
 
         \multirow{4}{*}{4} & \multirow{4}{*}{I need to report myself as sick}  
-        &  Watson & \xmark & - & - \\ \cline{3-6}
+        &  Watson & \cmark & - & 38.0 \\ \cline{3-6}
         && Dialogflow & \cmark & \xmark & 63.3 \\ \cline{3-6} % extracted myself as person
-        && Rasa & \multirow{2}{*}{\xmark} & \multirow{2}{*}{-} & \multirow{2}{*}{-} \\\cline{3-3} 
-        && LUIS & & & \\ \hline
+        && Rasa & \multirow{1}{*}{\xmark} & \multirow{1}{*}{-} & 9.7 \\\cline{3-6} 
+        && LUIS & \cmark & - & 41.7 \\ \hline
 
         \multirow{4}{*}{5} & \multirow{4}{*}{\shortstack[l]{Paul Armstrong is sick and will be \\ back on Monday}}  
         &  Watson & \multirow{2}{*}{\cmark} & \multirow{2}{*}{\cmark} & 89.0 \\ \cline{3-3}\cline{6-6}
-        && Dialogflow & &  & 69.6 \\ \cline{3-6}
-        && Rasa & \multirow{2}{*}{\xmark} & \multirow{2}{*}{\cmark} & \multirow{2}{*}{-} \\\cline{3-3} 
-        && LUIS & & & \\ \hline
+        && Dialogflow & &  & 69.6 \\ \cline{3-6}\cline{6-6}
+        && Rasa & \multirow{2}{*}{\xmark} & \multirow{2}{*}{\cmark} & 23.8 \\\cline{3-3} \cline{6-6}
+        && LUIS & & & 5.4 \\ \hline
 
         \multirow{4}{*}{6} & \multirow{4}{*}{\shortstack[l]{sick Anna Maier 06/10}}  
         &  Watson & \multirow{3}{*}{\cmark} & \multirow{3}{*}{\cmark} & 90.0 \\ \cline{3-3}\cline{6-6}
         && Dialogflow & &  & 100.0 \\ \cline{3-3}\cline{6-6}
         && Rasa & &  & 80.5 \\\cline{3-6} 
-        && LUIS & \cmark & \xmark & 13.7 \\ \hline % person not extracted
+        && LUIS & \cmark & \xmark & 15.7 \\ \hline 
+
+        \multirow{4}{*}{7} & \multirow{4}{*}{\shortstack[l]{I feel sickly today and won't come to work}}  
+        &  Watson & \multirow{2}{*}{\cmark} & \multirow{2}{*}{\cmark} & 43.0 \\ \cline{3-3}\cline{6-6}
+        && Dialogflow &  &  & 51.6 \\ \cline{3-6}
+        && Rasa & \multirow{2}{*}{\xmark} & \multirow{2}{*}{\cmark} &  4.3 \\\cline{3-3}\cline{6-6}
+        && LUIS & & & 0.2 \\ \hline 
+
+        \multirow{4}{*}{8} & \multirow{4}{*}{\shortstack[l]{Anna Lehner is feeling sick.\\She will be back on Thursday}}  
+        &  Watson & \multirow{2}{*}{\cmark} & \multirow{2}{*}{\cmark} & 91.0 \\ \cline{3-3}\cline{6-6}
+        && Dialogflow &  &  & 72.5 \\ \cline{3-6}
+        && Rasa & \multirow{2}{*}{\xmark} & \multirow{2}{*}{\cmark} &  26.2 \\\cline{3-3}\cline{6-6}
+        && LUIS & & & 6.1 \\ \hline 
 
     \end{tabular}
     \caption{Sickness Intent Classification} \label{tab:sickness_intent_classification}
@@ -569,31 +581,78 @@ extraction and is not considered for dates in the intent recognition tests.
         &  Watson & \multirow{3}{*}{\cmark} & \multirow{3}{*}{\cmark} & 91.0 \\\cline{3-3} \cline{6-6}
         && Dialogflow &  &  & 64.9 \\ \cline{3-3}\cline{6-6}
         && Rasa &  &  & 33.7 \\ \cline{3-6}
-        && LUIS & \xmark & \cmark & - \\ \hline
+        && LUIS & \xmark & \cmark & 19.5 \\ \hline
 
         \multirow{4}{*}{3} & \multirow{4}{*}{\shortstack[l]{vacation Martin Huber 07/12 to\\ July 15th}}  
         &  Watson & \multirow{3}{*}{\cmark} & \multirow{3}{*}{\cmark} & 44.0 \\\cline{3-3} \cline{6-6}
         && Dialogflow &  &  & 100.0 \\ \cline{3-3}\cline{6-6}
         && Rasa &  &  & 57.4 \\ \cline{3-6}
-        && LUIS & \xmark & \cmark & - \\ \hline
+        && LUIS & \xmark & \cmark & 13.9 \\ \hline
 
         \multirow{4}{*}{4} & \multirow{4}{*}{\shortstack[l]{holiday from 07/12 to July 15th}}  
         &  Watson & \multirow{3}{*}{\cmark} & \multirow{3}{*}{\cmark} & 94.0 \\\cline{3-3} \cline{6-6}
         && Dialogflow &  &  & 64.7 \\ \cline{3-3}\cline{6-6}
         && Rasa &  &  & 67.4 \\ \cline{3-6}
-        && LUIS & \xmark & \cmark & - \\ \hline
+        && LUIS & \xmark & \cmark & 28.5 \\ \hline
 
         \multirow{4}{*}{5} & \multirow{4}{*}{\shortstack[l]{vacation from 28th September to\\ October 4}}  
         &  Watson & \multirow{3}{*}{\cmark} & \multirow{3}{*}{\cmark} & 95.0 \\\cline{3-3} \cline{6-6}
         && Dialogflow &  &  & 100.0 \\ \cline{3-3}\cline{6-6}
         && Rasa &  &  & 55.5 \\ \cline{3-6}
-        && LUIS & \xmark & \cmark & - \\ \hline
+        && LUIS & \xmark & \cmark & 29.2 \\ \hline
 
+        \multirow{4}{*}{6} & \multirow{4}{*}{\shortstack[l]{I really need a long vacation on a \\ distant island}}  
+        &  Watson & \multirow{3}{*}{\cmark} & \multirow{3}{*}{-} & 44.0 \\\cline{3-3} \cline{6-6}
+        && Dialogflow &  &  & 79.0 \\ \cline{3-3}\cline{6-6}
+        && Rasa &  &  & 35.0 \\ \cline{3-6}
+        && LUIS & \xmark & - & 33.2 \\ \hline
 
+        \multirow{4}{*}{7} & \multirow{4}{*}{\shortstack[l]{colleague Helmut Kerschbaum \\ requested holidays}}  
+        &  Watson & \multirow{3}{*}{\cmark} & \multirow{3}{*}{\cmark} & 93.0 \\ \cline{3-3}\cline{6-6}
+        && Dialogflow & & & 61.7 \\ \cline{3-3}\cline{6-6}
+        && Rasa & &  & 46.6 \\\cline{3-6} 
+        && LUIS & \xmark & \cmark & 14.7 \\ \hline
+
+        \multirow{4}{*}{8} & \multirow{4}{*}{\shortstack[l]{Colleague Helmut Kerschbaum \\requested holidays. He will be \\unavailable from 09/10 to 09/24}}  
+        &  Watson & \multirow{2}{*}{\cmark} & \multirow{2}{*}{\cmark} & 45.0 \\ \cline{3-3}\cline{6-6}
+        && Dialogflow & & & 70.2 \\ \cline{3-6}
+        && Rasa & \multirow{2}{*}{\xmark} & \multirow{2}{*}{\cmark} & 21.6 \\\cline{3-3}\cline{6-6}
+        && LUIS &  & & 7.8 \\ \hline
 
     \end{tabular}
     \caption{Vacation Intent Classification} \label{tab:sickness_intent_classification}
 \end{table} \noindent
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ l | l | c | c | c | c | c | c  }
+        \multirow{2}{*}{Framework} & \multirow{2}{*}{Tested} & \multirow{2}{*}{TP} & \multirow{2}{*}{FN} & \multirow{2}{*}{p} & \multirow{2}{*}{r} & \multirow{2}{*}{f-score} & avg Confid. \\ 
+                 &&          &            &   & & & [\%]     \\ \hline \hline
+        \multirow{3}{*}{Watson} 
+        & sickness & 8 & 0& 1.0& 1.0& 1.0&72.25 \\
+        & vacation & 8 & 0& 1.0& 1.0& 1.0&75.75 \\
+        & sum      &16 & 0& 1.0& 1.0& 1.0&74.0  \\ \hline
+        
+        \multirow{3}{*}{Dialogflow} 
+        & sickness & 8& 0& 1.0& 1.0& 1.0&74.16\\
+        & vacation & 8& 0& 1.0& 1.0& 1.0&80.06\\
+        & sum      &16& 0& 1.0& 1.0& 1.0&77.11\\ \hline
+
+        \multirow{3}{*}{Rasa} 
+        & sickness & 4& 4& 1.0& 0.5  & 0.667& 41.06\\
+        & vacation & 7& 1& 1.0& 0.875& 0.933& 51.11\\
+        & sum      &11& 5& 1.0& 0.687& 0.815& 46.09\\ \hline
+
+        \multirow{3}{*}{LUIS} 
+        & sickness & 4& 4& 1.0& 0.5  & 0.667& 30.40\\
+        & vacation & 1& 7& 1.0& 0.125& 0.222& 30.64\\
+        & sum      & 5&11& 1.0& 0.313& 0.476& 30.52\\ \hline
+        
+
+    \end{tabular}
+    \caption{Intent Classification Result} \label{tab:intent_classification_result}
+\end{table} \noindent
+
 
 % training capabilities
 \subsection*{Training Capabilities}

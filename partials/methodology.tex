@@ -54,7 +54,7 @@ capabilities.
 Based on the work of \citet{geyer2016named} the frameworks will be tested 
 for their entity extraction capabilities.
 This is measured by counting the true/false positives and true/false negatives.
-These four values are used to calculate the precision and the recall which 
+These four values are used to calculate precision and recall which 
 are used to calculate the f-score.
 The f-score is the measurment criteria for the performance.
 An f-score of 1.0 is the maximum which can be achieved.
@@ -101,9 +101,49 @@ The design chapter provides the blueprint which needs to be
 implemented with the different technologies.
 The prototype section shows if the blueprint can be 
 implemented successfully with a specific technology.
-The technologies will be classified as it's possible and 
-it's not possible.
+The technologies will be classified binary as true if it's possible and 
+flase if it's impossible.
+The expectation is that the implmentation is possible with 
+all chatbot frameworks namely Dialogflow, Watson Assistant, and Rasa.
+A successful implementation can't be expectd with LUIS.
+LUIS is a NLU service and not a chatbot technology.
+Hence, it doesn't offer a mechanism to handle dialogs which is 
+necessary to implement a chatbot.
+The Microsoft Bot Framework can be used to build chatbots 
+and uses LUIS.
 
+One of the main reasons why companies use or want to use chatbots is because they are cost efficient.
+For this reason the prices of the chatbot frameworks need to be compared.
+In general, cheap is treated better in this ranking than expensive.
+This criteria does not make a statement about the quality of the framework.
+For this reason the ranking should be reconsidered after the test when the 
+quality ranking is available.
+If a technolgy is good it's a candidate for the recommendation.
+If a technology is bad the price doesn't matter because it will not be recommended.
+Hence, a good and cheap technology is wanted. 
+For the usage in a business application the prices of all version of the frameworks are relevant 
+especially if an enterprise verison is offered.
+The expectation is that the frameworks cost roughly the same and that 
+the prices are easy to compare.
+
+% portability
+The ISO 25010\cite{iso25010} standard defines portability as an evaluation criterion for software systems.
+Portability is a big issue with chatbot technologies.
+One sub criteria for the evaluation is the number of providers where the chatbot 
+can be deployed.
+It's expected that the cloud technologies can run only in the cloud environment.
+This criteria focues on Rasa to see where and how it can be deployed.
+Another aspect fo portability is the number of devices a developer can work with 
+% no of devices
+with a focus on the hardware and software which needs to be present to run the 
+framework.
+The expectation is that a cloud chatbot can be developed from everywhere 
+as long as a web-browser and an internet connection are available.
+It's expected that Rasa is at a disadvantage in this category.
+% migration
+The migration from one technology to another is an aspect of portability.
+It's expected that all technolgies safe the data differently and that it's not 
+easy to migrate between them.
 
 
 \section{Model}

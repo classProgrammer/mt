@@ -40,9 +40,49 @@ easy to migrate an existing chatbot to another technology.
 
 % was it possible to implement the design with the technologies?
 \subsection*{Implementation of the Design}
+like \citet{singhbuilding} said, the best evaluation criteria is if a task can be achived with a technology or not.
+The goal is to implement the dialogs shown in Figure \ref{fig:conversationflow}.
+The result of this evaluation is a binary criteria which is either true when the implementation was possible or false
+if it wasn't possible.
+The prototype implmenetations in Chapter \ref{chap:proto} shown that the dialogs can be 
+implemented with Dialogflow, Watson Assistant and Rasa.
+It is not possible to implement the dialogs with LUIS. 
+This was to be expected since LUIS is a NLU service and not a chatbot technology and offers no dialog control.
+The Microsoft Bot framework is the chatbot technology which uses LUIS but 
+is not considered in this thesis.
+The implementation of the dialogs of Figure \ref{fig:conversationflow} is possible with all 
+three chatbot technologies.
+
 
 % project complexity
 \subsection*{Project Setup Complexity}
+% required tools
+As measurment criteria the required tools will be used.
+To setup Watson Assistant, Dialogflow, and LUIS a web-browser is needed.
+Those three technologies require nothing else since the development environment,
+files, date are built into the websites of the technologies.
+This means only one tool is required.
+For Rasa three approaches are evaluated.
+Rasa can be installed locally or with Docker and Rasa-X can be used for development.
+Rasa-X provides a web-interface similar to the cloud technologies.
+A local setup requires a pyton environment and a package manager like pip.
+A text editor or IDE is required to edit the files.
+This results in a count of at least three.
+The second way is a Docker container setup.
+For this approach Docker and a text-editor are required and results in a count of two.
+With Rasa-x a web-interface replaces the text-editor but the score remains the same.
+This means the could technologies have a score of one and Rasa has a score of two or three
+depending on the approach.
+% setup time
+As second measurment criteria for setup complexity a setup time ranking will be used.
+To create a new project from scratch with the cloud technologies only an account is required.
+Then a new project can be created instantly.
+No tools or additional software needs to be installed to have everything development ready.
+For Rasa the tools and the environment needs to be created.
+For the development either Rasa needs to be installed or the Docker image needs to be pulled.
+The setup for Rasa takes more time because the development environment needs to be provided.
+This results in the first place for cloud services and the last/second place for Rasa in the
+setup time comparison. 
 
 % development complexity
 \subsection*{Development Complexity}
@@ -100,6 +140,28 @@ It's easier to develop a chatbot wiht Dialogflow than wiht Watson Assistant or R
 The Watson Assistants UI is intransparent when comapred to Dialogflow and a developer 
 may need more time to orient.
 Rasa requires the most time to develop a chatbot and to get everything ready.
+
+% predefined types/entities
+Another measurement criteria for learnability is the amount of predefined entities.
+If a predefined entity is available for a proble a developer doesn't need to 
+invest time in creating an entity or collecting training data. 
+Table \ref{tab:predefined_entities} shows the amount of predefined entities 
+present for the tested technologies.
+Dialogflow provides the most predefined entities, followed by LUIS.
+Compared to the two above the other technologies provide a small amount of predefined entities.
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ c | l | c }
+        Rank & Framework &  Entities \\ \hline \hline
+        1 & \multirow{1}{*}{Dialogflow} & over 400 \\
+        2 & \multirow{1}{*}{LUIS} & circa 150 \\
+        3 & \multirow{1}{*}{Spacy} & 18 \\
+        4 & \multirow{1}{*}{Duckling} & 11 \\
+        5 & \multirow{1}{*}{Watson} & 7  \\
+        6 & \multirow{1}{*}{Rasa} & 0 \\
+    \end{tabular}
+    \caption{Predefined Entities} \label{tab:predefined_entities}
+\end{table} \noindent
 % deployment
 \subsection*{Deployment Complexity}
 % precision of intent recognition
@@ -477,24 +539,7 @@ since it doesn't deliver reliable results.
 \end{table} \noindent
 
 
-% predefined types/entities
-Table \ref{tab:predefined_entities} shows the amount of predefined entities 
-present for the tested technologies.
-Dialogflow provides the most predefined entities, followed by LUIS.
-Compared to the two above the other provide a small amount of predefined entities.
-\begin{table}[H]
-    \centering
-    \begin{tabular}{ l | l | l }
-        Framework &  Entities \\ \hline \hline
-        \multirow{1}{*}{LUIS} & circa 140 \\
-        \multirow{1}{*}{Watson} & 7  \\
-        \multirow{1}{*}{Dialogflow} & circa 430 \\
-        \multirow{1}{*}{Rasa} & 0 \\
-        \multirow{1}{*}{Spacy} & 18 \\
-        \multirow{1}{*}{Duckling} & 11 \\
-    \end{tabular}
-    \caption{Predefined Entities} \label{tab:predefined_entities}
-\end{table} \noindent
+
 
 \subsection*{Intent Recognition}
 The main task of a chatbot is to find the intent best matching the user input.

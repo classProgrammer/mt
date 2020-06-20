@@ -3,7 +3,7 @@
 
 One possible architecture for a minimalistic chatbot system with database communication is shown in Figure \ref{fig:simplearchitecture}.
 The chatbot framework takes care of all conversation related tasks. 
-Conversation related tasks are the intent recognition, entity extraction and the general flow of the dialogue for instance. 
+Conversation related tasks are the intent recognition, entity extraction, and the general flow of the dialogue for instance. 
 The user interface of Figure \ref{fig:simplearchitecture} fetches the input from the user, submits it to the chatbot framework 
 and displays the response messages. 
 The UI can additionally communicate with the database via the REST service or webhook if necessary.
@@ -16,8 +16,8 @@ The DB handles data-related tasks like the possible items and can be used for th
  \section{Story/Flowchart}
  
  \makefigure{sicknessflow}{Sickness Notification Example Conversation}
- Like mentioned in \citet{folstad2017chatbots} the design focus for chatbot systems lies on the conversation itself.
- A story is an example dialog/conversation between user and chatbot. 
+ As mentioned in \citet{folstad2017chatbots} the design focus for chatbot systems lies on the conversation itself.
+ A story is an example of a dialog/conversation between user and chatbot. 
  An example dialogue to report a colleague sick is shown in Figure \ref{fig:sicknessflow} 
  where the user input is highlighted green and the chatbot response is highlighted blue.
  The intent of each user input needs to be found to create the knowledge base for the domain. 
@@ -29,18 +29,19 @@ The DB handles data-related tasks like the possible items and can be used for th
  shown in Figure \ref{fig:sicknessflow} are listed in Table \ref{tab:sick_data}.
  The detailed conversation structure for the use cases of this thesis is shown in 
  Figure \ref{fig:conversationflow}. 
- The figure shows the flowcharts for the sickness and holoday norifications.
- User inputs are higlighted red, bot responses are green and general actions are marked purple.
+ The figure shows the flowcharts for the sickness notification and 
+vacation request.
+ User inputs are highlighted red, bot responses are green and general actions are marked purple.
  Both use cases start the same way because the person needs to be identified.
  If the entered name can't be validated the user can correct the name or enter a different name.
  Then the user needs to confirm that the correct person was found.
  If the user responds with no the name of the person can be corrected.
- Afterwards, a date needs to be entered in both cases. 
+ Afterward, a date needs to be entered in both cases. 
  The sickness intent asks for an optional return date since the yes and no path lead to the same action 
- and the conversation ends afterwards.
+ and the conversation ends afterward.
  The vacation intent requires a start and return date.
  The user is asked for the date until a valid date has been entered.
- After both dates have been enterd the vacation request can be processed and the conversation end is reached.
+ After both dates have been entered the vacation request can be processed and the conversation end is reached.
  Figure \ref{fig:conversationflow} describes every step of the conversation from start to end.
  Hence, it defines the functionality of the chatbot and the flow of the conversation.
  Table \ref{tab:conversation_data} defines the intents, name of the intents, entities, the data types of the entities,
@@ -81,33 +82,33 @@ The DB handles data-related tasks like the possible items and can be used for th
  The base for this section is Figure \ref{fig:sicknessflow} which shows an example conversation 
  for a sickness notification from start to end.
  The identified information from the conversation is displayed in Table \ref{tab:sick_data}.
- In genral, the greeting and goodbye intents are expected to be in almost any chatbot conversation.
+ In general, the greeting and goodbye intents are expected to be in almost any chatbot conversation.
  A thank you intent is also very likely.
  The user should have the option to ask for the available options.
  The core intent of the whole process is the sickness intent.
- To do the sickness notification the users needs to enter the name of a person.
+ To do the sickness notification the user needs to enter the name of a person.
  If the person can't be found the user needs to be notified and the operation is aborted.
  If the person was found the user needs to confirm that the right person was found.
- In production there could be multiple employees with the same name. 
+ In production, there could be multiple employees with the same name. 
 
- Because of this ambiguity the confirmation is part of the dialog.
- Then the optional return date needs to be extracted.
- It's optional because especially in the case of a sickness the return date is unknown.
+ Because of this ambiguity, the confirmation is part of the dialog.
+ Then the optional return-date needs to be extracted.
+ It's optional because especially in the case of a sickness the return date is often unknown.
  The other case is e.g. a broken arm where the employee might return tomorrow.
  Then the sickness notification is done.
- In the case of this thesis the chatbot is the important part hence the backend is mocked for simplicity.
+ In the case of this thesis, the chatbot is the important part hence the backend is mocked for simplicity.
  The user might thank the bot or end the conversation with a goodbye message, or the user might not respond after the all done message.
- This are the three possible ends of conversation.
+ These are the three possible ends of a conversation.
  The basic concepts extracted from Figure \ref{fig:sicknessflow} are shown in Table \ref{tab:sick_data}.
  There are the intents discussed above, the entities and their types, and the bot actions.
- For this use case the needed entities are a person or the name of a person, a confirmation of boolean type, and a data.
- Alternatively for the confirmation the name of the department the person works in can be used.
+ For this use case, the needed entities are a person or the name of a person, a confirmation of boolean type, and a date.
+ Alternatively for the confirmation, the name of the department the person works in can be used.
  The department is modeled as a custom entity as described in Chapter \ref{chap:basics}: Basics in Section \ref{sec:entity}.
  The bot responds to the user with utterances.
- The conceptual names of the utterances are show in Table \ref{tab:sick_data} under Bot Action.
- In the simplest casa a bot action is an utterance.
- For the utterances different version need to be written to respond to the user with alternating sentences.
- For the vacation notification the process remains the same.
+ The conceptual names of the utterances are shown in Table \ref{tab:sick_data} under Bot Action.
+ In the simplest case, a bot action is an utterance.
+ For the utterances, different versions need to be written to respond to the user with alternating sentences.
+ For the vacation notification, the process remains the same.
  The greeting, thanks, goodbye, and list options intents remain the same.
  The new intent is the vacation intent.
  To validate a vacation request the name of the person and the department are needed again.
@@ -134,14 +135,12 @@ The DB handles data-related tasks like the possible items and can be used for th
 The problem is task-oriented.
 
 Some psychological aspects of \citet{brandtzaeg2018chatbots} have to be included.
-\citet{brandtzaeg2018chatbots} stated that the user impression depends greatly on the users mindeset.
-If the user thinks he's talking to a bot the user expects less but the conversation is more likely 
-evaluated as unnatural \cite{brandtzaeg2018chatbots}. If the user asumes he's talking to a human 
-and the bot is unable to achieve the taks the user is very disappointed \cite{brandtzaeg2018chatbots}.
+\citet{brandtzaeg2018chatbots} stated that the user impression depends greatly on the users mindset.
+If the user thinks he's talking to a bot the user expects less but the conversation is more likely evaluated as unnatural \cite{brandtzaeg2018chatbots}. If the user assumes he's talking to a human and the bot is unable to achieve the task the user is very disappointed \cite{brandtzaeg2018chatbots}.
 Since the problem is a task-oriented one the general conversation capabilities are not the primary focus.
-This means the bot is unable to fake a human conversation which goes beond the expected functionality.
-Hence, the user needs to be clearly informed that hes talking to a bot.
-For further development steps a gender can be introduced to make the bot feel more human like if necessary.
+This means the bot is unable to fake a human conversation which goes beyond the expected functionality.
+Hence, the user needs to be informed that he's talking to a bot.
+For further development steps, a gender can be introduced to make the bot feel more human-like if necessary.
 Another way to give the bot a more natural feel is to look at the message response times.
 They should not be to fast.
 If the response comes too fast it feels unnatural because a human being can't answer as fast as a machine.
@@ -155,7 +154,7 @@ The Dialogflow endpoint is reachable under "/dialogflow/webhook",
 the Watson endpoint is located at "/watson/webhook",
 and the Rasa service submits post requests to "/sick" and "/vacation" to submit data 
 to the REST service.
-For development purposes the last request of Watson can be viewed at "/watson/request",
+For development purposes, the last request of Watson can be viewed at "/watson/request",
 and the last request of Dialogflow at "/dialogflow/request".
 To see all successful sickness notification entries "/sick/all" can be used,
 and under "/vacation/all" all successful vacation entries can be viewed.
@@ -173,8 +172,8 @@ This way the information can be validated and modified by the service.
 \section{Messenger UI}
 The design of a chatbot focuses on the conversation and not on the UI.
 The UI requirements are always the same for chatbots.
-The basic features required are writing of a new message, sending of a message, and displaying of a message.
-The messenger UI shown in Figure \ref{fig:messengerui} has a possibility to enter and send 
+The basic features required are writing a new message, sending a message, and displaying a message.
+The messenger UI shown in Figure \ref{fig:messengerui} can enter and send 
 a message, and displays message cards.
 
 A user can enter a new message at the bottom and click the send button to send a message.

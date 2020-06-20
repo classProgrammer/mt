@@ -1,6 +1,7 @@
 .vs/
 *.zip
-*.pdf
+Expose.pdf
+ba_thesis.pdf
 excel/
 ## Core latex/pdflatex auxiliary files:
 *.aux

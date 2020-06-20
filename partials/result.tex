@@ -123,7 +123,7 @@ Watsons cost of \$0.12 per user per month equals 60 requests per user per month 
 
         \multirow{3}{*}{Rasa} & Rasa Open Source & Free \\
         & Rasa X &  Free\\
-        & Rasa Enterprise & Individual \\ \hline
+        & Rasa Enterprise & Individual \\ 
     \end{tabular}
     \caption{Pricing of Frameworks \cite{rasa, dialogflow, watsonassistant}} \label{tab:pricing}
 \end{table} \noindent
@@ -267,7 +267,7 @@ The extracted value column shows that Spacy recognizes many date inputs correctl
         LUIS & Date Sum & 9 & 0 & 1 & 6 & 0.9 & 0.6 & 0.72 & 16 \\ \hline
         Spacy & Date Sum & 6 & 1 & 0 & 9 & 1 & 0.4 & 0.5714 & 16 \\ \hline
         Spacy + & \multirow{2}{*}{Summary} & \multirow{2}{*}{16} & \multirow{2}{*}{1} & \multirow{2}{*}{2} & \multirow{2}{*}{3} & \multirow{2}{*}{0.888} & \multirow{2}{*}{0.842} & \multirow{2}{*}{0.865} & \multirow{2}{*}{22} \\
-        Duckling & & & & & & & & & \\\hline
+        Duckling & & & & & & & & & \\
     \end{tabular}
     \caption{Entity Recognition Result Evaluation} \label{tab:entity_extraction_eval}
 \end{table} \noindent
@@ -347,7 +347,7 @@ since it doesn't deliver reliable results.
                                   & && Dialogflow & \cmark & - \\
                                   & && Spacy & \xmark & Asdfgh Qwert\\
                                   & && LUIS & \xmark & Asdfgh Qwert\\
-                                  \hline
+                                
 
     \end{tabular}
     \caption{Person Entity Recogniton and Extraction} \label{tab:person_entity_extraction_recognition}
@@ -382,6 +382,31 @@ since it doesn't deliver reliable results.
                                   && & Spacy & \xmark & - \\
                                   & && Duckling & \xmark & - \\ 
                                   && & LUIS & \xmark & 2020-06-01 \\ 
+                      
+                         
+    \end{tabular}
+    \caption{Date Entity Recogniton and Extraction} \label{tab:date_entity_extraction_recognition}
+\end{table} \noindent
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ c | c | c | l | c | c  }
+        \multirow{2}{*}{No} & \multirow{2}{*}{Input} & \multirow{2}{*}{Expected} & \multirow{2}{*}{Technology} & Recognized & Extracted \\ 
+                 &&          &            & Correctly  & Value     \\ \hline \hline
+        \multirow{5}{*}{9} & \multirow{5}{*}{06.06.2020} & \multirow{5}{*}{TP} 
+                                  & Watson & \cmark & 2020-06-06 \\
+                                  && & Dialogflow & \cmark & 2020-06-06 \\
+                                  & && Spacy & \xmark & - \\
+                                  & && Duckling & \cmark & 2020-06-06 \\ 
+                                  && & LUIS & \cmark & 2020-06-06 \\ 
+                                  \hline
+
+        \multirow{5}{*}{10} & \multirow{5}{*}{06/34/2020} & \multirow{5}{*}{TN} 
+                                  & Watson & \xmark & 2020-06-01 \\
+                                  && & Dialogflow & \cmark & - \\
+                                  && & Spacy & \cmark & - \\
+                                  & && Duckling & \cmark & - \\ 
+                                  && & LUIS & \xmark & 2020-01-01 \\ 
                                   \hline
         \multirow{5}{*}{4} &\multirow{5}{*}{June 6} & \multirow{5}{*}{TP} 
                                   & Watson & \cmark & 2020-06-06 \\
@@ -417,32 +442,6 @@ since it doesn't deliver reliable results.
                                   & && Spacy & \xmark & - \\
                                   & && Duckling & \xmark & 2020-05-31 \\ 
                                   && & LUIS & \xmark & - \\ 
-                                  \hline
-                         
-    \end{tabular}
-    \caption{Date Entity Recogniton and Extraction} \label{tab:date_entity_extraction_recognition}
-\end{table} \noindent
-
-\begin{table}[H]
-    \centering
-    \begin{tabular}{ c | c | c | l | c | c  }
-        \multirow{2}{*}{No} & \multirow{2}{*}{Input} & \multirow{2}{*}{Expected} & \multirow{2}{*}{Technology} & Recognized & Extracted \\ 
-                 &&          &            & Correctly  & Value     \\ \hline \hline
-        \multirow{5}{*}{9} & \multirow{5}{*}{06.06.2020} & \multirow{5}{*}{TP} 
-                                  & Watson & \cmark & 2020-06-06 \\
-                                  && & Dialogflow & \cmark & 2020-06-06 \\
-                                  & && Spacy & \xmark & - \\
-                                  & && Duckling & \cmark & 2020-06-06 \\ 
-                                  && & LUIS & \cmark & 2020-06-06 \\ 
-                                  \hline
-
-        \multirow{5}{*}{10} & \multirow{5}{*}{06/34/2020} & \multirow{5}{*}{TN} 
-                                  & Watson & \xmark & 2020-06-01 \\
-                                  && & Dialogflow & \cmark & - \\
-                                  && & Spacy & \cmark & - \\
-                                  & && Duckling & \cmark & - \\ 
-                                  && & LUIS & \xmark & 2020-01-01 \\ 
-                         
     \end{tabular}
     \caption{Date Entity Recogniton and Extraction 2} \label{tab:date_entity_extraction_recognition2}
 \end{table} \noindent
@@ -532,7 +531,7 @@ since it doesn't deliver reliable results.
                  &&&                          &                        & 2020-06-07 \\\cline{4-6}
                  &&& \multirow{2}{*}{LUIS} & \multirow{2}{*}{\cmark} & 2020-06-02 \\
                  &&&                          &                        & 2020-06-06 \\
-                 \hline
+                 
     \end{tabular}
     \caption{Date Span Entity Recogniton and Extraction 2} \label{tab:date_span_entity_extraction_recognition2}
 \end{table} \noindent
@@ -555,7 +554,7 @@ For the intent recognition task only date and date-spans are used which
 were recognized by all relevant frameworks to ensure unbiased tests.
 Spacy has no relevance for the application in terms of date and date-span
 extraction and is not considered for dates in the intent recognition tests.
-
+% tests
 The detailed test are listed in Table \ref{tab:sickness_intent_classification} and 
 Table \ref{tab:vacation_intent_classification}.
 The test evaluation is shown in Table \ref{tab:intent_classification_result}.
@@ -575,7 +574,9 @@ Table \ref{tab:sickness_intent_classification}.
 The test sentences get more complex the higher the number.
 Dialogflow and Watson were able to correctly classify all test sentences
 whereas Rasa and LUIS failed to correctly classify the more complex sentences.
-
+This leads to the conclusion that Watson and Dialogflow work better with 
+complex sentences when a small amount of training data is used.
+% F-score
 The result in Table \ref{tab:intent_classification_result} shows that 
 Dialogflow and Watson reach a perfect f-score of 1.0.
 Rasa was able to reach a much higher f-score on the vacation use-case than 
@@ -643,7 +644,7 @@ LUIS reached the lowest average confidence score of all four technologies.
         &  Watson & \multirow{2}{*}{\cmark} & \multirow{2}{*}{\cmark} & 91.0 \\ \cline{3-3}\cline{6-6}
         && Dialogflow &  &  & 72.5 \\ \cline{3-6}
         && Rasa & \multirow{2}{*}{\xmark} & \multirow{2}{*}{\cmark} &  26.2 \\\cline{3-3}\cline{6-6}
-        && LUIS & & & 6.1 \\ \hline 
+        && LUIS & & & 6.1 \\ 
 
     \end{tabular}
     \caption{Sickness Intent Classification} \label{tab:sickness_intent_classification}
@@ -701,7 +702,7 @@ LUIS reached the lowest average confidence score of all four technologies.
         &  Watson & \multirow{2}{*}{\cmark} & \multirow{2}{*}{\cmark} & 45.0 \\ \cline{3-3}\cline{6-6}
         && Dialogflow & & & 70.2 \\ \cline{3-6}
         && Rasa & \multirow{2}{*}{\xmark} & \multirow{2}{*}{\cmark} & 21.6 \\\cline{3-3}\cline{6-6}
-        && LUIS &  & & 7.8 \\ \hline
+        && LUIS &  & & 7.8 \\ 
 
     \end{tabular}
     \caption{Vacation Intent Classification} \label{tab:vacation_intent_classification}
@@ -730,7 +731,7 @@ LUIS reached the lowest average confidence score of all four technologies.
         \multirow{3}{*}{LUIS} 
         & sickness & 4& 4& 1.0& 0.5  & 0.667& 30.40\\
         & vacation & 1& 7& 1.0& 0.125& 0.222& 30.64\\
-        & sum      & 5&11& 1.0& 0.313& 0.476& 30.52\\ \hline
+        & sum      & 5&11& 1.0& 0.313& 0.476& 30.52\\
     \end{tabular}
     \caption{Intent Classification Result} \label{tab:intent_classification_result}
 \end{table} \noindent
@@ -763,8 +764,8 @@ They are all structured similar with the menu to the left.
 The information for the bots is always entered as text.
 Intents are always built with training phrases.
 All offer prebuilt system entities.
-LUIS has the most prebuilt entities, Dialogflow is in the middle,
-and Watson Assistant offers the fewest entities.
+Dialogflow has the most prebuilt entities, followed by LUIS,
+then comes Rasa, and Watson Assistant offers the fewest entities.
 For the sickness and vacation use-case the entities of 
 Dialogflow suit best because no entity has to be defined by 
 the developer. 

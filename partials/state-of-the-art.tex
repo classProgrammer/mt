@@ -25,7 +25,6 @@ The basic workflow of a chatbot system starts with the user input \cite{deshpand
 Then the NLP engine extracts entities and detects the intent \cite{deshpande2017survey}.
 Entities are used to retrieve the relevant data \cite{deshpande2017survey}.
 After the relevant data has been retrieved a response is generated \cite{deshpande2017survey}.
-
 % Building chatbots with Python
 \citet{buiildChatbotsPython} explains the core concepts of chatbots, NLU, and NLP necessary for the development of chatbots.
 A food order chatbot is built with Dialogflow and a horoscope bot is built with Rasa in \citet{buiildChatbotsPython}.
@@ -41,7 +40,6 @@ time than the communication between the user and an employee.
 A perfect example use-case for a chatbot is a FAQ web page \cite{buiildChatbotsPython}.
 The answers are predefined, it's repetitive, it consists soly of questions and answers, and can be automated.
 Some of the best chatbot and NLP frameworks are Rasa, LUIS, and Dialogflow \cite{buiildChatbotsPython}.
-
 % geyer 2016 named entity recognition in 140 chars or less
 \citet{geyer2016named} is about named entity recognition (NER) in microposts.
 NER is the core concept used by chatbot tools to extract information from text.
@@ -49,7 +47,6 @@ The classic examples for named entities are people, locations, and organizations
 \citet{geyer2016named} examines how good custom entities are recognized by the system.
 The frequency of entities in the training data can influence the NER performance \cite{geyer2016named}. 
 \citet{geyer2016named} checked the performance of entity recognition which can be done for chatbot frameworks in similar fashion.
-
 % IEEE: rahman 2017 programming
 \citet{rahman2017programming} gives a small overview of the concepts of Dialogflow and the general architecture of chatbot systems.
 Commonly used cloud chatbot solutions are IBM Watson, Dialogflow, and Microsoft Bot \cite{rahman2017programming}.
@@ -63,7 +60,6 @@ The tech giants provide chatbot frameworks for regular developers \cite{rahman20
 Google provides API.ai/Dialogflow, Microsoft has LUIS, IBM develops Watson, and Amazon provides Lex \cite{rahman2017programming}.
 The key concepts of Dialogflow are intent, entity, and utterance.
 Intents link the user's input to actions which are executed \cite{rahman2017programming}.
-
 % ---------- EVAL ---------- %
 \citet{deshpande2017survey,buiildChatbotsPython,geyer2016named,rahman2017programming} focus on the 
 basics of chatbot frameworks and chatbot related concepts.
@@ -95,7 +91,6 @@ fewer links on average which saves browsing time \cite{evaluateChatbotsShawar200
 The users preferred Google because it's familiar and it can give different answers when the input query is adjusted 
 slightly \cite{evaluateChatbotsShawar2007}.
 This shows that custom-built solutions can outperform classical approaches in small areas.
-
 % Bordes 2016 learning goal-oriented dialog
 \citet{bordes2016learning} analyses the strengths and weaknesses of end-to-end dialog systems in goal-oriented settings.
 The end-to-end approaches have recently shown promising results with chit-chat/general conversation with a user \cite{bordes2016learning}.
@@ -122,7 +117,7 @@ In other words, each user had at least one problem in the conversation.
 This would lead to a bad user experience. 
 In summary, the most important statement of \citet{bordes2016learning} is that the current end-to-end systems are
 not performing reliably enough in goal-oriented settings.
-
+% williams hybrid coding
 \citet{williams2017hybrid} intorduces an approch which combines end-to-end dialog with domain specific knowledge.
 A task-oriented system helps the user to achieve a task using natural language \cite{williams2017hybrid}.
 A restaurant reservation is a task-oriented operation which requires domain-specific knowledge \cite{williams2017hybrid}.
@@ -154,7 +149,6 @@ to get the best of both worlds.
 \citet{williams2017hybrid} does not compare the HCN approach to a goal-oriented approach like \citet{bordes2016learning} did
 for regual end-to-end systems.
 Hence, no statement can be made if HCNs could replace goal-oriented systems or not.
-
 % ---------- EVAL ---------- %
 In \citet{evaluateChatbotsShawar2007} testing focus lies on the user side whereas the tesing focus of 
 \citet{braunEvaluatingNLU} lies on the NLU capabilities.
@@ -244,7 +238,6 @@ The domain had little to no influence on the ranking of the NLU performance \cit
 In other words, a good NLU system performs good independent of the domain.
 If the training data is sparse then there is no significant difference between the services \cite{braunEvaluatingNLU}. 
 Before using an NLU service different services should be tested with domain-specific data \cite{braunEvaluatingNLU}.
-
 % Dutta 2017 developing
 In \citet{dutta2017developing} a chatbot is developed that assists high school students with learning general 
 knowledge subjects and analyses the impact the chatbot had on learning.
@@ -269,7 +262,6 @@ of these features.
 \citet{dutta2017developing} also touches psychological aspects of chatbot systems 
 like motivation of users through smalltalk. 
 \citet{GO2019304, brandtzaeg2018chatbots,folstad2017chatbots} go deeper into the psychological aspects of chatbot systems.
-
 % Gregori 2017 evaluation
 \citet{gregori2017evaluation} evaluated the NLU capabilities of Wit.ai, Luis, Api.ai/Dialogflow, and Amazon Lex\cite{lexconversational}
 by the confidence score. 
@@ -277,14 +269,12 @@ The higher the confidence the better the user request matched the training data 
 Each tool was trained with the same data and was tested with the same questions to ensure fair conditions \cite{gregori2017evaluation}.
 LUIS, Wit.ai, and API.ai/Dialogflow performed on an equal level in terms of intent classification in \citet{gregori2017evaluation}.
 \citet{gregori2017evaluation} chose Api.ai/Dialogflow for the development of a prototype.
-
 % IEEE: pharmacy bot
 In \citet{pharmacybot} a chatbot is built to aid customers with questions regarding medication for a 
 pharmacy company using IBM Watson.
 The bot can provide medications for an illness, give information about a specific medicine, and can 
 give information on the medication intake \cite{pharmacybot}.
 The bot is a domain specific bot since it answers questions to medication only.
-
 % In bot we trust:
 Important performance metrics for chatbots are the conversation length and structure, the ability to 
 provide personalized communication, and the number of conversation steps \cite{PRZEGALINSKA2019785}.
@@ -294,7 +284,6 @@ information related to the user \cite{PRZEGALINSKA2019785}.
 Retail chatbots need a larger amount of conversation steps to provide information and recommendations 
 and hold the user's attention \cite{PRZEGALINSKA2019785}.
 The measurement criteria for chatbots vary depending on the domain of the bot.
-
 % Luis 2015 Williams
 \citet{luis2015williams} gives an overview of LUIS the state-of-the-art language understanding service of Microsoft.
 Historically, language understanding could be implemented via machine learning or handcrafted rules \cite{luis2015williams}.
@@ -310,8 +299,6 @@ Developers need to understand the concepts intent, entity, and utterance to work
 Developers can create custom entities and use existing entities like location, date, and time.
 The communication with LUIS is done through an HTTP endpoint in JSON format \cite{luis2015williams}. 
 Dialogflow, Rasa, and Watson Assistant also uses an HTTP endpoint for communication and JSON format for the messages. 
-
-
 % rasa bocklisch 2017
 \citet{rasabocklisch2017} describes the architecutre and function of Rasa.
 Rasa is an open-source tool for natural language understanding and dialog management for developers \cite{rasabocklisch2017}.
@@ -328,7 +315,6 @@ Live training is an effective way to create training data for plausible conversa
 With live training there is a higher possibility to create a complete and natural conversation because the 
 developer is forced to go through the conversation step by step.
 \citet{braunEvaluatingNLU} showed that Rasa performs on an equal level with tools like LUIS.
-
 % ---------- EVAL ---------- %
 \citet{braunEvaluatingNLU} compares some NLU frameworks regarding their natural language capabilities.
 The compared frameworks are suitable for task-specific problems.
@@ -348,9 +334,6 @@ Unlike other references which either use or evaluate frameworks \citet{luis2015w
 introduce the frameworks LUIS\cite{luis2015williams} and Rasa\cite{rasabocklisch2017}. 
 They focus on the technology itself and don't build a chatbot with it nor do they compare frameworks.
 In \citet{dutta2017developing, pharmacybot, PRZEGALINSKA2019785} actual chatbots for specific use cases have been implemented.
-
-
-
 % ---------- END GOAL-ORIENTED SYSTEMS ---------- %
 
 % ---------- DESIGN PSYCHO ASPECTS ---------- %
@@ -375,7 +358,6 @@ Developers don't have to think about designing user interfaces for chatbots.
 The developers need to switch to a goal-oriented view where the main focus 
 lies on understanding what the user wants and how they can be served \cite{folstad2017chatbots}.
 The state-of-the-art technology of conversational interfaces is Google Assistant \cite{folstad2017chatbots}.
-
 % Brandtzaeg 2018 chatbots: Changing user needs and motivation
 \citet{brandtzaeg2018chatbots} describes chatbots as a natural language interface using text or voice.
 They are used to retrieve content or access a service through natural language conversation \cite{brandtzaeg2018chatbots}.
@@ -400,7 +382,6 @@ Three examples for chatbots are Microsofts Heston Bot for food, cooking opportun
 suggestions based on photos, and Ikeas shopping assistant bot \cite{brandtzaeg2018chatbots}.
 \citet{brandtzaeg2018chatbots} focuse on psychological aspects of chatbot design and give recommendations
 independent from the type of chatbot.
-
 % humanize bots 2019
 \citet{GO2019304} is about human-like bots and the 
 effects they have on users and compares these bots with current chatbot systems.
@@ -427,7 +408,6 @@ This needs to be kept in mind when designing chatbots since the false identifica
 can lead to a huge decrease in user satisfaction and acceptance.
 \citet{GO2019304} shows that the user assumption (bot or human) has a great impact 
 on the chatbot evaluation and the feedback.
-
 % ---------- EVAL ---------- %
 Unlike the other references \citet{folstad2017chatbots, brandtzaeg2018chatbots, GO2019304}
 focus on the psychological aspects of chatbots and the communication with machines in general.
@@ -451,7 +431,6 @@ This means that the the design focus of a chatbot isn't the UI.
 It is the conversation.
 Hence, the main design focus needs to shift from UI design to conversation design.
 % ---------- END DESIGN PSYCHO ASPECTS ---------- %
-
 
 % ---------- EXAMPLES ---------- %
 

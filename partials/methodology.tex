@@ -26,7 +26,7 @@ End-to-end systems won't be considered in this thesis because their performance 
 The given problem of sickness notifications is a domain-specific/goal-oriented 
 (\citet{deshpande2017survey, luis2015williams, braunEvaluatingNLU, williams2017hybrid}) 
 task hence domain-specific frameworks are suitable.
-
+% Framework selection
 The framework selection for this thesis is based on chapter \ref{chap:soa} State-of-the-Art and Section \ref{sec:prereq} Prerequisites.
 Section \ref{sec:prereq} describe the requirements of the company and chapter \ref{chap:soa} shows which technologies are 
 used in papers, articles, and books.
@@ -34,7 +34,7 @@ To match the prerequisites at least one cloud (\citet{braunEvaluatingNLU, rahman
 A common cloud technology is Dialogflow (\citet{braunEvaluatingNLU, dutta2017developing, singhbuilding, buiildChatbotsPython, rahman2017programming, ieee2018watson}) hence it is selected.
 A common local standalone technology is Rasa (\citet{braunEvaluatingNLU, singhbuilding, rasabocklisch2017, buiildChatbotsPython, gregori2017evaluation}) and is the local tool of choice.
 The chosen technologies are Dialogflow, IBM Watson (\citet{rahman2017programming, pharmacybot, ieee2018watson, gregori2017evaluation}), and Rasa to fulfill all requirements.
-
+% prototyping
 All three prototypes will be used to implement the same task.
 An example convsersation of the sickness notification task is shown in Figure \ref{fig:sicknessflow}
 They will be trained with the same data listed in the appendix 
@@ -47,6 +47,7 @@ The analysis of the sickness notification dialog is shown in Table \ref{tab:sick
 A main part of this thesis is the comparison and evaluation of the 
 frameworks and the prototypes.
 The frameworks and prototypes will be compared in the sickness/vacation domain.
+% entity extraction
 The two major tasks of chatbot systems are the entity extraction and the intent 
 classification.
 \citet{geyer2016named} compared frameworks based on their entity extraction
@@ -71,7 +72,7 @@ numeric values is Duckling (Wit.ai).
 Spacy is a technologie which provides the required person entity and 
 it's available for Rasa.
 The cloud frameworks all have built in system entities. 
-
+% intent classification
 The same process will be used for the intent classification task.
 The intent classification provides a confidence score value.
 The confidence score will be used to rank the intent classification 
@@ -91,8 +92,7 @@ The average confidence score will be calculated for the
 two use-cases individually and combined for both.
 This is an indicator if a technology has problems with or excells
 on a specific use-case.
-
-
+% implementation possible or not
 \citet{singhbuilding} says the best evaluation criteria is if the 
 task can be achieved.
 This will be used as evaluation criteria and will be based on the 
@@ -111,7 +111,7 @@ Hence, it doesn't offer a mechanism to handle dialogs which is
 necessary to implement a chatbot.
 The Microsoft Bot Framework can be used to build chatbots 
 and uses LUIS.
-
+% price comparison
 One of the main reasons why companies use or want to use chatbots is because they are cost efficient.
 For this reason the prices of the chatbot frameworks need to be compared.
 In general, cheap is treated better in this ranking than expensive.
@@ -125,7 +125,6 @@ For the usage in a business application the prices of all version of the framewo
 especially if an enterprise verison is offered.
 The expectation is that the frameworks cost roughly the same and that 
 the prices are easy to compare.
-
 % portability
 The ISO 25010\cite{iso25010} standard defines portability as an evaluation criterion for software systems.
 Portability is a big issue with chatbot technologies.

@@ -43,6 +43,34 @@ They will have the same intents, entities, and utterances.
 These steps are necessary to ensure a fair comparison.
 The analysis of the sickness notification dialog is shown in Table \ref{tab:sick_data}.
 
+\section{Course of Action} % Ablauf
+First of all, the problem needs to be analyzed and classified.
+The problem can either be suitable or unsuitable for the use of chatbots.
+It's suitable if the problem can be solved by simple back and forth communication,
+is repretitive, and can be automated \citet{singhbuilding}.
+Then the conversation needs to be analyzed.
+In general, the conversation needs to be solvable through general conversation or 
+task-oriented communication.
+The conversation can be represented as flowchart like \citet{singhbuilding} did.
+The required intents, entities, and actions need to be defined based on the conversation.
+Training data needs to be created for the intents and entities where necessary.
+The same trainig data is used for every technology to ensure a fair 
+comparison of the results.
+The prototypes are then developed based on the training data.
+The resulting prototypes need to implement the same dialog structure.
+It's either possible or impossible to implement the dialog structure with the 
+chatbot technologies. 
+If it's impossible to implement the dialog structure the technology 
+won't be recommended.
+Afterwards, the test data needs to be created for the comparison and evaluation of 
+the chatbots.
+The test data is the same for all bots.
+
+
+
+
+
+
 \section{Comparison and Evaluation}
 A main part of this thesis is the comparison and evaluation of the 
 frameworks and the prototypes.
@@ -92,6 +120,12 @@ The average confidence score will be calculated for the
 two use-cases individually and combined for both.
 This is an indicator if a technology has problems with or excells
 on a specific use-case.
+The average confidence score should be as high as possible.
+An average confidence below 50\% is low and indicates 
+that the technology is not sure that the intent was 
+classified correctly.
+A low confidence score can be improved through more training data
+in most cases. 
 % implementation possible or not
 \citet{singhbuilding} says the best evaluation criteria is if the 
 task can be achieved.
@@ -145,10 +179,6 @@ It's expected that all technolgies safe the data differently and that it's not
 easy to migrate between them.
 
 
-\section{Model}
-
-
-\section{Course of Action} % Ablauf
 % Domain
 % Knowledge Base bilden
 % Intents

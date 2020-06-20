@@ -1,9 +1,10 @@
+% price
 The price comparison of Section \ref{sec:pricing} shows that all 
 tested frameworks can be used for free.
 Dialogflow is better when there is a lot of users with little chatbot interaction.
 Watson offers a better value when the users interact a lot with the bot.
 With Rasa the costs depend on the infrastructure provided by the company.
-
+% where can it run
 A big disadvantage with cloud-based solutions is the dependency on the company.
 It's not easy to change the provider and take the current chatbot with you if it 
 is a cloud based chatbot. 
@@ -15,3 +16,34 @@ The cloud provider hence has access to the sensitive information which can be pr
 bank account information for instance.
 Rasa has no such problem since the data is processed inside of the docker container or in a 
 local environment.
+% entity extraction
+The entity extraction section shows that Dialogflow and LUIS 
+define the required entities while Watson lacks a person entity.
+Rasa doesn't offer any entities but can use the entities of 
+Spacy and Duckling.
+If both are used then no entities need to be defined in Rasa.
+The result in Table \ref{tab:entity_extraction_eval} shows that 
+Dialogflow has the best person and date entity but it 
+had problems with the date-span entity.
+The best date-span entity extraction was achieved by Watson and Duckling which
+achieved the same f-score.
+The best overal performance was achieved by Rasa followed by Dialogflow.
+If the date-span entity of Dialogflow worked better it would be in the top spot.
+No technology performed exceptionally bad in this category.
+% intent classification
+The intent classification result of Table \ref{tab:intent_classification_result}
+shows that Dialogflow and Watson outperformed Rasa and LUIS.
+Both reached a perfect precision, recall, and f-score of 1.
+Watson takes the top spot because Dialogflow extracted an entity incorrectly 
+in test case four of Table \ref{tab:sickness_intent_classification}.
+LUIS performed worst and failed to impress especially on the vacation tests
+of Table \ref{tab:vacation_intent_classification}.
+Rasa showed a good performance when the f-score is used as a measure but 
+has a low average confidence score of 46\%.
+The confidence scores of Dialogflow and Watson are far better with 77\% and 74\%.
+In this category Dialogflow and Watson performed good enough to be recommended.
+The confidence scores of Rasa can be improved through more training data.
+LUIS can't be recommended because of the bad intent classification result.
+It had by far the lowest f-score and average confidence.
+
+

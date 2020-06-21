@@ -71,7 +71,7 @@ It's also possible to use Watson Assistant since the performance was close to Di
 Rasa needs to be improved but it's possible to improve the confidence scores with more training data.
 LUIS can't be recommended because of the horrible performance in the intent classification tests.
 % portability
-Rasa is the only technology which is portable.
+Rasa is the only technology that is portable.
 It can run in a Docker container and Docker containers are supported by every 
 cloud provider.
 It can also run locally on a development machine and on an internal server.
@@ -82,21 +82,26 @@ The migration from one chatbot technology to another is not easily possible with
 any of the technologies tested. 
 Hence, there is no evaluation possible and no ranking can be done.
 % pricing
-The pricings of the frameworks shown in Table \ref{tab:pricing} are hard to compare and 
-intransparent for the premium version of Watson Assistant and the enterprise edition for Rasa.
+The pricings of the frameworks shown in Table \ref{tab:pricing} are hard to compare and intransparent for the premium version of Watson Assistant and the enterprise edition for Rasa.
 All three offer a free tier which can be used by companies.
-Because of the intransparency the comparison can't be used for a recommendation.
+Because of the lack of transparency, the comparison can't be used for a recommendation or a ranking.
 The real difference is that Watson Assistant is measured by the number of users per month and 
 Dialogflow is based on the number of requests.
 This makes Dialogflow cheaper for small amounts of requests and lots of users with short conversations.
 Watson is cheaper for returning users with lots of conversation or very long conversations.
+% security
+When security is an important factor then a local technology needs to be used.
+The cloud technologies all process the requests in the cloud and this has to be 
+kept in mind.
+If it's impossible to process information in the cloud because there are security restrictions
+then the recommendation is to use Rasa.
 
 % recommendation
 When all the factors discussed above are combined the clear winner is Dialogflow.
 The design could be implemented fasted with Dialogflow, it's the easiest of the chatbot technologies,
-it offers the most predefined entities, it offers utility intents, it offers the best person and date entity, 
-has the highest average confidence score, and performed great in the intent classification tests. 
-
+it offers the most predefined entities, provides utility intents, had the best person and date
+entity in the entity extraction tests, has the highest average confidence score, 
+and performed great in the intent classification tests. 
 
 
 

@@ -1,28 +1,101 @@
 \section{Conclusion}
+The domain consisting of the sickness notification and the vacation request 
+can be solved with chatbots.
+% implementation
+It was possible to implement the design with all three chatbot 
+technologies namely Dialogflow, Rasa, and Watson Assistant.
+Based on Chapter \ref{chap:proto} the implementation is 
+easiest with Dialogflow then comes Watson Assistant followed by 
+Rasa which is the most complicated by far.
+It's easiest with Dialogflow because it already has prebuilt entities,
+it offers the utility intents yes and no, and small talk can be 
+included with a single mouse click.
+Watson Assistant is second because it takes more time to get accustomed 
+to the UI, the person entity needs to be defined by the developer,
+and the yes/no logic needs to be implemented.
+Rasa is the most complex one since it doesn't provide any entities 
+itself.
+To enable the entities of other technologies like Spacy and Duckling the 
+pipeline needs to be adjusted.
+To connect to Duckling and Additional Docker container needs to be started.
+The chatbot developer also needs to implement the form filling with Python 
+when using Rasa. 
+The other technologies don't require any programming skills to model the 
+dialog.
+The implementation with Rasa took by far the longest.
+When only the implementation section is used for the ranking 
+Dialogflow wins in front of Watson followed by Rasa.
+% no of entities
+Table \ref{tab:predefined_entities} shows the number of predefined entities.
+When only the domain of this thesis is considered then the only technology 
+where an entity is missing would be Watson Assistant since it provides no person entity.
+When the number of entities is considered for a general case then the 
+top technology by a large margin is Dialogflow.
+The number of predefined entities is an important number for future use-cases since 
+lots of development time can be saved when the entities are already predefined.
+They are also trained well because they use large training sets.
+% entity extraction
 Table \ref{tab:entity_extraction_eval} ranks the frameworks based on their 
-entity extracton capabilities.
-The best person and date entities are present at Dialogflow.
-The best date-span entity is the time entity of Duckling 
-and the date entity of Watson Assistant which reached the same f-score.
-The best combined date and date-span extractor is Duckling.
+entity extraction capabilities.
+The best person and date entities are present at Dialogflow because they have the 
+highest f-score values.
+The date-span entity with the best f-score is the time entity of Duckling.
+The date entity of Watson Assistant reached the same f-score as Duckling.
+When the combination of date and date-span entities is considered Duckling wins 
+the ranking.
+The second place goes to Watson Assistant closely followed by Dialogflow.
 The best overall entity extraction performance is achieved by Rasa through 
-a combination of Duckling and Spacy followed closely by Dialogflow.
+the combination of Duckling and Spacy followed closely by Dialogflow.
 From the entity extraction capabilities alone either Rasa or 
 Dialogflow needs to be recommended.
-The other frameworks performed a lot worse in the entity extraction 
+The other frameworks performed worse in the entity extraction 
 department.
-The intent classification is dominated by Watson and Dialogflow since they were able to classify all test cases correctly.
+The ranking shows that some technologies performed better than others.
+It also shows that no framework performed badly.
+% intent classification
+The intent classification is dominated by Watson and Dialogflow since 
+both were able to classify all test cases correctly.
 LUIS failed most of the intent detection tests and can't be recommended.
-Dialogflow wins the average confidence score comparison in front of Watson 
-shown in Table \ref{tab:intent_classification_result}.
-The other two technologies were unable to keep up.
-This is an indication that Rasa and LUIS need more training date to 
+Dialogflow wins the average confidence score comparison in front of Watson.
+The detailed result is shown in Table \ref{tab:intent_classification_result}.
+Rasa and Luis were unable to keep up with Dialogflow and Watson when the 
+average confidence is compared.
+This is an indication that Rasa and LUIS need more training data to 
 reach the same performance level as Dialogflow and Watson.
-From the numeric values based on the entity extraction and intent recognition 
-the recommended technology is Dialogflow.
-Rasa and Watson are in the middle and can be recommended too.
+An average confidence value below 50\% is not satisfactory.
+Based on the entity extraction and intent recognition results
+the recommended technology in the top stop has to be Dialogflow
+since the performance in both categories was great.
+Additionally, Dialogflow has the best average confidence value.
+It's also possible to use Watson Assistant since the performance was close to Dialogflow.
+Rasa needs to be improved but it's possible to improve the confidence scores with more training data.
 LUIS can't be recommended because of the horrible performance in the intent classification tests.
+% portability
+Rasa is the only technology which is portable.
+It can run in a Docker container and Docker containers are supported by every 
+cloud provider.
+It can also run locally on a development machine and on an internal server.
+The cloud technologies are tied to the cloud provider who offers the bot.
+Rasa wins the portability comparison.
+% migration
+The migration from one chatbot technology to another is not easily possible with 
+any of the technologies tested. 
+Hence, there is no evaluation possible and no ranking can be done.
+% pricing
+The pricings of the frameworks shown in Table \ref{tab:pricing} are hard to compare and 
+intransparent for the premium version of Watson Assistant and the enterprise edition for Rasa.
+All three offer a free tier which can be used by companies.
+Because of the intransparency the comparison can't be used for a recommendation.
+The real difference is that Watson Assistant is measured by the number of users per month and 
+Dialogflow is based on the number of requests.
+This makes Dialogflow cheaper for small amounts of requests and lots of users with short conversations.
+Watson is cheaper for returning users with lots of conversation or very long conversations.
 
+% recommendation
+When all the factors discussed above are combined the clear winner is Dialogflow.
+The design could be implemented fasted with Dialogflow, it's the easiest of the chatbot technologies,
+it offers the most predefined entities, it offers utility intents, it offers the best person and date entity, 
+has the highest average confidence score, and performed great in the intent classification tests. 
 
 
 
@@ -41,8 +114,3 @@ When users assume to talk to a human the conversation is judged as more natural 
 Like \citet{shawar2007chatbots} said, a chatbot should not imitate humans they should be used to reduce their workload and help them.
 
 The best source for conversational data is real-life conversations of real customers with the expert to get the most realistic training data possible \cite{singhbuilding}.
-
-
-
-
-

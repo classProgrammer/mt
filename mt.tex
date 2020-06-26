@@ -112,13 +112,32 @@ def submit(
 \begin{table}[h]
     \centering
     \begin{tabular}{ c | l | c | c   }
+        \multirow{2}{*}{No} & \multirow{2}{*}{Utterance} & Person & Date \\ 
+                 &&         Entity & Entity                 \\ \hline \hline
+        1 & Ich bin krank & \xmark & \xmark\\ \hline 
+        2 & Krankmeldung & \xmark & \xmark\\ \hline 
+        3 & krank melden & \xmark & \xmark\\ \hline 
+        4 & [Alfred Mayer] ist krank & \cmark & \xmark\\ \hline 
+        5 & meine Kollegin [Maria M\"uller] ist bis [Mittwoch] krank & \cmark & \cmark\\ \hline 
+        6 & Kollegin [Simone Bauer] ist krank & \cmark & \xmark\\ \hline 
+        7 & melde [Franz Dorfer] krank & \cmark & \xmark\\ \hline 
+        8 & [Stefan Weber] ist krank bis [Freitag] & \cmark & \cmark\\ \hline 
+        9 & krank [Emma Wagner] [6.Juni] & \cmark & \cmark\\ \hline 
+        10 & [Sophia Richter] ist heute krank & \cmark & \xmark\\ \hline 
+    \end{tabular}
+    \caption{Sickness Training Utterances German} \label{tab:sickness_utterances_de}
+\end{table} \noindent
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ c | l | c | c   }
         \multirow{2}{*}{No} & \multirow{2}{*}{Utterance} & Person & Date-Span \\ 
                  &&         Entity & Entity                 \\ \hline \hline
         1 & vacation & \xmark & \xmark\\ \hline 
         2 & holiday & \xmark & \xmark\\ \hline 
         3 & I need a vacation & \xmark & \xmark\\ \hline 
         4 & colleague [Johan Schmidt] requested a vacation & \cmark & \xmark\\ \hline 
-        5 & I'm on holiday from Monday to Friday & \xmark & \cmark\\ \hline 
+        5 & I'm on holiday [from Monday to Friday] & \xmark & \cmark\\ \hline 
         6 & vacation [Mia Koch] [06/20 to 06/30] & \cmark & \cmark\\ \hline 
         7 & [Adam Schneider] is on holiday [from June 6 to June 14] & \cmark & \cmark\\ \hline 
         8 & holiday request & \xmark & \xmark\\ \hline 
@@ -126,6 +145,143 @@ def submit(
         10 & [Lea Klein] requested a vacation & \cmark & \xmark \\
     \end{tabular}
     \caption{Vacation Training Utterances} \label{tab:vacation_utterances}
+\end{table} \noindent
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ c | l | c | c   }
+        \multirow{2}{*}{No} & \multirow{2}{*}{Utterance} & Person & Date-Span \\ 
+                 &&         Entity & Entity                 \\ \hline \hline
+        1 & Urlaub & \xmark & \xmark\\ \hline 
+        2 & Urlaubsantrag & \xmark & \xmark\\ \hline 
+        3 & Ich brauche Urlaub & \xmark & \xmark\\ \hline 
+        4 & Kollege [Johan Schmidt] hat Urlaub beantragt & \cmark & \xmark\\ \hline 
+        5 & Ich bin von [Montag bis Freitag] im Urlaub & \xmark & \cmark\\ \hline 
+        6 & urlaub beantragen [Mia Koch] [20/06 bis 30/06] & \cmark & \cmark\\ \hline 
+        7 & [Adam Schneider] ist [vom 6.Juni bis 14.Juni] im Urlaub & \cmark & \cmark\\ \hline 
+        8 & Ich beantrage Urlaub & \xmark & \xmark\\ \hline 
+        9 & Urlaub [vom 12.August bis zum 30.August] & \xmark & \cmark\\ \hline 
+        10 & [Lea Klein] hat einen Urlaubsantrag eingereicht & \cmark & \xmark \\
+    \end{tabular}
+    \caption{Vacation Training Utterances German} \label{tab:vacation_utterances_de}
+\end{table} \noindent
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ c | l | c | c | c | c   }
+        \multirow{2}{*}{No} & \multirow{2}{*}{Input} & \multirow{2}{*}{Technology} & Intent & Entity & Confid. \\ 
+                 &&          & Match & Match & [\%]     \\ \hline \hline
+
+        \multirow{4}{*}{1} & \multirow{4}{*}{krank}  
+        &  Watson & \multirow{4}{*}{\cmark} & \multirow{4}{*}{-} & 91.0 \\\cline{3-3} \cline{6-6}
+        && Dialogflow & &  & 77.1 \\ \cline{3-3} \cline{6-6}
+        && Rasa &  &  & 93.6 \\ \cline{3-3} \cline{6-6}
+        && LUIS &  &  & 99.8 \\ \hline
+
+        \multirow{4}{*}{2} & \multirow{4}{*}{Emilia Schwarz ist krank}  
+        &  Watson & \multirow{4}{*}{\cmark} & \multirow{1}{*}{\xmark} & 94.0 \\ \cline{3-3} \cline{5-6}
+        && Dialogflow &  & \multirow{3}{*}{\cmark}  & 100 \\ \cline{3-3} \cline{6-6}
+        && Rasa &   &  & 72.7 \\ \cline{3-3} \cline{6-6}
+        && LUIS &  &  & 92.7 \\ \hline
+
+        \multirow{4}{*}{3} & \multirow{4}{*}{Lea Schmitt bis Mittwoch krank gemeldet}  
+        &  Watson & \multirow{4}{*}{\cmark} & \multirow{1}{*}{\xmark} & 95.0 \\ \cline{3-3}\cline{5-6}
+        && Dialogflow & & \cmark & 80.0 \\ \cline{3-3}\cline{5-6}
+        && Rasa &  & \xmark & 43.1 \\ \cline{3-3}\cline{5-6}
+        && LUIS &  & \cmark & 79.1 \\ \hline
+
+        \multirow{4}{*}{4} & \multirow{4}{*}{Ich muss mich krank melden}  
+        &  Watson & \multirow{4}{*}{\cmark} &  \multirow{4}{*}{-} & 97.0 \\ \cline{3-3}\cline{6-6}
+        && Dialogflow &  &  & 70.5 \\ \cline{3-3}\cline{6-6} 
+        && Rasa &  &  & 45.3 \\\cline{3-3}\cline{6-6} 
+        && LUIS &  &  & 95.0 \\ \hline
+
+        \multirow{4}{*}{5} & \multirow{4}{*}{\shortstack[l]{Paul Armstrong ist krank und kommt\\ am Montag wieder }}  
+        &  Watson & \multirow{4}{*}{\cmark} & \multirow{1}{*}{\xmark} & 93.0 \\ \cline{3-3}\cline{5-6}
+        && Dialogflow &  & \multirow{3}{*}{\cmark}  & 73.5 \\ \cline{3-3}\cline{6-6}
+        && Rasa &  &  & 41.6 \\\cline{3-3}\cline{6-6}
+        && LUIS &  &  & 64.8 \\ \hline
+
+        \multirow{4}{*}{6} & \multirow{4}{*}{\shortstack[l]{krank Anna Maier 06/10}}  
+        &  Watson & \multirow{4}{*}{\cmark} & \multirow{1}{*}{\xmark} & 93.0 \\  \cline{3-3}\cline{5-6}
+        && Dialogflow & & \cmark & 100.0 \\  \cline{3-3}\cline{5-6}
+        && Rasa &  & \xmark & 60.2 \\ \cline{3-3}\cline{5-6} 
+        && LUIS &  & \cmark & 72.1 \\ \hline 
+
+        \multirow{4}{*}{7} & \multirow{4}{*}{\shortstack[l]{Ich komme heute nicht zur Arbeit\\ weil ich krank bin}}  
+        &  Watson & \multirow{2}{*}{\cmark} & \multirow{2}{*}{-} & 96.0 \\ \cline{3-3} \cline{6-6} 
+        && Dialogflow & &  & 45.2 \\ \cline{3-6}
+        && Rasa & \multirow{1}{*}{\xmark} & \multirow{2}{*}{\xmark} &  33.4 \\\cline{3-4} \cline{6-6}
+        && LUIS & \cmark &  & 75.9 \\ \hline 
+
+        \multirow{4}{*}{8} & \multirow{4}{*}{\shortstack[l]{Anna Lehner fühlt sich krank.\\Sie wird Dienstag wieder da sein.}}  
+        &  Watson & \multirow{4}{*}{\cmark} & \multirow{1}{*}{\xmark} & 94.0 \\  \cline{3-3}\cline{5-6}
+        && Dialogflow & & \multirow{3}{*}{\cmark} & 100 \\  \cline{3-3}\cline{6-6}
+        && Rasa &  &  &  42.4 \\ \cline{3-3}\cline{6-6}
+        && LUIS &  &  & 57.6 \\ 
+
+    \end{tabular}
+    \caption{Sickness Intent Classification German} \label{tab:sickness_intent_classification_de}
+\end{table} \noindent
+
+
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ c | l | c | c | c | c   }
+        \multirow{2}{*}{No} & \multirow{2}{*}{Input} & \multirow{2}{*}{Technology} & Intent & Entity & Confid. \\ 
+                 &&          & Match & Match & [\%]     \\ \hline \hline
+
+        \multirow{4}{*}{1} & \multirow{4}{*}{Urlaub}  
+        &  Watson & \multirow{4}{*}{\cmark} & \multirow{4}{*}{-} & 100.0 \\\cline{3-3} \cline{6-6}
+        && Dialogflow &  &  & 100.0 \\ \cline{3-3}\cline{6-6}
+        && Rasa &  &  & 59.8 \\ \cline{3-3}\cline{6-6}
+        && LUIS &  &  & 98 \\ \hline
+
+        \multirow{4}{*}{2} & \multirow{4}{*}{\shortstack[l]{mein Kollege Franz Bauer möchte\\ Urlaub beantragen}}  
+        &  Watson & \multirow{4}{*}{\cmark} & \multirow{4}{*}{\cmark} & 93.0 \\\cline{3-3} \cline{6-6}
+        && Dialogflow &  &  & 100.0 \\ \cline{3-3}\cline{6-6}
+        && Rasa &  &  & 45 \\ \cline{3-3}\cline{6-6}
+        && LUIS &  &  & 88.8 \\ \hline
+
+        \multirow{4}{*}{3} & \multirow{4}{*}{\shortstack[l]{Urlaub Martin Huber 12.Juli bis\\ 13.07.2020}}  
+        &  Watson & \multirow{4}{*}{\cmark} & \multirow{3}{*}{\xmark} & 95.0 \\\cline{3-3} \cline{6-6}
+        && Dialogflow &  &  & 100.0 \\ \cline{3-3}\cline{6-6}
+        && Rasa &  &  & 44.5 \\ \cline{3-3}\cline{5-6}
+        && LUIS &  & \cmark  & 91.4 \\ \hline
+
+        \multirow{4}{*}{4} & \multirow{4}{*}{\shortstack[l]{Urlaubsantrag 12/07 bis 13.Juli}}  
+        &  Watson & \multirow{4}{*}{\cmark} & \multirow{1}{*}{\cmark} & 100.0 \\\cline{3-3} \cline{5-6}
+        && Dialogflow &  & \multirow{2}{*}{\xmark}  & 100.0 \\ \cline{3-3}\cline{6-6}
+        && Rasa &  &  & 91.7 \\ \cline{3-3}\cline{5-6}
+        && LUIS &  & \cmark & 98.3 \\ \hline
+
+        \multirow{4}{*}{5} & \multirow{4}{*}{\shortstack[l]{Urlaub beantragen für den Zeitraum \\28.September - 2.Oktober}}  
+        &  Watson & \multirow{4}{*}{\cmark} & \multirow{2}{*}{\xmark} & 97.0 \\\cline{3-3} \cline{6-6}
+        && Dialogflow &  &  & 54.9 \\ \cline{3-3}\cline{5-6}
+        && Rasa &  & \multirow{2}{*}{\cmark} & 69.1 \\ \cline{3-3}\cline{6-6}
+        && LUIS &  &  & 96.4 \\ \hline
+
+        \multirow{4}{*}{6} & \multirow{4}{*}{\shortstack[l]{Ich brauche umbedingt Urlaub\\ auf einer einsamen Insel}}  
+        &  Watson & \multirow{4}{*}{\cmark} & \multirow{1}{*}{-} & 96.0 \\\cline{3-3} \cline{5-6}
+        && Dialogflow &  & \xmark & 80.5 \\ \cline{3-3}\cline{5-6}
+        && Rasa &  & \multirow{2}{*}{-} & 54.2 \\ \cline{3-3}\cline{6-6}
+        && LUIS &  &  & 83.2 \\ \hline
+
+        \multirow{4}{*}{7} & \multirow{4}{*}{\shortstack[l]{Kollege Helmut Kerschbaum \\ hat Urlaub beantragt}}  
+        &  Watson & \multirow{4}{*}{\cmark} & \multirow{1}{*}{\xmark} & 97.0 \\\cline{3-3} \cline{5-6}
+        && Dialogflow &  & \multirow{3}{*}{\cmark}  & 100.0 \\ \cline{3-3}\cline{6-6}
+        && Rasa &  &  & 66.7 \\ \cline{3-3}\cline{6-6}
+        && LUIS &  &  & 90.5 \\ \hline
+
+        \multirow{4}{*}{8} & \multirow{4}{*}{\shortstack[l]{Kollege Helmut Kerschbaum \\will Urlaub. Er wird von 10/09 bis 24/09\\ nicht erreichbar sein.}}  
+        &  Watson & \multirow{4}{*}{\cmark} & \multirow{3}{*}{\xmark} & 96.0 \\\cline{3-3} \cline{6-6}
+        && Dialogflow &  &  & 100.0 \\ \cline{3-3}\cline{6-6}
+        && Rasa &  &  & 53.0 \\ \cline{3-3}\cline{5-6}
+        && LUIS &  & \cmark & 93.8 \\ \hline
+
+    \end{tabular}
+    \caption{Vacation Intent Classification German} \label{tab:vacation_intent_classification_de}
 \end{table} \noindent
 
 

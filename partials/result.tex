@@ -238,11 +238,16 @@ The extracted value column shows that Spacy recognizes many date inputs correctl
     \centering
     \begin{tabular}{ c | l | c | c | c | c | c | c | c | c }
         Framework & Type & TP & TN & FP & FN & p & r & F-Score & Tests \\ \hline \hline
-        \multirow{4}{*}{Dialogflow} 
+        \multirow{4}{*}{\shortstack[l]{Dialogflow\\date-period}} 
         & Date & 8 & 1 & 0 & 1 & 1.0 & 0.888 & 0.94 & 10 \\ 
         & Date-Span & 2 & 0 & 0 & 4 & 1.0 & 0.333 & 0.5 & 6 \\ 
         & Person & 3 & 2 & 0 & 1 & 1.0 & 0.75 & 0.857 & 6 \\ \cline{2-10}
         & Summary & 13 & 3 & 0 & 6 & 1.0 & 0.684 & 0.813 & 22 \\ \hline
+        \multirow{4}{*}{\shortstack[l]{Dialogflow\\date-time}}
+        & Date & 8 & 1 & 0 & 1 & 1.0 & 0.888 & 0.94 & 10 \\ 
+        & Date-Span & 5 & 0 & 0 & 1 & 1.0 & 0.833 & 0.909 & 6 \\ 
+        & Person & 3 & 2 & 0 & 1 & 1.0 & 0.75 & 0.857 & 6 \\ \cline{2-10}
+        & Summary & 16 & 3 & 0 & 3 & 1.0 & 0.842 & 0.914 & 22 \\ \hline
         \multirow{4}{*}{Watson} 
         & Date & 6 & 0 & 1 & 3 & 0.857 & 0.666 & 0.75 & 10 \\ 
         & Date-Span & 5 & 0 & 0 & 1 & 1.0 & 0.833 & 0.909 & 6 \\ 
@@ -262,7 +267,7 @@ The extracted value column shows that Spacy recognizes many date inputs correctl
         & Date & 7 & 1 & 0 & 2 & 1.0 & 0.777 & 0.875 & 10 \\ 
         & Date-Span & 5 & 0 & 0 & 1 & 1.0 & 0.833 & 0.909 & 6 \\ \cline{2-10}
         & Summary & 12 & 1 & 0 & 3 & 1.0 & 0.8 & 0.888 & 16 \\ \hline
-        Dialogflow & Date Sum & 10 & 1 & 0 & 5 & 1.0 & 0.666 & 0.8 & 16 \\ \hline
+        Dialogflow & Date Sum & 13 & 1 & 0 & 2 & 1.0 & 0.866 & 0.929 & 16 \\ \hline
         Watson & Date Sum & 11 & 0 & 1 & 4 & 0.916 & 0.733 & 0.815 & 16 \\ \hline
         LUIS & Date Sum & 9 & 0 & 1 & 6 & 0.9 & 0.6 & 0.72 & 16 \\ \hline
         Spacy & Date Sum & 6 & 1 & 0 & 9 & 1.0 & 0.4 & 0.571 & 16 \\ \hline
@@ -280,33 +285,36 @@ of Duckling for dates and date-spans and Spacy for persons.
 This makes the comparison of Rasa with the other technologies possible.
 The true negatives (TN) are not part of the f-score calculation.
 Table \ref{tab:entity_extraction_eval} shows that the technology with the 
-best f-score (0.888) is the combination of Duckling for dates and date-spans and Spacy  
-for persons.
-Rasa can use both technologies and has the highest f-score of all technologies.
-The best f-score (0.888) for the combination of dates and date-spans was achieved  
-by Duckling.
-Dialogflow has the best date entity (f-score of 0.94) but had problems 
-with date-spans.
-Duckling and Watson were on an equal level when it comes to date-spans 
-with an f-score of 0.909 each.
+best f-score across all tests (0.914) is Dialogflow followed by 
+a combination of Duckling for dates and date-spans and Spacy  
+for persons is used.
+Rasa can use Duckling and Spacy and reaches the second highest f-score.
+The best f-score (0.929) for the combination of dates and date-spans was achieved  
+by Dialogflow.
+Dialogflow has the best date entity (f-score of 0.94) when the date-time entity is used 
+instead of the date-period entity.
+The date-period entity of Dialogflow reached a low f-score of 0.5 and is not recommended for further use. 
+Duckling, Watson, and Dialogflow were on an equal level when only date-spans are considered. 
+All three reached an f-score of 0.909.
 Dialogflow also has the best f-score for the person entity.
 Watsons person entity performed worst as expected.
 With more training data the performance of Watsons custom person 
 entity can be increased.
 In test case two of Table \ref{tab:date_span_entity_extraction_recognition} Spacy 
 recognized two separate dates instead of a date-span.
-This is counted as a failure because in the application there is only one date slot
+This is counted as a failure because in the application there is only one date slot present
 and the information can't be processed correctly.
-In test case one Dialogflow and Luis convert Monday to a date in the past.
+In test case one Dialogflows date-period entity and Luis convert Monday to a date in the past.
 This is now what is needed for the use-cases since it should be the next matching 
 weekday and not the last.
 Test case two gives a hint that the next occurring weekday is the correct one.
-The result is not influenced and Dialogflow and LUIS still take the wrong day.
+The result is not influenced and Dialogflows date-period entity and LUIS still take the wrong day.
 The functionality was retested on another day.
 LUIS still failed to extract the correct date but Dialogflow 
 managed to do so.
-In the test result it will be counted as a failure of Dialogflow 
+In the test result it will be counted as a failure of Dialogflows date-period entity
 since it doesn't deliver reliable results.
+
 \begin{table}[h]
     \centering
     \begin{tabular}{ c | c | c | c | c | c  }
@@ -452,10 +460,12 @@ since it doesn't deliver reliable results.
     \begin{tabular}{ c | c | c | c | c | c  }
         \multirow{2}{*}{No} & \multirow{2}{*}{Input} & \multirow{2}{*}{Expected} & \multirow{2}{*}{Technology} & Recognized & Extracted \\ 
                  &&          &            & Correctly  & Value     \\ \hline \hline
-        \multirow{10}{*}{1} &\multirow{10}{*}{Monday to Friday} & \multirow{10}{*}{TP} 
+        \multirow{12}{*}{1} &\multirow{12}{*}{Monday to Friday} & \multirow{12}{*}{TP} 
                  & \multirow{2}{*}{Watson} & \multirow{2}{*}{\cmark} & 2020-06-01 \\
                  &&&                          &                        & 2020-06-05 \\\cline{4-6}
-                 &&& \multirow{2}{*}{Dialogflow} & \multirow{2}{*}{\xmark} & 2020-05-25 \\
+                 &&& \multirow{2}{*}{Dialogflow date-period} & \multirow{2}{*}{\xmark} & 2020-05-25 \\
+                 &&&                          &                        & 2020-06-01 \\\cline{4-6}
+                 &&& \multirow{2}{*}{Dialogflow date-time} & \multirow{2}{*}{\cmark} & 2020-05-25 \\
                  &&&                          &                        & 2020-06-05 \\\cline{4-6}
                  &&& \multirow{2}{*}{Spacy} & \multirow{2}{*}{\cmark} & Monday to \\
                  &&&                          &                        & Friday \\\cline{4-6}
@@ -464,10 +474,12 @@ since it doesn't deliver reliable results.
                  &&& \multirow{2}{*}{LUIS} & \multirow{2}{*}{\xmark} & 2020-05-25 \\
                  &&&                          &                        & 2020-05-29 \\
                  \hline
-        \multirow{10}{*}{2} &\multirow{10}{*}{\shortstack[l]{from next tuesday to\\ wednesday}} & \multirow{10}{*}{TP} 
+        \multirow{12}{*}{2} &\multirow{12}{*}{\shortstack[l]{from next tuesday to\\ wednesday}} & \multirow{12}{*}{TP} 
                  & \multirow{2}{*}{Watson} & \multirow{2}{*}{\cmark} & 2020-06-02 \\
                  &&&                          &                        & 2020-06-03 \\\cline{4-6}
-                 &&& \multirow{2}{*}{Dialogflow} & \multirow{2}{*}{\xmark} & 2020-05-26 \\
+                 &&& \multirow{2}{*}{Dialogflow date-period} & \multirow{2}{*}{\xmark} & 2020-05-26 \\
+                 &&&                          &                        & 2020-06-03 \\\cline{4-6}
+                 &&& \multirow{2}{*}{Dialogflow date-time} & \multirow{2}{*}{\cmark} & 2020-06-02 \\
                  &&&                          &                        & 2020-06-03 \\\cline{4-6}
                  &&& \multirow{2}{*}{Spacy} & \multirow{2}{*}{\xmark} & next tuesday \\
                  &&&                          &                        & wednesday \\\cline{4-6}
@@ -476,10 +488,12 @@ since it doesn't deliver reliable results.
                  &&& \multirow{2}{*}{LUIS} & \multirow{2}{*}{\xmark} & 2020-06-09 \\
                  &&&                          &                        & 2020-06-10 \\
                  \hline
-        \multirow{10}{*}{3} &\multirow{10}{*}{\shortstack[l]{June 6 to June 7}} & \multirow{10}{*}{TP} 
+        \multirow{12}{*}{3} &\multirow{12}{*}{\shortstack[l]{June 6 to June 7}} & \multirow{12}{*}{TP} 
                  & \multirow{2}{*}{Watson} & \multirow{2}{*}{\cmark} & 2020-06-06 \\
                  &&&                          &                        & 2020-06-07 \\\cline{4-6}
-                 &&& \multirow{2}{*}{Dialogflow} & \multirow{2}{*}{\cmark} & 2020-06-06 \\
+                 &&& \multirow{2}{*}{Dialogflow date-period} & \multirow{2}{*}{\cmark} & 2020-06-06 \\
+                 &&&                          &                        & 2020-06-07 \\\cline{4-6}
+                 &&& \multirow{2}{*}{Dialogflow date-time} & \multirow{2}{*}{\cmark} & 2020-06-06 \\
                  &&&                          &                        & 2020-06-07 \\\cline{4-6}
                  &&& \multirow{2}{*}{Spacy} & \multirow{2}{*}{\cmark} & June 6 to \\
                  &&&                          &                        & June 7 \\\cline{4-6}
@@ -488,10 +502,12 @@ since it doesn't deliver reliable results.
                  &&& \multirow{2}{*}{LUIS} & \multirow{2}{*}{\cmark} & 2020-06-06 \\
                  &&&                          &                        & 2020-06-07 \\
                  \hline
-        \multirow{10}{*}{4} &\multirow{10}{*}{\shortstack[l]{06/06 to 06/07}} & \multirow{10}{*}{TP} 
+        \multirow{12}{*}{4} &\multirow{12}{*}{\shortstack[l]{06/06 to 06/07}} & \multirow{12}{*}{TP} 
                  & \multirow{2}{*}{Watson} & \multirow{2}{*}{\cmark} & 2020-06-06 \\
                  &&&                          &                        & 2020-06-07 \\\cline{4-6}
-                 &&& \multirow{2}{*}{Dialogflow} & \multirow{2}{*}{\cmark} & 2020-06-06 \\
+                 &&& \multirow{2}{*}{Dialogflow date-period} & \multirow{2}{*}{\cmark} & 2020-06-06 \\
+                 &&&                          &                        & 2020-06-07 \\\cline{4-6}
+                 &&& \multirow{2}{*}{Dialogflow date-time} & \multirow{2}{*}{\cmark} & 2020-06-06 \\
                  &&&                          &                        & 2020-06-07 \\\cline{4-6}
                  &&& \multirow{2}{*}{Spacy} & \multirow{2}{*}{\xmark} & - \\
                  &&&                          &                        & - \\\cline{4-6}
@@ -508,11 +524,13 @@ since it doesn't deliver reliable results.
     \begin{tabular}{ c | c | c | c | c | c  }
         \multirow{2}{*}{No} & \multirow{2}{*}{Input} & \multirow{2}{*}{Expected} & \multirow{2}{*}{Technology} & Recognized & Extracted \\ 
                  &&          &            & Correctly  & Value     \\ \hline \hline
-        \multirow{10}{*}{5} &\multirow{10}{*}{\shortstack[l]{06/07 to 06/06}} & \multirow{10}{*}{TP} 
+        \multirow{12}{*}{5} &\multirow{12}{*}{\shortstack[l]{06/07 to 06/06}} & \multirow{12}{*}{TP} 
                  & \multirow{2}{*}{Watson} & \multirow{2}{*}{\xmark} & 2020-06-07 \\
                  &&&                          &                        & 2020-06-06 \\\cline{4-6}
-                 &&& \multirow{2}{*}{Dialogflow} & \multirow{2}{*}{\xmark} & 2020-06-07 \\
+                 &&& \multirow{2}{*}{Dialogflow date-period} & \multirow{2}{*}{\xmark} & 2020-06-07 \\
                  &&&                          &                        & 2020-06-06 \\\cline{4-6}
+                 &&& \multirow{2}{*}{Dialogflow date-time} & \multirow{2}{*}{\cmark} & 2020-06-07 \\
+                 &&&                          &                        & 2021-06-06 \\\cline{4-6}
                  &&& \multirow{2}{*}{Spacy} & \multirow{2}{*}{\xmark} & - \\
                  &&&                          &                        & - \\\cline{4-6}
                  &&& \multirow{2}{*}{Duckling} & \multirow{2}{*}{\xmark} & 2020-06-07 \\
@@ -520,10 +538,12 @@ since it doesn't deliver reliable results.
                  &&& \multirow{2}{*}{LUIS} & \multirow{2}{*}{\xmark} & 2020-06-07 \\
                  &&&                          &                        & 2020-06-06 \\
                  \hline
-        \multirow{10}{*}{6} &\multirow{10}{*}{\shortstack[l]{from tomorrow to\\06.06.2020}} & \multirow{10}{*}{TP} 
+        \multirow{12}{*}{6} &\multirow{12}{*}{\shortstack[l]{from tomorrow to\\06.06.2020}} & \multirow{12}{*}{TP} 
                  & \multirow{2}{*}{Watson} & \multirow{2}{*}{\cmark} & 2020-06-02 \\
                  &&&                          &                        & 2020-06-06 \\\cline{4-6}
-                 &&& \multirow{2}{*}{Dialogflow} & \multirow{2}{*}{\xmark} & - \\
+                 &&& \multirow{2}{*}{Dialogflow date-period} & \multirow{2}{*}{\xmark} & - \\
+                 &&&                          &                        & - \\\cline{4-6}
+                 &&& \multirow{2}{*}{Dialogflow date-time} & \multirow{2}{*}{\xmark} & 2020-06-02 \\
                  &&&                          &                        & - \\\cline{4-6}
                  &&& \multirow{2}{*}{Spacy} & \multirow{2}{*}{\xmark} & tomorrow \\
                  &&&                          &                        & - \\\cline{4-6}
@@ -590,6 +610,49 @@ closely by Watson Assistant.
 Compared to Dialogflow and Watson Assistant the average confidence
 score of Rasa is a lot lower.
 LUIS reached the lowest average confidence score of all four technologies.
+
+The same experiment is also interesting with German as language since the potential 
+users are from a German speaking country.
+The training data is listed in the Appendix in Table \ref{tab:sickness_utterances_de} and 
+Table \ref{tab:vacation_utterances_de}.
+The translates test sentences are listed in Table \ref{tab:sickness_intent_classification_de} 
+and Table \ref{tab:vacation_intent_classification_de} with a boolean value which indicates if the 
+correct intent was identified, a boolean that indicates if the entities were extracted correctly,
+and the confidence score for each test case.
+The finalized result is listed in \ref{tab:intent_classification_result_de} and shows 
+that the average confidence score for the German test sentences is a higher than 
+for the English test sentences for each technology individually.
+The f-score also increased significantly which indicates that the German test sentences are 
+recognized better than the English test sentences.
+The ranking of the Technologies is also different from before since three technologies 
+achieved perfect f-scores the ranking is based on the average confidence.
+The highest confidence was achieved by Watson.
+The second place goes to LUIS contrairy to the 
+English test sentences where LUIS performed worst.
+LUIS was able to increas the average confidence from about 30\% on the English tests 
+to about 85\% on the German tests.
+Dialogflow only reaches the third place.
+The intent recognition are top notch for all technologies and all can be recommended from that 
+point of view.
+The results in Table \ref{tab:sickness_intent_classification_de} and \ref{tab:vacation_intent_classification_de} 
+show that the entity extraction results drop in the German setup with all technologies except LUIS.
+Dialogflow has problems to extract the person entity correctly in German sentences although German 
+has been selected in the settings. 
+The system entity date-time of Dialogflow is unable to handle German date formats although 
+the dialog language is set to German.
+Watson doesn't offer entity annotation in training sentences when German is selected as language.
+This means that Watson is only recommended for an English bot until the annotation of entities in 
+training phrases is enabled for other languages.
+LUIS offers a person entity when English is selected but not for the German language.
+The date-time entity of LUIS is able to handle German date formats. 
+This means that LUIS is the only technology which achieved a satidfying result in the entity extraction category.
+All in all, the intent recognition result is very good for the German language tests but the entity extraction 
+often fails.
+
+
+
+
+
 
 \begin{table}[h]
     \centering
@@ -735,6 +798,33 @@ LUIS reached the lowest average confidence score of all four technologies.
     \caption{Intent Classification Result} \label{tab:intent_classification_result}
 \end{table} \noindent
 
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ l | l | c | c | c | c | c | c  }
+        \multirow{2}{*}{Framework} & \multirow{2}{*}{Tested} & \multirow{2}{*}{TP} & \multirow{2}{*}{FN} & \multirow{2}{*}{p} & \multirow{2}{*}{r} & \multirow{2}{*}{f-score} & avg Confid. \\ 
+                 &&          &            &   & & & [\%]     \\ \hline \hline
+        \multirow{3}{*}{Watson} 
+        & sickness & 8 & 0& 1.0& 1.0& 1.0&94.12 \\
+        & vacation & 8 & 0& 1.0& 1.0& 1.0&96.38 \\
+        & sum      &16 & 0& 1.0& 1.0& 1.0&95.25 \\ \hline
+        
+        \multirow{3}{*}{Dialogflow} 
+        & sickness & 8& 0& 1.0& 1.0& 1.0&80.79\\
+        & vacation & 8& 0& 1.0& 1.0& 1.0&89.46\\
+        & sum      &16& 0& 1.0& 1.0& 1.0&85.13\\ \hline
+
+        \multirow{3}{*}{Rasa} 
+        & sickness & 7& 1& 1.0& 0.875  & 0.933& 54.04\\
+        & vacation & 8& 0& 1.0& 1.0& 1.0& 58.28\\
+        & sum      &15& 1& 1.0& 0.938& 0.968& 56.16\\ \hline
+
+        \multirow{3}{*}{LUIS} 
+        & sickness & 8& 0& 1.0& 1.0 & 1.0& 79.63\\
+        & vacation & 8& 0& 1.0& 1.0 & 1.0& 91.03\\
+        & sum      & 16&0& 1.0& 1.0 & 1.0& 85.33\\
+    \end{tabular}
+    \caption{Intent Classification Result German} \label{tab:intent_classification_result_de}
+\end{table} \noindent
 
 % training capabilities
 \subsection*{Training Capabilities}

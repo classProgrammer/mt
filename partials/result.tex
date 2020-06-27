@@ -187,14 +187,15 @@ Hence, no entities need to be created in LUIS or Dialogflow for the use-cases of
 thesis.
 \begin{table}[H]
     \centering
-    \begin{tabular}{ c | l | c | c | c | c }
+    \begin{tabular}{ c | c | c | c | c | c }
         Framework & Subtype & Person & Date & Date Span & Standardized Output Date \\ \hline \hline
         \multirow{3}{*}{Rasa} & Default & \xmark & \xmark & \xmark & \xmark \\
         & Spacy & \cmark & \cmark & \cmark & \xmark \\ 
         & Duckling & \xmark & \cmark & \cmark & \cmark \\ \hline
-        Dialogflow & System & \cmark & \cmark & \cmark & \cmark \\ \hline
-        Watson & System & \xmark & \cmark & \xmark & \cmark \\ \hline
-        LUIS & System & \cmark & \cmark & \cmark & \cmark \\
+        Dialogflow & - & \cmark & \cmark & \cmark & \cmark \\ \hline
+        Watson & - & \xmark & \cmark & \xmark & \cmark \\ \hline
+        \multirow{2}{*}{LUIS}  & English & \cmark & \cmark & \cmark & \cmark \\
+         & German & \xmark & \cmark & \cmark & \cmark \\
     \end{tabular}
     \caption{Framework Entity Recognition and Extraction} \label{tab:entity_extraction_recognition}
 \end{table} \noindent
@@ -390,17 +391,7 @@ since it doesn't deliver reliable results.
                                   && & Spacy & \xmark & - \\
                                   & && Duckling & \xmark & - \\ 
                                   && & LUIS & \xmark & 2020-06-01 \\ 
-                      
-                         
-    \end{tabular}
-    \caption{Date Entity Recogniton and Extraction} \label{tab:date_entity_extraction_recognition}
-\end{table} \noindent
-
-\begin{table}[H]
-    \centering
-    \begin{tabular}{ c | c | c | l | c | c  }
-        \multirow{2}{*}{No} & \multirow{2}{*}{Input} & \multirow{2}{*}{Expected} & \multirow{2}{*}{Technology} & Recognized & Extracted \\ 
-                 &&          &            & Correctly  & Value     \\ \hline \hline
+                                  \hline
         \multirow{5}{*}{9} & \multirow{5}{*}{06.06.2020} & \multirow{5}{*}{TP} 
                                   & Watson & \cmark & 2020-06-06 \\
                                   && & Dialogflow & \cmark & 2020-06-06 \\
@@ -437,6 +428,17 @@ since it doesn't deliver reliable results.
                                   & && Duckling & \cmark & 2020-06-06 \\ 
                                   && & LUIS & \cmark & 2020-06-06 \\ 
                                   \hline
+                         
+    \end{tabular}
+    \caption{Date Entity Recogniton and Extraction} \label{tab:date_entity_extraction_recognition}
+\end{table} \noindent
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ c | c | c | l | c | c  }
+        \multirow{2}{*}{No} & \multirow{2}{*}{Input} & \multirow{2}{*}{Expected} & \multirow{2}{*}{Technology} & Recognized & Extracted \\ 
+                 &&          &            & Correctly  & Value     \\ \hline \hline
+       
         \multirow{5}{*}{7} &\multirow{5}{*}{06-06} & \multirow{5}{*}{TP} 
                                   & Watson & \xmark & - \\
                                   && & Dialogflow & \cmark & 2020-06-06 \\

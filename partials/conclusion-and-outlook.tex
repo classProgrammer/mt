@@ -65,6 +65,20 @@ Additionally, Dialogflow has the best average confidence value.
 It's also possible to use Watson Assistant since the performance was close to Dialogflow.
 Rasa needs to be improved but it's possible to improve the confidence scores with more training data.
 LUIS can't be recommended because of the horrible performance in the intent classification tests.
+% intent classification german 
+The intent classification was also done for the German language and the results differ greatly from the 
+English results.
+The average confidence increased for each technology.
+The f-score of LUIS and Rasa increased significantly. 
+This puts LUIS on par with Dialogflow and Watson with a perfect f-score value of 1.0.
+This leads to the conclusion that the intent classification works better for the German 
+language in general since all technologies performed better.
+Countrary to the intent classification, the entity-extraction performance decreased significantly.
+In the English test sentences of Tables \ref{tab:sickness_intent_classification} and \ref{tab:vacation_intent_classification}
+the entity extraction didn't work correctly in two cases and worked in 46 cases.
+For the German language, test shown in Tables \ref{tab:sickness_intent_classification_de} and \ref{tab:vacation_intent_classification_de},
+a total of 21 wrong and 26 correct extractions are counted.
+The only technology that achieved a satisfying entity extraction result on the German test sentences is LUIS.
 % portability
 Rasa is the only technology that is portable.
 It can run in a Docker container and Docker containers are supported by every 

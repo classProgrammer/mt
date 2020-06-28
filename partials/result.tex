@@ -55,7 +55,7 @@ three chatbot technologies.
 
 
 % project complexity
-\subsection*{Project Setup Complexity}
+\subsection*{Project Setup Complexity} \label{sec:setup_complex}
 % required tools
 As a measurement criterion, the required tools will be used.
 To set up Watson Assistant, Dialogflow, and LUIS a web-browser is needed.
@@ -140,6 +140,24 @@ It's easier to develop a chatbot with Dialogflow than with Watson Assistant or R
 The Watson Assistants UI is intransparent when compared to Dialogflow and a developer 
 may need more time to orient.
 Rasa requires the most time to develop a chatbot and to get everything ready.
+As described in Section \ref{sec:setup_complex} the setup of cloud services is 
+easy since the cloud providers take care of the setup.
+Rasa has to be installed or used as a Docker container which is harder than the cloud 
+setup and requires more time.
+To use Watson and Dialogflow no programming skills are required while they are needed for 
+Rasa which makes it harder to learn.
+It's also harder to define a dialog structure with Rasa since a story 
+needs to be written in the format shown in Listing \ref{lst:rasa_story_format}
+whereas with Dialogflow and Watson dialog nodes are created which 
+can be strucutred in a GUI with drag-and-drop.
+Furthermore, it's harder to create form filling actions in Rasa.
+In Rasa the form filling needs to be defined through code like in Listing \ref{lst:slot_fill_action} while 
+Dialogflow and Watson support it through a simple GUI shown in Figure \ref{fig:formfill}.
+When the GUI of Rasa-X is used defining new entities and intents works the same way for the three frameworks.
+To enable the use of predefined entities the pipeline of Rasa needs to be modified which is more 
+complicated than with Dialogflow where they are enabled by default and Watson where the entities need to be 
+enabled in the settings.
+
 
 % predefined types/entities
 Another measurement criteria for learnability is the number of predefined entities.
@@ -189,7 +207,7 @@ thesis.
     \centering
     \begin{tabular}{ c | c | c | c | c | c }
         Framework & Subtype & Person & Date & Date Span & Standardized Output Date \\ \hline \hline
-        \multirow{3}{*}{Rasa} & Default & \xmark & \xmark & \xmark & \xmark \\
+        \multirow{3}{*}{Rasa} & - & \xmark & \xmark & \xmark & \xmark \\
         & Spacy & \cmark & \cmark & \cmark & \xmark \\ 
         & Duckling & \xmark & \cmark & \cmark & \cmark \\ \hline
         Dialogflow & - & \cmark & \cmark & \cmark & \cmark \\ \hline
@@ -366,7 +384,7 @@ since it doesn't deliver reliable results.
 
 
 
-\begin{table}[H]
+\begin{table}[h]
     \centering
     \begin{tabular}{ c | c | c | l | c | c  }
         \multirow{2}{*}{No} & \multirow{2}{*}{Input} & \multirow{2}{*}{Expected} & \multirow{2}{*}{Technology} & Recognized & Extracted \\ 
@@ -391,6 +409,51 @@ since it doesn't deliver reliable results.
                                   && & Spacy & \xmark & - \\
                                   & && Duckling & \xmark & - \\ 
                                   && & LUIS & \xmark & 2020-06-01 \\ 
+                                  
+                         
+    \end{tabular}
+    \caption{Date Entity Recogniton and Extraction} \label{tab:date_entity_extraction_recognition}
+\end{table} \noindent
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ c | c | c | l | c | c  }
+        \multirow{2}{*}{No} & \multirow{2}{*}{Input} & \multirow{2}{*}{Expected} & \multirow{2}{*}{Technology} & Recognized & Extracted \\ 
+                 &&          &            & Correctly  & Value     \\ \hline \hline
+        \multirow{5}{*}{4} &\multirow{5}{*}{June 6} & \multirow{5}{*}{TP} 
+                 & Watson & \cmark & 2020-06-06 \\
+                 && & Dialogflow & \cmark & 2020-06-06 \\
+                 && & Spacy & \cmark & June 6 \\
+                 & && Duckling & \cmark & 2020-06-06 \\ 
+                 && & LUIS & \cmark & 2020-06-06 \\ 
+                 \hline
+        \multirow{5}{*}{5} &\multirow{5}{*}{6th of June} & \multirow{5}{*}{TP} 
+                 & Watson & \cmark & 2020-06-06 \\
+                 && & Dialogflow & \cmark & 2020-06-06 \\
+                 && & Spacy & \cmark & 6th of June \\
+                 & && Duckling & \cmark & 2020-06-06 \\ 
+                 && & LUIS & \cmark & 2020-06-06 \\ 
+                 \hline
+        \multirow{5}{*}{6} &\multirow{5}{*}{06/06} & \multirow{5}{*}{TP} 
+                 & Watson & \cmark & 2020-06-06 \\
+                 && & Dialogflow & \cmark & 2020-06-06 \\
+                 && & Spacy & \xmark & - \\
+                 & && Duckling & \cmark & 2020-06-06 \\ 
+                 && & LUIS & \cmark & 2020-06-06 \\ 
+                 \hline
+        \multirow{5}{*}{7} &\multirow{5}{*}{06-06} & \multirow{5}{*}{TP} 
+                                  & Watson & \xmark & - \\
+                                  && & Dialogflow & \cmark & 2020-06-06 \\
+                                  && & Spacy & \xmark & - \\
+                                  & && Duckling & \cmark & 2020-06-06 \\ 
+                                  && & LUIS & \xmark & - \\ 
+                                  \hline
+        \multirow{5}{*}{8} &  \multirow{5}{*}{06.06} & \multirow{5}{*}{TP} 
+                                  & Watson & \xmark & - \\
+                                  && & Dialogflow & \xmark & - \\
+                                  & && Spacy & \xmark & - \\
+                                  & && Duckling & \xmark & 2020-05-31 \\ 
+                                  && & LUIS & \xmark & - \\ 
                                   \hline
         \multirow{5}{*}{9} & \multirow{5}{*}{06.06.2020} & \multirow{5}{*}{TP} 
                                   & Watson & \cmark & 2020-06-06 \\
@@ -407,57 +470,12 @@ since it doesn't deliver reliable results.
                                   & && Duckling & \cmark & - \\ 
                                   && & LUIS & \xmark & 2020-01-01 \\ 
                                   \hline
-        \multirow{5}{*}{4} &\multirow{5}{*}{June 6} & \multirow{5}{*}{TP} 
-                                  & Watson & \cmark & 2020-06-06 \\
-                                  && & Dialogflow & \cmark & 2020-06-06 \\
-                                  && & Spacy & \cmark & June 6 \\
-                                  & && Duckling & \cmark & 2020-06-06 \\ 
-                                  && & LUIS & \cmark & 2020-06-06 \\ 
-                                  \hline
-        \multirow{5}{*}{5} &\multirow{5}{*}{6th of June} & \multirow{5}{*}{TP} 
-                                  & Watson & \cmark & 2020-06-06 \\
-                                  && & Dialogflow & \cmark & 2020-06-06 \\
-                                  && & Spacy & \cmark & 6th of June \\
-                                  & && Duckling & \cmark & 2020-06-06 \\ 
-                                  && & LUIS & \cmark & 2020-06-06 \\ 
-                                  \hline
-        \multirow{5}{*}{6} &\multirow{5}{*}{06/06} & \multirow{5}{*}{TP} 
-                                  & Watson & \cmark & 2020-06-06 \\
-                                  && & Dialogflow & \cmark & 2020-06-06 \\
-                                  && & Spacy & \xmark & - \\
-                                  & && Duckling & \cmark & 2020-06-06 \\ 
-                                  && & LUIS & \cmark & 2020-06-06 \\ 
-                                  \hline
-                         
-    \end{tabular}
-    \caption{Date Entity Recogniton and Extraction} \label{tab:date_entity_extraction_recognition}
-\end{table} \noindent
-
-\begin{table}[H]
-    \centering
-    \begin{tabular}{ c | c | c | l | c | c  }
-        \multirow{2}{*}{No} & \multirow{2}{*}{Input} & \multirow{2}{*}{Expected} & \multirow{2}{*}{Technology} & Recognized & Extracted \\ 
-                 &&          &            & Correctly  & Value     \\ \hline \hline
-       
-        \multirow{5}{*}{7} &\multirow{5}{*}{06-06} & \multirow{5}{*}{TP} 
-                                  & Watson & \xmark & - \\
-                                  && & Dialogflow & \cmark & 2020-06-06 \\
-                                  && & Spacy & \xmark & - \\
-                                  & && Duckling & \cmark & 2020-06-06 \\ 
-                                  && & LUIS & \xmark & - \\ 
-                                  \hline
-        \multirow{5}{*}{8} &  \multirow{5}{*}{06.06} & \multirow{5}{*}{TP} 
-                                  & Watson & \xmark & - \\
-                                  && & Dialogflow & \xmark & - \\
-                                  & && Spacy & \xmark & - \\
-                                  & && Duckling & \xmark & 2020-05-31 \\ 
-                                  && & LUIS & \xmark & - \\ 
     \end{tabular}
     \caption{Date Entity Recogniton and Extraction 2} \label{tab:date_entity_extraction_recognition2}
 \end{table} \noindent
 
 
-\begin{table}[H]
+\begin{table}[h]
     \centering
     \begin{tabular}{ c | c | c | c | c | c  }
         \multirow{2}{*}{No} & \multirow{2}{*}{Input} & \multirow{2}{*}{Expected} & \multirow{2}{*}{Technology} & Recognized & Extracted \\ 
@@ -579,23 +597,27 @@ extraction and is not considered for dates in the intent recognition tests.
 The detailed test are listed in Table \ref{tab:sickness_intent_classification} and 
 Table \ref{tab:vacation_intent_classification}.
 The test evaluation is shown in Table \ref{tab:intent_classification_result}.
-The tests show that LUIS has the lowest confidence scores on average.
+The tests show that Dialogflow, LUIS, and Watson have almost the same average 
+confidence score. 
+Dialogflow has a smaller deviation than the other three.
 Dialogflow always scores above 50\% confidence and often reaches 100\%.
 The scores of Watson Assistant are similar to Dialogflow with the difference 
 that the confidence score was below 50\% at times.
-The confidence scores of Rasa are lower than the ones of Dialogflow and Watson on 
-average and higher than with LUIS, shown in 
+The confidence scores of Rasa are lower than the ones of Dialogflow, LUIS, and Watson on 
+average, shown in 
 Table \ref{tab:intent_classification_result}.
 Dialogflow and Watson managed to classify all intents correctly.
+LUIS classified all vacation intents correctly.
 The entity extraction of Dialogflow failed in test case 4 of 
 Table \ref{tab:sickness_intent_classification} since "myself" has been extracted as a person.
 This means that the person slot was set incorrectly.
-LUIS didn't extract the person in test sentence six of 
+LUIS extracted sick as person in test sentence one and didn't extract the person in test sentence six, shown in 
 Table \ref{tab:sickness_intent_classification}.
-The test sentences get more complex the higher the number.
-Dialogflow and Watson were able to correctly classify all test sentences
-whereas Rasa and LUIS failed to correctly classify the more complex sentences.
-This leads to the conclusion that Watson and Dialogflow work better with 
+The test sentences get more complex as the number increases.
+Dialogflow and Watson were able to correctly classify all test sentences.
+LUIS failed to classify test sentence seven of Table \ref{tab:sickness_intent_classification}.
+Rasa failed to correctly classify the more complex sentences.
+This leads to the conclusion that Dialogflow, LUIS, and Watson work better with 
 complex sentences when a small amount of training data is used.
 % F-score
 The result in Table \ref{tab:intent_classification_result} shows that 
@@ -604,14 +626,10 @@ Rasa was able to reach a much higher f-score on the vacation use-case than
 on the sickness use-case.
 This implies that the vacation test sentences were better classified by the system than
 the sickness related sentences. 
-LUIS reached the lowest f-score on the vacation use-case and only 
-classified one vacation test sentence correctly.
-LUIS and Rasa reached the same f-score on the sickness test sentences.
 The average confidence was highest with Dialogflow followed 
-closely by Watson Assistant.
-Compared to Dialogflow and Watson Assistant the average confidence
+closely by LUIS and the Watson Assistant.
+Compared to Dialogflow, LUIS, and Watson Assistant the average confidence
 score of Rasa is a lot lower.
-LUIS reached the lowest average confidence score of all four technologies.
 
 The same experiment is also interesting with German as language since the potential 
 users are from a German speaking country.
@@ -629,9 +647,8 @@ recognized better than the English test sentences.
 The ranking of the Technologies is also different from before since three technologies 
 achieved perfect f-scores the ranking is based on the average confidence.
 The highest confidence was achieved by Watson.
-The second place goes to LUIS contrairy to the 
-English test sentences where LUIS performed worst.
-LUIS was able to increas the average confidence from about 30\% on the English tests 
+The second place goes to LUIS.
+LUIS was able to increas the average confidence from about 75\% on the English tests 
 to about 85\% on the German tests.
 Dialogflow only reaches the third place.
 The intent recognition are top notch for all technologies and all can be recommended from that 
@@ -643,11 +660,12 @@ has been selected in the settings.
 The system entity date-time of Dialogflow is unable to handle German date formats although 
 the dialog language is set to German.
 Watson doesn't offer entity annotation in training sentences when German is selected as language.
-This means that Watson is only recommended for an English bot until the annotation of entities in 
-training phrases is enabled for other languages.
+This means that a main feture is only available for English language bots.
+Until the annotation of entities in training phrases is enabled for other languages Watson should only be 
+used in English.
 LUIS offers a person entity when English is selected but not for the German language.
 The date-time entity of LUIS is able to handle German date formats. 
-This means that LUIS is the only technology which achieved a satidfying result in the entity extraction category.
+This means that LUIS is the only technology which achieved a satisfying result in the entity extraction category.
 All in all, the intent recognition result is very good for the German language tests but the entity extraction 
 often fails.
 
@@ -663,52 +681,52 @@ often fails.
                  &&          & Match & Match & [\%]     \\ \hline \hline
 
         \multirow{4}{*}{1} & \multirow{4}{*}{sick}  
-        &  Watson & \multirow{4}{*}{\cmark} & \multirow{4}{*}{-} & 41.0 \\\cline{3-3} \cline{6-6}
+        &  Watson & \multirow{4}{*}{\cmark} & \multirow{3}{*}{-} & 41.0 \\\cline{3-3} \cline{6-6}
         && Dialogflow &  &  & 84.2 \\ \cline{3-3}\cline{6-6}
-        && Rasa &  &  & 78.5 \\ \cline{3-3}\cline{6-6}
-        && LUIS &  &  & 99.8 \\ \hline
+        && Rasa &  &  & 78.5 \\ \cline{3-3}\cline{5-6}
+        && LUIS &  & \xmark & 99.2 \\ \hline
 
         \multirow{4}{*}{2} & \multirow{4}{*}{Emilia Schwarz is ill}  
         &  Watson & \multirow{4}{*}{\cmark} & \multirow{4}{*}{\cmark} & 94.0 \\ \cline{3-3}\cline{6-6}
         && Dialogflow & &  & 78.2 \\ \cline{3-3}\cline{6-6}
         && Rasa &  & & 63.1 \\ \cline{3-3}\cline{6-6}
-        && LUIS &  & & 45.4 \\ \hline
+        && LUIS &  & & 83.4 \\ \hline
 
         \multirow{4}{*}{3} & \multirow{4}{*}{Lea Schmitt is sick until wednesday}  
-        &  Watson & \multirow{3}{*}{\cmark} & \multirow{3}{*}{\cmark} & 92.0 \\ \cline{3-3}\cline{6-6}
+        &  Watson & \multirow{4}{*}{\cmark} & \multirow{4}{*}{\cmark} & 92.0 \\ \cline{3-3}\cline{6-6}
         && Dialogflow & & & 73.9 \\ \cline{3-3}\cline{6-6}
-        && Rasa & & & 66.2 \\ \cline{3-3}\cline{3-6} 
-        && LUIS & \xmark & \cmark & 28.9 \\ \hline
+        && Rasa & & & 66.2 \\ \cline{3-3}\cline{6-6} 
+        && LUIS &  & & 83.3 \\ \hline
 
         \multirow{4}{*}{4} & \multirow{4}{*}{I need to report myself as sick}  
-        &  Watson & \cmark & - & 38.0 \\ \cline{3-6}
-        && Dialogflow & \cmark & \xmark & 63.3 \\ \cline{3-6} % extracted myself as person
-        && Rasa & \multirow{1}{*}{\xmark} & \multirow{1}{*}{-} & 9.7 \\\cline{3-6} 
-        && LUIS & \cmark & - & 41.7 \\ \hline
+        &  Watson & \multirow{2}{*}{\cmark} & - & 38.0 \\ \cline{3-3} \cline{5-6}
+        && Dialogflow & & \xmark & 63.3 \\ \cline{3-6} % extracted myself as person
+        && Rasa & \multirow{1}{*}{\xmark} & \multirow{2}{*}{-} & 9.7 \\\cline{3-4} \cline{6-6} 
+        && LUIS & \cmark &  & 87.2 \\ \hline
 
         \multirow{4}{*}{5} & \multirow{4}{*}{\shortstack[l]{Paul Armstrong is sick and will be \\ back on Monday}}  
-        &  Watson & \multirow{2}{*}{\cmark} & \multirow{2}{*}{\cmark} & 89.0 \\ \cline{3-3}\cline{6-6}
-        && Dialogflow & &  & 69.6 \\ \cline{3-6}\cline{6-6}
-        && Rasa & \multirow{2}{*}{\xmark} & \multirow{2}{*}{\cmark} & 23.8 \\\cline{3-3} \cline{6-6}
-        && LUIS & & & 5.4 \\ \hline
+        &  Watson & \multirow{2}{*}{\cmark} & \multirow{4}{*}{\cmark} & 89.0 \\ \cline{3-3}\cline{6-6}
+        && Dialogflow & &  & 69.6 \\ \cline{3-4}\cline{6-6}
+        && Rasa & \multirow{1}{*}{\xmark} &  & 23.8 \\\cline{3-4} \cline{6-6}
+        && LUIS & \cmark & & 73.1 \\ \hline
 
         \multirow{4}{*}{6} & \multirow{4}{*}{\shortstack[l]{sick Anna Maier 06/10}}  
-        &  Watson & \multirow{3}{*}{\cmark} & \multirow{3}{*}{\cmark} & 90.0 \\ \cline{3-3}\cline{6-6}
+        &  Watson & \multirow{4}{*}{\cmark} & \multirow{3}{*}{\cmark} & 90.0 \\ \cline{3-3}\cline{6-6}
         && Dialogflow & &  & 100.0 \\ \cline{3-3}\cline{6-6}
-        && Rasa & &  & 80.5 \\\cline{3-6} 
-        && LUIS & \cmark & \xmark & 15.7 \\ \hline 
+        && Rasa & &  & 80.5 \\\cline{3-3} \cline{5-6} 
+        && LUIS &  & \xmark & 67.6 \\ \hline 
 
         \multirow{4}{*}{7} & \multirow{4}{*}{\shortstack[l]{I feel sickly today and won't come to work}}  
-        &  Watson & \multirow{2}{*}{\cmark} & \multirow{2}{*}{\cmark} & 43.0 \\ \cline{3-3}\cline{6-6}
-        && Dialogflow &  &  & 51.6 \\ \cline{3-6}
-        && Rasa & \multirow{2}{*}{\xmark} & \multirow{2}{*}{\cmark} &  4.3 \\\cline{3-3}\cline{6-6}
-        && LUIS & & & 0.2 \\ \hline 
+        &  Watson & \multirow{2}{*}{\cmark} & \multirow{4}{*}{\cmark} & 43.0 \\ \cline{3-3}\cline{6-6}
+        && Dialogflow &  &  & 51.6 \\ \cline{3-4}\cline{6-6}
+        && Rasa & \multirow{2}{*}{\xmark} &  &  4.3 \\\cline{3-3}\cline{6-6}
+        && LUIS & & & 17.9 \\ \hline 
 
         \multirow{4}{*}{8} & \multirow{4}{*}{\shortstack[l]{Anna Lehner is feeling sick.\\She will be back on Thursday}}  
-        &  Watson & \multirow{2}{*}{\cmark} & \multirow{2}{*}{\cmark} & 91.0 \\ \cline{3-3}\cline{6-6}
-        && Dialogflow &  &  & 72.5 \\ \cline{3-6}
-        && Rasa & \multirow{2}{*}{\xmark} & \multirow{2}{*}{\cmark} &  26.2 \\\cline{3-3}\cline{6-6}
-        && LUIS & & & 6.1 \\ 
+        &  Watson & \multirow{2}{*}{\cmark} & \multirow{4}{*}{\cmark} & 91.0 \\ \cline{3-3}\cline{6-6}
+        && Dialogflow &  &  & 72.5 \\ \cline{3-4}\cline{6-6}
+        && Rasa & \multirow{1}{*}{\xmark} &  &  26.2 \\\cline{3-4}\cline{6-6}
+        && LUIS & \cmark & & 68.1 \\ 
 
     \end{tabular}
     \caption{Sickness Intent Classification} \label{tab:sickness_intent_classification}
@@ -724,49 +742,49 @@ often fails.
         &  Watson & \multirow{4}{*}{\cmark} & \multirow{4}{*}{-} & 100.0 \\\cline{3-3} \cline{6-6}
         && Dialogflow &  &  & 100.0 \\ \cline{3-3}\cline{6-6}
         && Rasa &  &  & 91.7 \\ \cline{3-3}\cline{6-6}
-        && LUIS &  &  & 98.3 \\ \hline
+        && LUIS &  &  & 97.1 \\ \hline
 
         \multirow{4}{*}{2} & \multirow{4}{*}{\shortstack[l]{my colleague Franz Bauer wants to\\ go on vacation}}  
-        &  Watson & \multirow{3}{*}{\cmark} & \multirow{3}{*}{\cmark} & 91.0 \\\cline{3-3} \cline{6-6}
+        &  Watson & \multirow{4}{*}{\cmark} & \multirow{4}{*}{\cmark} & 91.0 \\\cline{3-3} \cline{6-6}
         && Dialogflow &  &  & 64.9 \\ \cline{3-3}\cline{6-6}
-        && Rasa &  &  & 33.7 \\ \cline{3-6}
-        && LUIS & \xmark & \cmark & 19.5 \\ \hline
+        && Rasa &  &  & 33.7 \\ \cline{3-3}\cline{6-6}
+        && LUIS &  &  & 64.9 \\ \hline
 
         \multirow{4}{*}{3} & \multirow{4}{*}{\shortstack[l]{vacation Martin Huber 07/12 to\\ July 15th}}  
-        &  Watson & \multirow{3}{*}{\cmark} & \multirow{3}{*}{\cmark} & 44.0 \\\cline{3-3} \cline{6-6}
+        &  Watson & \multirow{4}{*}{\cmark} & \multirow{4}{*}{\cmark} & 44.0 \\\cline{3-3} \cline{6-6}
         && Dialogflow &  &  & 100.0 \\ \cline{3-3}\cline{6-6}
-        && Rasa &  &  & 57.4 \\ \cline{3-6}
-        && LUIS & \xmark & \cmark & 13.9 \\ \hline
+        && Rasa &  &  & 57.4 \\ \cline{3-3}\cline{6-6}
+        && LUIS &  &  & 84.6 \\ \hline
 
         \multirow{4}{*}{4} & \multirow{4}{*}{\shortstack[l]{holiday from 07/12 to July 15th}}  
-        &  Watson & \multirow{3}{*}{\cmark} & \multirow{3}{*}{\cmark} & 94.0 \\\cline{3-3} \cline{6-6}
+        &  Watson & \multirow{4}{*}{\cmark} & \multirow{4}{*}{\cmark} & 94.0 \\\cline{3-3} \cline{6-6}
         && Dialogflow &  &  & 64.7 \\ \cline{3-3}\cline{6-6}
-        && Rasa &  &  & 67.4 \\ \cline{3-6}
-        && LUIS & \xmark & \cmark & 28.5 \\ \hline
+        && Rasa &  &  & 67.4 \\ \cline{3-3}\cline{6-6}
+        && LUIS & &  & 87.9 \\ \hline
 
         \multirow{4}{*}{5} & \multirow{4}{*}{\shortstack[l]{vacation from 28th September to\\ October 4}}  
-        &  Watson & \multirow{3}{*}{\cmark} & \multirow{3}{*}{\cmark} & 95.0 \\\cline{3-3} \cline{6-6}
+        &  Watson & \multirow{4}{*}{\cmark} & \multirow{4}{*}{\cmark} & 95.0 \\\cline{3-3} \cline{6-6}
         && Dialogflow &  &  & 100.0 \\ \cline{3-3}\cline{6-6}
-        && Rasa &  &  & 55.5 \\ \cline{3-6}
-        && LUIS & \xmark & \cmark & 29.2 \\ \hline
+        && Rasa &  &  & 55.5 \\ \cline{3-3}\cline{6-6}
+        && LUIS &  &  & 88.1 \\ \hline
 
         \multirow{4}{*}{6} & \multirow{4}{*}{\shortstack[l]{I really need a long vacation on a \\ distant island}}  
-        &  Watson & \multirow{3}{*}{\cmark} & \multirow{3}{*}{-} & 44.0 \\\cline{3-3} \cline{6-6}
+        &  Watson & \multirow{4}{*}{\cmark} & \multirow{4}{*}{-} & 44.0 \\\cline{3-3} \cline{6-6}
         && Dialogflow &  &  & 79.0 \\ \cline{3-3}\cline{6-6}
-        && Rasa &  &  & 35.0 \\ \cline{3-6}
-        && LUIS & \xmark & - & 33.2 \\ \hline
+        && Rasa &  &  & 35.0 \\ \cline{3-3}\cline{6-6}
+        && LUIS &  &  & 92.3 \\ \hline
 
         \multirow{4}{*}{7} & \multirow{4}{*}{\shortstack[l]{colleague Helmut Kerschbaum \\ requested holidays}}  
-        &  Watson & \multirow{3}{*}{\cmark} & \multirow{3}{*}{\cmark} & 93.0 \\ \cline{3-3}\cline{6-6}
+        &  Watson & \multirow{4}{*}{\cmark} & \multirow{4}{*}{\cmark} & 93.0 \\ \cline{3-3}\cline{6-6}
         && Dialogflow & & & 61.7 \\ \cline{3-3}\cline{6-6}
-        && Rasa & &  & 46.6 \\\cline{3-6} 
-        && LUIS & \xmark & \cmark & 14.7 \\ \hline
+        && Rasa & &  & 46.6 \\\cline{3-3}\cline{6-6}
+        && LUIS &  & & 41.9 \\ \hline
 
         \multirow{4}{*}{8} & \multirow{4}{*}{\shortstack[l]{Colleague Helmut Kerschbaum \\requested holidays. He will be \\unavailable from 09/10 to 09/24}}  
-        &  Watson & \multirow{2}{*}{\cmark} & \multirow{2}{*}{\cmark} & 45.0 \\ \cline{3-3}\cline{6-6}
-        && Dialogflow & & & 70.2 \\ \cline{3-6}
-        && Rasa & \multirow{2}{*}{\xmark} & \multirow{2}{*}{\cmark} & 21.6 \\\cline{3-3}\cline{6-6}
-        && LUIS &  & & 7.8 \\ 
+        &  Watson & \multirow{2}{*}{\cmark} & \multirow{4}{*}{\cmark} & 45.0 \\ \cline{3-3}\cline{6-6}
+        && Dialogflow & & & 70.2 \\ \cline{3-4}\cline{6-6}
+        && Rasa & \multirow{1}{*}{\xmark} &  & 21.6 \\\cline{3-4}\cline{6-6}
+        && LUIS &  \cmark & & 70.8 \\ 
 
     \end{tabular}
     \caption{Vacation Intent Classification} \label{tab:vacation_intent_classification}
@@ -774,56 +792,56 @@ often fails.
 
 \begin{table}[h]
     \centering
-    \begin{tabular}{ l | l | c | c | c | c | c | c  }
-        \multirow{2}{*}{Framework} & \multirow{2}{*}{Tested} & \multirow{2}{*}{TP} & \multirow{2}{*}{FN} & \multirow{2}{*}{p} & \multirow{2}{*}{r} & \multirow{2}{*}{f-score} & avg Confid. \\ 
-                 &&          &            &   & & & [\%]     \\ \hline \hline
+    \begin{tabular}{ l | l | c | c | c | c | c | c | c | c }
+        \multirow{2}{*}{Framework} & \multirow{2}{*}{Tested} & \multirow{2}{*}{TP} & \multirow{2}{*}{FN} & \multirow{2}{*}{p} & \multirow{2}{*}{r} & \multirow{2}{*}{f-score} & Confid. & Confid. & std.\\ 
+                 &&          &            &   & & & avg. [\%] & Median & dev.  \\ \hline \hline
         \multirow{3}{*}{Watson} 
-        & sickness & 8 & 0& 1.0& 1.0& 1.0&72.25 \\
-        & vacation & 8 & 0& 1.0& 1.0& 1.0&75.75 \\
-        & sum      &16 & 0& 1.0& 1.0& 1.0&74.0  \\ \hline
+        & sickness & 8 & 0& 1.0& 1.0& 1.0&72.3 & 89.5 & 26.2\\
+        & vacation & 8 & 0& 1.0& 1.0& 1.0&75.8 & 92.0 & 26.1 \\
+        & sum      &16 & 0& 1.0& 1.0& 1.0&74.0 &  90.5 & 25.4 \\ \hline
         
         \multirow{3}{*}{Dialogflow} 
-        & sickness & 8& 0& 1.0& 1.0& 1.0&74.16\\
-        & vacation & 8& 0& 1.0& 1.0& 1.0&80.06\\
-        & sum      &16& 0& 1.0& 1.0& 1.0&77.11\\ \hline
+        & sickness & 8& 0& 1.0& 1.0& 1.0&74.2&73.2 & 14.3\\
+        & vacation & 8& 0& 1.0& 1.0& 1.0&80.1 & 74.6 & 17.3\\
+        & sum      &16& 0& 1.0& 1.0& 1.0&77.1 & 73.2 & 15.6\\ \hline
 
         \multirow{3}{*}{Rasa} 
-        & sickness & 4& 4& 1.0& 0.5  & 0.667& 41.06\\
-        & vacation & 7& 1& 1.0& 0.875& 0.933& 51.11\\
-        & sum      &11& 5& 1.0& 0.687& 0.815& 46.09\\ \hline
+        & sickness & 4& 4& 1.0& 0.5  & 0.67& 44.0 &44.7 & 31.3\\
+        & vacation & 7& 1& 1.0& 0.88& 0.93& 51.1&51.1& 22.1\\
+        & sum      &11& 5& 1.0& 0.69& 0.82& 47.6&51.1 & 26.4\\ \hline
 
         \multirow{3}{*}{LUIS} 
-        & sickness & 4& 4& 1.0& 0.5  & 0.667& 30.40\\
-        & vacation & 1& 7& 1.0& 0.125& 0.222& 30.64\\
-        & sum      & 5&11& 1.0& 0.313& 0.476& 30.52\\
+        & sickness & 7& 1& 1.0& 0.88  & 0.93& 72.5&78.2& 24.5\\
+        & vacation & 8& 0& 1.0& 1.0& 1.0& 78.5&86.3 & 18.3\\
+        & sum      & 5&11& 1.0& 0.31& 0.48& 75.5&83.4 & 21.1\\
     \end{tabular}
     \caption{Intent Classification Result} \label{tab:intent_classification_result}
 \end{table} \noindent
 
 \begin{table}[h]
     \centering
-    \begin{tabular}{ l | l | c | c | c | c | c | c  }
-        \multirow{2}{*}{Framework} & \multirow{2}{*}{Tested} & \multirow{2}{*}{TP} & \multirow{2}{*}{FN} & \multirow{2}{*}{p} & \multirow{2}{*}{r} & \multirow{2}{*}{f-score} & avg Confid. \\ 
-                 &&          &            &   & & & [\%]     \\ \hline \hline
+    \begin{tabular}{ l | l | c | c | c | c | c | c | c | c }
+        \multirow{2}{*}{Framework} & \multirow{2}{*}{Tested} & \multirow{2}{*}{TP} & \multirow{2}{*}{FN} & \multirow{2}{*}{p} & \multirow{2}{*}{r} & \multirow{2}{*}{f-score} & Confid. & Confid. & std.\\ 
+                 &&          &            &   & & & avg. [\%] & Median & dev.  \\ \hline \hline
         \multirow{3}{*}{Watson} 
-        & sickness & 8 & 0& 1.0& 1.0& 1.0&94.12 \\
-        & vacation & 8 & 0& 1.0& 1.0& 1.0&96.38 \\
-        & sum      &16 & 0& 1.0& 1.0& 1.0&95.25 \\ \hline
+        & sickness & 8 & 0& 1.0& 1.0& 1.0&94.1& 94.0& 1.88\\
+        & vacation & 8 & 0& 1.0& 1.0& 1.0&96.4& 96.5&1.99\\
+        & sum      &16 & 0& 1.0& 1.0& 1.0&95.3& 95.5&2.21 \\ \hline
         
         \multirow{3}{*}{Dialogflow} 
-        & sickness & 8& 0& 1.0& 1.0& 1.0&80.79\\
-        & vacation & 8& 0& 1.0& 1.0& 1.0&89.46\\
-        & sum      &16& 0& 1.0& 1.0& 1.0&85.13\\ \hline
+        & sickness & 8& 0& 1.0& 1.0& 1.0&80.8& 78.6&19.1\\
+        & vacation & 8& 0& 1.0& 1.0& 1.0&89.5& 100& 16.5\\
+        & sum      &16& 0& 1.0& 1.0& 1.0&85.1&90.3 &17.8\\ \hline
 
         \multirow{3}{*}{Rasa} 
-        & sickness & 7& 1& 1.0& 0.875  & 0.933& 54.04\\
-        & vacation & 8& 0& 1.0& 1.0& 1.0& 58.28\\
-        & sum      &15& 1& 1.0& 0.938& 0.968& 56.16\\ \hline
+        & sickness & 7& 1& 1.0& 0.88  & 0.93& 54.0& 44.2&20.2\\
+        & vacation & 8& 0& 1.0& 1.0& 1.0& 58.3& 57.0&10.9\\
+        & sum      &15& 1& 1.0& 0.94& 0.97& 56.2&53.6 &15.9\\ \hline
 
         \multirow{3}{*}{LUIS} 
-        & sickness & 8& 0& 1.0& 1.0 & 1.0& 79.63\\
-        & vacation & 8& 0& 1.0& 1.0 & 1.0& 91.03\\
-        & sum      & 16&0& 1.0& 1.0 & 1.0& 85.33\\
+        & sickness & 8& 0& 1.0& 1.0 & 1.0& 79.6& 77.5&15.1\\
+        & vacation & 8& 0& 1.0& 1.0 & 1.0& 91.0& 90.9&5.01\\
+        & sum      & 16&0& 1.0& 1.0 & 1.0& 85.3& 89.7&12.3\\
     \end{tabular}
     \caption{Intent Classification Result German} \label{tab:intent_classification_result_de}
 \end{table} \noindent

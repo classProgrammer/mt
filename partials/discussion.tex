@@ -33,18 +33,17 @@ shows that Dialogflow and Watson outperformed Rasa and LUIS.
 Both reached a perfect precision, recall, and f-score of 1.
 Watson takes the top spot because Dialogflow extracted an entity incorrectly 
 in test case four of Table \ref{tab:sickness_intent_classification}.
-LUIS performed worst and failed to impress especially on the vacation tests
-of Table \ref{tab:vacation_intent_classification}.
+
 Rasa showed a good performance when the f-score is used as a measure but 
 has a low average confidence score of 46\%.
-The confidence scores of Dialogflow and Watson are far better with 77\% and 74\%.
-In this category, Dialogflow and Watson performed good enough to be recommended.
+The confidence scores of Dialogflow, LUIS, and Watson are far better with 77\%, 75\%, and 74\%.
+In this category, Dialogflow, LUIS, and Watson performed good enough to be recommended.
 The confidence scores of Rasa can be improved through more training data.
-LUIS can't be recommended because of the bad intent classification result.
-It had by far the lowest f-score and average confidence.
+Rasa achieved by far the lowest f-score and average confidence values.
 
 % sparse data same performance
 \citet{braunEvaluatingNLU} stated that if the training data is sparse there is almost no performance difference.
-This can't be confirmed based on the tests of Tables 
-\ref{tab:entity_extraction_eval}, \ref{tab:intent_classification_result}, \ref{tab:intent_classification_result_de}
-since there is a measurable difference reagarding the f-score, the average confidence, and the entity extraction.
+This can be confirmed for the cloud frameworks since there is no big difference reagarding the f-score, 
+average confidence, and entity extraction, shown in in Tables \ref{tab:entity_extraction_eval}, \ref{tab:intent_classification_result}, \ref{tab:intent_classification_result_de}.
+The local solution Rasa was measurably worse.
+

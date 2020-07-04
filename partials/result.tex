@@ -86,6 +86,50 @@ setup time comparison.
 
 % development complexity
 \subsection*{Development Complexity}
+The easiest framework is LUIS since it is a NLU framework it doesn't
+offer dialog handling mechanisms.
+The development complexity for the NLU part is compareable to Dialogflow and 
+Watson Assistant.
+They use the same concepts (intent, entity, utterance) in the UI and the 
+mechanisms to create intents and entities are the same.
+The easiest chatbot framework is Dialogflow since it offers a simpler UI 
+than Watson Assistant, more predefined entities, and the option to 
+include features like small talk.
+Watson Assitant UI is close to Dialogflow but is not as transparent 
+and additional logic can be handeled inside of Watson which is a
+useful feature at times but makes the application more complex.
+Rasa is the most complex chatbot and NLU framework.
+The creation of intents, entities and utterances is scattered across multiple files.
+By default form filling actions are not supported and need to be created using Python.
+Luis, Dialogflow and Watson Assistant offer form filling by default and it can be enabled with a 
+few clicks in the UI without a programming language.
+Rasa doesn't offer any predefined entities  by default.
+To add predefined entities the pipeline needs to be adjusted which requires additional effort 
+from the user.
+The creation of stories is also hardest with Rasa since the form filling action for instance 
+requires additional information iside of the story, shown in Listing \ref{lst:rasa_sickness_story}
+where the the form, person and time slots need to be set correctly.
+Trying to set the forms and slots by hand is not recommended.
+The stories should be created using live training.
+It is a useful feature to create natural conversations but it's also more complex than the 
+creation of stories with the dialog node systems of Watson Assistant and Dialogflow.
+The dialog node system of Dialogflow is shown in Figure \ref{fig:dialog_nodes}.
+
+When the framework development complexity is evaluated based on the use-cases of this thesis 
+the predefined entities are very important.
+The creation of new entities is equally hard with each framework.
+Hence, the more of the required entities are predefined the easier the development process gets.
+Dialogflow offers all three required entities for the German and English language as does 
+Rasa.
+Watson Assistant doesn't offer a person enity in German and the one for the English language is marked depricated.
+It also has no date-span entity but it can be replaced by two seperate dates.
+This means that Watson Assistant offers two of the three entities for both required languages. 
+LUIS offers all three entities for the English language but has no person entity for the German language. 
+
+
+
+
+
 % price
 \subsection*{Pricing} \label{sec:pricing}
 Dialogflow can be used by companies for free.
@@ -95,7 +139,11 @@ Rasa is a free to use open-source tool and costs nothing.
 There is an enterprise edition with some benefits but the price
 is calculated individually.
 Watson Assistant offers a free tier with up to 1.000 users per month, 
-10.000 messages per month.
+10,000 messages per month.
+The free tier of the Microsoft Bot Framework offers five requests per second and 
+10,000 messages per month which is the same amount of messages IBM offers.
+Five requests per second are 300 requests per minute which is more than the 
+free tier of Dialogflow offers.
 A user is a person who interacts with the bot at least once.
 The Plus edition costs \$120 for 1.000 users per month with
 no message or user limit.
@@ -103,10 +151,19 @@ The pricings and editions of the framework are shown in Table \ref{tab:pricing}.
 The price of Dialogflow is based on the number of requests,
 IBM offers a fixed number of requests and users, and with Rasa the developer has
 to take care of the number of users and requests in soft- and hardware.
+The Microsoft Bot Framework charges per 1,000 users like IBM does.
+The price of the Microsoft Bot Framework is calculated by combining the prices 
+for the framework and LUIS.
+The resulting cost for the Microsoft Bot Framework and LUIS is \$0.002 per request 
+which is the same Dialogflow charges for the enterprise essential edition.  
+The standard editon also offers 50 transactions per second which 
+are 3,000 requests per minute which is far more than the 600 requests per second of 
+Dialogflow.
 In the free tier, Dialogflow provides the best value because there is no message or user limit.
 In the priced tier Watson costs \$0.12 per user per month (\$120 for 1.000 users per month).
-Dialogflow charges \$0.002 per request.
-Watsons cost of \$0.12 per user per month equals 60 requests per user per month with Dialogflow.
+Dialogflow and the Microsoft Bot Framework using LUIS charge \$0.002 per request each.
+Watsons cost of \$0.12 per user per month equals 60 requests per user per month with Dialogflow or 
+the Microsoft Bot Framework plus LUIS.
 
 
 \begin{table}[H]
@@ -118,12 +175,21 @@ Watsons cost of \$0.12 per user per month equals 60 requests per user per month 
         & EE Plus & \$0.004 per request \\ \hline
 
         \multirow{3}{*}{Watson Assistant} & Lite & Free \\
-        & Plus &  \$120 for 1000 users/month\\
+        & Plus &  \$120 for 1,000 users/month\\
         & Premium & Individual \\ \hline
 
         \multirow{3}{*}{Rasa} & Rasa Open Source & Free \\
         & Rasa X &  Free\\
-        & Rasa Enterprise & Individual \\ 
+        & Rasa Enterprise & Individual \\ \hline
+
+        
+        \multirow{3}{*}{Microsoft Bot Framework} & Free  & Free \\
+        & \multirow{2}{*}{S1} & \$0.50 per 1,000 requests \\ 
+        & & \$0.0005 per requests \\ \hline
+                
+        \multirow{3}{*}{LUIS} & Free  & Free (10.000 requests per month) \\
+        & \multirow{2}{*}{Standard} &  \$1.50 per 1,000 transactions\\
+        & &  \$0.0015 per request
     \end{tabular}
     \caption{Pricing of Frameworks \cite{rasa, dialogflow, watsonassistant}} \label{tab:pricing}
 \end{table} \noindent
@@ -861,6 +927,30 @@ often fails.
 % unique capabilities
 % speech recognition capabilities
 \subsection*{Speech Recognition Capabilities}
+For the further development which is based on the results of this thesis speech recognition 
+is an option. 
+Frameworks which support this feature can be used with speech input instead of text.
+Rasa doesn't support speech recognition itself but it can be used in combination with 
+speech-to-text and text-to-speech frameworks like Alexa.
+Dialogflow offers audio in- and oputput.
+The speech-to-text functonality of Dialoflow costs \$0.0065 per 15 seconds of audio.
+The IBM Watson Assistant also offers speech functionalities through Watson Speech to 
+Text and Watson Text to Speech.
+The Watson text-to-speech service costs between \$0.01 and \$0.02 per minute which results 
+in \$0.0025 to \$0.005 per 15 seconds.
+The speech-to-text service costs \$0.02 per 1,000 chars which results in 
+\$20 per million chars.
+Microsoft offers the Speech Services for the speech-to-text and text-to-speech functionality.
+The Speech service costs \$1 per hour of speech which results in \$0.00416 per 15 seconds which is 
+less than the costs for Dialoflow.
+The costs for text-to-speech are the same for the Speech Services and Dialogflow with a 
+rate of \$4 per one million characters.
+The speech-to-text services are on a similar pricing level but the text-to-speech service of 
+Watson costs five times as much as the Speech Services or Dialogflow.
+
+
+
+
 
 \subsection*{Framework Concepts}
 The user interfaces of the cloud frameworks are similar.

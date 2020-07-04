@@ -30,7 +30,7 @@
 \makeChapter{Conclusion and Outlook}{cao}{conclusion-and-outlook}  % improve because ...
 
 \chapter{Appendix}
-\begin{lstlisting}[caption={Detail Pipeline of Pretrained Embeddings Spacy}, label={lst:spacy_pipeline_detail},captionpos=b,frame=single,language={Python},commentstyle=\color{mygreen},keywordstyle=\color{blue},
+\begin{lstlisting}[caption={Detailed Pipeline Configuration for Rasa}, label={lst:spacy_pipeline_detail},captionpos=b,frame=single,language={Python},commentstyle=\color{mygreen},keywordstyle=\color{blue},
     morekeywords={language, pipeline, name}]                
 language: "en"
 pipeline:
@@ -45,7 +45,7 @@ pipeline:
     - name: "SklearnIntentClassifier"
 \end{lstlisting} 
 
-\begin{lstlisting}[caption={Slot Filling Action}, label={lst:slot_fill_action},captionpos=b,frame=single,language={Python},commentstyle=\color{mygreen},keywordstyle=\color{blue},
+\begin{lstlisting}[caption={Rasa Slot Filling Action}, label={lst:slot_fill_action},captionpos=b,frame=single,language={Python},commentstyle=\color{mygreen},keywordstyle=\color{blue},
     morekeywords={}]                
 class SicknessForm(FormAction):
 
@@ -58,8 +58,10 @@ def required_slots(tracker: Tracker) -> List[Text]:
 
 def slot_mappings(self) -> Dict[Text, Union[Dict, List[Dict]]]:
     return {
-            "PERSON": [self.from_entity(entity="PERSON"), self.from_text()],
-            "return_date": [self.from_entity(entity="DATE"), self.from_text()]
+            "PERSON": [self.from_entity(entity="PERSON"), 
+                self.from_text()],
+            "return_date": [self.from_entity(entity="DATE"), 
+                self.from_text()]
     }
 
 def submit(
@@ -89,25 +91,6 @@ def submit(
     - action_submit_sickness_data
     - action_restart
 \end{lstlisting} 
-
-\begin{table}[h]
-    \centering
-    \begin{tabular}{ c | l | c | c   }
-        \multirow{2}{*}{No} & \multirow{2}{*}{Utterance} & Person & Date \\ 
-                 &&         Entity & Entity                 \\ \hline \hline
-        1 & I am sick & \xmark & \xmark\\ \hline 
-        2 & sickness notification & \xmark & \xmark\\ \hline 
-        3 & I am ill & \xmark & \xmark\\ \hline 
-        4 & [Alfred Mayer] is sick & \cmark & \xmark\\ \hline 
-        5 & my colleague [Maria M\"uller] is sick until [wednesday] & \cmark & \cmark\\ \hline 
-        6 & colleague [Simone Bauer] is ill & \cmark & \xmark\\ \hline 
-        7 & report [Franz Dorfer] sick & \cmark & \xmark\\ \hline 
-        8 & [Stefan Weber] is ill till [Friday] & \cmark & \cmark\\ \hline 
-        9 & sick [Emma Wagner] [6th of June] & \cmark & \cmark\\ \hline 
-        10 & [Sophia Richter] feels sick today & \cmark & \xmark\\ \hline 
-    \end{tabular}
-    \caption{Sickness Training Utterances} \label{tab:sickness_utterances}
-\end{table} \noindent
 
 \begin{table}[h]
     \centering
@@ -286,6 +269,52 @@ def submit(
 
 
 \makefigure{formfill}{From Filling in Watson Assistant (top) and Dialogflow (bottom)}
+
+\makefigure{dialog_nodes}{Dialog Nodes in Dialogflow}
+
+\newpage
+\begin{lstlisting}[caption={LUIS Intent Response}, label={lst:luis_intent_response},captionpos=b,frame=single,language={Python},commentstyle=\color{mygreen},keywordstyle=\color{blue},
+    morekeywords={}]                
+"query": "sick Anna Maier 06/10",
+"prediction": {
+    "topIntent": "sick_",
+    "intents": {
+    "sick_": {
+        "score": 0.6760214
+    },
+    "vacation_": {
+        "score": 0.224106133
+    },
+    "None": {
+        "score": 0.006858599
+    }},
+}}
+\end{lstlisting} 
+
+
+\begin{lstlisting}[caption={LUIS Entity Response}, label={lst:luis_entity_response},captionpos=b,frame=single,language={Python},commentstyle=\color{mygreen},keywordstyle=\color{blue},
+    morekeywords={}]                
+"entities": {
+    "datetimeV2": [{
+        "type": "date",
+        "values": [{
+            "timex": "XXXX-06-10",
+            "resolution": [
+            { "value": "2020-06-10" },
+            { "value": "2021-06-10" }]}]
+    }],
+    "$instance": {
+    "datetimeV2": [{
+        "type": "builtin.datetimeV2.date",
+        "text": "06/10",
+        "startIndex": 16,
+        "length": 5,
+        "modelTypeId": 2,
+        "modelType": "Prebuilt Entity Extractor",
+        "recognitionSources": [ "model" ]}]
+    }
+}
+\end{lstlisting} 
 
 \makerefs{mt}
     

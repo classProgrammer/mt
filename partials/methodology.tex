@@ -37,11 +37,30 @@ The chosen technologies are Dialogflow, IBM Watson (\citet{rahman2017programming
 % prototyping
 All three prototypes will be used to implement the same task.
 An example convsersation of the sickness notification task is shown in Figure \ref{fig:sicknessflow}
-They will be trained with the same data listed in the appendix 
-in Table \ref{tab:sickness_utterances} and Table \ref{tab:vacation_utterances}.
+They will be trained with the same data listed 
+in Table \ref{tab:sickness_utterances}, \ref{tab:vacation_utterances}, \ref{tab:sickness_utterances_de}, 
+and \ref{tab:vacation_utterances_de}.
 They will have the same intents, entities, and utterances.
 These steps are necessary to ensure a fair comparison.
 The analysis of the sickness notification dialog is shown in Table \ref{tab:sick_data}.
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ c | l | c | c   }
+        \multirow{2}{*}{No} & \multirow{2}{*}{Utterance} & Person & Date \\ 
+                 &&         Entity & Entity                 \\ \hline \hline
+        1 & I am sick & \xmark & \xmark\\ \hline 
+        2 & sickness notification & \xmark & \xmark\\ \hline 
+        3 & I am ill & \xmark & \xmark\\ \hline 
+        4 & [Alfred Mayer] is sick & \cmark & \xmark\\ \hline 
+        5 & my colleague [Maria M\"uller] is sick until [wednesday] & \cmark & \cmark\\ \hline 
+        6 & colleague [Simone Bauer] is ill & \cmark & \xmark\\ \hline 
+        7 & report [Franz Dorfer] sick & \cmark & \xmark\\ \hline 
+        8 & [Stefan Weber] is ill till [Friday] & \cmark & \cmark\\ \hline 
+        9 & sick [Emma Wagner] [6th of June] & \cmark & \cmark\\ \hline 
+        10 & [Sophia Richter] feels sick today & \cmark & \xmark\\ \hline 
+    \end{tabular}
+    \caption{Sickness Training Utterances} \label{tab:sickness_utterances}
+\end{table} \noindent
 
 \section{Training and Test Setup}
 To test chatbot systems they need to be implemented.

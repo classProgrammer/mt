@@ -114,7 +114,7 @@ The stories should be created using live training.
 It is a useful feature to create natural conversations but it's also more complex than the 
 creation of stories with the dialog node systems of Watson Assistant and Dialogflow.
 The dialog node system of Dialogflow is shown in Figure \ref{fig:dialog_nodes}.
-
+% dev complexity based on the use-case
 When the framework development complexity is evaluated based on the use-cases of this thesis 
 the predefined entities are very important.
 The creation of new entities is equally hard with each framework.
@@ -250,9 +250,25 @@ Compared to the two above the other technologies provide a small amount of prede
 \subsection*{Deployment Complexity}
 
 
-% response times
-\subsection*{Response Times}
-% precision entity recognition/extraction
+% communication via Rest endpoint, between the webhook, metadata
+\subsection*{Communication}
+All of the chatbot and NLU technologies offer Rest API endpoints for communication.
+There is no difference in the type of communication.
+Dialogflow and Watson Assistant communicate with a webhook when the extraction 
+of information was successful.
+Rasa communicates with the action server which serves a similar purpose as the webhooks.
+The communication between the frameworks and the external service is done with 
+JSON messages.
+While Dialogflow and LUIS offer metadata, shown in Listing \ref{lst:dialogflow_request_params}, \ref{lst:luis_intent_response}
+and \ref{lst:luis_entity_response}, Rasa and Watson Assistant offer nothing by default.
+The required information needs to be defined by the developer.
+This means more logic can be handeled with Rasa and Watson Assistant on the chatbot side since the 
+format and processing of the result is up to the developer.
+Especially with Rasa the logic can be freely defined since the action server is written in Python and 
+all features of programming languages are available for the result processing.
+The behavior of Watson Assistant and Rasa can be mimicked by shifting the logic from the chatbot to the webhook.
+
+%  precision entity recognition/extraction
 \subsection*{Entity Recognition and Extraction}
 
 Entity recognition and extraction is a key feature of chatbots.
@@ -929,8 +945,10 @@ often fails.
 \subsection*{Speech Recognition Capabilities}
 For the further development which is based on the results of this thesis speech recognition 
 is an option. 
+The result of this evaluation is true or false.
 Frameworks which support this feature can be used with speech input instead of text.
-Rasa doesn't support speech recognition itself but it can be used in combination with 
+Either the tchnology supports speech recognition or it doesn't. 
+Rasa doesn't support speech functionality itself but it can be used in combination with 
 speech-to-text and text-to-speech frameworks like Alexa.
 Dialogflow offers audio in- and oputput.
 The speech-to-text functonality of Dialoflow costs \$0.0065 per 15 seconds of audio.
@@ -947,8 +965,9 @@ The costs for text-to-speech are the same for the Speech Services and Dialogflow
 rate of \$4 per one million characters.
 The speech-to-text services are on a similar pricing level but the text-to-speech service of 
 Watson costs five times as much as the Speech Services or Dialogflow.
-
-
+The only technology which doesn't support speech recognition is Rasa.
+The other three technologies support the speech-to-text and text-to-speech features 
+which are required for speech processing.   
 
 
 

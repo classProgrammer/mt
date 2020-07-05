@@ -228,13 +228,11 @@ The final all done message is displayed and the vacation use-case is finished.
 
 \begin{lstlisting}[caption={Watson Assistant Request Format}, label={lst:watson_request},captionpos=b,frame=single,language={Python},commentstyle=\color{mygreen},keywordstyle=\color{blue},
     morekeywords={}]                
-[
-    {
+[{
         "intent": "Sick",
         "person_name": "Anna Nass",
         "return_date": "2020-05-27"
-    }
-]
+}]
 \end{lstlisting}  
 
 \makefigure{watson_interface}{Watson Assistant Web Interface}
@@ -258,7 +256,7 @@ The Docker compose file of \ref{lst:rasa_compose} can be used in similar fashion
 for the Azure deployment in combination with the images.
 Azure also offers a Docker registry to upload and pull custom images.
 It's important to choose a compatible version of rasa and rasa-sdk.
-The Rasa image is responsible for the NLU part and the Rasa sdk is the 
+The Rasa image is responsible for the NLU part and the Rasa sdk runs the 
 actions server.
 \begin{lstlisting}[caption={Rasa Docker Compose File}, label={lst:rasa_compose},captionpos=b,frame=single,language={Python},commentstyle=\color{mygreen},keywordstyle=\color{blue},
     morekeywords={}]                

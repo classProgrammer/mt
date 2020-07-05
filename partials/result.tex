@@ -189,7 +189,7 @@ the Microsoft Bot Framework plus LUIS.
         & \multirow{2}{*}{Standard} &  \$1.50 per 1,000 transactions\\
         & &  \$0.0015 per request
     \end{tabular}
-    \caption{Pricing of Frameworks \cite{rasa, dialogflow, watsonassistant}} \label{tab:pricing}
+    \caption{Pricing of Frameworks \cite{rasa, dialogflow, watsonassistant,luisdocs}} \label{tab:pricing}
 \end{table} \noindent
 
 
@@ -219,10 +219,9 @@ When the GUI of Rasa-X is used defining new entities and intents works the same 
 To enable the use of predefined entities the pipeline of Rasa needs to be modified which is more 
 complicated than with Dialogflow where they are enabled by default and Watson where the entities need to be 
 enabled in the settings.
-
 % predefined types/entities
 Another measurement criteria for learnability is the number of predefined entities.
-If a predefined entity is available for a problem a developer doesn't need to 
+If a predefined entity is available for a given problem a developer doesn't need to 
 invest time in creating an entity or collecting training data. 
 Table \ref{tab:predefined_entities} shows the amount of predefined entities 
 present for the tested technologies.
@@ -1015,16 +1014,30 @@ which is no problem for Dialogflow.
 
 
 
-
-
-
 % usability framework
 \subsection*{Usability of the Framework}
 
 
-% usability frontend
-\subsection*{Frontend}
-
 
 % customization possibilities
 \subsection*{Customization Possibilities}
+A major part of chatbot frameworks is the pipeline since it defines how the 
+training of the intents and entities is done.
+The cloud chatbot technologies don't show the pipeline they are using nor can you 
+adjust it.
+Rasa is different in that regard since the pipeline can be adjusted freely.
+Furthermore, the technologies like Spacy show information about the components 
+online.
+Spacy can be used with different models like small, medium, and large training sets 
+for the predefined entities when English is the target language.
+The pipeline used for this thesis is shown in Figure \ref{lst:spacy_pipeline_detail}.
+It's even possible to include custom components into the pipeline of Rasa.
+This means that Rasa is the only technology of the four where the pipeline is visible 
+and it offers customization on top of that.
+The other three technologies don't offer mechanisms to adjust the pipeline.
+It's possible to use external services instead of adjusting the pipeline by 
+moving the enity extraction to the webhook where necessary.
+Since especially Dialogflow and LUIS offer a huge amount of predefined entities 
+the use of other entity extraction tools might not be necessart at all.
+It's different for Watson Assistant since it has a small amount of predefined entities.
+

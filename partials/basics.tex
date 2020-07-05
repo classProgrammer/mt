@@ -357,6 +357,14 @@ intent is "Greet Intent".
 The precision is calculated as $\frac{tp}{tp + fp}$.
 The recall is calculated as $\frac{tp}{tp + fn}$.
 The f-score is calculated as $2 * \frac{precision * recall}{precision + recall}$.
+The range of the f-score, precision, and recall values is zero to one where zero is the worst possible 
+result and one is a perfect result.
+The precision shows how many retrieved elements are relevant.
+The recall shows hom many relevant items have been retrieved.
+The f-score can be seen as the average of precision and recall.
+The relevant values are displayed in Figure \ref{fig:f-score}.
+The precision is based on the selected elements (TP + FP) and the recall is based on the relevant elements (TP + \textnormal{text}).
+\makefigure{f-score}{True and False Positives and Negatives}
 
 \section{Natural Language Processing/Understanding}   
 The term "natural language" means input is received through voice or writing in the user's language of choice \cite{buiildChatbotsPython}.

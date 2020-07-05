@@ -599,7 +599,17 @@ since it doesn't deliver reliable results.
                  &&&                          &                        & 2020-06-08 \\\cline{4-6}
                  &&& \multirow{2}{*}{LUIS} & \multirow{2}{*}{\cmark} & 2020-06-06 \\
                  &&&                          &                        & 2020-06-07 \\
-                 \hline
+                 
+    \end{tabular}
+    \caption{Date Span Entity Recogniton and Extraction 1} \label{tab:date_span_entity_extraction_recognition}
+\end{table} \noindent
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ c | c | c | c | c | c  }
+        \multirow{2}{*}{No} & \multirow{2}{*}{Input} & \multirow{2}{*}{Expected} & \multirow{2}{*}{Technology} & Recognized & Extracted \\ 
+                 &&          &            & Correctly  & Value     \\ \hline \hline
+        
         \multirow{12}{*}{4} &\multirow{12}{*}{\shortstack[l]{06/06 to 06/07}} & \multirow{12}{*}{TP} 
                  & \multirow{2}{*}{Watson} & \multirow{2}{*}{\cmark} & 2020-06-06 \\
                  &&&                          &                        & 2020-06-07 \\\cline{4-6}
@@ -612,16 +622,8 @@ since it doesn't deliver reliable results.
                  &&& \multirow{2}{*}{Duckling} & \multirow{2}{*}{\cmark} & 2020-06-06 \\
                  &&&                          &                        & 2020-06-08 \\\cline{4-6}
                  &&& \multirow{2}{*}{LUIS} & \multirow{2}{*}{\cmark} & 2020-06-06 \\
-                 &&&                          &                        & 2020-06-07 \\
-    \end{tabular}
-    \caption{Date Span Entity Recogniton and Extraction 1} \label{tab:date_span_entity_extraction_recognition}
-\end{table} \noindent
+                 &&&                          &                        & 2020-06-07 \\ \hline
 
-\begin{table}[h]
-    \centering
-    \begin{tabular}{ c | c | c | c | c | c  }
-        \multirow{2}{*}{No} & \multirow{2}{*}{Input} & \multirow{2}{*}{Expected} & \multirow{2}{*}{Technology} & Recognized & Extracted \\ 
-                 &&          &            & Correctly  & Value     \\ \hline \hline
         \multirow{12}{*}{5} &\multirow{12}{*}{\shortstack[l]{06/07 to 06/06}} & \multirow{12}{*}{TP} 
                  & \multirow{2}{*}{Watson} & \multirow{2}{*}{\xmark} & 2020-06-07 \\
                  &&&                          &                        & 2020-06-06 \\\cline{4-6}
@@ -655,7 +657,7 @@ since it doesn't deliver reliable results.
 \end{table} \noindent
 
 % precision of intent recognition
-\subsection*{Intent Recognition}
+\subsection*{Intent Classification}
 The main task of a chatbot is to find the intent best matching the user input.
 The training utterances for the sickness intent are listed Tabel \ref{tab:sickness_utterances}
 in the Appendix.
@@ -667,10 +669,10 @@ A combined example is training phrase five of Table \ref{tab:sickness_utterances
 where the entities person and date are built into the training sentence.
 Furthermore, the correctly identified intents are used to calculate the f-score 
 like it was done for the entities.
-For the intent recognition task, only date and date-spans are used which
+For the intent classification task, only date and date-spans are used which
 were recognized by all relevant frameworks to ensure unbiased tests.
 Spacy has no relevance for the application in terms of date and date-span
-extraction and is not considered for dates in the intent recognition tests.
+extraction and is not considered for dates in the intent classification tests.
 % tests
 The detailed test are listed in Table \ref{tab:sickness_intent_classification} and 
 Table \ref{tab:vacation_intent_classification}.
@@ -729,7 +731,7 @@ The second place goes to LUIS.
 LUIS was able to increas the average confidence from about 75\% on the English tests 
 to about 85\% on the German tests.
 Dialogflow only reaches the third place.
-The intent recognition are top notch for all technologies and all can be recommended from that 
+The intent classification are top notch for all technologies and all can be recommended from that 
 point of view.
 The results in Table \ref{tab:sickness_intent_classification_de} and \ref{tab:vacation_intent_classification_de} 
 show that the entity extraction results drop in the German setup with all technologies except LUIS.
@@ -744,7 +746,7 @@ used in English.
 LUIS offers a person entity when English is selected but not for the German language.
 The date-time entity of LUIS is able to handle German date formats. 
 This means that LUIS is the only technology which achieved a satisfying result in the entity extraction category.
-All in all, the intent recognition result is very good for the German language tests but the entity extraction 
+All in all, the intent classification result is very good for the German language tests but the entity extraction 
 often fails.
 
 

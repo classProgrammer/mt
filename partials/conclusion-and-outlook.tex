@@ -50,21 +50,21 @@ It also shows that no framework performed badly.
 % intent classification
 The intent classification is dominated by Watson and Dialogflow since 
 both were able to classify all test cases correctly.
-LUIS failed most of the intent detection tests and can't be recommended.
-Dialogflow wins the average confidence score comparison in front of Watson.
+LUIS is a close second.
+All three cloud chatbots performed on an equal level.
 The detailed result is shown in Table \ref{tab:intent_classification_result}.
-Rasa and Luis were unable to keep up with Dialogflow and Watson when the 
+Rasa was unable to keep up with Dialogflow, LUIS, and Watson when the 
 average confidence is compared.
-This is an indication that Rasa and LUIS need more training data to 
-reach the same performance level as Dialogflow and Watson.
+This is an indication that Rasa needs more training data to 
+reach the same performance level as Dialogflow, LUIS, and Watson.
 An average confidence value below 50\% is not satisfactory.
 Based on the entity extraction and intent recognition results
-the recommended technology in the top stop has to be Dialogflow
+the recommended technology in the top spot has to be Dialogflow
 since the performance in both categories was great.
 Additionally, Dialogflow has the best average confidence value.
 It's also possible to use LUIS and Watson Assistant since the performance was close to Dialogflow.
-Rasa needs to improved to be recommended.
 It's possible to improve the performance and confidence scores of Rasa with more training data.
+Rasa definitely needs to improve to be recommended.
 % intent classification german 
 The intent classification was also done for the German language and the results differ greatly from the 
 English results.
@@ -95,22 +95,28 @@ The pricings of the frameworks shown in Table \ref{tab:pricing} are hard to comp
 All three offer a free tier which can be used by companies.
 Because of the lack of transparency, the comparison can't be used for a recommendation or a ranking.
 The real difference is that Watson Assistant is measured by the number of users per month and 
-Dialogflow is based on the number of requests.
-This makes Dialogflow cheaper for small amounts of requests and lots of users with short conversations.
+Dialogflow and LUIS + Microsoft Bot framework is based on the number of requests.
+This makes Dialogflow and LUIS cheaper for small amounts of requests and lots of users with short conversations.
 Watson is cheaper for returning users with lots of conversation or very long conversations.
+The prices for the speech capabilites of Dialogflow and the Microsoft Speech Services are comparable.
+The same functionality is more expensive when the services of IBM are used.
+Worst in this category is Rasa since it offers no speech services but it's possible to use the 
+speech services of the cloud providers.
+The winners of the speech capability evaluation are Dialogflow and the Microsoft Speech Services.
 % security
 When security is an important factor then a local technology needs to be used.
 The cloud technologies all process the requests in the cloud and this has to be 
 kept in mind.
 If it's impossible to process information in the cloud because there are security restrictions
 then the recommendation is to use Rasa.
-
 % recommendation
-When all the factors discussed above are combined the clear winner is Dialogflow.
-The design could be implemented fasted with Dialogflow, it's the easiest of the chatbot technologies,
+When all the factors discussed above are combined the clear winner for English bots is Dialogflow and the 
+winner for German bots is LUIS.
+The design could be implemented fastest with Dialogflow, it's the easiest of the chatbot technologies,
 it offers the most predefined entities, provides utility intents, had the best person and date
 entity in the entity extraction tests, has the highest average confidence score, 
-and performed great in the intent classification tests. 
+and performed great in the intent classification tests.
+The only downside of Dialogflow is the entity extraction performance on the German test sentences.
 
 
 

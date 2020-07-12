@@ -253,6 +253,12 @@ all cloud providers.
 The cloud technologies share the first place in the deployment ranking since there is no overhead for the 
 developer.
 The only technology tested which produces deployment overhead is Rasa. 
+The second deployment is the local deployment.
+It's possible to deploy Rasa locally using Docker or a Python environment.
+As expected it's not possible to deploy a cloud chatbot locally or in a non native cloud environment.
+This ties a user to the provider and is not flexible.
+The only technology used in this thesis which supports a local deployment or the deployment in 
+more than one cloud environment is Rasa. 
 
 % communication via Rest endpoint, between the webhook, metadata
 \subsection*{Communication}
@@ -893,7 +899,7 @@ often fails.
         \multirow{3}{*}{LUIS} 
         & sickness & 7& 1& 1.0& 0.88  & 0.93& 72.5&78.2& 24.5\\
         & vacation & 8& 0& 1.0& 1.0& 1.0& 78.5&86.3 & 18.3\\
-        & sum      & 5&11& 1.0& 0.31& 0.48& 75.5&83.4 & 21.1\\
+        & sum      & 15& 1& 1.0& 0.94& 0.97& 75.5&83.4 & 21.1\\
     \end{tabular}
     \caption{Intent Classification Result} \label{tab:intent_classification_result}
 \end{table} \noindent

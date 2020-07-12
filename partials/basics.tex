@@ -362,9 +362,14 @@ result and one is a perfect result.
 The precision shows how many retrieved elements are relevant.
 The recall shows hom many relevant items have been retrieved.
 The f-score can be seen as the average of precision and recall.
-The relevant values are displayed in Figure \ref{fig:f-score}.
+In the medical area the recall is more important than the precision because the goal is 
+to correctly identify as many sick people as possible.
+It's not that important if people are false positive since further checks are always 
+possible to verify the test result.
+In the are of chatbots neither false negatives nor false positives are desireable hence the 
+f-score is the most relevant value.
 The precision is based on the selected elements (TP + FP) and the recall is based on the relevant elements (TP + \textnormal{text}).
-\makefigure{f-score}{True and False Positives and Negatives}
+Figure \ref{fig:f-score} from the appendix can be used as a visual aid for a better understanding.
 
 \section{Natural Language Processing/Understanding}   
 The term "natural language" means input is received through voice or writing in the user's language of choice \cite{buiildChatbotsPython}.

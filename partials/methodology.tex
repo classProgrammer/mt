@@ -70,11 +70,19 @@ The analysis of the sickness notification dialog is shown in Table \ref{tab:sick
 \section{Course of Action} % Ablauf
 First of all, the problem needs to be analyzed and classified.
 The problem can either be suitable or unsuitable for the use of chatbots.
-It's suitable if the problem can be solved by simple back and forth communication,
-is repretitive, and can be automated \citet{singhbuilding}.
-Then the conversation needs to be analyzed.
-In general, the conversation needs to be solvable through general conversation or 
-task-oriented communication.
+A problem is classified as suitable if it satisfies three criteria. 
+It needs to be solvable via simple back and forth communication,
+it needs to be repretitive, and automation has to be possible \citet{singhbuilding}.
+The two major conversation types are general and goal-oriented conversations.
+A general conversation has no goal condition and handles a conversation which can be 
+about anything. 
+If data needs to be collected and processed the goal-oriented approach is required.
+The next step for a suitable problem is the design of the conversation.
+To design the conversation structure for chatbots converstions have to be created.
+These conversations then need to be analyzed.
+The relevant information for the conversations are the goal of the conversation, the 
+data which needs to be extracted (entities), the possible major topics (intents), 
+the conversation structure, and the required actions and responses.
 The conversation can be represented as flowchart like \citet{singhbuilding} did.
 The required intents, entities, and actions need to be defined based on the conversation.
 Training data needs to be created for the intents and entities where necessary.
@@ -97,12 +105,15 @@ The frameworks and prototypes will be compared in the sickness/vacation domain.
 % entity extraction
 The two major tasks of chatbot systems are the entity extraction and the intent 
 classification.
+The entity extraction and intent classification are about the function of the 
+software system and the ISO 25010\cite{iso25010} provides  the criterion functional 
+suitability for the evaluation of software systems.
 \citet{geyer2016named} compared frameworks based on their entity extraction
 capabilities.
 Based on the work of \citet{geyer2016named} the frameworks will be tested 
 for their entity extraction capabilities.
-This is measured by counting the true/false positives and true/false negatives.
-These four values are used to calculate precision and recall which 
+This is measured by counting the true/false positives and true/false negatives of the test cases.
+These  values are used to calculate precision and recall which 
 are used to calculate the f-score.
 The f-score is the measurment criteria for the performance.
 An f-score of 1.0 is the maximum which can be achieved.
@@ -120,12 +131,13 @@ Spacy is a technologie which provides the required person entity and
 it's available for Rasa.
 The cloud frameworks all have built in system entities. 
 % intent classification
-The same process will be used for the intent classification task.
-The intent classification provides a confidence score value.
+The same calcualtion of precision, recall, and f-score will be used for the intent 
+classification task like \citet{braunEvaluatingNLU} did.
+The NLU and chatbot frameworks return a confidence score value.
+The confidence score is in the range of zero to one where zero 
+means no match and one is a perfect match.
 The confidence score will be used to rank the intent classification 
 capabilites in a second ranking.
-The range is from zero to one where values close to zero are 
-bad and values close to one are good.
 The confidence score alone is not enough to do the second ranking 
 since the technologies always pick the best fitting intent.
 The best fitting intent doesn't have to be the correct/expected intent.
@@ -173,7 +185,7 @@ necessary to implement a chatbot.
 The Microsoft Bot Framework can be used to build chatbots 
 and uses LUIS.
 % price comparison
-One of the main reasons why companies use or want to use chatbots is because they are cost efficient.
+One of the main reasons why companies use or want to use chatbots is because they are cost efficient \citet{buiildChatbotsPython}.
 For this reason the prices of the chatbot frameworks need to be compared.
 In general, cheap is treated better in this ranking than expensive.
 This criteria does not make a statement about the quality of the framework.
@@ -184,6 +196,13 @@ If a technology is bad the price doesn't matter because it will not be recommend
 Hence, a good and cheap technology is wanted. 
 For the usage in a business application the prices of all version of the frameworks are relevant 
 especially if an enterprise verison is offered.
+For further projects the speech-recognition capabilites of the frameworks need to be 
+compared. 
+The chatbots focus on written communication via messages and are not automatically capable 
+to handle speech in- and output.
+The speech-to-text and text-to-speech functionality is offered seperately for the 
+chatbot technologies and is not included in the costs for text communication.
+Hence the prices for the speech functionality also needs to be compared.
 The expectation is that the frameworks cost roughly the same and that 
 the prices are easy to compare.
 % portability
@@ -222,6 +241,30 @@ Another important factor for the speech recognition capabilities is the
 price.
 It's expected that the providers offer the speech recognition functionality 
 at a comparable price.
+% learnability
+The ISO 25010\cite{iso25010} defines learnability as sub-criterion of usability as measurement
+metric for software systems.
+The learnability is impprtant for development tasks and an easy to learn 
+technology is prefered over a complex complicated one.
+The evaluation takes local and cloud technologies into account hence the 
+setup complexity is part of the learnability.
+The cloud technolgies should not require any setup on the local machiene while 
+the local technology will require a setup which needs to be taken into account.
+The entity extraction is a key functionality of chatbots.
+When the given problem can be solved with system entities then the developer
+saves time.
+The relevant values for the entity extraction are the number of predefined entities and 
+the relevant predefined entites for the use-cases of this thesis.
+The more predefined entities exist the better.
+When all of the required entities for the use-cases exist the 
+technology is easier to learn since the whole entity creation process is not 
+relevant in such a case.
+For the chatbot frameworks the dialog handeling mechanisms are relevant for the learnability.
+A major development task is the creation of conversations.
+The conversation creation methods of the chatbot frameworks need to be evaluated based on the 
+complexity.
+An important sub-task of chatbot systems is the extraction of form-data and will be evaluated based 
+on the complexity.
 
 
 

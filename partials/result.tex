@@ -1,7 +1,5 @@
 
-\section{Framework Comparison}
-
-\subsection*{Portability}
+\section*{Portability}
 An important factor for software systems is the portability.
 Portability is defined in ISO 25010 \cite{iso25010}.
 As a measurement criterion, the number of providers that support the technology is defined.
@@ -39,7 +37,7 @@ But evert technology saves information differently and it's not
 easy to migrate an existing chatbot to another technology.
 
 % was it possible to implement the design with the technologies?
-\subsection*{Implementation of the Design}
+\section*{Implementation of the Design}
 like \citet{singhbuilding} said, the best evaluation criteria is if a task can be achieved with a technology or not.
 The goal is to implement the dialogs shown in Figure \ref{fig:conversationflow}.
 The result of this evaluation is a binary criterion which is either true when the implementation was possible or false
@@ -55,7 +53,7 @@ three chatbot technologies.
 
 
 % project complexity
-\subsection*{Project Setup Complexity} \label{sec:setup_complex}
+\section*{Project Setup Complexity} \label{sec:setup_complex}
 % required tools
 As a measurement criterion, the required tools will be used.
 To set up Watson Assistant, Dialogflow, and LUIS a web-browser is needed.
@@ -85,7 +83,7 @@ This results in the first place for cloud services and the last/second place for
 setup time comparison. 
 
 % development complexity
-\subsection*{Development Complexity}
+\section*{Development Complexity}
 The easiest framework is LUIS since it is a NLU framework it doesn't
 offer dialog handling mechanisms.
 The development complexity for the NLU part is compareable to Dialogflow and 
@@ -129,7 +127,7 @@ LUIS offers all three entities for the English language but has no person entity
 
 
 % price
-\subsection*{Pricing} \label{sec:pricing}
+\section*{Pricing} \label{sec:pricing}
 Dialogflow can be used by companies for free.
 The limits for the free tier are 180 text requests per minute.
 With the Essential and Plus version, 600 requests per minute are possible.
@@ -194,7 +192,7 @@ the Microsoft Bot Framework plus LUIS.
 
 
 % needed knowledge
-\subsection*{Learnability}
+\section*{Learnability}
 The easiest of the chatbot frameworks is Dialogflow.
 Compared to Rasa the setup is easy.
 The UI is minimalistic and easy to understand.
@@ -241,7 +239,7 @@ Compared to the two above the other technologies provide a small amount of prede
     \caption{Predefined Entities} \label{tab:predefined_entities}
 \end{table} \noindent
 % deployment
-\subsection*{Deployment Complexity}
+\section*{Deployment Complexity}
 A major factor for the development of a chatbot is where it can be deployed and how easy the 
 deployment process is.
 For the cloud technologies the deployment is done by the provider and there is no development overhead for 
@@ -261,7 +259,7 @@ The only technology used in this thesis which supports a local deployment or the
 more than one cloud environment is Rasa. 
 
 % communication via Rest endpoint, between the webhook, metadata
-\subsection*{Communication}
+\section*{Communication}
 All of the chatbot and NLU technologies offer Rest API endpoints for communication.
 There is no difference in the type of communication.
 Dialogflow and Watson Assistant communicate with a webhook when the extraction 
@@ -279,7 +277,7 @@ all features of programming languages are available for the result processing.
 The behavior of Watson Assistant and Rasa can be mimicked by shifting the logic from the chatbot to the webhook.
 
 %  precision entity recognition/extraction
-\subsection*{Entity Recognition and Extraction}
+\section*{Entity Recognition and Extraction}
 
 Entity recognition and extraction is a key feature of chatbots.
 For the use-cases of this thesis a date, date-span, and person entity are required.
@@ -663,7 +661,7 @@ since it doesn't deliver reliable results.
 \end{table} \noindent
 
 % precision of intent recognition
-\subsection*{Intent Classification}
+\section*{Intent Classification}
 The main task of a chatbot is to find the intent best matching the user input.
 The training utterances for the sickness intent are listed Tabel \ref{tab:sickness_utterances}
 in the Appendix.
@@ -933,7 +931,7 @@ often fails.
 \end{table} \noindent
 
 % training capabilities
-\subsection*{Training Capabilities}
+\section*{Training Capabilities}
 One major factor for chatbot technologies is the training of intents, entities, and stories/dialogs.
 The development of new intents and entities works the same for all four technologies.
 An intent is trained wiht utterances.
@@ -967,7 +965,7 @@ There is no difference between Dialogflow and Watson Assistant when the dialog s
 
 % unique capabilities
 % speech recognition capabilities
-\subsection*{Speech Recognition Capabilities}
+\section*{Speech Recognition Capabilities}
 For the further development which is based on the results of this thesis speech recognition 
 is an option. 
 The result of this evaluation is true or false.
@@ -995,7 +993,7 @@ The other three technologies support the speech-to-text and text-to-speech featu
 which are required for speech processing.   
 
 
-\subsection*{Framework Concepts}
+\section*{Framework Concepts}
 The user interfaces of the cloud frameworks are similar.
 The interfaces are shown in Figure \ref{fig:dialogflow_interface},
 \ref{fig:watson_interface}, and \ref{fig:luis_interface}.
@@ -1023,12 +1021,12 @@ which is no problem for Dialogflow.
 
 
 % usability framework
-\subsection*{Usability of the Framework}
+\section*{Usability of the Framework}
 
 
 
 % customization possibilities
-\subsection*{Customization Possibilities}
+\section*{Customization Possibilities}
 A major part of chatbot frameworks is the pipeline since it defines how the 
 training of the intents and entities is done.
 The cloud chatbot technologies don't show the pipeline they are using nor can you 

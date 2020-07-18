@@ -109,7 +109,7 @@ The cloud technologies all process the requests in the cloud and this has to be
 kept in mind.
 If it's impossible to process information in the cloud because there are security restrictions
 then the recommendation is to use Rasa.
-% recommendation
+% recommendation of a framework
 When all the factors discussed above are combined the clear winner for English bots is Dialogflow and the 
 winner for German bots is LUIS.
 The design could be implemented fastest with Dialogflow, it's the easiest of the chatbot technologies,
@@ -117,20 +117,46 @@ it offers the most predefined entities, provides utility intents, had the best p
 entity in the entity extraction tests, has the highest average confidence score, 
 and performed great in the intent classification tests.
 The only downside of Dialogflow is the entity extraction performance on the German test sentences.
-
-
-
-\section{Outlook}
-In \citet{singhbuilding} a chatbot is used for a banking system which is a possible use case for the 3-Banken-IT.
-
-A common use case for chatbots are FAQs(\citet{evaluateChatbotsShawar2007, buiildChatbotsPython, huang2007extracting, GO2019304}) 
-and is another possible use case for most companies.
-
-
-Like \citet{GO2019304} there are multiple ways to make users believe that they are talking to a bot.
+% differences an similarities
+When looking at the differences and similarities of the chatbot framework the conclusion is that 
+they are very similar and differ only in small aspects.
+Especially the cloud frameworks are almost identical in functionality, the provided services,
+and the costs.
+All tested frameworks use the concepts intent, entity and utterance.
+The chatbot frameworks use a mechanism to structure the dialog with the user.
+Dialogflow and Watson Assistant use dialog nodes and Rasa uses stories.
+The development effort and complexity between the technolgies varies.
+Cloud chatbots require less knowledge and are easier to use while the local technology (Rasa) 
+offers more customization possibilities.
+The pipleline of Rasa can be adjusted to the specific needs of the developer or company which 
+is not offered by any cloud technology.
+% suitable problems
+The third research questions is about the suitability of problems for the use of chatbots.
+The three major criteria mentioned by \citet{singhbuilding} can be confirmed.
+A problem needs to be solvable via simple back and forth communication because it's the 
+only thing a chatbot can do.
+The problem is not required to be repetitive but it's only cost efficient if it is 
+a repetitive problem.
+It should also be automatable to be efficient and to make the chatbot work independent.
+In general all problems which satisfy those three criteria are suitable for the use of chatbots.
+Possible future use cases for the 3 Banken IT are the use of a chatbot for a banking
+application like mentioned in \citet{singhbuilding}.
+% further use cases
+The banking app of \cite{singhbuilding} is used for transactions and querying account infromation.
+A popular use case for chatbots are FAQs(\citet{evaluateChatbotsShawar2007, buiildChatbotsPython, huang2007extracting, GO2019304}).
+% advice for future work
+When resources like \citet{} and \citet{} are taken into account the psychological aspects of 
+chatbot devlopment have to be considered for future work.
+Like \citet{GO2019304} said, there are multiple ways to make users believe that they are talking to a bot.
 For an actual chatbot, there needs to be decided if the users should know that they are talking to a bot or not.
 If they believe to talk to a bot they expect less but the conversation is generally treated more machine-like \cite{GO2019304}.
 When users assume to talk to a human the conversation is judged as more natural but if the bot performs badly the experience is also evaluated as more negative \cite{GO2019304}.
 Like \citet{shawar2007chatbots} said, a chatbot should not imitate humans they should be used to reduce their workload and help them.
-
-The best source for conversational data is real-life conversations of real customers with the expert to get the most realistic training data possible \cite{singhbuilding}.
+% source of data and user study
+The training data for future work can be collected through various real-life conversation sources like 
+emails or conversations between customers and experts.
+With real-life data the training data is as realistic as possible and the quality of the chatbot 
+increases.
+% user-study
+To increase the quality of a chatbot further user-studies are recommended since the feedback 
+of actual users is the most valuable to improve the acutal systems.

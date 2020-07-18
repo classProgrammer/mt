@@ -5,41 +5,91 @@
 % andere Sachen nicht
 % gleiche test sätze und entitäten
 % gleiche stories
-The problem (sickness notification and vacation notification) needs to be evaluated to determine if the problem is suitable for chatbots.
-Sickness notifications are a repetitive task, the task can be automated and requires simple Back-and-Forth communication hence the problem fits the description of \citet{buiildChatbotsPython}.
-The same is true for holiday notifications since the idea of both remains the same.
-The problem is suitable for chatbots since all three questions can be answered with yes.
-The next step is to determined the converstaion type.
-The two major chatbot conversation categories mentioned in Chapter \ref{chap:soa}: State-of-the-Art are goal-oriented 
-and end-to-end conversations \cite{williams2017hybrid, bordes2016learning, rahman2017programming}.
-A goal-oriented system helps a user to achieve a task \cite{rahman2017programming}.
-In the case of a sicknes notification the system needs to aid and guide the user through the process to reduce the workload.
-This description fits perfectly for goal oriented dialog.
-The domain is clear and of limited size since the user can only ask about the sickness/vacation notification process and nothing else.
-The bot also needs to retrieve specific data from the conversation to identify the person.
-The retrieval process is a specific task with specific entities and fits a goal-oriented system.
-In open-ended systems the conversation is not limited to a domain and the conversation can evolve in any direction.
-This is definitely not the case for the sickness and holiday notifications because the problems are domain specific.
-Therefore, goal-oriented technologies fit the the problem description.
-End-to-end systems won't be considered in this thesis because their performance in goal-oriented settings is not good enough yet as 
-\citet{bordes2016learning} mentioned.
-The given problem of sickness notifications is a domain-specific/goal-oriented 
-(\citet{deshpande2017survey, luis2015williams, braunEvaluatingNLU, williams2017hybrid}) 
-task hence domain-specific frameworks are suitable.
-% Framework selection
-The framework selection for this thesis is based on chapter \ref{chap:soa} State-of-the-Art and Section \ref{sec:prereq} Prerequisites.
-Section \ref{sec:prereq} describe the requirements of the company and chapter \ref{chap:soa} shows which technologies are 
+
+% problem analysis
+The first step in the design process of a chatbot is the problem analysis.
+The three cirteria \citet{singhbuilding} mentioned have been satisfied by 
+the problem description.
+The sickness notification has been classified as repetitive since the main 
+process is about data collection for both problems.
+The chatbot needs to identify the type of the users message which can either be 
+sickness notification or vacation request.
+Then the data needs to be extracted by the chatbot.
+For a sickness notification the name of the person is a required input and 
+the return date is an optional parameter.
+For the vacation request the name of a person and a date-span are required. 
+The process can be automated since the interaction can be done between 
+the chatbot and the user without further interaction of a third party.
+The two use-cases are also solvable via simple back and forth communication 
+because the chatbot just needs to classify a sentence and 
+extract data. 
+As mentioned in the basic the classification of sentences and extraction 
+of data are the two key features chatbots offer.
+The final dialog flow for the use-cases of Figure \ref{fig:conversationflow}
+confirmed that both of the use-cases are solvable via simple back and forth 
+communication.
+% chatbot category
+There are three major chatbot categories and the sickness notification and 
+vacation request problem have been classification as task-oriented and are 
+tied to a domain.
+Task oriented approaches have been described and used in 
+\citet{deshpande2017survey, luis2015williams, braunEvaluatingNLU, williams2017hybrid}.
+The chatbot has to be able to answer questions in the domain of sickness notifications 
+and vacation requests.
+It's not required to answer any questions that are unrelated to the given domain.
+The chatbot needs to extract specific data from the sentences which is the second 
+indication that the problem is task-oriented.
+The third indicator is that the chatbot collects information from the 
+conversation to achieve a specific task.
+In the case of this thesis the tasks are the submission of a sickness notification
+and vacation request to an endpoint. 
+Hence, the task-oriented chatbot approach has been choosen for this thesis.
+The menu-dirven approach has not been choosen because the given problems 
+require a mechanisms to input dates and person names in full and partial sentences.
+This describtion doesn't fit the menu driven approach since it uses numbers as input.
+The third major chatbot type found in literature is the open-ended approach found in 
+\citet{williams2017hybrid, bordes2016learning, rahman2017programming}.
+The open-ended approach has no specific goal and is not limited to a domain.
+As mentioned before the problem is based on achieving two tasks.
+This disqualifies the open-ended approach since it's not meant to
+collect data to achieve a task.
+Furthermore, as \citet{bordes2016learning} mentioned, the open-ended approch is not 
+yet able to perform well enough in task-oriented settings to be considered for this 
+thesis.
+As \citet{williams2017hybrid} showed, it's possible to combine the open-ended and 
+task-oriented approaches by adding state related information.
+The hybrid approach works better than the classic open-ended approach but 
+is not compared with task-oriented technologies.
+Since no comparison between the hybrid and task-oriented approach has been available 
+soley task-oriented technologies have been considered for this thesis.
+% famework selection
+There are a lot of chatbot frameworks offered.
+As mentioned by \citet{kane2016role}, the two major categories for chatbot frameworks 
+are cloud-based solutions which are modified via a website and local standalone applications.
+The framework selection for this thesis was based on chapter \ref{chap:soa} State-of-the-Art 
+and Section \ref{sec:prereq} Prerequisites.
+Section \ref{sec:prereq} describe the requirements of the company and Chapter \ref{chap:soa} shows which technologies are 
 used in papers, articles, and books.
-To match the prerequisites at least one cloud (\citet{braunEvaluatingNLU, rahman2017programming}) and one local (\citet{braunEvaluatingNLU}) chatbot are needed and IBM Watson Assistant needs to be taken because an IBM technology is on the wish-list.
+To match the prerequisites at least one cloud (\citet{braunEvaluatingNLU, rahman2017programming}) and one local (\citet{braunEvaluatingNLU}) chatbot are needed and IBM Watson Assistant (\citet{rahman2017programming, pharmacybot, ieee2018watson, gregori2017evaluation}) needs to be taken because an IBM technology is on the wish-list.
 A common cloud technology is Dialogflow (\citet{braunEvaluatingNLU, dutta2017developing, singhbuilding, buiildChatbotsPython, rahman2017programming, ieee2018watson}) hence it is selected.
 A common local standalone technology is Rasa (\citet{braunEvaluatingNLU, singhbuilding, rasabocklisch2017, buiildChatbotsPython, gregori2017evaluation}) and is the local tool of choice.
-The chosen technologies are Dialogflow, IBM Watson (\citet{rahman2017programming, pharmacybot, ieee2018watson, gregori2017evaluation}), and Rasa to fulfill all requirements.
-% prototyping
-All three prototypes will be used to implement the same task.
+The chosen chatbot technologies were Dialogflow, IBM Watson, and Rasa.
+The selection fulfilled all requirements by the company.
+Additonally, LUIS\cite{luis2015williams} has been choosen for the NLU comparison since it 
+has been evaluated as the NLU technology with the best performance by \citet{braunEvaluatingNLU}.
+LUIS has been mentioned or was used by \citet{singhbuilding, buiildChatbotsPython, rahman2017programming, dutta2017developing}, 
+and \citet{gregori2017evaluation}.
+% training data
+To ensure a fair comparison the chatbot prototypes were implemented using the same 
+dialog structure of Figure \ref{fig:conversationflow}.
 An example convsersation of the sickness notification task is shown in Figure \ref{fig:sicknessflow}
-They will be trained with the same data listed 
-in Table \ref{tab:sickness_utterances}, \ref{tab:vacation_utterances}, \ref{tab:sickness_utterances_de}, 
+The NLU part of all four technologies has been trained with the same training data to 
+ensure a fair comparison with the same initial state.
+The data used for training is listed in
+Table \ref{tab:sickness_utterances}, \ref{tab:vacation_utterances}, \ref{tab:sickness_utterances_de}, 
 and \ref{tab:vacation_utterances_de}.
+
+
 They will have the same intents, entities, and utterances.
 These steps are necessary to ensure a fair comparison.
 The analysis of the sickness notification dialog is shown in Table \ref{tab:sick_data}.

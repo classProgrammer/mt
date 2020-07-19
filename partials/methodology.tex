@@ -52,14 +52,14 @@ and vacation requests.
 It's not required to answer any questions that are unrelated to the given domain.
 The chatbot needs to extract specific data from the sentences which is the second 
 indication that the problem is task-oriented.
-The third indicator is that the chatbot collects information from the 
+The third indicator for a task-oriented problem is that the chatbot has to collect information from the 
 conversation to achieve a specific task.
 In the case of this thesis the tasks are the submission of a sickness notification
 and vacation request to an endpoint. 
 Hence, the task-oriented chatbot approach has been choosen for this thesis.
-The menu-dirven approach has not been choosen because the given problems 
+The menu-driven approach has not been choosen because the given problems 
 require a mechanisms to input dates and person names in full and partial sentences.
-This describtion doesn't fit the menu driven approach since it uses numbers as input.
+This description doesn't fit the menu driven approach since it uses numbers as input.
 The third major chatbot type found in literature is the open-ended approach found in 
 \citet{williams2017hybrid, bordes2016learning, rahman2017programming}.
 The open-ended approach has no specific goal and is not limited to a domain.
@@ -84,9 +84,9 @@ The functionality only covers the two request types sickness and vacation and
 basic structures like hello, bye, thank you, yes and no to build the conversations.
 No menaingfull response can be expected if something else is used as input.
 % famework selection
-There are a lot of chatbot frameworks offered.
+There are a lot of chatbot frameworks available.
 As mentioned by \citet{kane2016role}, the two major categories for chatbot frameworks 
-are cloud-based solutions which are modified via a website and local standalone applications.
+are cloud-based solutions which are developed via a website and local standalone applications.
 The framework selection for this thesis was based on chapter \ref{chap:soa} State-of-the-Art 
 and Section \ref{sec:prereq} Prerequisites.
 Section \ref{sec:prereq} describe the requirements of the company and Chapter \ref{chap:soa} shows which technologies are 
@@ -179,42 +179,38 @@ through prototyping.
 A user study also doesn't provide any information about the development perspective which is 
 a key part of the thesis.
 % psychological aspects
+The psychological aspects mentioned by \citet{folstad2017chatbots, brandtzaeg2018chatbots}
+and \citet{GO2019304} have been partialy applied.
+The general rule that a chatbot should tell the user that he's talking to a bot 
+was applied.
+The advanced rules for humanness are interesting for user studies and should be considered 
+for future projects.
+They are not relevant for the proof of concept because there are no user studies in this thesis.
 
-
-
-
-\section{Course of Action} % Ablauf
-First of all, the problem needs to be analyzed and classified.
-The problem can either be suitable or unsuitable for the use of chatbots.
-A problem is classified as suitable if it satisfies three criteria. 
-It needs to be solvable via simple back and forth communication,
-it needs to be repretitive, and automation has to be possible \citet{singhbuilding}.
-The two major conversation types are general and goal-oriented conversations.
-A general conversation has no goal condition and handles a conversation which can be 
-about anything. 
-If data needs to be collected and processed the goal-oriented approach is required.
-The next step for a suitable problem is the design of the conversation.
-To design the conversation structure for chatbots converstions have to be created.
-These conversations then need to be analyzed.
-The relevant information for the conversations are the goal of the conversation, the 
-data which needs to be extracted (entities), the possible major topics (intents), 
-the conversation structure, and the required actions and responses.
-The conversation can be represented as flowchart like \citet{singhbuilding} did.
-The required intents, entities, and actions need to be defined based on the conversation.
-Training data needs to be created for the intents and entities where necessary.
-The same trainig data is used for every technology to ensure a fair 
-comparison of the results.
-The prototypes are then developed based on the training data.
-The resulting prototypes need to implement the same dialog structure.
-It's either possible or impossible to implement the dialog structure with the 
-chatbot technologies. 
-If it's impossible to implement the dialog structure the technology 
-won't be recommended.
-Afterwards, the test data needs to be created for the comparison and evaluation of 
-the chatbots.
-The test data is the same for all bots.
 
 \section{Comparison and Evaluation}
+% test setup: data 
+A major part of this thesis has focused on the evaluation and comparison of the 
+developed prototypes.
+The training and test data used for the comparison is domain-specific and no other 
+data has been used.
+The training and test data sets were used for the evaluation of the entity extraction and 
+intent classification capabilities of the framework.
+% entity extraction
+It was impossible to test the entity extraction capabilities of the frameworks unbiassed since 
+the person entity was not predefined for Watson Assistant and had to be created from scratch.
+An entity created by the developer might overfit or suffer from a small amount of training data.
+This is a bias in the test setting since the performance is dependent on the developer and not 
+on the technology alone.
+Furthermore, Dialogflow offered two entities which can handle date-spans while Watson Assistant offers none.
+For Watson Assistant two separate dates were used instead.
+Both date-span entities of Dialogflow were tested to ensure the best possible result regarding the tests.
+The entities which were defined by the problem analysis of the user-cases are the person, date, and date-span entity.
+
+% intent classification
+
+
+
 A main part of this thesis is the comparison and evaluation of the 
 frameworks and the prototypes.
 The frameworks and prototypes will be compared in the sickness/vacation domain.
@@ -399,6 +395,37 @@ chatbot and an external service is.
 Another factor is how easy it is to add information to the message on the 
 external service and if the chatbot can procecess the external information.
 
+
+\section{Course of Action} % Ablauf
+First of all, the problem needs to be analyzed and classified.
+The problem can either be suitable or unsuitable for the use of chatbots.
+A problem is classified as suitable if it satisfies three criteria. 
+It needs to be solvable via simple back and forth communication,
+it needs to be repretitive, and automation has to be possible \citet{singhbuilding}.
+The two major conversation types are general and goal-oriented conversations.
+A general conversation has no goal condition and handles a conversation which can be 
+about anything. 
+If data needs to be collected and processed the goal-oriented approach is required.
+The next step for a suitable problem is the design of the conversation.
+To design the conversation structure for chatbots converstions have to be created.
+These conversations then need to be analyzed.
+The relevant information for the conversations are the goal of the conversation, the 
+data which needs to be extracted (entities), the possible major topics (intents), 
+the conversation structure, and the required actions and responses.
+The conversation can be represented as flowchart like \citet{singhbuilding} did.
+The required intents, entities, and actions need to be defined based on the conversation.
+Training data needs to be created for the intents and entities where necessary.
+The same trainig data is used for every technology to ensure a fair 
+comparison of the results.
+The prototypes are then developed based on the training data.
+The resulting prototypes need to implement the same dialog structure.
+It's either possible or impossible to implement the dialog structure with the 
+chatbot technologies. 
+If it's impossible to implement the dialog structure the technology 
+won't be recommended.
+Afterwards, the test data needs to be created for the comparison and evaluation of 
+the chatbots.
+The test data is the same for all bots.
 
 % Domain
 % Knowledge Base bilden

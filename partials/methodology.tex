@@ -202,100 +202,75 @@ the person entity was not predefined for Watson Assistant and had to be created 
 An entity created by the developer might overfit or suffer from a small amount of training data.
 This is a bias in the test setting since the performance is dependent on the developer and not 
 on the technology alone.
+With Watson Assistant it wasn't possible to mark entities in the training sentences when 
+German is selected as language.
+This rendered Watson Assistant useless for the German input language.  
+The Rasa framework doesn't offer any predefined entities itself and relies on other 
+optional technologies like Spacy and Duckling.
+The use of Spacy for date and date-spans was possible but the result date wasn't in standardized 
+format.
+This lead to the use of Duckling since it provided the necessary standardization for date and 
+date-span entities.
 Furthermore, Dialogflow offered two entities which can handle date-spans while Watson Assistant offers none.
 For Watson Assistant two separate dates were used instead.
 Both date-span entities of Dialogflow were tested to ensure the best possible result regarding the tests.
 The entities which were defined by the problem analysis of the user-cases are the person, date, and date-span entity.
-
+Only those three entities have been included in the entity extraction tests.
+For the evaluation of the results the recall, precison, and f-score values were used like \citet{braunEvaluatingNLU} did.
+To calculate the values the TP, FP, and FN values are counted for each individual test case.
+The comparison of the frameworks has been difficult since some entities are not available using certain technologies.
+Watson Assistant and Duckling had no person entity and LUIS had no person entity for the German language.
+In the case of Dialogflow two entities were available that could be used for the date-span extraction.
+The available enities were listed in Table \ref{tab:entity_extraction_recognition}.
+To make the values comparable the result was calculated for each individual entity, the combination of date and date-span, 
+and the combined score over all entities.
 % intent classification
+The second major function of chatbots is the intent classification.
+The intents were trained with the same utterances for all four technolgies 
+to create a fair test setup.
+To measure the performance the precision, recall, and f-score values were used to 
+provide an objective value.
+As mentioned in Chapter \ref{chap:basics} Basics, the NLU services of all four 
+frameworks provide a confidence value.
+The confidence value is a response that represents how well the input fits an intent.
+The result evaluation of this thesis has been extended with the confidence score since 
+it is an indicator how good the training worked for the frameworks and if 
+additional training data would have been necessary.
+The additional value standard deviation has been added to compare how consistent the 
+confidence scores of the chatbots were. 
+The confidence scores were shown for the correct intent no matter if the intent 
+was indentified correctly or not to calculate and average confidence 
+score across all tests.
+The average confidence score provides another quality metric.
+A high average confidence score combined with a high f-score indicates that the 
+chatbot classifies intents reliably and vice versa.
+A small standard deviation in combination with a high average confidence indicates
+that the chatbot classifies intents reliably wiht a high confidence score. 
+The intent classification was tested for English and German.
+This was necessary since the 3 Banken IT has it's locations in Austria
+which makes German the language of choice for the potential users.
+The expectation for the German tests was that there is no difference to the 
+English tests which was not met since e.g. LUIS had no person entity for 
+the German language.
+The performance expectation was that the German bot is at the same level 
+as the English bot regarding entity extraction and intent calssification.
+% implementation possible?
+As \citet{singhbuilding} mentioned, the best evaluation criterion is if the 
+underlying task can be achieved or not.
+This evaluation criterion has been adopted for this thesis since it's the 
+most relevant for a recommendation of a technology.
+As result value for this evaluation a binary boolean criterion has been choosen.
+Either it was possible to build a prototype that implemented the design or it was impossible.
+The evaluation didn't include an opinion or how hard the implementation was with a design.
+Since LUIS is a NLU technology and not a chatbot technology it was excluded from this test
+because it offers no dialog handling mechanism.
+It would have been unfair to include a NLU technology since it's not meant to handle 
+dialogs.
+The Microsoft Bot Framework uses LUIS and offers dialog handeling but wasn't used in 
+this thesis and is therefore not part of this test.
 
 
 
-A main part of this thesis is the comparison and evaluation of the 
-frameworks and the prototypes.
-The frameworks and prototypes will be compared in the sickness/vacation domain.
-% entity extraction
-The two major tasks of chatbot systems are the entity extraction and the intent 
-classification.
-The entity extraction and intent classification are about the function of the 
-software system and the ISO 25010\cite{iso25010} provides  the criterion functional 
-suitability for the evaluation of software systems.
-\citet{geyer2016named} compared frameworks based on their entity extraction
-capabilities.
-Based on the work of \citet{geyer2016named} the frameworks will be tested 
-for their entity extraction capabilities.
-This is measured by counting the true/false positives and true/false negatives of the test cases.
-These  values are used to calculate precision and recall which 
-are used to calculate the f-score.
-The f-score is the measurment criteria for the performance.
-An f-score of 1.0 is the maximum which can be achieved.
-The frameworks will be ranked based on their f-score.
-The f-score will be calculate for each use-case relevant entity 
-individually (date, date-span, person) and for all relevant entities
-together.
-This will show how good the individual entities of the frameworks are 
-and how good the entity extraction works in general.
-Rasa doesn't provide entities but the pipeline can be 
-adjusted to include technologies which provide entities.
-A popular technologies for date, time, and all sorts of 
-numeric values is Duckling (Wit.ai).
-Spacy is a technologie which provides the required person entity and 
-it's available for Rasa.
-The cloud frameworks all have built in system entities. 
-% intent classification
-The same calcualtion of precision, recall, and f-score will be used for the intent 
-classification task like \citet{braunEvaluatingNLU} did.
-The NLU and chatbot frameworks return a confidence score value.
-The confidence score is in the range of zero to one where zero 
-means no match and one is a perfect match.
-The confidence score will be used to rank the intent classification 
-capabilites in a second ranking.
-The confidence score alone is not enough to do the second ranking 
-since the technologies always pick the best fitting intent.
-The best fitting intent doesn't have to be the correct/expected intent.
-The technologie could say it's 60\% sure the intent none is correct 
-and the expected sick intent only reaches 40\%.
-In this case the none intent would be picked.
-The confidence scores alone are biased since no matter 
-which intent is recognized there will always be a value for 
-each intent no matter the input.
-The average confidence score will be calculated for the 
-two use-cases individually and combined for both.
-This is an indicator if a technology has problems with or excells
-on a specific use-case.
-The average confidence score should be as high as possible.
-An average confidence below 50\% is low and indicates 
-that the technology is not sure that the intent was 
-classified correctly.
-A low confidence score can be improved through more training data
-in most cases. 
-The intent classification capabilities need to be checked for the English and German 
-language.
-The potential users for further projects use German as input language.
-The expectation is that there is small to no difference in the development process, 
-that the same functionality is available for Germand and English,
-that the performance is on an equal level, that the 
-entity extraction works for both languages, and that 
-the same predefined entities are available for both languages.
-% implementation possible or not
-\citet{singhbuilding} says the best evaluation criteria is if the 
-task can be achieved.
-This will be used as evaluation criteria and will be based on the 
-design and prototype chapters.
-The design chapter provides the blueprint which needs to be 
-implemented with the different technologies.
-The prototype section shows if the blueprint can be 
-implemented successfully with a specific technology.
-The technologies will be classified binary as true if it's possible and 
-flase if it's impossible.
-The expectation is that the implmentation is possible with 
-all chatbot frameworks namely Dialogflow, Watson Assistant, and Rasa.
-A successful implementation can't be expectd with LUIS.
-LUIS is a NLU service and not a chatbot technology.
-Hence, it doesn't offer a mechanism to handle dialogs which is 
-necessary to implement a chatbot.
-The Microsoft Bot Framework can be used to build chatbots 
-and uses LUIS.
 % price comparison
 One of the main reasons why companies use or want to use chatbots is because they are cost efficient \citet{buiildChatbotsPython}.
 For this reason the prices of the chatbot frameworks need to be compared.

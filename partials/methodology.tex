@@ -155,8 +155,29 @@ The intent classification data used for all technologies has been listed in Tabl
 The entity extraction test data has been listed in Table \ref{tab:person_entity_extraction_recognition}, 
 \ref{tab:date_entity_extraction_recognition}, \ref{tab:date_entity_extraction_recognition2}, 
 \ref{tab:date_span_entity_extraction_recognition}, and Table \ref{tab:date_span_entity_extraction_recognition2}.
+The test evaluation focuses soley on domain specific information since the main purpose 
+of this thesis is a proof of concept through prototyping.
+% domain test influence
+The result of \citet{braunEvaluatingNLU} showed that the domain had small to no influence on the 
+performance of the tested technologies.
+Hence, a good technology is expected to perform well in any domain and a bad technology is expected
+to perform measurably worse than a good technology in any setting.
+In \citet{braunEvaluatingNLU} it was stated explicitly that different technologies should be tested 
+with domain specific data before one is selected for the actual product.
+The actual interesting performance of a chatbot is the domain specific performance.
+If a chatbot technology shows great performance in general but performs bad in the 
+given domain it shouldn't be used for the domain.
+Hence, the general performance is not interesting for the development of a 
+domain-specific bot.
+For this reason only domain-specific training and test data was used.
 % user study
-
+Another common testing approach for chatbots are user studies as mentioned in \citet{evaluateChatbotsShawar2007}.
+User studies are recommended for customer facing chatbot to increase the quality of the 
+product and gather communication information between the chatbot and the users.
+User-studies are not part of this thesis since they are not required for a proof of concept 
+through prototyping.
+A user study also doesn't provide any information about the development perspective which is 
+a key part of the thesis.
 % psychological aspects
 
 

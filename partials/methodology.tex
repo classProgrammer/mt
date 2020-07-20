@@ -344,46 +344,66 @@ The main focus of this test was Rasa since the setup complexity was interesting
 for the local technology.
 The setup of the cloud technolgies was expected to be easy since the providers 
 take care of the setup for the customers.
-
-
-
-
-
-
-
+% deployment complexity
+The deployment of chatbot systems is an important aspect when local and cloud 
+technologies are compared.
+While it was expected that a cloud technology produces no deployment overhead 
+the opposite is expected for a local technolgy since the deployment needs to 
+be done by the developer.
+For the local technology the Docker deployment and setup of a local python 
+environment were included in the evaluation.
+Especially the deployment using Docker has proofen as interesting for 
+future projects because of the flexibility and simplicity. 
 % learnability
 The ISO 25010\cite{iso25010} defines learnability as sub-criterion of usability as measurement
 metric for software systems.
-The learnability is impprtant for development tasks and an easy to learn 
-technology is prefered over a complex complicated one.
-The evaluation takes local and cloud technologies into account hence the 
-setup complexity is part of the learnability.
-The cloud technolgies should not require any setup on the local machiene while 
-the local technology will require a setup which needs to be taken into account.
-The entity extraction is a key functionality of chatbots.
-When the given problem can be solved with system entities then the developer
-saves time.
-The relevant values for the entity extraction are the number of predefined entities and 
-the relevant predefined entites for the use-cases of this thesis.
-The more predefined entities exist the better.
-When all of the required entities for the use-cases exist the 
-technology is easier to learn since the whole entity creation process is not 
-relevant in such a case.
-For the chatbot frameworks the dialog handeling mechanisms are relevant for the learnability.
-A major development task is the creation of conversations.
-The conversation creation methods of the chatbot frameworks need to be evaluated based on the 
+The lernability is important from a development perspective since an easy to learn and 
+use technology is the optimal case when the performance is good.
+The evaluation of the project setup and deployment complexity was included in 
+the learnability since they are part of the development of a system.
+%% predefined entities
+As mentioned before, the chatbot technolgies use entity extraction to 
+extract data from text.
+The entity extraction is a part of the development process of a chatbot
+and it takes time to define good entities.
+All of the chatbot technolgies offer predefined entities which are ready to use.
+As a criterion the number of predefined entities was defined as a measure since 
+lots of predefined entities can save lots of development time for future projects.
+If a required entity is available for a given problem the developer doesn't need 
+to create one.
+The second measurement criterion it the entity category is if all required 
+entities for the use-cases of this thesis were predefined by the chatbot technology.
+The technologies where all required entities were predefined are better suitable 
+to solve the given problem.
+It was also evaluated how hard it is to create new intents, entities, training phrases,
+and dialogs.
+The expectation was that it is equally complicated for each technology.
+%% design of conversations, nodes and stories
+As mentioned by \citet{folstad2017chatbots} the design of chatbots is all about the
+conversation.
+Hence, the most important aspect was the creation of dialogs.
+The frameworks Dialogflow and Watson Assistant offered dialog nodes 
+to create and structure conversations.
+A dialog node is one step of the conversation and can be followed by another 
+dialog node.
+A dialog node was e.g. the classification of the sickness notification intent
+followed by the collection of the name and return date to the response of the system.
+Rasa offered stories to represent a dialog.
+A story represents a whole conversation path from start to finish.
+The start was a greeting line and the end the goodbye resonse for instance.
+%% form data
+An important part of the conversations required for this thesis was the 
+extraction of form data and has been evaluated regarding the 
 complexity.
-An important sub-task of chatbot systems is the extraction of form-data and will be evaluated based 
-on the complexity.
-% deployment complexity
-The deployment of chatbot systems is an important aspect when local and cloud technologies are 
-compared.
-A cloud technology will not produce overhead when it comes to the deployment since it is 
-hosted in the cloud by default.
-For the local technologies it's interesting how complex it is to deploy it in a cloud 
-environment.
-It's expected that the cloud environments can't be deployed locally or in another cloud 
-environment while the local technology can be deployed in all cloud environments and locally.
+Rasa was the only technology tested where programming skills were necessary to
+extract form data from the conversation. 
+
+
+
+
+
+
+
 % communication
 The communication between the chatbot and external services needs to be analyzed.
 The message format and the extracted metadata are of interest.

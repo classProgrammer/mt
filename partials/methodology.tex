@@ -268,66 +268,89 @@ It would have been unfair to include a NLU technology since it's not meant to ha
 dialogs.
 The Microsoft Bot Framework uses LUIS and offers dialog handeling but wasn't used in 
 this thesis and is therefore not part of this test.
-
-
-
+% speech recognition
+For future project speech recognition capabilities are on the wishlist of the 
+3 Banken IT.
+For this reason the speech-to-text and text-to-speech services offered for the 
+chatbot technolgies were compared based on their price.
+Chatbots which offer speech functionality can be used through 
+voice interfaces in the future.
+The second evaluation criterion in the speech recognition category was
+if speech services are offered by the provider. 
+It was expected in general that each framework offers speech services 
+for their chatbot technology since these are two closely tied topics.
 % price comparison
-One of the main reasons why companies use or want to use chatbots is because they are cost efficient \citet{buiildChatbotsPython}.
-For this reason the prices of the chatbot frameworks need to be compared.
-In general, cheap is treated better in this ranking than expensive.
-This criteria does not make a statement about the quality of the framework.
-For this reason the ranking should be reconsidered after the tests when the 
-quality ranking is available.
-If a technolgy is good it's a candidate for the recommendation.
-If a technology is bad the price doesn't matter because it will not be recommended.
-Hence, a good and cheap technology is wanted. 
-For the usage in a business application the prices of all version of the frameworks are relevant 
-especially if an enterprise verison is offered.
-For further projects the speech-recognition capabilites of the frameworks need to be 
-compared. 
-The chatbots focus on written communication via messages and are not automatically capable 
-to handle speech in- and output.
-The speech-to-text and text-to-speech functionality is offered seperately for the 
-chatbot technologies and is not included in the costs for text communication.
-Hence the prices for the speech functionality also needs to be compared.
-The expectation is that the frameworks cost roughly the same and that 
-the prices are easy to compare.
-% portability
-The ISO 25010\cite{iso25010} standard defines portability as an evaluation criterion for software systems.
-Portability is a big issue with chatbot technologies.
-One sub criteria for the evaluation is the number of providers where the chatbot 
-can be deployed.
-It's expected that the cloud technologies can run only in the cloud environment.
-This criteria focues on Rasa to see where and how it can be deployed.
-Another aspect fo portability is the number of devices a developer can work with 
-% no of devices
-with a focus on the hardware and software which needs to be present to run the 
-framework.
-The expectation is that a cloud chatbot can be developed from everywhere 
-as long as a web-browser and an internet connection are available.
-It's expected that Rasa is at a disadvantage in this category.
-% migration
-The migration from one technology to another is an aspect of portability.
-It's expected that all technolgies safe the data differently and that it's not 
+A key factor for the use of chatbots is the price.
+That the price plays an important role was mentioned in \citet{buiildChatbotsPython} 
+for instance.
+Non of the articles used for this thesis actually compared the prices of the 
+available technologies.
+The goal of the price comparison was to find out which technolgies are cheap and which are 
+expensive.
+In combination with the other evaluations the expectation was to find a cheap technology 
+which performs well.
+The price of a chatbot has been calculated for different categories since the 
+prices were intransparent and hard to compare.
+The first category were the prices for the chatbot technologies, the second 
+one were the prices for hosting, and the third category were the prices 
+for speech-to-text and text-to-speech services.
+The prices for the chatbot technology for the enterprise edition of Rasa 
+and Watson Assistant is not listed on the website since it's calcualted 
+individually.
+The prices for the Microsoft Bot Framework were calculated by adding the price
+for the Microsoft Bot Framework and LUIS.
+The prices for Watson Assistant are calculated per user per month while the 
+price for Dialogflow, LUIS and the Microsoft Bot framework are based on the
+number of requests.
+Rasa is free by default and was excluded from the price calculation since 
+no prices were listed on the website.
+The prices for the text-to-speech and speech-to-text services were comparable for
+Watson Assistant, Microsoft Speech Services, and Dialogflow.
+Rasa didn't offer text-to-speech and speech-to-text services at all.
+The general expectation was that the frameworks cost roughly the same but 
+the prices were hard to compare or not comparable at all.
+% protability 
+Another evalution criteria used for this thesis is the protability of 
+software systems as defined in the ISO 25010\cite{iso25010} standard.
+The portability has been choosen since the comparsion of the cloud 
+technolgies with a local technology is interesting from a 
+development point of view.
+The first factor discussed in this thesis were the necessary tools 
+since they determine how portable the dvelopment environment of the 
+chatbots is.
+%% local vs cloud
+The portability of the devlopment environment of the local technology 
+Rasa in contrast to the cloud chatbot technologies was the 
+main focus of this evaluation.
+The second factor chosen was the number of providers where the 
+chatbot can be deployed.
+The main focus lay on the cloud technolgies since the expectation was
+that they can only run in the environment of the provider and are 
+not portable at all.
+The third portability category chosen was how flexible the development
+of chatbots is regarding the devices.
+The expectation was that a cloud technology is developed in a 
+web browser and can be developed from almost anywhere while 
+the local technology requires a development environment and is 
+comparably unflexible.
+%% migration
+Another aspect of portability is the migration from one technolgy to another.
+It was expected that all technolgies safe the data differently and that it's not 
 easy to migrate between them.
 % project setup
-An important factor for software systems is the project setup complexity.
-It's interesting in this case how complex the setup of a local chatbot 
-technology is compared to the cloud technologies.
-The expectation is that the setup of the local technology is harder 
-that the setup of a cloud technology.
-A cloud technology should not require any setup at all.
-% speech recognition
-For future projects the speech recognition capabilities need to be considered.
-This includes the use of speech-to-text and text-to-speech to communicate with the user 
-in spoken language in both directions.
-It's expected that all of the cloud providers offer a 
-technology that can be used in combination with the chatbot.
-It's also expected that the local chatbot offers such a technology.
-Another important factor for the speech recognition capabilities is the 
-price.
-It's expected that the providers offer the speech recognition functionality 
-at a comparable price.
+For the development of a chatbot the project setup complecity plays an important 
+role and was evaluated in this thesis.
+The main focus of this test was Rasa since the setup complexity was interesting 
+for the local technology.
+The setup of the cloud technolgies was expected to be easy since the providers 
+take care of the setup for the customers.
+
+
+
+
+
+
+
 % learnability
 The ISO 25010\cite{iso25010} defines learnability as sub-criterion of usability as measurement
 metric for software systems.

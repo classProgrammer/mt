@@ -90,7 +90,6 @@ vacation request.
  If the person can't be found the user needs to be notified and the operation is aborted.
  If the person was found the user needs to confirm that the right person was found.
  In production, there could be multiple employees with the same name. 
-
  Because of this ambiguity, the confirmation is part of the dialog.
  Then the optional return-date needs to be extracted.
  It's optional because especially in the case of a sickness the return date is often unknown.
@@ -131,9 +130,7 @@ vacation request.
     \caption{Sickness Notification Intents, Enitities, and Actions of Figure \ref{fig:sicknessflow}} \label{tab:sick_data}
 \end{table} \noindent
 
-\section{Problem Analysis}
-The problem is task-oriented.
-
+\section{Psychological Aspects}
 Some psychological aspects of \citet{brandtzaeg2018chatbots} have to be included.
 \citet{brandtzaeg2018chatbots} stated that the user impression depends greatly on the users mindset.
 If the user thinks he's talking to a bot the user expects less but the conversation is more likely evaluated as unnatural \cite{brandtzaeg2018chatbots}. If the user assumes he's talking to a human and the bot is unable to achieve the task the user is very disappointed \cite{brandtzaeg2018chatbots}.
@@ -143,7 +140,8 @@ Hence, the user needs to be informed that he's talking to a bot.
 For further development steps, a gender can be introduced to make the bot feel more human-like if necessary.
 Another way to give the bot a more natural feel is to look at the message response times.
 They should not be to fast.
-If the response comes too fast it feels unnatural because a human being can't answer as fast as a machine.
+If the response comes too fast it feels unnatural because a human being can't 
+answer as fast as a machine.
 
 \section{Webhook}
 As explained in Chapter \ref{chap:basics}: Basic in Section \ref{sec:webhook} 
@@ -158,7 +156,6 @@ For development purposes, the last request of Watson can be viewed at "/watson/r
 and the last request of Dialogflow at "/dialogflow/request".
 To see all successful sickness notification entries "/sick/all" can be used,
 and under "/vacation/all" all successful vacation entries can be viewed.
-
 The service fakes a database and stores the request.
 After the information has been collected successfully by a framework a 
 request is submitted to the service.
@@ -167,21 +164,14 @@ All frameworks can call the webhook at the end when the data has been collected 
 after each user request if necessary.
 This way the information can be validated and modified by the service.
 
-
-
 \section{Messenger UI}
 The design of a chatbot focuses on the conversation and not on the UI.
 The UI requirements are always the same for chatbots.
 The basic features required are writing a new message, sending a message, and displaying a message.
 The messenger UI shown in Figure \ref{fig:messengerui} can enter and send 
 a message, and displays message cards.
-
 A user can enter a new message at the bottom and click the send button to send a message.
-
-
 \citet{brandtzaeg2018chatbots} states that successful chatbot should inform users that they are talking to a bot.
 Therefore, the heading has been adjusted to remove ambiguities and includes the term chatbot.
 The messenger UI is shown in Figure \ref{fig:messengerui}. 
-
-
 \makefigure{messengerui}{Chatbot UI}

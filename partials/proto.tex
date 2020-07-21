@@ -456,6 +456,7 @@ the NLU application.
 The chosen language is the language the users will use for the communication with the 
 LUIS application.
 The modification is done in the build tab.
+\makefigure{luis_interface}{LUIS Web Interface}
 The interface shown in Figure \ref{fig:luis_interface} offers intents and entities
 like described in Chapter \ref{chap:basics}.
 To create the NLU part with LUIS Table \ref{tab:conversation_data} will be used.
@@ -494,42 +495,38 @@ This is important for the vacation use case when the vacation is requested for
 the next year. 
 
 
-\makefigure{luis_interface}{LUIS Web Interface}
 
 
+% \section{Frontend}
+% The main purpose of the frontend is message handling.
+% It tracks the user input, submits the input to the chatbot service 
+% when the submit button is pressed, 
+% and displays the response.
+% A classic message in messengers has the properties sender, timestamp, and message.
+% The message format of the frontend is shown in Listing \ref{lst:message_format}
+% \begin{lstlisting}[caption={Message Format}, label={lst:message_format},captionpos=b,frame=single,language={Python},commentstyle=\color{mygreen},keywordstyle=\color{blue},
+%     morekeywords={}]                
+% messages.push({
+%     sender: "<Sender>",
+%     message: "<Message>",
+%     timestamp: this.getTimestamp()
+% })
+% \end{lstlisting}  
+% A toolbar with title, message area, and submit area are necessary for a messenger UI.
+% The structure is shown in Listing \ref{lst:messenger_structure}
+% \begin{lstlisting}[caption={Messenger Structure}, label={lst:messenger_structure},captionpos=b,frame=single,language={Python},commentstyle=\color{mygreen},keywordstyle=\color{blue},
+%     morekeywords={MessengerToolbar, MessageArea, Divider, MessengerSubmitArea, Box}]                
+% <Box width={"25em"}>
+%     <MessengerToolbar title="3 Banken IT Dev Chatbot" />
+%     <MessageArea entries={this.state.messages} />
+%     <Divider light />
+%     <MessengerSubmitArea 
+%         message={this.state.message} 
+%         textHandler={this.handleMessage.bind(this)} 
+%         submitMessage={this.handleSubmit.bind(this)} 
+%     />
+% </Box>
+% \end{lstlisting}  
 
 
-\section{Frontend}
-The main purpose of the frontend is message handling.
-It tracks the user input, submits the input to the chatbot service 
-when the submit button is pressed, 
-and displays the response.
-A classic message in messengers has the properties sender, timestamp, and message.
-The message format of the frontend is shown in Listing \ref{lst:message_format}
-\begin{lstlisting}[caption={Message Format}, label={lst:message_format},captionpos=b,frame=single,language={Python},commentstyle=\color{mygreen},keywordstyle=\color{blue},
-    morekeywords={}]                
-messages.push({
-    sender: "<Sender>",
-    message: "<Message>",
-    timestamp: this.getTimestamp()
-})
-\end{lstlisting}  
-A toolbar with title, message area, and submit area are necessary for a messenger UI.
-The structure is shown in Listing \ref{lst:messenger_structure}
-\begin{lstlisting}[caption={Messenger Structure}, label={lst:messenger_structure},captionpos=b,frame=single,language={Python},commentstyle=\color{mygreen},keywordstyle=\color{blue},
-    morekeywords={MessengerToolbar, MessageArea, Divider, MessengerSubmitArea, Box}]                
-<Box width={"25em"}>
-    <MessengerToolbar title="3 Banken IT Dev Chatbot" />
-    <MessageArea entries={this.state.messages} />
-    <Divider light />
-    <MessengerSubmitArea 
-        message={this.state.message} 
-        textHandler={this.handleMessage.bind(this)} 
-        submitMessage={this.handleSubmit.bind(this)} 
-    />
-</Box>
-\end{lstlisting}  
-
-
-The UI of the React messenger frontend is shown in action in Figure \ref{fig:messengerui}.
-\section{Webhook}
+% The UI of the React messenger frontend is shown in action in Figure \ref{fig:messengerui}.

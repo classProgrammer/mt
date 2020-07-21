@@ -1,0 +1,46 @@
+The 3 Banken IT wants to use chatbots for two internal use-cases.
+The first use-cases are sickness notifications and the second one 
+are vacation requests.
+The main questions which need to be answered are 
+what makes a problem suitable for a chatbot solution and are the given 
+problems suitable for a chatbot.
+A problem is suitable if it's repetitive, can be automated, and 
+only requires simple back-and-forth communication \citet{buiildChatbotsPython}.
+This is the case for the given problem which makes it suitable for a
+chatbot solution.
+To proof the concept prototypes were developed with Dialogflow, LUIS, Rasa, 
+and Watson Assistant.
+Based on a detailed evaluation that inculuded the entity extraction performance, 
+the intent classification performance in English and German a technology ranking 
+was built to determine the best technology for the given problem.
+In the evaluation process the similarities and differences of the 
+frameworks were compared.
+All of the tested frameworks used the concepts intent, entity, and utterance.
+The biggest difference is that Dialogflow, LUIS, and Watson Assistant are 
+cloud based solution whereas Rasa is a local solution.
+The evaluation also focused on the difference between the cloud frameworks and the 
+local framework.
+An important factor for companies are the costs for a technology and in general the 
+prices of the frameworks are on an equal level as expected.
+The entity extraction evaluation was won by Dialogflow by a large margin backed up 
+by the highest f-score.
+The intent classification in English worked best with Watson Assistant closely followed 
+by Dialogflow and LUIS.
+Rasa was unable to keep up with the cloud technologies in the English test setting.
+The result for the German test setting looked quite different since the 
+intent classification worked measurably better and all technologies 
+performed very good.
+The entity extraction performance of the technology dropped sginificantly with the 
+exception of LUIS which showed an increas in performance.
+For the devleopment of a prototype in English all technologies can be recommended.
+The only technology which showed a great performance on the 
+German tests was LUIS followed by Rasa which performed quite well.
+These two technologies can be recommended for a German bot.
+The entity extraction performance of Dialogflow was horrible and can't be
+recommended.
+Watson Assistant doesn't offer anotated entities for training sentences when German 
+is selected as input language.
+This renders Watson Assistant useless for the German language until the feature is 
+available for German and can't be recommended.
+The two remaining technologies for the final recommendation are LUIS followed by Rasa.  
+

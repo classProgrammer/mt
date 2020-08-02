@@ -1,167 +1,144 @@
-The domain consisting of the sickness notification and the vacation request 
-can be solved with chatbots.
+The domain consisting of the sickness notification, and the vacation request is suitable for the use of chatbots.
 % implementation
-It was possible to implement the design with all three chatbot 
-technologies namely Dialogflow, Rasa, and Watson Assistant.
-Based on Chapter \ref{chap:proto} the implementation is 
-easiest with Dialogflow then comes Watson Assistant followed by 
-Rasa which is the most complicated by far.
-It's easiest with Dialogflow because it already has prebuilt entities,
-it offers the utility intents yes and no, and small talk can be 
-included with a single mouse click.
-Watson Assistant is second because it takes more time to get accustomed 
-to the UI, the person entity needs to be defined by the developer,
-and the yes/no logic needs to be implemented.
-Rasa is the most complex one since it doesn't provide any entities 
-itself.
-To enable the entities of other technologies like Spacy and Duckling the 
-pipeline needs to be adjusted.
+All in all, Dialogflow wins the implementation based ranking in front of Watson Assistant, followed by Rasa.
+It was possible to implement the design with all three chatbot technologies.
+Based on Chapter \ref{chap:proto}, the implementation is easiest and fastest with Dialogflow, then comes Watson Assistant followed by Rasa, which is the most complicated by far.
+It is easiest with Dialogflow because it already has prebuilt entities, it offers the utility intents yes and no, and small talk can be included with a single mouse click.
+Watson Assistant is second because it takes more time to get accustomed to the UI, the person entity, and yes/no logic is missing and needs to be created by the developer.
+Rasa is the most complex one since it does not provide any entities itself.
+The pipeline needs to be adjusted to enable the entities of other technologies like Spacy and Duckling.
+Adjusting the pipeline means additional development effort in comparison to the cloud bots.
 To connect to Duckling and Additional Docker container needs to be started.
-The chatbot developer also needs to implement the form filling with Python 
-when using Rasa. 
-The other technologies don't require any programming skills to model the 
-dialog.
-The implementation with Rasa took by far the longest.
-When only the implementation section is used for the ranking 
-Dialogflow wins in front of Watson followed by Rasa.
+The chatbot developer also needs to implement the form filling with Python when using Rasa. 
+The cloud technologies do not require any programming skills to model the dialog.
+The implementation with Rasa took by far the longest, Watson Assistant is in the middle, and Dialogflow requires the least time.
+
 % no of entities
 Table \ref{tab:predefined_entities} shows the number of predefined entities.
-When only the domain of this thesis is considered then the only technology 
-where an entity is missing would be Watson Assistant since it provides no person entity.
-When the number of entities is considered for a general case then the 
-top technology by a large margin is Dialogflow.
-The number of predefined entities is an important number for future use-cases since 
-lots of development time can be saved when the entities are already predefined.
-They are also trained well because they use large training sets.
+Dialogflow and Rasa provide the entities required by the domain, whereas Watson Assistant lacks a person entity.
+Dialogflow also wins the number of predefined entities ranking by a large margin, and LUIS is a solid second.
+Rasa and Watson Assistant do not offer many predefined entities in comparison.
+The number of predefined entities is important for future use-cases since it reduces the development time significantly when the correct entities are already predefined. 
+In general, predefined entities perform better because of the large and carefully selected training sets.
+
 % entity extraction
 Table \ref{tab:entity_extraction_eval} ranks the frameworks based on their 
 entity extraction capabilities.
-The best person, date and date-span entities are present at Dialogflow because they achieved the 
-highest f-score values.
+The best person, date, and date-span entities are present at Dialogflow because they achieved the highest f-score values.
 In the date-span entity category, Duckling and Watson achieved the same f-score as Dialogflow.
-The best overall entity extraction performance is achieved by Dialogflow. 
-From the entity extraction capabilities alone either Rasa or 
-Dialogflow needs to be recommended.
-The other frameworks performed worse in the entity extraction 
-department.
-The ranking shows that some technologies performed better than others.
-It also shows that no framework performed badly.
+Dialogflow achieves the best overall entity extraction performance with the best f-score in all categories. 
+Of the entity extraction capabilities alone, the use of either Dialogflow or Rasa is recommended.
+To summarize, the ranking shows that Dialogflow and Rasa performed better than LUIS and Watson Assistant, but no technology performed poorly.
+
 % intent classification
-The intent classification is dominated by Watson and Dialogflow since 
-both were able to classify all test cases correctly.
-LUIS is a close second.
+Watson Assistant and Dialogflow dominate the intent classification since both were able to classify all test cases correctly.
+LUIS is a close behind, but Rasa could not keep up.
 All three cloud chatbots performed on an equal level.
 The detailed result is shown in Table \ref{tab:intent_classification_result}.
-Rasa was unable to keep up with Dialogflow, LUIS, and Watson when the 
-average confidence is compared.
+Rasa was unable to keep up with Dialogflow, LUIS, and Watson on the  
+average confidence value.
 This is an indication that Rasa needs more training data to 
 reach the same performance level as Dialogflow, LUIS, and Watson.
 An average confidence value below 50\% is not satisfactory.
 Based on the entity extraction and intent recognition results
-the recommended technology in the top spot has to be Dialogflow
-since the performance in both categories was great.
+the recommended technology in the top spot has to be Dialogflow since the performance in both categories was excellent.
 Additionally, Dialogflow has the best average confidence value.
-It's also possible to use LUIS and Watson Assistant since the performance was close to Dialogflow.
-It's possible to improve the performance and confidence scores of Rasa with more training data.
-Rasa needs to improve to be recommended.
+It is also possible to use LUIS and Watson Assistant since the performance was close to Dialogflow.
+It is possible to improve the performance and confidence scores of Rasa with more training data.
+
 % intent classification german 
-The intent classification was also done for the German language and the results differ greatly from the 
-English results.
+The intent classification results looked quite different for the German language tests and varied greatly compared to the English ones.
 The average confidence increased for each technology.
 The f-score of LUIS and Rasa increased significantly. 
-This puts LUIS on par with Dialogflow and Watson with a perfect f-score value of 1.0.
-This leads to the conclusion that the intent classification works better for the German 
-language in general since all technologies performed better.
+In the German setting, LUIS is on par with Dialogflow and Watson with a perfect f-score value of 1.0.
+This leads to the conclusion that the intent classification works better for the German language in general since all technologies showed a performance increase.
 Contrary to the intent classification, the entity-extraction performance decreased significantly.
-In the English test sentences of Tables \ref{tab:sickness_intent_classification} and \ref{tab:vacation_intent_classification}
-the entity extraction didn't work correctly in two cases and worked in 46 cases.
-For the German language, test shown in Tables \ref{tab:sickness_intent_classification_de} and \ref{tab:vacation_intent_classification_de},
-a total of 21 wrong and 26 correct extractions are counted.
-The only technology that achieved a satisfying entity extraction result on the German test sentences is LUIS.
+In the English test sentences of Table \ref{tab:sickness_intent_classification} and \ref{tab:vacation_intent_classification} the entity extraction didn't work correctly in two cases and worked correctly in 46 cases.
+For the German language, test shown in Table \ref{tab:sickness_intent_classification_de} and \ref{tab:vacation_intent_classification_de}, a total of 21 wrong and 26 correct extractions are counted.
+The only technology that achieved an excellent entity extraction result on the German test sentences is LUIS.
+
 % portability
 Rasa is the only portable technology.
-It can run in a Docker container and Docker containers are supported by every 
-cloud provider.
-It can also run locally on a development machine and on an internal server.
-The cloud technologies are tied to the cloud provider who offers the bot.
-Rasa wins the portability comparison.
+It can run in a Docker container, and every cloud provider supports docker containers.
+It can also run locally on a development machine or a company's internal server.
+The cloud technologies are tied to the cloud provider who offers the bot and cannot be deployed anywhere else.
+All in all, Rasa wins the portability comparison.
+
 % migration
-The migration from one chatbot technology to another is not easily possible with 
-any of the technologies tested. 
-Hence, there is no evaluation possible and no ranking can be done.
-% pricing
-The pricings of the frameworks shown in Table \ref{tab:pricing} are hard to compare and intransparent for the premium version of Watson Assistant and the enterprise edition for Rasa.
-All three offer a free tier which can be used by companies.
-Because of the lack of transparency, the comparison can't be used for a recommendation or a ranking.
-The real difference is that Watson Assistant is measured by the number of users per month and 
-Dialogflow and LUIS + Microsoft Bot framework are based on the number of requests.
+The migration from one chatbot technology to another is not easily possible with any of the technologies tested. 
+Hence, an evaluation of the migration possibilities is impossible.
+
+% framework pricing
+The pricings of the frameworks shown in Table \ref{tab:pricing} are hard to compare and intransparent.
+For the premium version of Watson Assistant and the enterprise edition of Rasa the prices are calculated individually.
+All three offer a free tier, which can be used by companies.
+A technology recommendation because of the price is impossible since the prices are intransparent and hard to compare.
+The only thing which can be said is that Dialogflow and LUIS cost roughly the same.
+The units used for the price calculation vary between the cloud frameworks.
+Dialogflow calculates the price per request, while Watson Assistant calculates the price per 1000 users per month.
+LUIS mixes both approaches and calculates the price per 1000 requests per month
 This makes Dialogflow and LUIS cheaper for small amounts of requests and lots of users with short conversations.
 Watson is cheaper for returning users with lots of conversation or very long conversations.
+
+% speech services
 The prices for the speech capabilities of Dialogflow and the Microsoft Speech Services are comparable.
-The same functionality is more expensive when the services of IBM are used.
-Worst in this category is Rasa since it offers no speech services but it's possible to use the 
-speech services of the cloud providers.
+IBM's speech services are more expensive as a whole.
+Worst in this category is Rasa, since it offers no speech services.
+It is possible to use the speech services of cloud providers in combination with Rasa.
 The winners of the speech capability evaluation are Dialogflow and the Microsoft Speech Services.
+
 % security
-When security is an important factor then a local technology needs to be used.
-The cloud technologies all process the requests in the cloud and this has to be 
-kept in mind.
-If it's impossible to process information in the cloud because there are security restrictions
-then the recommendation is to use Rasa.
+When security is an essential factor, then local technologies like Rasa need to be used.
+Cloud chatbots process and analyze all data in the cloud, and this can be a problem for safety-critical applications.
+If it is impossible to process information in the cloud because of security restrictions, then the recommendation is to use Rasa.
+
 % recommendation of a framework
-When all the factors discussed above are combined the clear winner for English bots is Dialogflow and the 
-winner for German bots is LUIS.
-The design could be implemented fastest with Dialogflow, it's the easiest of the chatbot technologies,
-it offers the most predefined entities, provides utility intents, had the best person and date
-entity in the entity extraction tests has the highest average confidence score, 
-and performed great in the intent classification tests.
+When all the factors discussed above are combined, the clear winner for English bots is Dialogflow, and the winner for German bots is LUIS.
+The design could be implemented fastest with Dialogflow, and it is the easiest of the chatbot technologies,
+it offers the most predefined entities, provides utility intents, had the best person and date entity in the entity extraction tests, has the highest average confidence score, and performed great in the intent classification tests.
 The only downside of Dialogflow is the entity extraction performance on the German test sentences.
 The best overall technology is LUIS and is the recommended framework for future development.
-The only negative aspect of Rasa is the low average confidence score but it can be 
-improved with more training data and is a good local alternative to LUIS.
+Rasa's only negative aspect is the low average confidence score, but this is improvable through more training data.
+Rasa is a good local alternative to LUIS when more training data is provided.
+
 % differences and similarities
-When looking at the differences and similarities of the chatbot framework the conclusion is that 
-they are very similar and differ only in small aspects.
-Especially the cloud frameworks are almost identical in functionality, the provided services,
-and the costs.
-All tested frameworks use the concepts intent, entity, and utterance.
-The chatbot frameworks use a mechanism to structure the dialog with the user.
-Dialogflow and Watson Assistant use dialog nodes and Rasa uses stories.
+When looking at the differences and similarities of the chatbot frameworks, the conclusion is that they are very similar and differ only in small aspects.
+Especially the cloud frameworks are almost identical in functionality, the provided services, and the costs.
+All tested frameworks use intents, entities, and utterances.
+All of the chatbot frameworks use a mechanism to structure the dialog.
+Dialogflow and Watson Assistant use dialog nodes, and Rasa uses stories for dialog structuring.
 The development effort and complexity between the technologies vary.
-Cloud chatbots require less knowledge and are easier to use while the local technology (Rasa) 
-offers more customization possibilities.
-The pipeline of Rasa can be adjusted to the specific needs of the developer or company which 
-is not offered by any cloud technology.
+Cloud chatbots require less knowledge and are easier to use while the local technology (Rasa) offers more customization possibilities.
+The pipeline of Rasa can is adjustable to the developer or company's specific needs.
+No similar function is available for the tested cloud chatbot technologies.
+
 % suitable problems
 The third research question is about the suitability of problems for the use of chatbots.
 The three major criteria mentioned by \citet{singhbuilding} can be confirmed.
-A problem needs to be solvable via simple back and forth communication because it's the 
-only thing a chatbot can do.
-The problem is not required to be repetitive but it's only cost-efficient if it is 
-a repetitive problem.
-It should also be automatable to be efficient and to make the chatbot work independent.
+A problem needs to be solvable via simple back and forth communication because it is the only thing a chatbot can do.
+The problem is not required to be repetitive, but it is only cost-efficient if it is.
+It should also be automatable to be efficient and to make the chatbot work independent from employees.
 In general, all problems which satisfy those three criteria are suitable for the use of chatbots.
-Possible future use cases for the 3 Banken IT are the use of a chatbot for a banking
-application like mentioned in \citet{singhbuilding}.
+
 % further use cases
-The banking app of \cite{singhbuilding} is used for transactions and querying account information.
-A popular use case for chatbots are FAQs(\citet{evaluateChatbotsShawar2007, buiildChatbotsPython, huang2007extracting, GO2019304}).
-% advice for future work
-When resources like \citet{} and \citet{} are taken into account the psychological aspects of 
-chatbot development have to be considered for future work.
-Like \citet{GO2019304} said, there are multiple ways to make users believe that they are talking to a bot.
-For an actual chatbot, there needs to be decided if the users should know that they are talking to a bot or not.
-If they believe to talk to a bot they expect less but the conversation is generally treated more machine-like \cite{GO2019304}.
-When users assume to talk to a human the conversation is judged as more natural but if the bot performs badly the experience is also evaluated as more negative \cite{GO2019304}.
-Like \citet{shawar2007chatbots} said, a chatbot should not imitate humans they should be used to reduce their workload and help them.
+Possible future use cases for the 3 Banken IT is the use of a chatbot for a banking application like mentioned in \citet{singhbuilding}.
+The banking app of \citet{singhbuilding} is used for transactions and querying account information.
+A popular use case for chatbots are FAQs (\citet{evaluateChatbotsShawar2007, buiildChatbotsPython, huang2007extracting, GO2019304}).
+
+% advise for future work
+The psychological aspects of chatbots play a vital role in the development phase \cite{GO2019304}.
+When literature like \citet{folstad2017chatbots, brandtzaeg2018chatbots} and \citet{GO2019304} are taken into account, the psychological aspects of chatbot development play an essential role for future work.
+There are multiple ways to make users believe that they are talking to a bot.
+Although uses should not be tricked, the concepts can increase the humanness of bots, which is valuable for customer-facing bots.
+User expectations will decrease when a bot is expected, but the conversation is evaluated more often as robotic.
+When users assume to talk to a human, the conversation is judged as more natural, but if the bot performs poorly, the experience is also evaluated as very negative.
+Imitation of humans is not a goal of chatbot development for business.
+The real goals are to reduce the workload of humans, aid humans, and replace humans to save costs.
+
 % source of data and user study
-For prototyping the generation of training data by the developer is appropriate.
-It's not appropriate for the training of the actual product since the performance
-requirements are much higher.
-The training data for the future work on the actual product can be collected through various
-real-life conversation sources like emails and conversations between customers and experts.
-With real-life data, the training data is as realistic as possible and the quality of the chatbot 
-increases.
+For prototyping, the generation of training data by the developer is appropriate.
+It is not appropriate for the training of the actual product since the performance requirements are much higher.
+The training data for future work on the actual product can be collected through various real-life conversation sources like emails and conversations between customers and experts.
+With real-life data, the training data is as realistic as possible, and the quality of the chatbot should increase significantly.
 % user-study
-User-studies are recommended to increase the quality of a chatbot further since the feedback 
-of actual users is the most valuable to improve the actual systems.
+User-studies are recommended to further increase the quality of a chatbot since actual users' feedback is the most valuable to improve the actual systems.

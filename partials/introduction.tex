@@ -1,99 +1,91 @@
-\section{Introduction} % WHAT (building on X, what does the reader need to know, what's the hypothesis)
-A chatbot is a conversational agent able to communicate with users in turns 
-using natural language \cite{evaluateChatbotsShawar2007, shawar2007chatbots, huang2007extracting, gregori2017evaluation}.
+\section{Introduction} % WHAT (building on X, what does the reader need to know, what is the hypothesis)
+A chatbot is a conversational agent able to communicate with users in turns using natural language \cite{evaluateChatbotsShawar2007, shawar2007chatbots, huang2007extracting, gregori2017evaluation}.
 Chatbots are becoming more and more popular in recent years.
-The three main reasons for the growing popularity are the rise of chat systems in everyday life, 
-the advancements in machine learning, and the advancements in NLU in recent years. \cite{braunEvaluatingNLU}
+The three main reasons for the growing popularity are the rise of chat systems in everyday life, the advancements in machine learning, and the advancements in NLU in recent years \cite{braunEvaluatingNLU}.
 The original chatbot technologies required expertise in machine learning.
-Hence, a machine learning expert was required for the development of a chatbot and the broad public 
-of developers was unable to implement chatbot systems.
-Thanks to the recent advances in machine learning no machine learning skills are required for the development of chatbots anymore.
+Hence, a machine learning expert was required to develop a chatbot, and the broad public of developers was unable to implement chatbot systems.
+Thanks to the recent advances in machine learning, no machine learning skills are required for the development of chatbots anymore.
 This makes chatbot systems attractive to programmers. 
 Another reason for the increasing attention is the development effort which has been reduced greatly in the last few years.
-Nowadays small to no programming knowledge is needed to develop and implement a chatbot \cite{braunEvaluatingNLU}.
-This means that people without ML and programming skills are still able to develop a chatbot.
-Because of these characteristics, chatbots are becoming popular in the customer support section where they are used to replace humans \cite{GO2019304}.
-They are also used to increase the user acceptance of FAQ pages.
-The major benefits of chatbot systems are that they never complain, are cost-efficient, and are available 24 hours a day
-seven days a week.
-Chatbots can greatly reduce the costs of customer services and increase customer satisfaction \cite{singhbuilding}. 
-A chatbot never complains, is available seven days a week 24 hours a day, and can handle large 
-demands \cite{singhbuilding}.
-They are always available if e.g. assistance is required at 3 AM the chatbot will be available whereas a 
-customer service is bound to the opening hours and might not be available at 3 AM.
-Large demand handling is especially interesting for companies which don't have the resources to 
-hire enough people to match the service demands.
-It's possible to replace humans whit chatbots as mentioned in \citet{rahman2017programming}
-or aid them by reducing the workload like in \citet{deshpande2017survey}.
-Chatbots are perfectly suited for monotonous routine work which can be used to aid people with 
-daily work where they can focus on more important tasks.
-All these reasons are key factors why chatbot systems are getting popular.
+Nowadays, small to no programming knowledge is needed to develop and implement a chatbot \cite{braunEvaluatingNLU}.
+This means that people without ML and programming skills are also able to develop a chatbot.
+
+The major benefits of chatbot systems are that they never complain, are cost-efficient, are available 24 hours a day, seven days a week, and handle large service demands without a problem \cite{singhbuilding}.
+They are always available if assistance is required at 3 AM the chatbot will be available. In contrast, a customer service hotline is bound to the opening hours and might not be available at 3 AM.
+Large service demand handling is especially interesting for companies that do not have the resources to hire enough people to match the service demands.
+They are also used to increase the user acceptance of FAQ pages, for instance.
+Chatbots can significantly reduce the costs of customer services and increase customer satisfaction \cite{singhbuilding}. 
+Because of these characteristics, chatbots are becoming popular in the customer support section, where they are used to replace humans \cite{GO2019304}.
+
+There are various reasons to use chatbots.
+It is possible to replace humans whit chatbots as mentioned in \citet{rahman2017programming} or aid them by reducing the workload like in \citet{deshpande2017survey}.
+Chatbots are ideal for monotonous, repetitive routine work no employee likes to do.
+This way, they are used to aid employees instead of replacing them.
+The employees can then focus on important tasks instead of repetitive work.
+The second major reason for the use of chatbots is the price.
+Employees are expensive, and chatbots are not.
+Hence, if a chatbot can do a few employees' works, much money can be saved.
+All these reasons mentioned so far are key factors why chatbot systems are getting popular.
+
 % Hypothesis
-In this master's thesis, multiple important factors need to be considered.
-The knowledge-base for the company for further development needs to be built.
-It needs to be researched which technologies are state-of-the-art technologies to build chatbots.
-Lots of chatbot frameworks have been built where a developer can choose from.
-The big tech companies offer Dialogflow (Google), Watson Assistant (IBM),
-Alexa/Lex (Amazon), LUIS + Microsoft Bot Framework as cloud services.
-From the found state-of-the-art technologies, some need to be chosen and compared.
-The chosen technologies need to be compared with domain-specific data to determine which frameworks can be 
-recommended for further development.
-The chosen domain for this thesis is a combination of sickness notifications and vacation requests.
+Multiple factors need to be considered to meet the companies needs.
+The company needs a knowledge base about chatbots in general and for future projects. 
+Furthermore, many chatbot frameworks are available nowadays.
+The question is, which is the best overall, which is best for the given problem, what are the strengths, weaknesses, similarities, and differences between the frameworks.
+All of the big tech companies offer chatbot technologies and NLU services.
+There are the cloud services Dialogflow (Google), Watson Assistant (IBM), Alexa/Lex (Amazon), LUIS + Microsoft Bot Framework.
+From the found state-of-the-art technologies, four were selected for prototyping.
+
+% domain
+The chosen technologies were compared with domain-specific data to determine which frameworks can be recommended for further development.
+The predefined domain for this thesis is a combination of sickness notifications and vacation requests.
 There are some key requirements for the bots.
 The bot needs to collect information from a natural language conversation of short text messages.
-The extracted information is used to identify the person and is sent to a server for processing.
-To ensure a fair comparison in a fair environment the frameworks will be trained and tested 
-with the same data to prevent bias.
-The end result is expected to look and feel similar with all technologies.
+The frameworks will be trained and tested with the same data to prevent bias.
+
+No noticeable difference is expected for the final prototypes.
 The frameworks are expected to share the same or at least similar concepts.
-They should be easy to develop and the functionality offered is expected to be similar.
-The NLP performance is expected to be on an equal level like in \citet{braunEvaluatingNLU} where the difference 
-between Rasa and LUIS was quite small.
+They should be easy to develop, and the functionality offered is expected to be similar.
+The NLP performance is expected to be on an equal level, like in \citet{braunEvaluatingNLU}, where the difference between Rasa and LUIS was quite small.
+
 Some papers like \citet{braunEvaluatingNLU} compare the NLU and NLP capabilities of services.
 In this thesis, the frameworks are compared from the NLU and development perspective.
 Hence, things like setup, development difficulty, and 
 the available features of the frameworks are compared.
-This information is used to give a recommendation for future development.
-After the evaluation of the framework, a recommendation will be provided.
-The recommendation provides a ranking of the frameworks based on conditions. 
+This information gained from the evaluation is used to give a recommendation for future development.
 Another important aspect is the development of chatbot systems in general.
 This includes the development approach, the development differences to 
-regular development, and psychological aspects that need to be considered.
+the regular software development and psychological aspects that need to be considered.
 
 
 \section{Motivation} % WHY
-The company currently has no knowledge of chatbot systems.
-To justify the use of a chatbot system knowledge about those systems needs to be collected and evaluated.
-Knowledge needs to be collected about chatbots, the possible use-cases, the state-of-the-art technologies, the concepts, 
+The company currently has no knowledge base about chatbot systems.
+To justify using a chatbot system, knowledge about those systems needs to be collected and evaluated.
+The required knowledge includes chatbots in general, the possible use-cases, the state-of-the-art technologies, the concepts, 
 the evaluation of chatbot systems, and psychological aspects.
 It needs to be determined if problems like the sickness notification are suitable for a chatbot.
-It's of general interest to find out which use-cases are suitable for chatbots in general to give
-recommendations and inspiration for further projects.
-With the collected knowledge the sickness notification use-case needs to be implemented using multiple frameworks to determine 
-the best framework for the use-case.
+It is of general interest to find out which use-cases are suitable for chatbots in general, to give recommendations and inspiration for further projects.
+With the collected knowledge, the sickness notification and vacation request use-cases need to be implemented with multiple frameworks to determine the best framework for the use-case.
+
 At the moment, the sickness notification process starts with a call at the company. 
-A person receives the call, enters the information into the computer system and enables an out of office email 
-notification for the sick person. 
+A person receives the call, enters the information into the computer system, and enables an out of office email notification for the sick person. 
 The head of the department also needs to be notified. 
 This repetitive task needs to be solved by a chatbot. 
-The new process also starts with the call but this time the person receiving the call enters 
-the retrieved information into the chatbot system and an out of office email 
-notification is created automatically. 
+The new process also starts with the call, but this time the person receiving the call enters the retrieved information into the chatbot system, and an out of office email notification is created automatically. 
 This saves time the employees can spend on important, non-repetitive tasks.
-For this use-case, the chatbot needs to collect the information from natural language 
-and submit the data to a server for processing.
-Chatbots can serve requests all the time and can serve a larger amount of people immediately \cite{kane2016role}.
+For this use-case, the chatbot needs to collect the information from natural language and submit it to a server for processing.
+
+Chatbots offer various benefits.
+They serve requests all the time and can serve a larger amount of people immediately \cite{kane2016role}.
 Chatbots are accessible, efficient, 24/7 available, scalable, cheap, and user behavior can be monitored \cite{buiildChatbotsPython}.
 They are also a great solution when it is impossible to hire a large enough staff to handle lots of user requests \cite{kane2016role}.
-Chatbots can be used to make complicated search operations easier to understand and easier to use for humans \cite{kane2016role}.
-It's also a natural way of communication.
+Chatbots can be used to make complicated search operations easier to understand and use for humans \cite{kane2016role}.
 Anyone who can talk to or write with a person can work with a chatbot interface \cite{buiildChatbotsPython}.
-Hence, it is an easily understandable interface suitable for almost everyone.
-Other major points are the performance of the different frameworks, the ease-of-use, 
-the development effort, and the supported features.
-Based on these and similar criteria the frameworks are evaluated to find the best suitable 
-framework and the strengths and weaknesses of these systems.
-All this information together builds the knowledge-base for further research and development.
+It is also a natural way of communication and can increase user acceptance.
+In summary, a chatbot provides an easily understandable interface suitable for almost everyone.
+Other major points are the performance of the different frameworks, the ease-of-use, the development effort, and the supported features.
+Based on these and similar criteria, the frameworks are evaluated to find the best suitable framework and the strengths and weaknesses of these systems.
+All this information together builds the knowledge base for further research and development.
 
 \section{Company}
 The master's thesis is for the 3 Banken-IT Gmbh. The managing directors are Karl St\"obich and Alexander Wiesinger \cite{3bitorgani}. 
@@ -111,38 +103,33 @@ The supervisor of the master thesis from the company side is Thomas Reidinger th
 \end{itemize}
 
 \section{Prerequisites} \label{sec:prereq}
-There are some prerequisites which have an influence on the choosen technologies for this thesis.
-Based on this thesis further projects will be developed.
-The company has currently no experience with chatbot systems.
-Hence, the collection of information about state-of-the-art technologies
-is a key area for the company and an important prerequisite.
+Some prerequisites influence the choosen technologies for this thesis.
+Based on this thesis, further projects will be developed.
+The company currently has no experience with chatbot systems.
+Hence, the collection of information about state-of-the-art technologies is important.
 The company uses a local container environment for deployment.
-A offline capable chatbot framework needs to be included in the tests to 
+An offline-capable chatbot framework needs to be included in the tests to 
 allow the use in the companies local systems for further projects.
-The company does use IBM software Hence the use of Watsons Assistant 
-is an option.
-For a comparison at least three technologies need to be choosen.
+The company uses lots of IBM software.
+Because of this, the use of Watson Assistant is mandatory.
+At least three technologies need to be chosen for a comparison.
 The domain defined by the company are sickness notifications and 
 vacation requests.
-This means that the choosen chatbots need to support the collection of 
+This means that the chosen chatbots need to support the collection of 
 information in a given domain.
-The main purpose is to recommend a technology for further development.
-For this reason the chatbots need to be compared from a technical view and 
-the development view.
+The primary purpose is to recommend a chatbot technology for further development.
+For this reason, the chatbots need to be compared from a technical view and the development view.
 
 
 \section{Expected Results}
-At least three chatbot frameworks have been selected based on the findings in 
-state-of-the-art.
-The given problems of sickness notification and vacation request have been analyzed 
-for the suitability for chatbots.
-The domain information has been converted to dialogs.
-The dialogs have been implemented with all technologies if possible.
-The training and test data for the chatbots have been defined.
+At least three chatbot frameworks have been selected based on the findings in state-of-the-art.
+The given problems of sickness notifications and vacation requests have been analyzed for the suitability for chatbots.
+The domain information has been converted to intents, entities, utterances, and dialogs.
+The dialogs have been implemented with all technologies, if possible.
+The training and test data sets for the chatbots were defined.
 All technologies are trained and tested with the same data for a fair comparison.
 Evaluation criteria have been extracted from the state-of-the-art chapter.
 Additional evaluation criteria have been defined.
-A detailed comparison has been created for the different technologies showing the strengths 
-and weaknesses from a development point of view.
+A detailed comparison has been created for the different technologies showing the strengths and weaknesses from a development point of view.
 New use cases were found for the use of chatbot systems for further projects.
-Based on the prototype evaluation the best framework has been recommended for further development.
+Based on the prototype evaluation, the best frameworks have been recommended for further development.

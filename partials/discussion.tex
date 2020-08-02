@@ -1,135 +1,119 @@
 % price
 The price comparison of Table \ref{tab:pricing} shows that all 
-tested frameworks can be used for free.
-The non-free tiers of Dialogflow and LUIS in combination with the Microsoft Bot framework 
-are charged based on the number of requests while the price for Watson Assistant
-is calculated based on the number of users.
-The price for the enterprise edition of Rasa and the premium edition of Watson Assistant 
-is not stated on the websites.
-The prices are hard to compare but all are offered in a free tier and the 
-bots of Google and Microsoft cost roughly the same per request. 
-The disadvantage of Rasa is the deployment since the costs for the infrastructure are unclear 
-for a similar workload.
-Since Watson Assistant calculated the price based on the number of users it offers a better 
-value when the users communicate with the bot frequently or have long conversations.
+tested frameworks offer free tiers.
+The non-free tiers of Dialogflow and LUIS plus the Microsoft Bot framework are charged based on the number of requests while the price for Watson Assistant is calculated based on the number of users.
+The price for the enterprise edition of Rasa and the premium edition of Watson Assistant are calculated individually and not listed on the website.
+The prices are hard to compare except for the bots of Google and Microsoft, which cost roughly the same per request. 
+Since Watson Assistant calculated the price based on the number of users, it offers a better value when the users communicate with the bot frequently or have long conversations.
+Rasa's disadvantage in this category is the deployment since the infrastructure costs are unclear for a similar workload.
+
+% speech service prices
 The prices for the speech functionality are comparable for Dialogflow and the Microsoft speech-services.
 The IBM text-to-speech service is more expensive than the one of Dialogflow and Microsoft.
-Rasa doesn't offer any speech services.
-This means that the Microsoft speech-service and Dialogflow are the best when it comes to the 
-price. Watson is second and Rasa doesn't show any prices at all.
+Rasa does not offer any speech services at all.
+To summarize, the Microsoft speech-service and Dialogflow are cheaper than IBMs speech services when it comes down to the price. 
+
 % where can it run
-A big disadvantage of cloud-based solutions is the dependency on the company.
-It's not easy to change the provider and take the current chatbot with you if it 
-is a cloud-based chatbot. 
+A big disadvantage of cloud-based solutions is the dependency on the provider.
+It is not easy to change the provider and migrate the current chatbot if it is a cloud-based chatbot. 
 Rasa differs at that point since it can run in any cloud environment inside a docker container.
 Every cloud provider offers the option to host docker containers in their cloud.
-A major factor is security since the users enter sensitive information in the chatbot communication
-and the data is processed in the cloud of the provider.
-The cloud provider hence has access to the sensitive information which can be problematic with
-bank account information for instance.
-Rasa has no such problem since the data is processed inside of the docker container or in a 
-local environment.
+Rasa is the best technology when deployment flexibility is essential.
+
+% security
+A major factor for chatbots is security.
+All cloud providers process the data in their cloud, which is not surprising, but it might be a security issue.
+The cloud provider has access to all the information entered by the user.
+This can be problematic for bank-account or health-related information, for instance.
+Rasa has no such problem since the data is processed inside the docker container or in a local environment.
+
 % entity extraction
 The entity extraction section shows that Dialogflow and LUIS 
-define the required entities while Watson lacks a person entity.
-Rasa doesn't offer any entities but can use the entities of 
+define the required entities, while Watson lacks a person entity.
+Rasa does not offer any entities but can use the entities of 
 Spacy and Duckling.
-If both are used then no entities need to be defined in Rasa.
+If both are used, then no entities need to be defined in Rasa.
 The result in Table \ref{tab:entity_extraction_eval} shows that 
-Dialogflow has the best person, date, and date-span entity and dominated the 
-entity extraction tests.
-The best overall performance was achieved by Dialogflow followed by Rasa.
-No technology performed exceptionally bad in this category and the date-span entity of 
-Duckling, Dialogflow, and Watson Assistant reached the same f-score which means they 
-performed on an equal level.
+Dialogflow has the best person, date, and date-span entity and dominated the entity extraction tests.
+Dialogflow achieved the best overall performance, followed by Rasa.
+No technology performed exceptionally bad in this category. 
+The date-span entities of Duckling, Dialogflow, and Watson Assistant all reached the same f-score and performed on an equal level.
+
 % intent classification
-The intent classification result of Table \ref{tab:intent_classification_result}
-shows that the cloud services performed on an equal level when it comes to 
-precision, recall, the f-score, and the average confidence.
-Rasa was unable to keep up with the cloud technologies and especially the average 
-confidence score is low.
-Watson Assistant and Dialogflow were able to reach a perfect f-score of 1.0.
-The standard deviation is lowest for Watson which puts Watson Assistant in the top 
-spot closely followed by Dialogflow and LUIS.
-Dialogflow extracted an entity incorrectly 
-in test case four of Table \ref{tab:sickness_intent_classification}.
-Rasa showed a good performance when the f-score is used as a measure but 
-has a low average confidence score of 46\%.
-The confidence scores of Dialogflow, LUIS, and Watson are far better with 77\%, 75\%, and 74\%.
+The intent classification result of Table \ref{tab:intent_classification_result} shows that the cloud services performed on an equal level when it comes to precision, recall, the f-score, and the average confidence.
+Rasa was unable to keep up with the cloud technologies, and especially the average confidence score is low in comparison.
+IBMs Watson Assistant and Dialogflow were able to reach a perfect f-score of 1.0.
+The standard deviation is lowest for Watson, which puts Watson Assistant in the top spot closely followed by Dialogflow and LUIS.
+Dialogflow extracted an entity incorrectly in test case four of Table \ref{tab:sickness_intent_classification}.
+Rasa showed good performance when the f-score is used as a measure but has a low average confidence score of 46\%.
+The confidence scores of Dialogflow, LUIS, and Watson are far better, with 77\%, 75\%, and 74\%.
 In this category, Dialogflow, LUIS, and Watson performed good enough to be recommended.
 The confidence scores of Rasa can be improved through more training data.
+
 % german intent classification
 The german language result of Table \ref{tab:intent_classification_result_de} shows some interesting 
-differenced to the English tests of Table \ref{tab:intent_classification_result}.
-The average confidence increased for all four technologies and the standard deviation 
-decreased significantly for four technologies.
+differences to the English tests of Table \ref{tab:intent_classification_result}.
+The average confidence increased, and the standard deviation decreased significantly for all four technologies.
 For the German language, the f-score values also increased.
-All in all the German language result looks very good on the surface when only the intent 
-classification is considered.
-The entity extraction performance dropped significantly on the test sentences.
-The German tests are shown in the appendix in Table \ref{tab:sickness_intent_classification_de} and \ref{tab:vacation_intent_classification_de}.
-There were a total of 21 failed extractions for the German test sentences and a total of three failed 
-extractions for the English test sentences on a total of 64 test sentences each.
-This means in German the entity extraction failed on every third test sentence.
-The only technology which delivered a satisfying entity extraction result on the German 
-test sentences with zero mistakes total is LUIS.
-The performance of Rasa was worse than the performance of LUIS but it was good enough
-for a recommendation.
-The date entity of Dialogflow and Watson Assistant are unable to cope with the German date format.
-The person entity of Dialogflow did not work reliably in German although the names aren't 
-different from the ones used in the English test sentences.
+All in all, the German language result looks outstanding on the surface when only the intent classification is considered.
+However, the entity extraction performance dropped significantly on the test sentences.
+The German tests are shown in detail in the appendix in Table \ref{tab:sickness_intent_classification_de} and \ref{tab:vacation_intent_classification_de}.
+There were a total of 21 failed extractions for the German test sentences and three failed extractions for the English test sentences on a total of 64 test sentences each.
+This means the entity extraction failed on every third test sentence for the German language tests.
+The only technology which delivered a satisfying entity extraction result on the German test sentences with zero mistakes total is LUIS.
+Rasa's performance was worse than the performance of LUIS, but the performance was still good enough for a recommendation.
+The date entity of Dialogflow and Watson Assistant is unable to cope with the German date format.
+The person entity of Dialogflow did not work reliably in German, although the names are not different from those used in the English test sentences.
+
 % sparse data same performance
-\citet{braunEvaluatingNLU} stated that if the training data is sparse there is almost no 
-performance difference between the chatbot frameworks regarding NLU.
-This can be confirmed for the cloud frameworks since there is no big difference reagarding the f-score, 
-average confidence, and entity extraction, shown in in Tables \ref{tab:entity_extraction_eval}, \ref{tab:intent_classification_result}, \ref{tab:intent_classification_result_de}.
+\citet{braunEvaluatingNLU} stated that if the training data is sparse, there is almost no performance difference between the chatbot frameworks regarding NLU.
+This can be confirmed for the cloud frameworks since there is no big difference reagarding the f-score, average confidence, and entity extraction, shown in in Tables \ref{tab:entity_extraction_eval}, \ref{tab:intent_classification_result}, \ref{tab:intent_classification_result_de}.
 The local solution Rasa was measurably worse.
+
 % communication
 The communication of the frameworks works the same way for all the technologies.
-There is no big difference no matter what is used.
-LUIS and Dialogflow offer metadata by default while Rasa and Watson Assistant don't.
+There is no significant difference, no matter the technology used.
+LUIS and Dialogflow offer metadata by default, while Rasa and Watson Assistant do not.
 All four offer REST endpoints and use JSON format for messages.
+
 % Learnability
-The easiest technology is LUIS because it's just an NLU framework and doesn't handle the dialog structure.
-Dialogflow is the easiest chatbot framework because it has the simplest UI, the most predefined entities,
-predefined intents for common tasks like a yes/no path and small talk can be enabled in the menu which 
-saves development time.
-Watson is comparable to Dialogflow when it comes to the creation of entities and intents but the 
-UI is less intuitive, there is no small talk feature, there are almost no predefined entities, 
-and offer no predefined intents for common tasks.
-The most complex is Rasa simply for the facts that the base version has no UI and programming 
-skills are required.
-To add predefined entities the pipeline needs to be adjusted, it has no predefined intents, 
-and a small talk feature is not available.
-The creation of dialogs with Rasa is far more complicated as is the collection of form data.
-Compared to the cloud frameworks Rasa is incredibly complicated and doesn't offer a lot of 
-features by default.
+The easiest technology is LUIS because it is just an NLU framework and does not handle the dialog structure.
+Dialogflow is the easiest chatbot framework because it has the most straightforward UI, the most predefined entities,
+predefined intents for everyday tasks like a yes/no path and small talk can be enabled in the menu.
+All of these factors reduce the development time and can save money.
+Watson is comparable to Dialogflow when it comes to creating entities and intents. However, the UI is less intuitive, there is no small talk feature, there are almost no predefined entities, and it offers no predefined intents for everyday tasks.
+The most complex is Rasa since the base version has no UI, and programming skills are mandatory to develop a chatbot.
+To add predefined entities, the pipeline needs to be adjusted, it has no predefined intents, and a small talk feature is not available.
+The creation of dialogs with Rasa is far more complicated, as is the collection of form data.
+Compared to the cloud frameworks, Rasa is incredibly complicated and does not offer many features by default.
+
 % setup
-The setup of Rasa is complicated compared to the cloud chatbots which was expected.
-To use a cloud chatbot only a browser is needed, for Rasa either Docker is required or a Python
-environment.
-It's harder to set up Rasa because the cloud technologies run already in the cloud and require 
-no additional deployment.
+The setup of Rasa is complicated compared to the cloud chatbots.
+It is not surprising but needs to be mentioned nonetheless.
+Only a browser is needed to develop a cloud chatbot, for Rasa, either Docker or a Python environment is required.
+It is harder to set up Rasa because the cloud technologies run already in the cloud and require no additional deployment.
 The comparably complex setup has advantages when it comes to deployment.
+
 % deployment 
-Rasa can be deployed locally and in every cloud environment while the cloud services only 
-run in the cloud of the provider.
+Rasa can be deployed locally and in every cloud environment while the cloud services only run in the provider's cloud.
 The deployment evaluation met the expectations.
-Rasa is flexible and the cloud chatbots are simple when it comes to deployment.
+Rasa is flexible, and the cloud chatbots are simple when it comes to deployment.
+
 % portability
-Since Rasa can be deployed anywhere, doesn't rely on the cloud, and can run without an
-internet connection it's the only real choice of the four for security-critical applications.
+Rasa is deployable almost anywhere, does not rely on the cloud, and can run without an internet connection. It is the only real choice of the four for security-critical applications.
+
 % implementation
-Rasa is more complicated but it was possible to implement the design with all chatbot technologies.
-This means that all three technologies can be recommended when only the implementation of the design
-is considered.
+The implementation of the design is possible with all three chatbot technologies.
+This means that all three technologies can be recommended when only the implementation of the design is considered.
+
 % concepts
-The basic concepts for the implementation are the same for all technologies, there are intents,
-entities, and utterances.
-Dialogflow and Watson Assistant use dialog nodes for the conversation structure while Rasa 
-uses stories. 
-But in the end, there is no big difference when it comes to the concepts.
+The basic concepts for the implementation are the same for all technologies.
+There are intents, entities, and utterances.
+Dialogflow and Watson Assistant use dialog nodes for the conversation structure while Rasa uses stories. 
+All offer REST endpoints, they communicate using JSON, they have a webhook or REST endpoint where information is sent to after the entity extraction.
+In the end, there is no significant difference when it comes to the concepts.
+
 % customization
 The only technology which allows customization is Rasa.
-If something very specific is needed or tuning is required then Rasa should be used.
+If something very specific is needed or tuning is required, then Rasa should be used.
 

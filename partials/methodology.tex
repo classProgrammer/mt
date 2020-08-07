@@ -42,9 +42,10 @@ To conclude, the task-oriented approach is a perfect match since the description
 The given problem can be solved theoretically by the menu-driven approach, which is not as suitable as the task-oriented approach in general.
 The given problem requires a mechanism to input dates and person names in full and partial sentences to provide a natural user experience.
 The menu-driven approach uses numbers to navigate a user through a menu.
-The number one cloud be used for sickness notifications and two for vacation requests. 
+The number one could be used for sickness notifications and two for vacation requests. 
 Then the user inputs the name and dates and confirms the information.
 To summarize, it is possible to use the menu-driven approach, but it would neither be ideal nor pleasant.
+The flexibility of the menu-driven approach is also limited compared to the task-oriented one, which is a negative trait when further projects are likely.
 
 % open-ended chatbots
 The third major chatbot type found in literature is the open-ended approach used in \citet{williams2017hybrid, bordes2016learning}, and \citet{rahman2017programming}.
@@ -187,208 +188,222 @@ The resulting dates are not machine-processable.
 The automation criterion of chatbots requires dates in a standardized form.
 To summarize, the date and date span entities of spacy were unsuitable.
 This lead to the use of Duckling since it provided the necessary standardization for date and date-span entities out of the box.
-
 Dialogflow offered two entities that can handle date-spans.
 Both entities were tested to get the best result possible. 
 
+The entity extraction evaluation uses the recall, precision, and f-score values for the comparison and the ranking, as done by \citet{braunEvaluatingNLU}.
+The result of each test case is either TP, FP, FN, or TN.
 The entities defined by the problem analysis of the user-cases are the person, date, and date-span entity.
-The entity extraction test only included these three entities.
-
-For the evaluation of the results, the recall, precision, and f-score values were used as \citet{braunEvaluatingNLU} did.
-To calculate the values, the TP, FP, and FN values are counted for each individual test case.
-The comparison of the frameworks has been difficult since some entities are not available using certain technologies.
-Watson Assistant and Duckling had no person entity and LUIS had no person entity for the German language.
-In the case of Dialogflow two entities were available that could be used for the date-span extraction.
-The available enities were listed in Table \ref{tab:entity_extraction_recognition}.
-To make the values comparable the result was calculated for each individual entity, the combination of date and date-span, and the combined score over across all entities.
+The entity extraction test only included these three entities to get a result relevant to the use-cases.
+Furthermore, the calculation in groups showed the performance for specific entities and intents. 
+This allowed a detailed performance comparison for the three relevant entities.
+The combined score across all entities determined the best technology.
+As mentioned before, the framework comparison has been difficult since some entities are not available using certain technologies.
+In the case of Dialogflow, two date-span entities are available, which increased the testing overhead.
+Table \ref{tab:entity_extraction_recognition} shows the supported entites next to the technology to get an overview.
 
 % intent classification
 The second major function of chatbots is the intent classification.
-The intents were trained with the same utterances for all four technologies to create a fair test setup.
-To measure the performance the precision, recall, and f-score values were used to provide an objective value.
+The test setup used the same training and test data for each technology to provide a fair environment.
+The intent classification evaluation uses the same approach as the entity extraction evaluation.
+The performance measurement relies on precision, recall, and f-score values.
 As mentioned in Chapter \ref{chap:basics} Basics, the NLU services of all four frameworks provide a confidence value.
+The average confidence score is another performance quality metric.
 The confidence value is a response that represents how well the input fits an intent.
-The result evaluation of this thesis has been extended with the confidence score since it indicates how good the training worked for the frameworks and if additional training data would have been necessary.
-The additional value standard deviation was added to compare how consistent the chatbots' confidence scores were. 
-The confidence scores were shown for the correct intent no matter if the intent was identified correctly or not to calculate and average confidence 
-score across all tests.
-The average confidence score provides another quality metric.
+Hence, it is logical to include the confidence score in the evaluation.
+It indicates how good the training worked for the frameworks and also if additional training data would have been necessary.
+Furthermore, the standard deviation shows how consistent the chatbots' confidence scores were. 
+As a footnote, a chatbot always returns a confidence score for each intent.
+For each test, the correct intent's confidence score was listed no matter if it was identified correctly or not.
+This allowed the calculation of the average standard deviation across an intent and as a whole.
 A high average confidence score combined with a high f-score indicates that the chatbot classifies intents reliably and vice versa.
-A small standard deviation in combination with high average confidence indicates that the chatbot classifies intents reliably with a high confidence score. 
-The intent classification was tested for English and German.
-This was necessary since the 3 Banken IT has it's locations in Austria
-which makes German the language of choice for potential users.
-The expectation for the German tests was that there is no difference to the English tests which was not met since e.g. LUIS had no person entity for 
-the German language.
+For the use-cases, English and German are potentially interesting as input language.
+Hence, the intent classification tests include both.
+The expectation for the German tests was that there is no significant difference to the English tests.
 The performance expectation was that the German bot is on the same level as the English bot regarding entity extraction and intent classification.
-
+Contrary to the expectation, each technology showed significant differences.
+The intent performance increased noticeably while the entity extraction performance dropped for Rasa, Dialogflow, and Watson Assistant.
+LUIS had no person entity for the German input language.
+Dialogflow disappointed in the entity extraction department.
+This came as a surprise as the entities are not that different for the two languages.
+ 
 % implementation possible?
 As \citet{singhbuilding} mentioned, the best evaluation criterion is if the underlying task can be achieved or not.
 This evaluation criterion has been adopted for this thesis since it is the 
-most relevant for a recommendation of a technology.
+most relevant for a technology recommendation.
 As a result, value for this evaluation, a binary boolean criterion was chosen.
-Either it was possible to build a prototype that implemented the design or it was impossible.
-The evaluation did not include an opinion or how hard the implementation was with a design.
-Since LUIS is an NLU technology and not a chatbot technology it was excluded from this test because it offers no dialog handling mechanism.
-It would have been unfair to include an NLU technology since it's not meant to handle dialogs.
-The Microsoft Bot Framework uses LUIS and offers dialog handling but wasn't used in this thesis and is therefore not part of this test.
+Either it was possible to build a prototype that implemented the design, or it was impossible.
+The evaluation did not include an opinion or how hard the implementation was.
+LUIS is an NLU technology and was excluded from this test because it offers no dialog handling mechanism.
+NLU technologies do not provide dialog handling in general. 
+The Microsoft Bot Framework uses LUIS and offers dialog handling but was not used in this thesis and is therefore not part of the evaluation.
+As expected, the implementation was possible with all three chatbot technologies.
 
 % speech recognition
-For future project speech recognition capabilities are on the wish-list of the 3 Banken IT.
-For this reason the speech-to-text and text-to-speech services offered for the 
-chatbot technologies were compared based on their price.
-Chatbots which offer speech functionality can be used through 
-voice interfaces in the future.
-The second evaluation criterion in the speech recognition category was
-if speech services are offered by the provider. 
-It was expected in general that each framework offers speech services for their chatbot technology since these are two closely tied topics.
+For future projects, speech recognition capabilities are on the wish-list of the 3 Banken IT.
+Thus, the costs of the speech-to-text and text-to-speech services were compared based on the price.
+These services enable voice interaction between man and machine.
+All chatbot providers should provide such services to extend the functionality of the bot.
+Rasa is the only tested framework that does not offer such services.
+It is possible to use the speech services of other providers.
+The cloud providers offer speech services at comparable prices.
 
 % price comparison
 A key factor for the use of chatbots is the price.
 That the price plays an important role was mentioned in \citet{buiildChatbotsPython}, for instance.
-None of the articles used for this thesis compared the prices of the 
-available technologies.
+The literature found and used for this thesis did not compare the prices of the available technologies.
 The goal of the price comparison was to find out which technologies are cheap and which are expensive.
-In combination with the other evaluations, the expectation was to find a cheap technology 
-which performs well.
-The price of a chatbot has been calculated for different categories since the prices were intransparent and hard to compare.
+The goal was to find a cheap technology that performs well.
+The costs of a chatbot have been calculated for different categories since the prices listed online were intransparent and hard to compare.
 The first category was the price for the chatbot technologies, the second 
-one eas the price for hosting, and the third category was the price 
+one is the price for hosting, and the third category was the costs
 for speech-to-text and text-to-speech services.
-The prices for the chatbot technology for the enterprise edition of Rasa 
-and Watson Assistant is not listed on the website since it's calculated 
-individually.
-The prices for the Microsoft Bot Framework were calculated by adding the price for the Microsoft Bot Framework and LUIS.
-The prices for Watson Assistant are calculated per user per month while the price for Dialogflow, LUIS, and the Microsoft Bot Framework was based on the number of requests.
-Rasa is free by default and was excluded from the price calculation since 
-no prices were listed on the website.
+The websites of Rasa and IBMs Watson Assistant do not list the prices for the enterprise edition. 
+It is calculated individually for each customer.
+To build a chatbot with Microsoft technologies LUIS and the Microsoft Bot Framework are combined.
+The added price for both builds the actual price for the comparison.
+IBM calculates the price for Watson Assistant per user per month.
+Dialogflow, LUIS, and the Microsoft Bot Framework calculate the price based on the number of requests while Rasa is free by default.
 The prices for the text-to-speech and speech-to-text services were comparable for Watson Assistant, Microsoft Speech Services, and Dialogflow.
-Rasa didn't offer text-to-speech and speech-to-text services at all.
-The general expectation was that the frameworks cost roughly the same but the prices were hard to compare or not comparable at all.
+Rasa did not offer text-to-speech and speech-to-text services at all.
+The general expectation was that the frameworks cost roughly the same, but the prices for the chatbots were hard to compare or not comparable at all.
+The speech services cost roughly the same.
+All in all, there is no exceptionally cheap or expensive technology.
 
 % portability 
 Another evaluation criterion used for this thesis is the portability of software systems, as defined in the ISO 25010\cite{iso25010} standard.
-The portability was chosen since the comparison of the cloud 
-technologies with a local technology was interesting from a 
-development point of view.
-The first factor discussed in this thesis were the necessary tools 
-since they determine how portable the development environment of the 
-chatbots are.
+The portability is interesting for a comparison of cloud frameworks with a  local chatbot technology like Rasa.
+For the development of a chatbot, portability can play a crucial role.
 
-%% local vs cloud
-The portability of the development environment of the local technology 
-Rasa in contrast to the cloud chatbot technologies was the 
-main focus of this evaluation.
-The second factor chosen was the number of providers where the 
-chatbot can be deployed.
+%% local VS cloud
+The only tested technology which is portable was Rasa. 
+The portability of the development environment of the local technology Rasa in contrast to the cloud chatbot technologies was the main focus of the first portability evaluation.
+The number of providers that allow a deployment was the second factor for the portability evaluation.
 The main focus lay on cloud technologies since the expectation was
 that they can only run in the environment of the provider and are 
 not portable at all.
 The third portability category chosen was how flexible the development
 of chatbots is regarding the devices.
-The expectation was that cloud technologies are developed in a 
-web browser and can be developed from almost anywhere while 
-the local technology requires a development environment and is 
-comparably unflexible.
+The cloud providers use simple web interfaces.
+No special setup and no additional tools are required to start the development of a chatbot.
+The local technology required a development environment and is inflexible in comparison.
 
 %% migration
 Another aspect of portability is the migration from one technology to another.
-It was expected that all technologies safe the data differently and that it's not easy to migrate between them.
-% project setup
-For the development of a chatbot, the project setup complexity plays an important role and was evaluated in this thesis.
-The main focus of this test was Rasa since the setup complexity was interesting for the local technology.
-The setup of the cloud technologies was expected to be easy since the providers take care of the setup for the customers.
-% deployment complexity
-The deployment of chatbot systems is an important aspect when local and cloud technologies are compared.
-While it was expected that a cloud technology produces no deployment overhead the opposite is expected for a local technology since the deployment needs to 
-be done by the developer.
-For the local technology, the Docker deployment and setup of a local Python environment were included in the evaluation.
-Especially the deployment using Docker has proven as interesting for 
-future projects because of the flexibility and simplicity. 
-% learnability
-The ISO 25010\cite{iso25010} defines learnability as sub-criterion of usability as measurement metric for software systems.
-The learnability is important from a development perspective since an easy to learn and use technology is the optimal case when the performance is good.
-The evaluation of the project setup and deployment complexity was included in the learnability since they are part of the development of a system.
+The migration from one technology to another is hard or impossible, which meets the expectation.
+Every technology uses the JSON format to store data, which seems perfect at first.
+The information of every bot is stored differently, making it impossible to copy the information from one bot to another.
+To summarize, this makes it impossible to migrate from one framework to another in a simple and fast way since the format of the data is incompatible. 
 
-%% predefined entities
+% project setup
+The project setup complexity plays a crucial role in the development of a chatbot.
+The main focus of this test was Rasa since the setup complexity was interesting for the local technology.
+That Rasa is at a disadvantage in this category was clear from the start.
+Cloud chatbots require no setup at all since the provider takes care of everything.
+The real question is how much harder is the local setup.
+It was harder to set everything up for a Rasa project.
+With Docker, the setup of Rasa was easy and fast.  
+
+% deployment complexity
+The deployment of chatbot systems is an important aspect of portability for local and cloud technologies.
+Cloud chatbot technologies should not produce any deployment overhead at all.
+They are hosted in the cloud by default, which makes a setup unnecessary.
+For Rasa, the opposite was true in this category.
+No cloud deployment is available by default, and the developer has to take care of it if required.
+
+% Docker
+This may seem like a grand disadvantage at first glance, but thanks to the Docker compatibility Rasa come with some huge advantages that cloud chatbots cannot offer.
+Rasa can run in a Docker container.
+This means it can run almost everywhere, while the cloud technologies are limited to the providers' cloud.
+The deployment in cloud environments, on local machines, and internal servers is possible.
+
+% learnability
+The ISO 25010\cite{iso25010} defines learnability as a sub-criterion of usability as a measurement metric for software systems.
+The learnability is important from a development perspective since a technology that is easy to learn and use is the optimal case.
+The performance is still important and needs to be high nonetheless.
+Evaluating the project setup and deployment complexity was also part of the learnability evaluation since it plays a role in the development process.
+
+% predefined entities
+The predefines entities can save lots of development time and are often of high quality.
 As mentioned before, the chatbot technologies use entity extraction to extract data from text.
-The entity extraction is a part of the development process of a chatbot
-and it takes time to define good entities.
+The creation of entities is a part of the development process of a chatbot, and it takes time to define good entities.
 All of the chatbot technologies offer predefined entities that are ready to use.
 As a criterion, the number of predefined entities was defined as a measure since lots of predefined entities can save lots of development time for future projects.
-If a required entity is available for a given problem the developer doesn't need to create one.
-The second measurement criterion it the entity category is if the chatbot technology predefined all required entities for the use-cases of this thesis.
+If a required entity is available for a given problem, the developer does not need to create one.
+The second measurement criterion of the entity category is if the chatbot technology predefined all required entities for the use-cases of this thesis.
 The technologies where all required entities were predefined are better suitable to solve the given problem.
-It was also evaluated how hard it is to create new intents, entities, training phrases, and dialogs.
-The expectation was that it is equally complicated for each technology.
+Another aspect was how hard the creation of new intents, entities, training phrases, and dialogs was.
+The expectation was that it is equally complicated for each technology. This proofed to be the case for cloud technologies.
 
-%% design of conversations, nodes, and stories
-As mentioned by \citet{folstad2017chatbots} the design of chatbots is all about the conversation.
+%% design of conversations, dialog nodes, and stories
+As mentioned by \citet{folstad2017chatbots}, the design of chatbots is all about the conversation.
 Hence, the most important aspect was the creation of dialogs.
-The frameworks Dialogflow and Watson Assistant offered dialog nodes 
-to create and structure conversations.
-A dialog node is one step of the conversation and can be followed by another dialog node.
-A dialog node was e.g. the classification of the sickness notification intent
-followed by the collection of the name and return date to the response of the system.
+The frameworks Dialogflow and Watson Assistant offered dialog nodes for the creation and structuring of conversations.
+A dialog node is one step of the conversation and optionally followed by other dialog nodes.
+A dialog node was the classification of the sickness notification intent followed by the collection of the name and return date and the resulting response of the system, for instance.
 Rasa offered stories to represent a dialog.
 A story represents a whole conversation path from start to finish.
-The start was a greeting line and the end the goodbye response for instance.
+As an example, a story starts with a greeting phrase and ends with a goodbye message.
 
-%% form data
-An important part of the conversations required for this thesis was the 
-extraction of form data and has been evaluated regarding the 
-complexity.
-Rasa was the only technology tested where programming skills were necessary to extract form data from the conversation. 
+%% story vs dialog node
+Rasa's stories were adjustable fine granular compared to the dialog node approach of Dialogflow and Watson Assistant.
+A story can execute multiple actions and display multiple responses in a row.
+Watson Assistant cannot execute multiple actions but can display multiple messages.
+Dialogflow cannot execute multiple actions nor display multiple responses. 
+
+%% form-data
+The extraction of form-data is a required feature for this thesis.
+It was necessary to extract such data from the conversation.
+The main focus of the evaluation was the complexity of the form-data extraction.
+The cloud bots provided the required extraction mechanisms out of the box. 
+Rasa, on the other hand, was the only technology tested where programming skills were necessary to extract form data from the conversation. 
+To conclude, the chatbots were easy to use in this category, while Rasa was not.
+
+%% action server VS regular form data
+Rasa's action server is more complicated to implement but also has advantages over the form-data approach of the cloud bots.
+Programming skills were required to implement form-data extraction with the action server, while the cloud bots do not require any programming skills at all.
+This means that the advantages of programming languages are available at the action server.
+Data validation, the introduction of logic, and calling external services is easy in programming languages. 
+The two approaches are quite different since the focus appears to be different.
+The form-data extraction of the cloud bots is easy to use and very simple, while Rasa is more complicated but offers the advantages of a programming language. 
 
 % customization possibilities
 %% pipeline: custom components
-For developers, an important factor are the customization possibilities.
-It is an advantage for when the pipeline can be fine-tuned to increase the 
-performance or add special custom components.
-The only tested framework which offered pipeline customization was Rasa.
-A developer can even create new custom components and include them in the pipeline. 
-This is interesting for very specific company requirements, research, and fine tuning to increase performance.
-The other tested technologies didn't even display the configuration of the pipeline.
-When Rasa is used for development the pipeline is adjustable to the 
-developers needs.
-For the development of the prototype with Rasa the technologies Spacy and Duckling were added to the pipeline for entity extraction.
-This was not possible with the other frameworks since the pipeline can't 
-be adjusted at all.
-
-%% story vs dialog node
-The stories used by Rasa were adjustable fine granular compared to the dialog node approach of Dialogflow and Watson Assistant.
-A story could be used to execute multiple actions and display multiple responses in a row.
-Watson Assistant can't execute multiple actions but can call the webhook where the request can be processed.
-Dialogflow can't execute multiple actions or display multiple responses. 
-
-%% action server VS regular form data
-With Rasa, the default form action was implemented using Python while no programming skills were required for form actions using Watson Assistant and Dialogflow.
-The advantage of a programming language for form actions is that the concepts of a programming language are available for the validation of entries and calling external services.
-Hence, a comparison of the programming based approach with the cloud approach was included in this thesis.
+Customization and fine-tuning of chatbot systems might be important for developers when the uses-cases have very specific requirements or need fine-tuning.
+Rasa is the only technology that allows adjustments in the frameworks pipeline.
+This allows a developer to replace components or add custom components to the pipeline and makes fine-tuning possible.
+The pipeline of the other tested technologies is not even visible for developers.
+Adjustments of Rasa's pipeline were necessary to get the required entities of external tools into the application.
+Duckling and Spacy were added to the pipeline to get the three required entities as predefined entities.
+Something like that is impossible with the other frameworks since the pipeline cannot be adjusted at all.
+The pipeline also allows detailed adjustments of ML parameters, which is not the case for the cloud bots.
+Developers can fine-tune the application by adjusting ML parameters, adding additional components, or replacing components.
 
 % framework concepts
 %% intents, entities, utterances
 As discussed in Chapter \ref{chap:basics} Basics, the concepts used by the frameworks are interesting.
-The base concepts intent, entity, and utterance are present in literature and it was expected that these concepts are also present in the frameworks.
+The base concepts intent, entity, and utterance are present in literature, and the expectation was that these concepts are also present in the frameworks.
+This proofed to be the case for all four technologies.
 
 % communication
 Another important aspect is the communication with the chatbot services.
 %% JSON format
 In general, JSON is the request and response format for all tested technologies.
-All the technologies offered a REST interface for communication.
+All the technologies offered a REST endpoint for communication.
 %% meta info
-The messages differed when the content was compared since 
+The bots send different message content to external services.
 LUIS and Dialogflow sent metadata while Watson Assistant and Rasa did not.
-These are two very different approaches which were evaluated for 
-positive and negative aspects.
-The meta-information can be used in the backend for future projects to 
-create e.g. statistics.
+The evaluation focused on these two approaches since they are quite different and have positive and negative aspects.
+The meta-information is valuable for the creation of statistics and performance tracking, for instance.
+The other approach is simpler and has no predefined structure.
+Hence, the developers can choose the format freely without any restrictions.
+It is also possible to add the required meta-data to the chatbot message. 
 
 % process external information
-The communication can also be seen from the other side when a service sends additional information to the chatbot.
-It was evaluated how easy it was to process additional information
-in a chatbot.
-The expected result was that Rasa is the easiest technology for processing information since it is the only technology which uses a programming language for data processing.
+External services can send additional information to chatbots through the response messages.
+The question was, how easy is the processing of the additional information using the chatbot framework.
+The expectation was that it is easies with Rasa since the action server handles the response.
+As a reminder, the action server uses Python, and it is easy to process data using a programming language.
 
 % training capabilities
 Another big difference between Rasa and the other technologies were the 
@@ -396,43 +411,37 @@ training capabilities.
 %% live training
 Live training is offered by Rasa while all the other technologies 
 were solely trained with the training data defined by the developer.
-When live training is used the created stories are expected to be closer 
-to a real-life scenario because the developer has to go through the conversation step by step.
-This can prevent unnatural conversations since the developer creates the conversation step by step.
+With live training, the created stories should be closer 
+to a real-life scenario because the developer has to go through the conversation step by step to create the story.
+This can prevent unnatural feeling conversations, and it is also impossible to forget a step of the conversation.
+
 % user interface design
 In the ISO 25012\cite{iso25010} defines the user interface aesthetics under the section usability. 
 Hence the user interfaces of the frameworks were also compared regarding simplicity.
 %% how simple, how easy to orient
-This was evaluated from a subjective point of view.
-The interface of a framework was evaluated as easy to use when the overall structuring was easy to understand and the prototype was easy to implement.
-
+The evaluation of the UI is subjective and contains the author's opinion and objective, measurable values where possible.
+The interface of a framework was evaluated as easy to use when the overall structuring is easy to understand, and the prototype was easy to implement.
 
 \section{Course of Action} % Ablauf
-After the problem had been analyzed the dialog flow-chart was 
-created.
+The first step was the problem analyzation and the creation of the flow-charts for the dialogs.
 Based on the flow-chart, the required intents and entities were defined.
 The required intents are sickness notification and vacation request.
 For each use-case, one intent was necessary.
 The conversation built in the flow-chart made the required entities visible.
-For the sickness notification the name of a person and an optional 
-return date were required.
+The sickness notification requires the name of a person and an optional return date.
 The vacation request needed the name of the person and a date-span.
-The resulting entities were person, date, and date-span.
-For each intent, 10 training sentences were created in English and 
-10 were created in German.
-The test sentences were used to develop a German and English prototype 
-with each technology.
-For the entities and intents, test sentences were defined.
-The entity test sentences were evaluated as TP, FP, TN, and FN.
-Based on these values the precision, recall, and f-score was calculated 
-to provide an objective evaluation.
-The same approach was used for the evaluation of the intent classification plus the additional properties for the confidence and standard deviation.
-For each test category as summary was created to compare the 
-performance of the technology for each category.
-The frameworks were evaluated based on the criteria listed in 
-Section \ref{sec:comparison_and_eval}.
-The results were used to rank the frameworks in different categories 
-which show the strengths and weaknesses to make a final recommendation for further projects.
-Furthermore, the entity extraction and intent classification results in 
-English and German show which technology performed best in the 
-given domain.
+To summarize, the resulting entities were person, date, and date-span.
+For each intent, ten training sentences in English and ten training sentences in German were created.
+Additionally, test sentences for the validation of the result were created.
+The entity extraction was tested with sentence fragments.
+
+The prototypes used the training sentences for the creation of the intents.
+The result of each test is either TP, FP, TN, or FN.
+Based on these values, the precision, recall, and f-score values were calculated to provide an objective evaluation.
+The same approach was used to evaluate the intent classification.
+The confidence and standard deviation values were added for the intent classification to provide more evaluation factors.
+For each test category, a summary compared the performance of the technology in the given category.
+The frameworks evaluation is based on the criteria listed in Section \ref{sec:comparison_and_eval}.
+The ranking of the frameworks uses the results in the categories to show strengths and weaknesses.
+This made a final recommendation for further projects possible.
+Furthermore, the entity extraction and intent classification result in English and German showed which technology performed best in the given domain and language.

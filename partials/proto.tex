@@ -370,11 +370,12 @@ policies:
 The general command required to work with Rasa are train, shell, run actions, and x.
 The command "rasa train" trains Rasa with the current data.
 The shell command starts an interactive shell to test the bot.
-The action server needs to be run separately.
-If Rasa-X is installed, the command "rasa x" starts a web UI.
+The action server runs separately from the NLU service.
+After the installation of Rasa-X, the command "rasa x" starts a web UI for the development of the chatbot.
 Figure \ref{fig:rasa_x_interface} shows the UI of Rasa-X.
 The web interface offers the files discussed in the training section (left) with additional features like the conversation graph (right) called flow for a story (middle) shown in Figure \ref{fig:rasa_x_interface}.
-Rasa X offers interactive training where the chatbot is built through live interaction with the bot. 
+
+Rasa X offers interactive training, which allows developers to build chatbots through live interaction with the bot. 
 Rasa stores a model every time it is trained.
 This means the training history is available and old bots can be loaded.
 If a feature does not work out, just load the old model.
@@ -395,45 +396,40 @@ The slot mappings function defines the type of the slots.
 The submit function is called as soon as the slots have been filled.
 In the submit function the collected information can be sent to the 
 external endpoint, for instance.
-Custom validation rules can be defined for each slot.
-This can be used to validate that the entered person name exists.
+Each slot allows the definition of custom validation rules.
+This way, the validation of person names is possible at the action server.
 Now the intent needs to be defined in the NLU file.
 The sickness intent and the training phrases need to be defined in the 
-NLU  file in the format of \ref{lst:rasa_intent_format}.
-The entities are marked with square brackets and the types with parentheses.
+NLU  file in the format shown in Listing \ref{lst:rasa_intent_format}.
+Square brackets mark entities and parentheses mark the types.
 Now the sickness story needs to be defined.
-When a phrase is recognized which is classified as sickness intent then 
-the slot filling needs to be triggered.
+Phrases trigger the slot filling mechanism when the correct intent is recognized.
 The next step is the confirmation dialog, where the user confirms the entered information.
+
 A submit sickness data action is required.
-
-
-To classify the response, the intent affirm and deny are created with some example phrases.
-After affirm is recognized the confirmation action needs to be triggered.
+The submit action requires the "affirm" and "deny" intents.
+When the affirm intent is recognized, the confirmation action is triggered.
 In the run method of the submit action, the data can be validated and processed.
-If deny is recognized the slots need to be cleared and a retry message needs to be displayed.
-The sickness story for the successful cases is shown in Listing\ref{lst:rasa_story_format}.
+The deny conversation path clears the slots and displays the retry message.
+Listing\ref{lst:rasa_story_format} shows the affirm conversation path of the sickness use-case.
 The vacation use case is not different from the sickness use-case in Rasa.
+
 The Duckling time entity can process times, time-spans, dates, and date-spans.
-For Duckling there is no difference between a single date and a date-span.
+For Duckling, there is no difference between a single date and a date-span.
 Both are stored in the time slot and are of type time.
-Hence, the same person and time slot of the sickness use-case can be used for the 
-vacation use-case.
-The response messages need to be adjusted.
-For the vacation use-case, a new intent needs to be created in the domain file.
+Both use-cases use the same slots and types.
+There is absolutely no difference between the use-cases regarding the entities.
+The response messages are different, however.
+
+For the vacation use-case, a new intent needs to be added to the domain file.
 The vacation training phrases need to be listed in the NLU file.
-A form and a submit action need to be created for the vacation intent.
-The structure can be copied from the sickness use-case.
-Then the response messages and conditions are adjusted as needed.
+The vacation intent requires a form and a submit action.
+The structure of the form and submit actions is the same as for the sickness use-case.
 The actions need to be listed in the domain file to be usable in the stories.
+The response messages and conditions are adjusted as needed.
 Then the new stories need to be created.
-With Rasa-X the stories are created with live interaction with the bot.
-The stories are structured like in the sickness use-case.
-
-
-
-
-
+With Rasa-X the stories are created through live interaction with the bot.
+The structure of the vacation story is the same as for the sickness story.
 
 
 
@@ -441,52 +437,44 @@ The stories are structured like in the sickness use-case.
 % ----------------------  LUIS  ----------------------
 % ----------------------------------------------------
 \section{LUIS}
-With LUIS\cite{luisdocs}, the language understanding service of Microsoft,
-NLU services can be created.
-NLU is only a part of a chatbot and it's not possible 
-to create a chatbot with LUIS alone.
+With LUIS\cite{luisdocs}, the language understanding service of Microsoft, NLU services can be created.
+NLU is only a part of a chatbot, and it is impossible to create a chatbot with LUIS alone.
 The chatbot features are available through the Microsoft bot services 
 in combination with LUIS.
 A LUIS account is necessary to create NLU services.
-When a new project is created the name and a language need to be defined for 
-the NLU application.
-The chosen language is the language the users will use for the communication with the 
-LUIS application.
-The modification is done in the build tab.
+A new NLU project requires a name for the service and an input language.
+The chosen language is the language the users will use for the communication with the LUIS application.
+The build tab provides the interface to modify and build an NLU service with LUIS.
 \makefigure{luis_interface}{LUIS Web Interface}
-The interface shown in Figure \ref{fig:luis_interface} offers intents and entities
-like described in Chapter \ref{chap:basics}.
-To create the NLU part with LUIS Table \ref{tab:conversation_data} will be used.
-\ref{tab:conversation_data} defines the intents entities and response utterances
-that need to be created in LUIS.
-Figure \ref{fig:conversationflow} has no influence on LUIS because the 
+The interface shown in Figure \ref{fig:luis_interface} offers intents and entities like described in Chapter \ref{chap:basics}.
+All four tested technologies have intents and entities and use utterances for training.
+Marking of entities in training sentences is also possible with LUIS.
+
+Table \ref{tab:conversation_data} and \ref{tab:conversation_data} list the required intents and entities.
+Figure \ref{fig:conversationflow} does not influence LUIS because the 
 conversation handling is not part of the NLU service.
-To create an intent only a name and a list of training phrases (utterances) are necessary.
+Only a name and a list of training phrases (utterances) are necessary to create an intent with LUIS.
+
 Multiple options are available to create different kinds of entities.
-There are simple entities like e.g. a city.
-They describe exactly one concept.
-There are composite entities that are built from multiple entities (parts).
-E.g. a ticket order entity could consist of an order number, the number of 
-tickets, and the event.
-An entity list is used when the valid items are limited like in the book hotel example.
-There is only a limited number of valid hotel names and the list holds all valid 
-hotels.
-The invalid hotels are uninteresting in such a case.
+There are simple entities that describe a single concept like a city, for instance.
+There are composite entities that combine multiple entities (parts).
+A ticket with an id, event name, the price, and the number of tickets is an example of a composite entity.
+For a list of valid entries, entity lists are the right choice.
+In the book hotel example, a list of valid hotel names existed.
+This list is a suitable example of entity lists since the number of valid entries is limited. 
+Invalid hotel names are uninteresting in such a case.
 Regular expressions\cite{regex} can also be used to define an entity.
+
 It is also possible to add prebuilt entities and prebuilt domain entities.
 The entities required for the sickness intent are person name and date. 
 LUIS offers the prebuilt entities date-time and person-name.
-This means no new entities need to be created for the sickness use-case
-since the are prebuilt.
-To test the NLU functionality two additional intents need to be created to 
-simulate the conversation.
-A submit name and a submit return date intent are required.
+This means LUIS defines all required entities as prebuilt entities.
+The submit name and a submit return date intent allowed the testing of the entities with LUIS.
 The submit name intent extracts the person name entity.
 The submit return date entity extracts a date-time entity.
 The advantage of predefined entities is the saved time and the 
 advanced features.
-The date-time entity is able to match inputs like Monday or tomorrow to 
-a valid and correct date by default.
-The year is also automatically added when the date e.g. first January lies in the past.
-This is important for the vacation use case when the vacation is requested for 
-the next year. 
+The date-time entity matches inputs like Monday or tomorrow and converts them to a valid and correct date by default.
+The year is also automatically added when the date lies in the past.
+This is important for the vacation use case when the vacation is requested for the next year.
+The required intents and entities were defined with LUIS for the performance comparison with the chatbot frameworks.

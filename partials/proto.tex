@@ -117,7 +117,7 @@ An IBM cloud account is required to use the services.
 First, a new assistant needs to be created, which requires a name.
 Then dialog skills can be created.
 Figure \ref{fig:watson_interface} shows the web interface of Watson Assistant.
-The interface offers the concepts intent, entity, and dialog.
+The interface offers the concepts of intent, entity, and dialog.
 A dialog node represents the actions when an intent is recognized.
 The structuring of dialogs works the same way as with Dialogflow.
 
@@ -428,7 +428,7 @@ The structure of the form and submit actions is the same as for the sickness use
 The actions need to be listed in the domain file to be usable in the stories.
 The response messages and conditions are adjusted as needed.
 Then the new stories need to be created.
-With Rasa-X the stories are created through live interaction with the bot.
+With Rasa-X, the stories are created through live interaction with the bot.
 The structure of the vacation story is the same as for the sickness story.
 
 
@@ -443,7 +443,7 @@ The chatbot features are available through the Microsoft bot services
 in combination with LUIS.
 A LUIS account is necessary to create NLU services.
 A new NLU project requires a name for the service and an input language.
-The chosen language is the language the users will use for the communication with the LUIS application.
+The chosen language is the language the users will use for communication with the LUIS application.
 The build tab provides the interface to modify and build an NLU service with LUIS.
 \makefigure{luis_interface}{LUIS Web Interface}
 The interface shown in Figure \ref{fig:luis_interface} offers intents and entities like described in Chapter \ref{chap:basics}.
@@ -456,25 +456,27 @@ conversation handling is not part of the NLU service.
 Only a name and a list of training phrases (utterances) are necessary to create an intent with LUIS.
 
 Multiple options are available to create different kinds of entities.
-There are simple entities that describe a single concept like a city, for instance.
+There are "simple" entities that describe a single concept like a city, for instance.
 There are composite entities that combine multiple entities (parts).
 A ticket with an id, event name, the price, and the number of tickets is an example of a composite entity.
 For a list of valid entries, entity lists are the right choice.
 In the book hotel example, a list of valid hotel names existed.
 This list is a suitable example of entity lists since the number of valid entries is limited. 
 Invalid hotel names are uninteresting in such a case.
-Regular expressions\cite{regex} can also be used to define an entity.
+Entity definition by a pattern is another possibility.
+LUIS offers regular expressions\cite{regex} (regex) for the entity definition.
+All four frameworks offer regex entities, and regex entities are, therefore, considered to be state-of-the-art .
 
 It is also possible to add prebuilt entities and prebuilt domain entities.
 The entities required for the sickness intent are person name and date. 
 LUIS offers the prebuilt entities date-time and person-name.
-This means LUIS defines all required entities as prebuilt entities.
-The submit name and a submit return date intent allowed the testing of the entities with LUIS.
+LUIS defines all required entities as prebuilt entities, and there is no need to add custom entities for the use-cases.
+The submit name and a submit return date intent allowed the testing of the entity quality.
 The submit name intent extracts the person name entity.
 The submit return date entity extracts a date-time entity.
 The advantage of predefined entities is the saved time and the 
 advanced features.
 The date-time entity matches inputs like Monday or tomorrow and converts them to a valid and correct date by default.
 The year is also automatically added when the date lies in the past.
-This is important for the vacation use case when the vacation is requested for the next year.
+Hence, the data-span entity parses vacation requests for the upcoming year correctly by default.
 The required intents and entities were defined with LUIS for the performance comparison with the chatbot frameworks.

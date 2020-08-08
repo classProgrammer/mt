@@ -60,8 +60,10 @@
 }
 
 \newcommand{\makerefs}[1] {
-    \bibliography{#1}
+    \cleardoublepage
+    \phantomsection
     \addcontentsline{toc}{chapter}{Bibliography}
+    \bibliography{#1}
     \listoffigures
     \addcontentsline{toc}{chapter}{List of Figures}
     \listoftables
@@ -88,7 +90,8 @@
 }
 
 \newcommand{\makeFrontPage}{
-    \input{partials/titlePage.tex}
+    \includepdf[pages=-]{./partials/titlePage.pdf}
+  %  \input{partials/titlePage.tex}
 }
 
 \newcommand{\makeToc}{
@@ -136,4 +139,4 @@
 
 \title{Chatbot Prototype Development and Evaluation from a Development Perspective in a Given Domain}
 \author{Gerald Spenlingwimmer}
-\date{Hagenberg, Juli 2020}
+\date{Hagenberg, September 2020}

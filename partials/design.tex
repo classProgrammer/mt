@@ -134,12 +134,11 @@ the webhook is an endpoint where services can send requests to.
 In this thesis, three frameworks are present, and each framework gets an endpoint.
 The service is also used to access general information about the state of the data.
 The Dialogflow endpoint is reachable under "/dialogflow/webhook",
-the Watson endpoint is located at "/watson/webhook",
-and the Rasa service submits post requests to "/sick" and "/vacation" to submit data to the REST service.
+the Watson endpoint is located at "/watson/webhook", and the Rasa service submits post requests to "/sick" and "/vacation" to submit data to the REST service.
 For development purposes, the last request of Watson can be viewed at "/watson/request", and the last request of Dialogflow at "/dialogflow/request".
 To see all successful sickness notification entries "/sick/all" can be used, and under "/vacation/all" all successful vacation entries can be viewed.
 The service fakes a database and stores the request.
-After the information has been collected successfully by a framework a request is submitted to the service.
+After the information has been collected successfully by a framework, a request is submitted to the service.
 The service can do everything with the data and is the point where the company can execute actions.
 Additionally, the frameworks can optionally call the endpoint after each recognized intent if necessary.
 This way, the information can be validated and modified by the service.
@@ -155,3 +154,4 @@ A user can enter a new message at the bottom input and click the send button to 
 \citet{brandtzaeg2018chatbots} states that successful chatbot should inform users that they are talking to a bot.
 Therefore, the heading has been adjusted to remove ambiguities and includes the term chatbot.
 The messenger UI is shown in Figure \ref{fig:messengerui}. 
+\makefigure{messengerui}{Chatbot UI}

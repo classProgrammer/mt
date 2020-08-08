@@ -26,7 +26,7 @@ Domain-specific chatbots offer functionality that is limited to a domain.
 Such systems provide the functionality to achieve specific tasks and are not supposed to handle anything else.
 One example of domain-specific functionality would be a refund desk in a shop.
 The refund desk only serves customers with refund related issues.
-The customer is redirected to the information counter when he, e.g. asks for the location of the TV area inside the shop.
+The customer is redirected to the information counter when he asks for the location of the TV area inside the shop.
 A chatbot system in the refund desk domain only offers the functionality necessary to get and collect refund information and issue a refund. 
 The response to issues unrelated to a refund will not be useful in most cases.
 The third type is an open-ended system.
@@ -207,7 +207,7 @@ In this simplified example, to book a hotel, the hotel name (Hotel Item), the ch
 To extract entities in a context from natural language, Named-Entity-Recognition (NER) is used.
 NER is a sub-area of NLU.
 Entity recognition deals with word ambiguities like in sentences five and six of Table \ref{tab:example_sentences}.
-In sentence five, May is the month and needs to be treated as a date, whereas in sentence six, it's the last name and is part of a person entity. \
+In sentence five, May is the month and needs to be treated as a date, whereas in sentence six, it is the last name and is part of a person entity. \
 
 A named entity is a noun phrase relating to individuals.
 Classic individuals/named entities are persons (Bill Gates), locations (New York), and organizations (Google) \cite{geyer2016named}.
@@ -321,9 +321,9 @@ In literature, F-score values are used to evaluate and compare the performance o
 The scenario for the f-score explanation is a medical test for a disease.
 Positive means the person has the disease.
 A true positive (tp) is when the test is positive, and the person has the disease.
-A false positive (fp) is when the test is positive, but the person is healthy.
-A true negative (tn) is when the test is negative, and the person is healthy.
-A false negative (tn) is when the test is negative, but the person has the disease.
+A false positive (FP) is when the test is positive, but the person is healthy.
+A true negative (TN) is when the test is negative, and the person is healthy.
+A false negative (TN) is when the test is negative, but the person has the disease.
 In the chatbots area, a true positive is when the input is "Hello" and the identified intent is "Greet Intent".
 
 The precision is calculated as $\frac{tp}{tp + fp}$.

@@ -6,7 +6,7 @@ These two classes define the general type of conversation.
 Another way of classification is the differentiation between local standalone-applications and web-based solutions like done by \citet{kane2016role}.
 These two categories define the type of development, the source code's location, and the usage type of a chatbot.
 
-The types/classes of chatbots from \citet{williams2017hybrid, bordes2016learning} and \citet{kane2016role} don't contradict they just look at chatbots from a different perspective.
+The types/classes of chatbots from \citet{williams2017hybrid, bordes2016learning} and \citet{kane2016role} do not contradict they just look at chatbots from a different perspective.
 From the design perspective, the conversation type of a chatbot is either goal-oriented or end-to-end.
 From the development perspective, the used framework is either web-based or local.
 A combination of these categories is possible as Rasa is an example of a local standalone application built for goal-oriented dialog.
@@ -23,7 +23,7 @@ Extraction intents, commands, and actions from user input is the goal.
 The basic workflow of a chatbot system starts with the user input. 
 Then the NLP engine extracts entities and detects the intent.
 An entity represents an interesting piece of information.
-The extracted data is store in entity slots.
+The extracted data is stored in entity slots.
 After the extraction, the user gets a response from the chatbot.
 
 % Building chatbots with Python
@@ -121,7 +121,7 @@ The restaurant reservation is a domain where goal-oriented systems perform well 
 The results of \citet{bordes2016learning} show that end-to-end systems are not yet ready to replace goal-oriented systems and have to improve before they can perform reliably in goal-oriented settings. 
 
 \citet{bordes2016learning} compared the chatbot types based on the number of correctly identified requests (true positives) and the number of dialogs where every request was identified correctly.
-Multiple conversations were used to test the system, but the end-to-end system never identified all requests of the conversation correctly \cite{bordes2016learning}.
+Multiple conversations were used to test the system, but the end-to-end system never identified all requests of the conversation correctly.
 The request identification worked well, but no conversation went smoothly since at least one request was identified incorrectly.
 In other words, each user had at least one problem in the conversation.
 This would lead to a bad user experience. 
@@ -137,7 +137,7 @@ End-to-end systems lack a mechanism to inject such domain-specific information \
 The extraction of such information is required to perform well in a goal-oriented setting.
 There is also no mechanism for constraints in goal-oriented systems.
 In a banking app, the user needs to log in (constraint) before retrieving account information.
-A programmer can code such constraints in a few lines, but lots of training data need to be provided to a system to learn such a mechanism on its own.
+A programmer can code such constraints in a few lines, but a vast amount of training data needs to be provided to a system to learn such a mechanism on its own.
 
 The hybrid-coding-networks (HCNs) approach extends the open-ended system with domain-specific knowledge \cite{williams2017hybrid}. 
 The programmer provides the domain-specific knowledge to the system, which results in more development effort.
@@ -169,7 +169,7 @@ The HCN comparison does not include goal-oriented approaches, which makes the re
 
 % ---------- BOTH SYSTEMS---------- %
 % singh building: building an enterprise chatbot
-The conversation type of a chatbot is wither a general conversation about a broad generic subject or a specific conversation about one product or service \citet{singhbuilding}.
+The conversation type of a chatbot is either a general conversation about a broad generic subject or a specific conversation about one product or service \citet{singhbuilding}.
 The first step to create a chatbot system is to define a conversational flow.
 The conversational flow is a decision tree that describes the possible events, decisions, and outcomes of a conversation.
 An example of a general conversation is when a customer walks into a bank and starts talking to an employee.
@@ -211,7 +211,7 @@ Hence, chatting has become a natural way of communication.
 In general, The architecture of a chatbot consists of the request interpretation, the response retrieval, and the response message generation \cite{braunEvaluatingNLU}.
 The purpose of these services is the extraction of information from natural language. 
 
-Popular NLU services are the cloud services LUIS, Watson Conversation, Dialogflow/API.ai, and RASA as an open-source alternative \cite{braunEvaluatingNLU}. 
+Popular NLU services are the cloud services LUIS, Watson Conversation, Dialogflow, and RASA as an open-source alternative \cite{braunEvaluatingNLU}. 
 The cloud-based solutions have advantages when it comes to hosting and scalability, and Rasa has advantages when adaptability and data control are needed. 
 All three NLU services share the same basic concepts of intents, entities, and batch import in JSON format.
 The cloud-based services are secretive when it comes to the ML algorithms and the initial training data. 
@@ -232,7 +232,7 @@ In other words, a good NLU system performs good independent of the domain.
 If the training data is sparse, there is no significant difference between the services' performance. 
 Before using an NLU service, different services should be tested with domain-specific data to find the best matching technology for the given problem.
 
-The comparison and evaluation of \citet{braunEvaluatingNLU} included LUIS, Watson Conversation, Dialogflow/API.ai, and RASA.
+The comparison and evaluation of \citet{braunEvaluatingNLU} included LUIS, Watson Conversation, Dialogflow, and RASA.
 These four technologies are used and mentioned in many articles and online sources. 
 
 % Dutta 2017 developing
@@ -261,7 +261,6 @@ by the confidence score.
 As other researchers already mentioned, each tool was trained with the same data and was tested with the same questions to ensure fair conditions.
 LUIS, Wit.ai, and API.ai/Dialogflow performed on an equal level in terms of intent classification.
 \citet{gregori2017evaluation} is another researcher that chose Api.ai/Dialogflow for the development of a prototype.
-It seems that many researchers use Dialogflow for the development of a chatbot.
 
 % IEEE: pharmacy bot
 \citet{pharmacybot} builds a chatbot to aid customers with questions regarding medication for a pharmacy company using IBM Watson.
@@ -312,14 +311,14 @@ The compared frameworks are suitable for task-specific problems.
 \citet{evaluateChatbotsShawar2007,bordes2016learning} and \citet{williams2017hybrid} focus on end-to-end systems while \citet{braunEvaluatingNLU, dutta2017developing,luis2015williams,rasabocklisch2017,pharmacybot} and \citet{gregori2017evaluation} focus on task-oriented systems, and \citet{singhbuilding} is about both.
 \citet{singhbuilding} gives a general overview of the chatbot types, gives development advice, and introduces popular chatbot technologies and their basics.
 \citet{braunEvaluatingNLU} gives an overview of the architecture of chatbot systems and evaluates the NLU capabilities of chatbot frameworks.
-\citet{gregori2017evaluation} and \citet{dutta2017developing} give no arhcitecture overview but evaluate the NLU capabilities.
+\citet{gregori2017evaluation} and \citet{dutta2017developing} give no architecture overview but evaluate the NLU capabilities.
 
 When comparing the frameworks NLU capabilities, the same training data needs to be used for all tested frameworks like done by citet{braunEvaluatingNLU} and \citet{gregori2017evaluation}.
 \citet{dutta2017developing} also introduces a framework comparison based on the available features and some psychological aspects of chatbot communication.
 Unlike other references which either use or evaluate frameworks, \citet{luis2015williams} and \citet{rasabocklisch2017} 
 introduce the frameworks LUIS\cite{luis2015williams} and Rasa\cite{rasabocklisch2017}. 
 They focus on the technology itself and do not build a chatbot with it, nor do they compare frameworks.
-\citet{dutta2017developing, pharmacybo}, and \citet{PRZEGALINSKA2019785} developed actual chatbots for specific use cases.
+\citet{dutta2017developing, pharmacybot}, and \citet{PRZEGALINSKA2019785} developed actual chatbots for specific use cases.
 Common chatbot technologies found in the articles and books are Dialogflow, LUIS,  Rasa, Watson, and Wit.ai.
 Many researchers use, mention, and compare those four chatbot technologies, and they are considered state-of-the-art for this thesis.
 % ---------- END GOAL-ORIENTED SYSTEMS ---------- %
@@ -335,7 +334,7 @@ The people are using messenger platforms (machine-interface) to communicate with
 At platforms like Twitter, machine agents can already be integrated and communicate with human users.
 The prime example of state-of-the-art conversational interfaces is Google Assistant.
  
-Chatbots are different from classical software interfaces because they use natural language for communication instead of a classical GUI \citet{folstad2017chatbots}.
+Chatbots are different from classical software interfaces because they use natural language for communication instead of a classical GUI \cite{folstad2017chatbots}.
 Currently, developers focus on the design of user interfaces.
 The design focus for chatbot systems lies in the conversation, which is an entirely different approach than developers are used to at the moment.
 
@@ -345,7 +344,7 @@ Chatbots all use messenger like interfaces independent from the problem.
 This means that developers need to switch to a goal-oriented view where the main focus lies on understanding what the user wants and how they can be served.
 
 % Brandtzaeg 2018 chatbots: Changing user needs and motivation
-Chatbots are natural language interface using text or voice for communication \citet{brandtzaeg2018chatbots}.
+Chatbots are natural language interfaces that use text or voice for communication \cite{brandtzaeg2018chatbots}.
 They are used to retrieve content or access a service through natural language conversation.
 Nowadays, people are used to natural language communication because they spend lots of time on messenger platforms.
 Because of this, chatbot technologies become more and more popular.
@@ -360,7 +359,7 @@ If the chatbot feels too human, people might ask questions unrelated to the doma
 If it is too robot-like, people might complain because the conversation feels unnatural and robotic.
 Developers also need to think about how friendly a chatbot should be, how fast the bot should answer, if the bot should have a gender, and how human-like the bot should be in general.
 
-Successful chatbots inform the users what they have to expect and clarify that they are talking to a bot right from the start \cite{brandtzaeg2018chatbots}
+Successful chatbots inform the users what they have to expect and clarify that they are talking to a bot right from the start \cite{brandtzaeg2018chatbots}.
 Chatbots should inform users about what they can do, and it can help to inform them about what they cannot do.
 Three examples for commercial chatbots are Microsofts Heston Bot for food, cooking opportunities and fashion, H\&Ms bot for shopping suggestions based on photos, and Ikeas shopping assistant bot.
 Such conversational interfaces need to be improved based on interactions with humans and their feedback.
@@ -397,7 +396,7 @@ If the bot is presented as bot right from the start, the expectations are lower.
 \citet{brandtzaeg2018chatbots} also focuses on the psychological aspects and the humanness of bots.
 The disadvantages of too human bots are listed with real-life examples. 
 Real chatbot conversations have shown that users ask unrelated and inappropriate questions if a chatbot is too human. 
-Hence, it is crucial to balance the robot and human aspects when designing a bot \cite{brandtzaeg2018chatbots}.
+Hence, it is crucial to balance the robot and human aspects when designing a bot.
 
 \citet{dutta2017developing} is about chatbot design aspects.
 The important message of \citet{dutta2017developing} is that chatbot systems are entirely different from conventional systems from the design perspective.
@@ -443,5 +442,5 @@ If it is true that the NLU performance of the chatbots is roughly the same for a
 Yet, it is the evaluation found in most papers if there is an evaluation at all. 
 
 Common chatbot technologies found in the articles and books are Dialogflow, LUIS,  Rasa, Watson, and Wit.ai.
-Dialogflow, LUIS, Rasa, Watson Assistant are used in this thesis.
+Dialogflow, LUIS, Rasa, and Watson Assistant are used in this thesis.
 % ---------------------------- HERE ---------------------------- %

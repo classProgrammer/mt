@@ -9,11 +9,11 @@ The UI can additionally communicate with the database via the REST service or we
 The DB is used to store and retrieve the relevant data.
 The extracted entities can be validated using the webhook.
 Furthermore, the webhook is called by the chatbot frameworks when the entity extraction is finished and handles the insertion and retrieval of data from the DB.
-The dialog flow can is adjustable at the webhook in error cases, for instance.
+The dialog flow is adjustable at the webhook in error cases, for instance.
 
  \section{Story/Flowchart}
  \makefigure{sicknessflow}{Sickness Notification Example Conversation}
- As mentioned in \citet{folstad2017chatbots}, the design focus for chatbot systems lies in the conversation instead of the GUI.
+ As mentioned by \citet{folstad2017chatbots}, the design focus for chatbot systems lies in the conversation instead of the GUI.
  A story is an example of a dialog/conversation between user and chatbot.
 Figure \ref{fig:sicknessflow} shows an example dialog to report a colleague sick.
 The user input is green, and the chatbot response is highlighted blue.
@@ -27,19 +27,21 @@ Then the necessary information is collected, followed by some chit-chat and the 
 
 Table \ref{tab:sick_data} lists the resulting intents, entities, and utterances for the example sentences of the conversation shown in Figure \ref{fig:sicknessflow}.
  Figure \ref{fig:conversationflow} shows the detailed flowcharts for the sickness notification and vacation request. 
-The flowcharts are the base for the implementation section since it is the blueprint for all prototypes.
+The flowcharts are the base for the implementation section since they define the conversations.
  User inputs are highlighted red, bot responses are green, and general actions are marked purple.
  Both use cases start with the identification of the person.
  If the entered name cannot be validated, the user can correct it or enter a different name.
  Then the user needs to confirm that the correct person was found.
  If the user responds with no, the name of the person can be corrected like before.
+
 Afterward, a date needs to be entered in both cases. 
 The sickness intent asks for an optional return.
 The date is optional since the yes, and no paths lead to the same action, and the conversation ends afterward.
  The vacation intent requires a start and return date.
- The user is asked for the date until a valid date has been entered.
- After both dates are present, the vacation request can be processed, and the conversation end is reached.
+ The user is asked for the date in a loop until a valid date is entered.
+After both dates are present, the vacation request can be processed, and the conversation end is reached.
 Figure \ref{fig:conversationflow} describes every step of the conversation from start to end.
+
  Table \ref{tab:conversation_data} defines the intents, name of the intents, entities, the data types of the entities, and the names of the utterances based on the information present in Figure \ref{fig:conversationflow}.
  The combination of Figure \ref{fig:conversationflow} and Table \ref{tab:conversation_data} is the blueprint for the implementation of the chatbot.
  The blueprint is valid for tools using intents, entities, and utterances.
@@ -81,18 +83,17 @@ The base for this section is Figure \ref{fig:sicknessflow}, which shows an examp
  The core intents of the whole process are the sickness notification and vacation request intents.
  For the use-cases, the needed entities are person, date, and date-span.
  The user might thank the bot or end the conversation with a goodbye message, or the user might not respond after the all done message.
-Table \ref{tab:sick_data} lists the basic concepts extracted from Figure \ref{fig:sicknessflow}.
- There are the intents discussed above, the entities and their types, and the bot actions.
 
 
- The bot responds to the user with utterances.
- The conceptual names of the utterances are shown in Table \ref{tab:sick_data} under Bot Action.
- In the simplest case, a bot action is an utterance.
- For the utterances, different versions need to be written to respond to the user with alternating sentences.
- For the vacation notification, the process remains the same.
- The greeting, thanks, goodbye, and list options intents remain the same.
- The new intent is the vacation intent.
- The only change in the process is that there needs to be a mandatory start and end date.
+
+The bot responds to the user with utterances.
+The conceptual names of the utterances are shown in Table \ref{tab:sick_data} under Bot Action.
+In the simplest case, a bot action is an utterance.
+For the utterances, different versions need to be written to respond to the user with alternating sentences.
+For the vacation notification, the process remains the same.
+The greeting, thanks, goodbye, and list options intents remain the same.
+The new intent is the vacation intent.
+The only change in the process is that there needs to be a mandatory start and end date.
 
  \begin{table}[h]
     \centering
@@ -119,18 +120,17 @@ Hence, the user should be informed that he is talking to a bot to prevent wrong 
 
 There are three ways to adjust the humanness of a chatbot.
 Two options are easy to implement, and one is hard.
-A human name increased the humanness of a bot significantly.
+A human name increases the humanness of a bot significantly.
 Examples for bots with human names are Cortana and Alexa.
 The second way is to introduce a gender which is also part of Alexa and Cortana.
 The hard way is to model human conversations in detail.
 An important factor for the humanness of a bot is the message response time.
 When chatting with a friend, the response happens not immediately.
-This concept can also be used for chatbots since a small response delay already has a significant impact on the fell of the conversation.
-In general, if the response is too fast, it feels unnatural.
+This concept can also be used for chatbots since a small response delay already has a significant impact on the conversations feel.
+As a rule of thumb, if the response happens too fast, the conversation feels unnatural.
 
 \section{Webhook}
-As explained in Chapter \ref{chap:basics}: Basic in Section \ref{sec:webhook} 
-the webhook is an endpoint where services can send requests to.
+As explained in Chapter \ref{chap:basics}: Basic in Section \ref{sec:webhook} the webhook is an endpoint where services can send requests to.
 In this thesis, three frameworks are present, and each framework gets an endpoint.
 The service is also used to access general information about the state of the data.
 The Dialogflow endpoint is reachable under "/dialogflow/webhook",
@@ -153,5 +153,4 @@ Message cards show the sender, time, and message and are colored differently for
 A user can enter a new message at the bottom input and click the send button to send a message.
 \citet{brandtzaeg2018chatbots} states that successful chatbot should inform users that they are talking to a bot.
 Therefore, the heading has been adjusted to remove ambiguities and includes the term chatbot.
-The messenger UI is shown in Figure \ref{fig:messengerui}. 
 \makefigure{messengerui}{Chatbot UI}

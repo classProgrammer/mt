@@ -1,0 +1,48 @@
+Die 3 Banken IT möchte Chatbots für zwei interne Anwendungsfälle verwenden.
+In einem Anwendungsfall geht es um Krankheitsmeldungen, im zweiten um Urlaubsanfragen.
+Eine für die Anwendungdfälle notwendige Funktion ist das Extrahieren von Informationen aus Text, da in beiden Anwendungsfällen das Extrahieren von Personennamen und Datumswerten automatisiert werden muss.
+
+Bevor die Entwicklungsphase eines Chatbots beginnt, stellen sich zwei Hauptfragen.
+Wann ist ein Problem für eine Chatbot-Lösung geeignet und sind die gegebenen Anwendungsfälle Chatbot tauglich?
+Ein Problem ist geeignet, wenn es sich um eine sich wiederholende Aufgabe handelt, automatisiert werden kann und nur einfache Bidirektionale Kommunikation im Frage Antwort Schema erforderlich ist \cite{buiildChatbotsPython}.
+Die gegebenen Anwendungsfälle haben ein sich wiederholendes Basisproblem, können automatisiert werden und erfordern nur eine einfache Bidirektionale Kommunikation.
+Da alle drei Kriterien erfüllt sind, sind die Anwendungsfälle für einen Chatbot geeignet.
+
+Mit Dialogflow, LUIS, Rasa und Watson Assistant wurden Prototypen für die Anwendungsfälle entwickelt, um die Eignung der Anwendungsfälle zu validieren und den Proof-of-Concept durchzuführen.
+Die Technologien wurden anhand von Faktoren wie der Entitätsextraktionsleistung, der Absichtsklassifizierungsleistung in englischen und deutschen Testszenarien, der 
+Benutzerfreundlichkeit, den Anpassungsmöglichkeiten und der Erlernbarkeit eingestuft.
+Im Gegensatz zu den meisten im Internet gefundenen Quellen umfasste die Bewertung entwicklungsrelevante Aspekte der Frameworks, um dem Unternehmen eine Entwicklungsempfehlung zu geben.
+
+Unternehmen verwenden Chatbots weil sie billig und immer erreichbar sind.
+Interessanterweise ist der Vergleich der Kosten verschiedener Chatbot-Frameworks nie Teil der Bewertung der verwendeten Paper.
+Es wird immer nur erwähnt, dass sie kostengünstig sind ohne die Preise zu nennen.
+Um diese Lücke zu schließen umfasst die Bewertung der Technologien den Preisvergleich der Frameworks und der Text-zu-Sprache und Sprache-zu-Text Dienste.
+Die Kosten für die Cloud-Chatbots liegen ungefähr auf dem gleichen Niveau.
+Das Gleiche gilt auch für die Text-zu-Sprache und Sprache-zu-Text Dienste.
+Der Preisvergleich war alles in allem schwierig, da jedes Framework mehrere Versionen bietet und unterschiedlich Einheiten für die Preisberechnung verwenden.
+Alle Cloud-Anbieter bieten Sprachdienste an während Rasa weder die Kosten für die Enterprise-Edition auf der Website auflistet, noch Text-zu-Sprache und Sprache-zu-Text Dienste anbietet.
+Alle Cloud-Technologien bieten eine kostenlose Variante mit eingeschränkter Nutzung an die von Firmen verwendet werden darf, und Rasa ist standardmäßig kostenlos.
+
+Der Vergleich der Gemeinsamkeiten und Unterschiede der Frameworks hat gemeinsamer und technologie-spezifischer Konzepte und entwicklungsrelevanter Bewertungskriterien ans Licht gebracht.
+Alle vier Technologien verwenden Absichten, Entitäten und Äußerungen zur Darstellung und Speicherun der relevanten Information.
+Alle drei Chatbot-Technologien verfügten über einen Dialogbehandlungsmechanismus.
+Die Cloud-Chatbots verwenden Dialogknoten, während Rasa Geschichten zur Darstellung der Gespräche verwendet.
+Der wichtigste Unterschied besteht darin, dass Dialogflow, LUIS und Watson Assistant Cloud-basierte Lösungen sind, während Rasa eine lokale Lösung ist.
+Die lokale Lösung Rasa bietet Vorteile in Bezug auf Offline-Funktionalität, flexiblem Deployment und dem Trainieren des Chatbots und ist Unabhängig von Anbietern.
+Die Cloud-Technologien waren im Allgemeinen einfacher zu verwenden und zu erlernen, der Anbieter übernimmt das Deployment, sie skalieren automatisch und erzielen mit kleinen Trainingssätzen im Durchschnitt eine bessere Leistung.
+
+Die beiden Hauptfunktionen von Chatbots sind die Entitätsextraktion und die Absichtsklassifizierung.
+Die Leistungsbewertung umfasst einen detaillierten Vergleich der Hauptfunktionen, um die beste Technologie zu ermitteln.
+Dialogflow gewann die Bewertung der Entitätsextraktion mit großem Vorsprung, und erreichte den höchsten f-Score.
+Die Absichtsklassifizierung in Englisch funktionierte am besten mit Watson Assistant, dicht gefolgt von Dialogflow und LUIS.
+Rasa war nicht in der Lage mit den Leistungen der Cloud-Technologien Schritt zu halten.
+Die Benutzerfreundlichsten und am einfachsten zu erlernenden Technologien sind Dialogflow und LUIS und es wird empfohlen sie für weitere Projekte zu verwenden.
+
+Die Ergebnisse für die deutschen Testsätze zeigen ein anderes Bild.
+Die Absichtsklassifizierung funktionierte mit allen vier Technologien messbar besser während die Leistung der Entitätsextraktion bei allen drei Chatbot-Technologien erheblich zurückging.
+Die Extraktionsleistung von LUIS hat sich im Gegensatz zu den anderen drei Technologien erhöht und ist daher die empfohlene Technologie für die deutsche Sprache.
+Zusammenfassend war LUIS die einzige Technologie, die bei den deutschen Tests eine hervorragende Leistung zeigte, gefolgt von Rasa mit einer ordentlichen Leistung.
+Aufgrund der brauchbaren Leistung ist Rasa die Alternative zu LUIS für die deutsche Sprache.
+Die Entitätsextraktionsleistung von Dialogflow bei den deutschen Tests war schrecklich und daher kann Dialogflow auch nicht empfohlen werden.
+Die Annotation von Entitäten in Trainingssätzen wird von Watson Assistant nur auf Englisch unterstützt und daher ist IBMs Watson Assistant für die deutsche Sprache unbrauchbar, bis die Annotation von Entitäten verfügbar ist.
+LUIS ist aufgrund der guten Leistung in beiden Sprachen gesamt auf dem 1.Platz gefolgt von Rasa mit einer gute Leistung und es wird empfohlen eine diese beiden Technologien zu verwenden.

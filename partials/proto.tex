@@ -5,9 +5,9 @@ The selected language is the interaction language of the users, not the developm
 Dialogflow offers the option to create a mega agent by combining multiple agents.
 Figure \ref{fig:dialogflow_interface} shows the web interface with the menu entries titled intents and entities.
 Dialogflow uses the basic concepts of intents, entities, and utterances.
-The implementation uses the intents, entities, and utterances listed in Table \ref{tab:conversation_data}.
 
 \subsection{Intents and Entities}
+The implementation uses the intents, entities, and utterances listed in Table \ref{tab:conversation_data}.
 An intent in Dialogflow has training phrases, actions, parameters,
 a response list, a context, and the fulfillment.
 As described in the basics, the training phrases are a list of utterances a user would enter and belongs to an intent.
@@ -33,7 +33,7 @@ The final structure is a sickness intent which is followed by either
 the yes or the no intent.
 At the end of the no intent, the chatbot responds with a retry response.
 At the end of the yes intent, the bot responds with an all done response.
-Both conversation paths end the conversation, which is related to data collection and processing.
+Both conversation paths end the conversation.
 They are optionally followed by thank you, goodbye, or chit-chat, but this is independent of data collection and storage. 
 
 The process looks the same for the vacation use case.
@@ -56,9 +56,8 @@ The user is not queried for a slot when the information is already present.
 With these concepts, sending all the information with the first request is possible.
 This speeds up the process for experienced users.
 In a sentence like "Max Power is sick and will return Monday" all the required information is present, and the request can be processed immediately.
- 
-
 In general, custom entities are a list of entries or a list of entries with synonyms.
+
 An advanced feature of Dialogflow is small-talk.
 It can be enabled in the settings with a single click.
 When small-talk is enabled, the bot responds to requests like "What are you", "Bye", and "sorry".
@@ -68,7 +67,7 @@ This is another useful feature of Dialogflow, which is predefined and requires n
 The Dialogflow webhook requires an HTTP POST URL as an entry point.
 The communication relies on JSON as a format.
 Listing \ref{lst:dialogflow_entry_point} shows the entry point of the webhook.
-A request (Listing \ref{lst:webhookExample}) can be accessed like a dictionary or an array shown in Listing \ref{lst:dialogflow_request_params} where the name of the intent gets extracted. 
+A request (Listing \ref{lst:webhookExample}) can be accessed like a dictionary or an array shown in Listing \ref{lst:dialogflow_request_params} where the name of the intent are extracted. 
 After the intent has been extracted, the parameters are extracted to process the request.
 In the error case, a new fulfillment message is returned.
 A fulfillment message as return value prevents follow up intents.
@@ -145,28 +144,28 @@ The webhook receives a request at the defined URL after the form-data collection
 
 \subsection{Dialog and Webhook}
 The format of the webhook call is JSON.
-The parameters need to be specified by hand.
 The required parameters are the name of the intent, the person name, and the return date.
 The name of the intent is necessary to execute the correct action at the webhook.
 The name and the return date are the information stored in the backend for a successful request.
 Listing \ref{lst:watson_request} shows that the requests of Watson Assistant contain no meta-information by default.
 The developer defines the information and format submitted to the webhook.
-The webhook returns a JSON object.
-A context variable stores the JSON object.
+The webhook returns a JSON object and Watson Assistant stores the response in a context variable.
 It is accessible in the chatbot code like a regular struct in C++.
 
 Based on the webhook response, the dialog can go in different ways.
-It is possible to define a response for each possible response.
+It is possible to define a response based on the available data.
 If the request only contained the name of a person, only the name of the person is present in the response message.
 If the request contained a name and a date, both are present in the chatbots response message.
+
 Whenever the webhook finds a person in the backend, the user needs to confirm that the entered information is correct.
 If the person was not found the retry message is displayed
 Watson Assistant offers conditional statements to handle such cases.
-
 Table \ref{tab:watson_cond_response} shows the conditions, responses, and actions of the use case.
+
 Chatbot responses can be picked sequentially, at random, or as a multiline response.
 The multiline response displays all response lines at once.
 The sequential version picks them in order, and the random variant picks the response at random from the available responses.
+
 The confirmation logic is the next thing to implement.
 No system entity or dialog for the confirmation logic is present.
 Two intents or an entity are options to represent the confirmation.
@@ -195,6 +194,7 @@ The options are to create an intent with two dates in it or a dialog node
 which fetches the required dates as form-data.
 This thesis uses the dialog node approach because it comes close to the 
 behavior implemented with Dialogflow.
+
 A new dialog node named vacation is created.
 For the dialog node, an intent called vacation is created with 
 the example sentences.
@@ -324,9 +324,10 @@ The NLU service is accessible at default port 5005.
 
 Rasa offers great freedom when it comes to configuration.
 This is important because Rasa does not offer predefined entities as such.
-However, spacy does offer the required date and person entities for the use cases.
+However, Spacy does offer the required date and person entities for the use cases.
 Duckling is another option for data and date-span extraction.
 In the config file shown in Listing \ref{lst:rasa_config}, the pipeline includes the spacy entity extractor and Duckling to enable the use of predefined entities.
+
 \citet{spacyapi} lists the entities supported by Spacy under named entity recognition.
 The entity recognition of spacy does work, but the dates are stored as they are.
 The best case is when the date is converted in a standard format like 
@@ -335,6 +336,7 @@ To gain access to a more powerful date parsing the Duckling\cite{duckling} Rasa 
 Duckling converts entered dates and times to a standard format as the cloud services do.
 It recognizes strings like "Monday" as dates and converts them correctly.
 Duckling works similar to the date and date-span entities of Watson Assistant and Dialogflow.
+
 The person entity of Spacy works as expected.
 The used entities need to be added under entities in the domain.yml file. If they are not listed in the domain.yml file, they cannot be used in the application.
 People with machine learning experience can define custom pipelines or adjust parameters of components.
@@ -398,22 +400,23 @@ In the submit function the collected information can be sent to the
 external endpoint, for instance.
 Each slot allows the definition of custom validation rules.
 This way, the validation of person names is possible at the action server.
+
 Now the intent needs to be defined in the NLU file.
 The sickness intent and the training phrases need to be defined in the 
 NLU  file in the format shown in Listing \ref{lst:rasa_intent_format}.
 Square brackets mark entities and parentheses mark the types.
 Now the sickness story needs to be defined.
 Phrases trigger the slot filling mechanism when the correct intent is recognized.
-The next step is the confirmation dialog, where the user confirms the entered information.
 
+The next step is the confirmation dialog, where the user confirms the entered information.
 A submit sickness data action is required.
 The submit action requires the "affirm" and "deny" intents.
 When the affirm intent is recognized, the confirmation action is triggered.
 In the run method of the submit action, the data can be validated and processed.
 The deny conversation path clears the slots and displays the retry message.
 Listing\ref{lst:rasa_story_format} shows the affirm conversation path of the sickness use-case.
-The vacation use case is not different from the sickness use-case in Rasa.
 
+The vacation use case is not different from the sickness use-case in Rasa.
 The Duckling time entity can process times, time-spans, dates, and date-spans.
 For Duckling, there is no difference between a single date and a date-span.
 Both are stored in the time slot and are of type time.
@@ -430,8 +433,6 @@ The response messages and conditions are adjusted as needed.
 Then the new stories need to be created.
 With Rasa-X, the stories are created through live interaction with the bot.
 The structure of the vacation story is the same as for the sickness story.
-
-
 
 % ----------------------------------------------------
 % ----------------------  LUIS  ----------------------
@@ -464,7 +465,6 @@ In the book hotel example, a list of valid hotel names existed.
 This list is a suitable example of entity lists since the number of valid entries is limited. 
 Invalid hotel names are uninteresting in such a case.
 Entity definition by a pattern is another possibility.
-LUIS offers regular expressions\cite{regex} (regex) for the entity definition.
 All four frameworks offer regex entities, and regex entities are, therefore, considered to be state-of-the-art.
 
 It is also possible to add prebuilt entities and prebuilt domain entities.

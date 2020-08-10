@@ -39,13 +39,11 @@ easy to migrate an existing chatbot to another technology.
 like \citet{singhbuilding} said, the best evaluation criteria is if a task can be achieved with the chosen technology or not.
 The goal is to implement the dialogs shown in Figure \ref{fig:conversationflow}.
 The evaluation result is a binary criterion which is either true when the implementation was possible or false if it was impossible.
-Chapter \ref{chap:proto} shows that the implementation of the dialogs was possible with Dialogflow, Watson Assistant, and Rasa.
+Chapter \ref{chap:proto} shows that the implementation of the dialogs of Figure \ref{fig:conversationflow}  was possible with Dialogflow, Watson Assistant, and Rasa.
 It is impossible to implement the dialogs with LUIS, which met the expectation since it is an NLU technology and not a chatbot service. 
 As mentioned before, NLU technologies have no dialog handling mechanisms.
 The Microsoft Bot framework is the chatbot technology which uses LUIS.
 Using both Microsoft frameworks, the implementation of a chatbot is possible.
-The implementation of the dialogs of Figure \ref{fig:conversationflow} is possible with all 
-three chatbot technologies.
 
 % project complexity
 \section*{Project Setup Complexity} \label{sec:setup_complex}
@@ -70,6 +68,7 @@ The cloud technologies require an account to start the development.
 With an account, a new project can be created instantly.
 As mentioned before, after creating the project, everything is ready for development.
 No additional software needs to be installed.
+
 For Rasa, the tools and the environment needs to be provided.
 For the development, setting up a Python environment or pulling the Docker image is required.
 The setup for Rasa takes more time since setting up the development environment is required.
@@ -118,7 +117,7 @@ The limits for the free tier are 180 text requests per minute.
 The Essential and Plus versions allow 600 requests per minute.
 Rasa is free to use and open-source.
 There is an enterprise edition with some benefits but the price
-is calculated individually and not listed on the website.
+is calculated individually and is not listed on the website.
 Watson Assistant offers a free tier with up to 1.000 users per month, 
 10,000 messages per month.
 The free tier of the Microsoft Bot Framework offers five requests per second and 10,000 messages per month. 
@@ -131,7 +130,7 @@ no message or user limit.
 
 The price of Dialogflow is based on the number of requests, IBM offers a fixed number of requests and users, and with Rasa, the developer has to take care of the number of users and requests.
 The Microsoft Bot Framework charges per 1,000 users like IBM does.
-The price of the Microsoft Bot Framework is calculated by combining the prices for the framework and LUIS.
+The price of the Microsoft Bot Framework is the combination of the costs for the Bot Framework and LUIS.
 The resulting cost for the Microsoft Bot Framework and LUIS is \$0.002 per request, which is the same Dialogflow charges for the enterprise and essential edition.  
 The standard edition also offers 50 transactions per second, which are 3,000 requests per minute.
 This is far more than the 600 requests per minute offered by Dialogflow.
@@ -175,19 +174,18 @@ Watsons' cost of \$0.12 per user per month equals 60 requests per user per month
 The easiest of the chatbot frameworks is Dialogflow.
 Compared to Rasa, the setup is easy.
 The UI is minimalistic and easy to understand.
-It is easier to develop a chatbot with Dialogflow than with Watson Assistant or Rasa.
 The Watson Assistants UI is intransparent compared to Dialogflow, and a developer may need more time to orient.
 Rasa requires the most time to develop a chatbot and to get everything ready.
-As described in Section \ref{sec:setup_complex}, the setup of cloud services is easy since the cloud providers take care of the setup.
+As described in Section \ref{sec:setup_complex}, the cloud providers take care of the setup.
 Rasa has to be installed or used as a Docker container, which is harder than the cloud setup and requires more time.
 Watson Assistant and Dialogflow require no programming skills, while Rasa requires programming skills, which makes it harder to learn.
 It is also harder to define a dialog structure with Rasa since a story has the format shown in Listing \ref{lst:rasa_story_format}, whereas with Dialogflow and Watson dialog nodes are created.
 The dialog nodes are structured in a GUI with drag-and-drop.
 
-It is harder to create form filling actions in Rasa.
-Python code defines the form-actions for Rasa.
+It is harder to create form filling actions in Rasa since they require Python skills.
 Listing \ref{lst:slot_fill_action} shows an example for such a form-action.
 Dialogflow and Watson support form-actions through a simple GUI shown in Figure \ref{fig:formfill}.
+
 Using the GUI of Rasa-X defining new entities and intents works the same way for all frameworks.
 The pipeline of Rasa needs to be modified to enable the use of predefined entities.
 This is more complicated than with Dialogflow, where they are enabled by default and Watson, where the entities need to be enabled in the settings.
@@ -195,8 +193,7 @@ This is more complicated than with Dialogflow, where they are enabled by default
 % predefined types/entities
 Another measurement criteria for learnability is the number of predefined entities.
 If a predefined entity is available for a given problem, a developer does not need to invest time in creating an entity or collecting training data. 
-Table \ref{tab:predefined_entities} shows the amount of predefined entities 
-present for the tested technologies.
+Table \ref{tab:predefined_entities} shows the number of predefined entities present for the tested technologies.
 Dialogflow provides the most predefined entities, followed by LUIS.
 Compared to the two above the other technologies provide a small amount of predefined entities.
 \begin{table}[H]
@@ -215,7 +212,7 @@ Compared to the two above the other technologies provide a small amount of prede
 % deployment
 
 \section*{Deployment Complexity}
-A major development factor is a deployment, where it is possible, and how easy the deployment process is.
+A major development factor is the deployment, where it is possible, and how easy the deployment process is.
 For the tested cloud technologies, the provider handles the deployment, and there is no development overhead for the developer.
 The deployment of Rasa needs to be done by the developer.
 Rasa can either run in a Docker container or Python environment.
@@ -232,9 +229,9 @@ The only technology used in this thesis that supports local deployment or deploy
 % communication via Rest endpoint, between the webhook, metadata
 \section*{Communication}
 All of the chatbot and NLU technologies offer Rest API endpoints for communication.
-There is no difference in the type of communication.
 Dialogflow and Watson Assistant send a request to the webhook when the extraction of information is successful.
 Rasa communicates with the action server, which serves a similar purpose as the webhooks.
+
 The frameworks use JSON messages for the communication between the chatbot and external services.
 While Dialogflow and LUIS offer metadata in the messages, shown in Listing \ref{lst:dialogflow_request_params}, \ref{lst:luis_intent_response}
 and \ref{lst:luis_entity_response}, Rasa and Watson Assistant offer no metadata by default.
@@ -280,7 +277,6 @@ Watson and LUIS extract only the date in the format "2020-06-02".
 Duckling extracts dates (time entity) in the format "2020-06-07T00:00:00.000-07:00".
 Duckling always sets the second date of a date-span to the recognized date plus one day.
 This means that the second dates of Duckling differ from the dates of the other technologies.
-Table \ref{tab:date_span_entity_extraction_recognition} shows the dates in the "Extracted Value" column.
 The column "Extracted Value" of Tables \ref{tab:date_entity_extraction_recognition},
 \ref{tab:date_entity_extraction_recognition2},
 and \ref{tab:date_span_entity_extraction_recognition},
@@ -292,8 +288,9 @@ If Monday is recognized correctly, the other weekdays should work too.
 % person entity
 The person entity has been added to Watson Assistant with custom training data.
 The expectation is that the person entity of Watson Assistant performs worst because it is no system entity and is built with a low amount of training data.
-Table \ref{tab:date_entity_extraction_recognition} and \ref{tab:date_entity_extraction_recognition2} list the results of the date recognition and extraction.
+Table \ref{tab:person_entity_extraction_recognition} list the results of the person entity recognition and extraction.
 The expected results are listed as true positive(TP) when the date should be recognized and extracted, or as true negative(TN) when the entity should not be recognized and extracted.
+
 The test result shows that the date entity of Dialogflow worked best with just one error followed closely by Duckling with two errors.
 Spacy performed worst with five errors in ten tests followed by Watson Assistant with four errors out of ten.
 No technology worked correctly on test case eight of Table \ref{tab:date_entity_extraction_recognition}.
@@ -347,23 +344,22 @@ The column name p stands for precision and r for recall.
 Date sum shows the framework result based on the date and date-span recognition without the person entity for the comparison with Duckling, which has no person entity.
 The last row of Table \ref{tab:entity_extraction_eval} shows the result for the combination of Duckling for dates and date-spans and Spacy for persons.
 This makes the comparison of Rasa with the other technologies possible.
-The true negatives (TN) are not part of the f-score calculation.
 
-Table \ref{tab:entity_extraction_eval} shows that the technology with the best f-score across all tests (0.914) is Dialogflow, followed by Rasa when with the combination of Duckling for dates and date-spans and Spacy for persons.
+Table \ref{tab:entity_extraction_eval} shows that the technology with the best f-score across all tests (0.914) is Dialogflow, followed by Rasa with the combination of Duckling for dates and date-spans and Spacy for persons.
 Dialogflow achieved the best f-score (0.929) for the combination of dates and date-spans.
 Dialogflow has the best date entity (f-score of 0.94) when the date-time entity is used instead of the date-period entity.
 The date-period entity of Dialogflow reached a low f-score of 0.5.
 The use of the date-period entity is not recommended since the performance was horrible.
-Duckling, Watson, and Dialogflow were on an equal level (f-score of 0.909) on the date-span tests.
+Dialogflow, Duckling, and Watson were on an equal level (f-score of 0.909) on the date-span tests.
 Dialogflow also has the best f-score for the person entity.
 The person entity of Watson Assistant performed worst as expected.
 With more training data, the performance of the custom person entity of Watson Assistant can be increased.
+
 In test case two of Table \ref{tab:date_span_entity_extraction_recognition} Spacy recognized two separate dates instead of a date-span.
 This behavior is counted as a failure because, in the application, there is only one date slot present, and the information cannot be processed correctly.
 In test case one, the date-period entity of Dialogflow and Luis convert Monday to a date in the past.
 That is not what is needed for the use-cases as it should be the next matching weekday and not the last.
-Test case two gives a hint that the next occurring weekday is the correct one.
-The hint does not influence the result as the date extraction delivered the same result as before.
+Test case two hints that the next occurring weekday is the correct one, but the date extraction delivered the same result as before.
 The functionality was retested on another day.
 LUIS still failed to extract the correct date but Dialogflow 
 managed to do so.
@@ -625,10 +621,10 @@ extraction.
 The detailed test are listed in Table \ref{tab:sickness_intent_classification} and Table \ref{tab:vacation_intent_classification}.
 The test evaluation is shown in Table \ref{tab:intent_classification_result}.
 The tests show that Dialogflow, LUIS, and Watson have almost the same average confidence score. 
-Dialogflow has a smaller deviation than the other three.
 Dialogflow always scores above 50\% confidence and often reaches 100\%.
 The scores of Watson Assistant are similar to Dialogflow with the difference that the confidence score was below 50\% at times.
 The confidence scores of Rasa are lower than those of Dialogflow, LUIS, and Watson on average, shown in Table \ref{tab:intent_classification_result}.
+
 Dialogflow and Watson managed to classify all intents correctly.
 LUIS classified all vacation intents correctly.
 The entity extraction of Dialogflow failed in test case 4 of Table \ref{tab:sickness_intent_classification} since "myself" has been extracted as a person.
@@ -637,7 +633,7 @@ The test sentences with higher numbers are more complex than the ones with small
 Dialogflow and Watson were able to classify all test sentences correctly.
 LUIS failed to classify test sentence seven of Table \ref{tab:sickness_intent_classification} correctly.
 Rasa failed to classify the more complex sentences correctly.
-This leads to the conclusion that Dialogflow, LUIS, and Watson work better with complex sentences when a small amount of training data is used.
+This leads to the conclusion that Dialogflow, LUIS, and Watson work better with complex sentences when a small amount of training data is used for training.
 
 % F-score
 The result in Table \ref{tab:intent_classification_result} shows that 
@@ -655,13 +651,13 @@ Table \ref{tab:vacation_utterances_de} list the German training sentences.
 The test results are listed in Table \ref{tab:sickness_intent_classification_de} 
 and Table \ref{tab:vacation_intent_classification_de} with a boolean value which indicates if the correct intent was identified, a boolean that indicates if the entities were extracted correctly,
 and the confidence score for each test case.
+
 The finalized result of Table \ref{tab:intent_classification_result_de} shows that the average confidence score for the German test sentences is higher than for the English test sentences for each technology.
 The f-score also increased significantly, which indicates that the German test sentences are recognized better than the English test sentences.
 The ranking of the Technologies is also different from before since three technologies achieved perfect f-scores.
 The average confidence is an additional value for the comparison since the f-score puts three technologies on par.
 
-Watson achieved the highest confidence.
-The second place goes to LUIS.
+Watson achieved the highest confidence score on the German tests, followed by LUIS.
 LUIS was able to increase the average confidence from about 75\% on the English tests to about 85\% on the German tests.
 Dialogflow only reaches the third place.
 The intent classification is top-notch for all technologies, and all can be recommended from that point of view.
@@ -678,11 +674,6 @@ LUIS offers a person entity when English is selected but not for the German lang
 The date-time entity of LUIS can handle German date formats. 
 LUIS is the only technology that achieved an excellent entity extraction result on the German test sentences.
 To summarize, the intent classification result is excellent for the German language tests, but the entity extraction often fails.
-
-
-
-
-
 
 \begin{table}[h]
     \centering
@@ -865,10 +856,10 @@ An entity is created either with examples or annotations.
 The training sentences for the intents can contain entities.
 They can be marked as entities by annotating them.
 Then the values are used to train the entity.
-There is no difference in the creation process of intents and entities.
+All in all, There is no difference in the creation process of intents and entities.
+
 The creation of stories/dialogs only works for chatbot technologies.
 LUIS will not be part of the dialog evaluation.
-
 Dialog structures are created with dialog nodes in Dialogflow and Watson, while Rasa uses stories.
 A dialog node represents a recognized intent and defines the slots, actions, and responses regarding the intent.
 In the UI, follow up dialog nodes can be created to build a structure where one intent follows after another.
@@ -939,7 +930,7 @@ This means that it is equally easy to implement intents, entities, and utterance
 The structuring of the user interfaces of the cloud bots is similar.
 The interface of LUIS was the easiest, which is not surprising since it has no dialog handling mechanism.
 The UI of Dialogflow was the simplest of three chatbot frameworks because it was more transparent than the interface of Watson Assistant.
-The UI of Rasa-X was between Dialogflow and Watson Assistant.
+The UI complexity of Rasa-X was between Dialogflow and Watson Assistant.
 Rasa alone had no graphical user interface and is on the last place in this 
 category. 
 
@@ -953,10 +944,9 @@ Spacy offers different models based on small, medium, and large training sets fo
 Figure \ref{lst:spacy_pipeline_detail} shows the adjusted pipeline used for this thesis.
 It is even possible to include custom components into the pipeline of Rasa.
 Rasa is the only technology of the four where the pipeline is visible, and it offers customization on top of that.
-The other three technologies do not offer mechanisms to adjust the pipeline.
 
 It is possible to use external services instead of adjusting the pipeline by 
 moving the entity extraction to the webhook where necessary.
 Since especially Dialogflow and LUIS offer a vast amount of predefined entities, the use of other entity extraction tools might not be necessary at all.
-It is different for Watson Assistant since it has a small number of predefined entities and would surely benefit from external services.
+It is different for Watson Assistant since it has a small number of predefined entities, and the bot would surely benefit from external services.
 

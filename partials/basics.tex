@@ -274,23 +274,20 @@ In Listing \ref{lst:webhookExample}, a simplified JSON request from Dialogflow i
 In the case of Dialogflow the incoming message can be found under query text, the response message under fulfillment text and the confidence under intent detection confidence. 
 \begin{lstlisting}[caption={Dialogflow Webhook Request Example}, label={lst:webhookExample},captionpos=b,frame=single,language={[Sharp]C},commentstyle=\color{mygreen},keywordstyle=\color{blue},
 morekeywords={}]                
-[
-{
+[{
     "originalDetectIntentRequest": {
         "payload": {}
     },
     "queryResult": {
         "action": "input.welcome",
         "allRequiredParamsPresent": true,
-        "fulfillmentMessages": [
-        {
+        "fulfillmentMessages": [{
             "text": {
                 "text": [
                 "Good day! What can I do for you today?"
                 ]
             }
-        }
-        ],
+        }],
         "fulfillmentText": "Good day! What can I do for you today?",
         "intent": {
             "displayName": "Default Welcome Intent"
@@ -300,8 +297,7 @@ morekeywords={}]
         "parameters": {},
         "queryText": "Hi, how are you doing"
     },
-}
-]\end{lstlisting}  
+}]\end{lstlisting}  
 
 
 \section{Domain}
@@ -317,7 +313,368 @@ Open-ended systems escape the domain limitation but have problems with the execu
 In literature, F-score values are used to evaluate and compare the performance of natural language systems.
 The base scenario for the f-score explanation is a medical test for a disease.
 Positive means the person has the disease.
-A true positive (tp) is when the test is positive, and the person has the disease.
+A true positive (TP) is when the test is positive, and the person has the disease.
+A false positive (FP) is when the test is positive, but the person is healthy.
+A true negative (TN) is when the test is negative, and the person is healthy.
+A false negative (TN) is when the test is negative, but the person has the disease.
+In the chatbots area, a true positive is when the input is "Hello" and the identified intent is "Greet Intent".
+
+The precision is calculated as $\frac{TP}{TP + FP}$.
+The recall is calculated as $\frac{TP}{TP + FN}$.
+The f-score is calculated as $2 * \frac{precision * recall}{precision + recall}$.
+The range of the f-score, precision, and recall values is zero to one where zero is the worst possible result, and one is a perfect result.
+The precision value shows how many retrieved elements are relevant.
+The recall value represents how many relevant items were retrieved.
+To summarize, precision uses the selected elements (TP + FP), whereas recall is based on the relevant elements (TP + FN).
+Figure \ref{fig:f-score} from the appendix is a visual aid for a better understanding of the difference between precision and recall.
+The f-score is the average of precision and recall.
+
+In the medical area, recall is more important than precision.
+The goal is to identify as many sick people as possible correctly.
+It is not that important if people are false-positive since further checks are always possible to verify the test result.
+In the area of chatbots, neither false negatives nor false positives are desirable, and the f-score is the most relevant value.
+
+A chatbot related scenario is when a user enters "How is the weather today" and expects the weather information as a response.
+If the bot responds with a false positive like "Please enter the name of the hotel" the user will not be satisfied.
+Responding with a false negative like "I didn't understand your request. Please rephrase your sentence" is also unsatisfactory for the user.
+Hence, to provide a good user experience the number of FP and FN needs to be as low as possible for NLP systems.
+
+\section{Natural Language Processing/Understanding}   
+The term "natural language" means input is received through voice or writing in the user's language of choice \cite{buiildChatbotsPython}.
+Natural language processing (NLP) in the area of chatbots is necessary to analyze the user's input and figure out the intent and entities necessary to process the given information. 
+NLP is the brain of a chatbot.
+It receives the user's information, processes the data, and retrieves the relevant parts from the input for post-processing.
+Part-of-Speech (POS) tagging assigns parts of speech like noun, verb, and adjective to each word or token \cite{buiildChatbotsPython}.
+This information is used to understand the context and is part of NLU.
+
+% Stemming
+An essential part of natural language processing is the search for the root of words \cite{buiildChatbotsPython}. 
+Stemming and lemmatization are two conventional approaches.
+Stemming reduces a word to the base form by cutting off (stem) the endings. 
+This way, "saying" is reduced to "say" by removing the ending "ing" of the word.
+% Lemmatization
+Lemmatization takes a different approach. 
+It tries to find the dictionary form of a word, has better correctness, and is more productive than stemming and hence the preferred method. 
+Lemmatization uses a vocabulary and morphological analysis of words to achieve its task.
+% stop words
+Both approaches use stop-word removal to get rid of unimportant words.
+Stop words are words that hold little to no meaning and occur in a high frequency like "the" and "a".
+\section{Chatbot} \label{sec:chatbot}
+A chatbot is a conversational agent able to communicate with a user using natural language 
+\cite{evaluateChatbotsShawar2007, shawar2007chatbots, huang2007extracting, gregori2017evaluation}.
+The term chatbot is a combination of the words chatting and robot.
+The synonyms chatterbot and conversational agent appear in the literature found online.
+
+The communication with a chatbot is most often done in written form like in a chat but not restricted to written communication. 
+The basic concepts remain the same for speech and text communication.
+Speech is another form of natural language used in popular technologies like Amazon Alexa and Google Home.
+In general, the communication between man and machine is done in turns until a conversation ends or is aborted \cite{vrajitoru2004evolutionary}.
+When the chatbot finishes the underlying task, the conversation ends, for instance.
+
+As a rule of thumb, a chatbot generates the most likely response base on the user input to drive the conversation forward \cite{dutta2017developing}.
+In the best case, the generated response is reasonable and intelligent \cite{vrajitoru2004evolutionary}. 
+In the worst case, a generic message like "I did not understand that" is generated.
+It is essential to keep in mind that a chatbot can mimic intelligence, human dialog, and personality but is not intelligent and often limited to specific functionality \cite{kane2016role, dutta2017developing}.
+
+% chatbot categories
+In general, three major chatbot types are present in the literature.
+There are menu-driven chatbots (\citet{singhbuilding}), domain-specific/goal-oriented/task-oriented chatbots (\citet{deshpande2017survey, luis2015williams, braunEvaluatingNLU, williams2017hybrid}),
+and chatbots for general/open-ended/end-to-end conversations (\citet{brandtzaeg2018chatbots, singhbuilding}).
+Menu-driven chatbots mimic a standard interface and navigate the user through the interface using text or speech.
+An example of a menu-driven chatbot is a phone call at a support hotline.
+The caller is guided through the interface by the system and is not connected to a person immediately.
+The system gives options like "press one if you would like to request a refund, press two if you need replacement parts", navigates the caller through the process, collects information like the order number, and 
+connects the user to the correct department.
+
+Domain-specific chatbots offer functionality that is limited to a domain.
+Such systems provide the functionality to achieve specific tasks and are not supposed to handle anything else.
+One example of domain-specific functionality would be a refund desk in a shop.
+The refund desk only serves customers with refund related issues.
+The customer is redirected to the information counter when he asks for the location of the TV area inside the shop.
+A chatbot system in the refund desk domain only offers the functionality necessary to get and collect refund information and issue a refund. 
+The response to issues unrelated to a refund will not be useful in most cases.
+
+The third type are the open-ended systems.
+They handle general conversations and are not limited to a domain.
+Contrary to the other two approaches, the user can ask open-ended systems anything. 
+There are no fixed rules what users may or may not ask, and the conversation can develop in any direction.
+These systems have a hard time to collect specific information since there is no way to tell which information is needed.
+It is also impossible to rely on specific information since every conversation varies greatly.
+Famous examples of open-ended systems are Google Home, Siri (Apple), and Alexa (Amazon) \cite{singhbuilding}.
+
+The most limited approach is the menu-driven approach. 
+The user selects predefined options through numeric input to execute a function.
+Domain-specific bots communicate with users in natural language and are excellent in achieving tasks and collecting information.
+Open-ended systems are perfect for general communication and are domain-independent, but it is hard to collect specific information
+or achieve a domain-specific task. 
+
+% ML Chatbot
+In general, an ML-based chatbot system consists of rules and training data.
+The training data needs to be as realistic as possible to provide a natural conversation and a high-quality product.
+The training sentences can be handcrafted for prototyping or generated from large sources like e-mails, phone calls, or the internet.
+These rules define the available functionality, types, and possible input statements.
+A person's name consists of a first and last name is an example of a simple rule a chatbot could use.
+
+% chatbot tasks
+A chatbot has two major tasks.
+It needs to classify the user's intention (intent) and extract the relevant pieces of information (entities) from the message.
+An entity is a relevant piece of information, has a type, and can be a date or person's name, for instance.
+
+\section{Chatbot/NLU Frameworks}
+The current chatbot technologies enable non ML experts to develop a chatbot system.
+There are cloud-based and local chatbot solutions available.
+The cloud-based solutions are created, edited, and developed through a web-interface. 
+They offer a REST API communication endpoint to build custom applications.
+
+The big cloud providers offer chatbot or NLU frameworks in their cloud environment.
+Microsoft has LUIS (\citet{luis2015williams, luisdocs}),
+Google develops Dialogflow (\citet{dialogflow}),
+IBM offers Watson Assistant (\citet{watsonassistant}),
+Amazon provides Lex and Alexa.
+The developer is dependent on the chatbots cloud provider.
+All data passes through and is processed in the provider's cloud environment.
+This needs to be kept in mind when dealing with sensitive information like bank accounts.
+
+The local solutions are standalone applications running on the development machine or the company server.
+The data is never passed to another computer or the cloud since it runs locally.
+A popular local open-source solution found in literature is Rasa\citet{rasabocklisch2017,rasa}. 
+
+A major concept of the chatbot technologies listed above is slot-filling.
+A slot is a predefined type/entity which a user needs to provide in a conversation.
+Table \ref{tab:example_sentences} shows the slots of a hotel example.
+For a hotel reservation, the slots are the hotel name, a start date, an end date, and a name for the reservation.
+All slots need to be filled before the system can process the hotel reservation automatically.
+
+\section{Suitable Problems for Chatbots} 
+Not every problem can be solved using chatbots \cite{buiildChatbotsPython}.
+Chatbots seem like intelligent systems, but they are often designed for specific tasks and are unable to solve complex problems.
+A problem can be solved effectively with chatbots when it is highly repetitive, can be automated, and can be done with simple back-and-forth communication.
+It is possible to solve non-repetitive tasks with chatbots too, but it is not cost-effective.
+If the problem cannot be automated, an employee is needed for the process, and it is harder to serve a large number of users.
+Chatbots are only capable of text or voice communication.
+Hence, the problem must fit in the back-and-forth communication pattern since there are no other means of communication available for chatbots.
+If all three statements are valid for a problem, it is suitable for a chatbot.
+A simple QnA bot for a website's FAQ page is an example of a suitable problem \cite{buiildChatbotsPython}.
+The task can be automated, is highly repetitive, and the FAQ page predefines the answers.
+
+% chatbot types
+As mentioned in Section \ref{sec:chatbot}, there are three major types of chatbots.
+The menu-driven and domain-specific approaches are suitable for goal-oriented tasks where data needs to be collected to execute an action. 
+They only support a limited set of functionality.
+When the user can select an option from a limited list of actions, the menu-driven approach works best (support, helpdesk chatbot).
+When users should be able to communicate using natural language to ask questions related to a domain, the domain-specific approach works best (FAQ chatbot).
+In the FAQ example, the domain consists of all questions and answers listed on the FAQ page and nothing else.
+It would be bothersome to navigate through a FAQ forum with the menu-driven approach using numbers.
+If 1000 topics are available, the user would need to enter a number between one and 1000.
+Such a system would provide a horrible user experience.
+In such a case, a user just wants to ask a question to get an appropriate answer.
+Domain-specific technologies offer the required functionality and are the tool of choice for such problems.
+The open-ended approach is suitable when no specific data needs to be collected, and the conversation is general without any data collection requirements. 
+Google Assistant is a mixture and can answer general questions like "What is the weather in New York", but it cannot process a request like "Tell my employer I am sick and will not come to work today" since it requires domain-specific data and actions.
+
+\section{Intent} \label{sec:intent}
+Intents are the core concept of any chatbot system.
+An "intent" is the intention of a user and the action he wants to perform \cite{dutta2017developing, rahman2017programming}.
+The user wants to book a hotel in sentence two of Table \ref{tab:example_sentences}.
+The action the user wants to perform is "book a hotel" and the intent can be named "book hotel" for instance.
+In general, the user queries the system, and the system identifies the best matching intent, collects relevant information, and generates a response.
+
+The identification of these intents is one of the core functions of chatbots.
+The system finds the intent where the training phrases are closest to the user's query or uses the fallback if no intent reached a high enough confidence score.
+The confidence score is a percentage value between zero and one.
+Zero is the lower end and means no match, and one is the high end and means a perfect match.
+The threshold defines the minimum score the intent classification has to detect to treat the input as a match.
+The fallback intent handles values below the threshold with a generic response like "I am sorry, but I did not understand that".
+Some intent and entity examples are listed in Table \ref{tab:example_sentences}.
+The intent of example sentence one listed in Table \ref{tab:example_sentences} can be labeled as "Greet" since the user greets the bot.
+
+Table \ref{tab:defaultwelcomedialogflow} shows a small excerpt of the information generated for the default welcome intent created by Dialogflow.
+The intent consists of training phrases and a response list.
+As the name suggests, the training phrases are used to train the ML model.
+Input sentences are classified as the intent if the confidence score is above the threshold and higher than for all other intents.
+The confidence score reflects how similar the input is to the training sentences.
+The system then responds with a random pick from the response list.
+The random pick fakes intelligence and keeps the user interested since it would be annoying to get the same response every time.
+Such a conversation would be classified as robotic and unnatural, which is the opposite of the desired outcome.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ l | c | c | l }
+  No. & Intent & Type & Sentences \\ \hline \hline
+  \multirow{8}{*}{1}
+  & \multirow{8}{*}{Default Welcome} & \multirow{8}{*}{Training Phrases} & hey \\
+      & & & howdy partner\\
+      & & & heya\\ 
+      & & & hello hi\\ 
+      & & & hey there\\ 
+      & & & hi there\\ 
+      & & & greetings\\ 
+      & & & howdy \\ \hline
+  \multirow{4}{*}{2}
+  & \multirow{4}{*}{Default Welcome} & \multirow{4}{*}{Response List} & Hi! How are you doing? \\
+      & & & Hello! How can I help you?\\
+      & & & Good Day! What can I do for you today?\\ 
+      & & & Greetings! How can I assist?\\ \hline
+\end{tabular}
+    \caption{Default Welcome Intent of Dialogflow} \label{tab:defaultwelcomedialogflow}
+\end{table} \noindent
+
+
+
+\section{Utterance} \label{sec:utterance}
+An utterance is a sentence or a part of a sentence.
+Especially in chat environments, an utterance is often just a part of a sentence to shorten the message. 
+All sentences listed in Table \ref{tab:example_sentences} are utterances for instance.
+The messages of users are utterances, and the chatbot responds with utterances \cite{singhbuilding, dutta2017developing}.
+Table \ref{tab:defaultwelcomedialogflow} shows some training phrases and the response list.
+Table \ref{tab:defaultwelcomedialogflow} shows that a collection of utterances belongs to an "intent" and builds the base for the classification of user inputs.
+Training phrases are different versions of the same question or statement.
+This allows the system to correctly classify utterances that never were part of the training data as long as the utterance is similar to the known sentences.
+Example sentence two of Table \ref{tab:example_sentences} can be used 
+as utterance for the book hotel intent.
+
+Utterances need to be chosen with care to prevent overfitting to unimportant features of the sentences.
+If all utterances contain a specific word at a specific position the model 
+might learn that a specific word must be at that position all the time.
+Utterances for training purposes can come from multiple sources.
+It is legitimate to handcraft utterances for development and prototyping purposes.
+The best sources for training data are real-life sources like usage data from live systems, e-mails, phone conversations, and online resources \cite{singhbuilding}.    
+
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ c | l | c | l }
+        No. & Sentence & Intent & Entities \\ \hline \hline
+        1 & Hello & Greet & - \\ \hline
+        2 & I'd like to book a hotel & Book Hotel & - \\ \hline
+        3 & The Twelve Months hotel & - & Hotel Item\\ \hline
+        4 & From the 27th of April & - & Date (From)\\ \hline
+        5 & To the 4th of May & - & Date (To)\\ \hline
+        6 & Ethan May & - & Person (Name)\\ \hline
+        7 & Order one green t-shirt size M please & Place Order & T-Shirt Item, Color, Size \\ \hline
+    \end{tabular}
+    \caption{Examples for Concept Explanation} \label{tab:example_sentences}
+\end{table} \noindent
+
+\section{Entity} \label{sec:entity}
+An entity is a piece of information that needs to be extracted from natural language.
+An entity represents data that belongs to an intent an has a type.
+Entities are volumes, counts, and quantities, for instance \cite{buiildChatbotsPython}.
+Example sentence seven of Table \ref{tab:example_sentences} shows an intent wiht multiple entities.
+The first entity is the shirt color,  the second is the shirt as an item, and the third one the shirt size.
+
+Sentences three to six of Table \ref{tab:example_sentences} show entities in a book hotel example.
+In this simplified example, to book a hotel, the hotel name (Hotel Item), the check-in and check-out dates (Date), and a name (Person) are required for the reservation.
+To extract entities in a context from natural language, Named-Entity-Recognition (NER) is used.
+NER is a sub-area of NLU.
+Entity recognition deals with word ambiguities like in sentences five and six of Table \ref{tab:example_sentences}.
+In sentence five, May is the month and needs to be treated as a date, whereas in sentence six, it is the last name and is part of a person entity.
+
+A named entity is a noun phrase relating to individuals.
+Classic individuals/named entities are persons (Bill Gates), locations (New York), and organizations (Google) \cite{geyer2016named}.
+Frameworks provide common predefined named-entities like the ones above.
+A developer can define named entities for a specific domain like in the hotel example where an entity is needed to represent the valid hotel names.
+Example sentences four and five of Table \ref{tab:example_sentences} show a date entity, and sentence six shows a person entity.
+Table \ref{tab:entityexampledialog} lists an example entity for food items like apples and pears.
+An entity can be a collection of items, a collection of synonyms, or something more complex.
+The entities are only valid for the current conversation and are stored in the session. 
+They form the context of a conversation \cite{singhbuilding}.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ c | c | l | l }
+  No. & Entity & Item & Synonyms \\ \hline \hline
+  \multirow{4}{*}{1} & \multirow{4}{*}{Fruit Item} & apple & apples \\
+       & & banana & bananas\\
+       & & pea & peas \\ 
+       & & peach & peaches \\ \hline
+    2 & Sick Item & sick & ill, unwell, poorly, indisposed, sickly, ailing \\
+    \hline
+\end{tabular}
+    \caption{Entity examples} \label{tab:entityexampledialog}
+\end{table} \noindent
+
+
+\section{Chatbot Response} \label{sec:chatbot_response}
+The response message of a chatbot is picked from a pool of utterances as described in Section \ref{sec:utterance}.
+The response can be picked at random or in a sequence.
+Response alternatives keep the conversation interesting for users.
+If the same response is picked all the time users realize fast that they are 
+talking to a bot, and they get bored. 
+The alternating responses counteract a robot-like feel of the conversation, especially for returning customers. 
+Table \ref{tab:defaultwelcomedialogflow} shows the default welcome intent of Dialogflow with the response list.
+
+\section{Story}
+A story defines the dialog flow. 
+It is a step-by-step script for a conversation between man and machine.
+The bot and the user interact in turns using natural language \cite{evaluateChatbotsShawar2007, shawar2007chatbots, huang2007extracting, gregori2017evaluation}.
+The user asks a question or makes a statement, and the bot processes the request and delivers a response.
+A story can be a "happy" or a "sad" path.
+A "happy" path is a successful interaction from start to finish without any problems.
+The "sad" path handles the behavior when something does not work out.
+It could be that the user input is wrong and needs to be re-entered when the validation fails.
+The user can also quit the conversation at any time.
+These "sad" paths are handled in separate stories.
+
+In Figure \ref{fig:greetstory}, a story for a greeting sequence with a user is shown. 
+The user starts the conversation by entering a greeting phrase. 
+The response of the chatbot is also a greeting phrase, and then the conversation ends. 
+Figure \ref{fig:faqexamplecrop} shows an example of a conversation between a person and a chatbot.
+The story for Figure \ref{fig:faqexamplecrop} is that the user asks for open hours, the bot responds with the open hours, the user asks for an item, the system validates the item, and generates a response with 
+the item in the response text.
+
+\makefigure{faqexamplecrop}{Example FAQ Conversation with Dialogflow}
+\makefigure{greetstory}{Greeting Story}
+
+\cite{braunEvaluatingNLU}.
+\section{Webhook} \label{sec:webhook}
+A webhook is a URL endpoint where the frameworks send the metadata and intent data for analysis, completion, and processing.
+In the case of this thesis, the webhook is a Python REST service implemented with Flask.
+Each framework gets a route in the service, which is "/watson/webhook" for the Watson Assistant requests, for example.
+In Listing \ref{lst:webhookExample}, a simplified JSON request from Dialogflow is shown for the default welcome intent.
+In the case of Dialogflow the incoming message can be found under query text, the response message under fulfillment text and the confidence under intent detection confidence. 
+\begin{lstlisting}[caption={Dialogflow Webhook Request Example}, label={lst:webhookExample},captionpos=b,frame=single,language={[Sharp]C},commentstyle=\color{mygreen},keywordstyle=\color{blue},
+morekeywords={}]                
+[{
+    "originalDetectIntentRequest": {
+        "payload": {}
+    },
+    "queryResult": {
+        "action": "input.welcome",
+        "allRequiredParamsPresent": true,
+        "fulfillmentMessages": [{
+            "text": {
+                "text": [
+                "Good day! What can I do for you today?"
+                ]
+            }
+        }],
+        "fulfillmentText": "Good day! What can I do for you today?",
+        "intent": {
+            "displayName": "Default Welcome Intent"
+        },
+        "intentDetectionConfidence": 0.72385716,
+        "languageCode": "en",
+        "parameters": {},
+        "queryText": "Hi, how are you doing"
+    },
+}]\end{lstlisting}  
+
+
+\section{Domain}
+The domain of a chatbot is equal to the core functionality.
+A domain-specific chatbot has a limited set of operations and works with data relevant to the domain.
+In the refund-desk scenario, the domain is "refund" for example.
+The bot can process and answer refund-related issues, collect refund-specific information, and issue a refund. 
+It does not offer functionality which is unrelated to the refund domain-like 
+"What is the weather in New York today" and it is not supposed to do so.
+Open-ended systems escape the domain limitation but have problems with the execution of domain-specific tasks and the collection of domain-specific information. 
+
+\section{Evaluation of NLP capabilities}
+In literature, F-score values are used to evaluate and compare the performance of natural language systems.
+The base scenario for the f-score explanation is a medical test for a disease.
+Positive means the person has the disease.
+A true positive (TP) is when the test is positive, and the person has the disease.
 A false positive (FP) is when the test is positive, but the person is healthy.
 A true negative (TN) is when the test is negative, and the person is healthy.
 A false negative (TN) is when the test is negative, but the person has the disease.
@@ -337,6 +694,12 @@ In the medical area, recall is more important than precision.
 The goal is to identify as many sick people as possible correctly.
 It is not that important if people are false-positive since further checks are always possible to verify the test result.
 In the area of chatbots, neither false negatives nor false positives are desirable, and the f-score is the most relevant value.
+
+A chatbot related scenario is when a user enters "How is the weather today" and expects the weather information as response.
+If the bot responds with a false positive like "Please enter the name of the hotel", the user will not be satisfied.
+Responding with a false negative like "I didn't understand your request. Please rephrase your sentence" is also unsatisfactory for the user.
+To provide a good user experience the number of FP and FN needs to be as low as possible.
+
 
 \section{Natural Language Processing/Understanding}   
 The term "natural language" means input is received through voice or writing in the user's language of choice \cite{buiildChatbotsPython}.

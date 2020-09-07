@@ -84,9 +84,12 @@
 }
 
 \newcommand{\makeChapterWithoutNumber}[2]{
+    \titlespacing*{\chapter}{0pt}{-30pt}{30pt}
+    \newpage
     \chapter*{#1} 
     \addcontentsline{toc}{chapter}{#1}
     \input{partials/#2.tex}
+    \titlespacing*{\chapter}{0pt}{50pt}{40pt}
 }
 
 \newcommand{\makeFrontPage}{

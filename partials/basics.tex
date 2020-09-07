@@ -695,11 +695,10 @@ The goal is to identify as many sick people as possible correctly.
 It is not that important if people are false-positive since further checks are always possible to verify the test result.
 In the area of chatbots, neither false negatives nor false positives are desirable, and the f-score is the most relevant value.
 
-A chatbot related scenario is when a user enters "How is the weather today" and expects the weather information as response.
-If the bot responds with a false positive like "Please enter the name of the hotel", the user will not be satisfied.
+A chatbot related scenario is when a user enters "How is the weather today" and expects the weather information as a response.
+If the bot responds with a false positive like "Please enter the name of the hotel" the user will not be satisfied.
 Responding with a false negative like "I didn't understand your request. Please rephrase your sentence" is also unsatisfactory for the user.
-To provide a good user experience the number of FP and FN needs to be as low as possible.
-
+Hence, to provide a good user experience the number of FP and FN needs to be as low as possible for NLP systems.
 
 \section{Natural Language Processing/Understanding}   
 The term "natural language" means input is received through voice or writing in the user's language of choice \cite{buiildChatbotsPython}.
@@ -721,3 +720,4 @@ Lemmatization uses a vocabulary and morphological analysis of words to achieve i
 % stop words
 Both approaches use stop-word removal to get rid of unimportant words.
 Stop words are words that hold little to no meaning and occur in a high frequency like "the" and "a".
+

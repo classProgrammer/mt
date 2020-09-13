@@ -45,7 +45,7 @@ The first entity is called date-period, and the second one is called date-time.
 The advanced features of these entities show why predefined entities are better than custom entities for standard problems.
 Both date entities parse dates like 06.27.2020 correctly.
 They are also capable of processing weekdays (Monday) and periods like Monday to Friday and tomorrow correctly.
-It is possible to implement such behavior for a custom entity but is additional work
+It is possible to implement such behavior for a custom entity but is additional work.
 They also convert dates to the correct values.
 If Monday is in the past for the span Monday to Friday, the resulting date period will be from the future Monday to Friday after next Monday.
 The provided standard functionality for dates and date-spans is very convenient and user friendly.
@@ -86,7 +86,7 @@ def dialogflowRequestEntryPoint():
 req = request.get_json(force=True)
 intent = req.get('queryResult').get('intent').get('displayName')
 \end{lstlisting}  
-
+\newpage
 \begin{lstlisting}[caption={Dialogflow Intent Handling}, label={lst:dialogflow_intent_handling},captionpos=b,frame=single,language={Python},commentstyle=\color{mygreen},keywordstyle=\color{blue},
     morekeywords={}]                
 if intent == 'Sickness Confirmed':
@@ -111,7 +111,7 @@ elif intent == 'Vacation':
 % ---------------------- WATSON ----------------------
 % ----------------------------------------------------
 \section{Watson Assistant}
-Watson Assistant\citet{watsonassistant} is the cloud chatbot technology of IBM hosted in the IBM cloud.
+Watson Assistant\cite{watsonassistant} is the cloud chatbot technology of IBM hosted in the IBM cloud.
 An IBM cloud account is required to use the services.
 First, a new assistant needs to be created, which requires a name.
 Then dialog skills can be created.
@@ -158,7 +158,7 @@ If the request only contained the name of a person, only the name of the person 
 If the request contained a name and a date, both are present in the chatbots response message.
 
 Whenever the webhook finds a person in the backend, the user needs to confirm that the entered information is correct.
-If the person was not found the retry message is displayed
+If the person was not found the retry message is displayed.
 Watson Assistant offers conditional statements to handle such cases.
 Table \ref{tab:watson_cond_response} shows the conditions, responses, and actions of the use case.
 
@@ -185,8 +185,7 @@ If everything went fine, an all done message is displayed.
 If something went wrong, an error message is displayed instead.
 This ends the sickness dialog.
 
-The vacation use-case is quite similar in structure.
-The vacation use-case requires a date-span entity.
+The vacation use-case is quite similar in structure and requires a date-span entity.
 Watson Assistant offers no date-span entities, but it is possible to use two separate dates instead.
 It is impossible to create compound entities with Watson.
 A compound entity cloud store two dates. 
